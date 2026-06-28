@@ -1,0 +1,58 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build public site
+        run: |
+          mkdir -p public
+          cp index.html public/index.html
+          cp privacy.html public/privacy.html
+          cp terms.html public/terms.html
+          cp redirect.html public/redirect.html
+          cp 404.html public/404.html
+          cp robots.txt public/robots.txt
+          cp sitemap.xml public/sitemap.xml
+          cp CNAME public/CNAME
+          touch public/.nojekyll
+          mkdir -p public/assets/css public/assets/js public/assets/icons public/assets/images
+          cp assets/css/style.css public/assets/css/style.css
+          cp assets/js/app.js public/assets/js/app.js
+          cp assets/js/auth.js public/assets/js/auth.js
+          cp -r assets/icons/. public/assets/icons/
+          cp -r assets/images/. public/assets/images/
+          rm -f public/assets/js/dashboard.js public/assets/js/auth.js public/assets/css/dashboard.css
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

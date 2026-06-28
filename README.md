@@ -1,6 +1,6 @@
 # gift-landing
 
-A production-ready, premium promotional landing page system built with pure HTML, CSS, and vanilla JavaScript.
+A private local-only landing platform with a secure local access gate.
 
 ## Features
 
@@ -11,35 +11,43 @@ A production-ready, premium promotional landing page system built with pure HTML
 - Safe redirect flow with configurable destination
 - Cookie banner and tracking placeholders
 - SEO basics including canonical tags, OpenGraph, Twitter cards, and JSON-LD
+- Local-only private access gate with password and secret key
 
-## Structure
+## Private access
 
-- index.html — Landing page
-- privacy.html — Privacy policy page
-- terms.html — Terms of service page
-- redirect.html — Safe redirect destination handler
-- 404.html — Not-found fallback
-- robots.txt — Search engine crawling instructions
-- sitemap.xml — Sitemap
-- assets/css/style.css — Shared styling
-- assets/js/app.js — Shared behavior and configuration
+The landing page and dashboard are locked behind a local-only authentication gate.
+Use these credentials:
 
-## Configuration
+- Password: R3ward!LocalOnly#2026
+- Secret key: M0narch-Alpha-7J2Q-N9V4
 
-The core configuration object is defined in assets/js/app.js:
+These values are intended for local use only.
 
-```js
-const CONFIG = {
-  offerUrl: "",
-  pageTitle: "Reward Center",
-  buttonText: "Continue",
-  trackingEnabled: false
-};
+## Run locally on Windows PowerShell
+
+From PowerShell:
+
+```powershell
+Set-Location C:\Users\user\gift-landing
+powershell -ExecutionPolicy Bypass -File .\launch-local.ps1
 ```
 
-Update these values to change the landing page behavior.
+## Run locally on WSL / Ubuntu / Debian
+
+From WSL or Ubuntu/Debian:
+
+```bash
+cd /mnt/c/Users/user/gift-landing
+python3 -m http.server 8000
+```
+
+Then open:
+
+- http://127.0.0.1:8000/gift-landing/
+- http://127.0.0.1:8000/gift-landing/dashboard.html
 
 ## Notes
 
-- Tracking placeholders are present for TikTok Pixel, Meta Pixel, Google Analytics, and Google Tag Manager but are intentionally not populated.
-- The redirect flow is designed to be safe and explicit, with no open redirect behavior.
+- The site is intentionally restricted to localhost-only access.
+- The dashboard is hidden from public hosts and GitHub Pages.
+- The private gate can be updated later with a stronger password or custom secret.

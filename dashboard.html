@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | Reward Center</title>
+    <meta name="description" content="Admin dashboard for configuring the reusable CPA landing platform." />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/dashboard.css" />
+  </head>
+  <body class="dashboard-page">
+    <div class="dashboard-shell">
+      <aside class="dashboard-sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">R</div>
+          <div>
+            <h1>Reward Center</h1>
+            <p>Reusable CPA landing platform</p>
+          </div>
+        </div>
+        <nav class="dashboard-nav">
+          <a href="index.html">Preview site</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </nav>
+        <div class="sidebar-card">
+          <h3>Quick actions</h3>
+          <button class="button button-primary" type="button" id="save-btn">Save settings</button>
+          <button class="button button-secondary" type="button" id="export-btn">Export config</button>
+          <button class="button button-secondary" type="button" id="reset-btn">Reset</button>
+        </div>
+      </aside>
+      <main class="dashboard-main">
+        <header class="dashboard-topbar">
+          <div>
+            <p class="eyebrow">Dashboard</p>
+            <h2>Configure every aspect of your landing experience</h2>
+          </div>
+          <div class="topbar-actions">
+            <a class="button button-secondary" href="index.html" target="_blank" rel="noreferrer">Open preview</a>
+            <button class="button button-primary" type="button" id="deploy-btn">Save & Deploy</button>
+          </div>
+        </header>
+
+        <section class="dashboard-grid">
+          <div class="panel">
+            <h3>Offer</h3>
+            <label>Campaign name<input id="campaignName" /></label>
+            <label>Offer URL<input id="offerUrl" /></label>
+            <label>Country<input id="country" /></label>
+            <label>Button text<input id="buttonText" /></label>
+            <label>Redirect delay (ms)<input id="redirectDelay" type="number" /></label>
+            <label><input id="enableRedirect" type="checkbox" /> Enable redirect</label>
+          </div>
+
+          <div class="panel">
+            <h3>Design</h3>
+            <label>Primary color<input id="primaryColor" type="color" /></label>
+            <label>Secondary color<input id="secondaryColor" type="color" /></label>
+            <label>Accent color<input id="accentColor" type="color" /></label>
+            <label>Theme<select id="theme"><option value="dark">Dark</option><option value="light">Light</option><option value="blue">Blue</option><option value="purple">Purple</option><option value="green">Green</option><option value="red">Red</option></select></label>
+            <label>Button style<select id="buttonStyle"><option value="pill">Pill</option><option value="rounded">Rounded</option></select></label>
+            <label>Border radius<input id="borderRadius" type="range" min="8" max="40" step="1" /></label>
+            <label>Heading font<input id="headingFont" /></label>
+            <label>Body font<input id="bodyFont" /></label>
+          </div>
+
+          <div class="panel">
+            <h3>Content</h3>
+            <label>Logo text<input id="logoText" /></label>
+            <label>Headline<input id="headline" /></label>
+            <label>Subtitle<textarea id="subtitle"></textarea></label>
+            <label>Trust badges<textarea id="trustBadges" placeholder="One per line"></textarea></label>
+            <label>Features<textarea id="features" placeholder="Title | Description per line"></textarea></label>
+            <label>Benefits<textarea id="benefits" placeholder="One benefit per line"></textarea></label>
+            <label>FAQ<textarea id="faq" placeholder="Question | Answer per line"></textarea></label>
+          </div>
+
+          <div class="panel">
+            <h3>Media & SEO</h3>
+            <label>Logo URL<input id="logoUrl" /></label>
+            <label>Hero image URL<input id="heroImageUrl" /></label>
+            <label>Background image URL<input id="backgroundImageUrl" /></label>
+            <label>Title<input id="seoTitle" /></label>
+            <label>Description<textarea id="seoDescription"></textarea></label>
+            <label>Keywords<input id="seoKeywords" /></label>
+            <label>Canonical URL<input id="canonical" /></label>
+            <label>Favicon URL<input id="faviconUrl" /></label>
+          </div>
+
+          <div class="panel">
+            <h3>Tracking</h3>
+            <label>TikTok Pixel<input id="tiktokPixel" /></label>
+            <label>Facebook Pixel<input id="facebookPixel" /></label>
+            <label>Google Analytics ID<input id="gaId" /></label>
+            <label>Google Tag Manager ID<input id="gtmId" /></label>
+            <label>Microsoft Clarity ID<input id="clarityId" /></label>
+            <label>Custom script<textarea id="customScript"></textarea></label>
+          </div>
+
+          <div class="panel">
+            <h3>Policies & Security</h3>
+            <label>Privacy text<textarea id="privacyText"></textarea></label>
+            <label>Terms text<textarea id="termsText"></textarea></label>
+            <label>Maintenance mode<input id="maintenanceMode" type="checkbox" /></label>
+            <label>Cookie banner<input id="cookieBanner" type="checkbox" /></label>
+            <label>Referrer policy<input id="referrerPolicy" /></label>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+  </body>
+</html>

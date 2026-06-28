@@ -1,0 +1,117 @@
+{
+  "offer": {
+    "campaignName": "Reward Center",
+    "offerUrl": "",
+    "country": "US",
+    "buttonText": "Continue",
+    "redirectDelay": 300,
+    "enableRedirect": true
+  },
+  "design": {
+    "primaryColor": "#7c93ff",
+    "secondaryColor": "#8fffd7",
+    "accentColor": "#ffffff",
+    "theme": "dark",
+    "buttonStyle": "pill",
+    "borderRadius": 24,
+    "headingFont": "Inter",
+    "bodyFont": "Inter",
+    "animations": true
+  },
+  "content": {
+    "logoText": "Reward Center",
+    "headline": "Discover a premium path to curated reward offers.",
+    "subtitle": "Reward Center presents a polished, trustworthy experience for accessing eligible promotional offers with clear terms, fast navigation, and privacy-first behavior.",
+    "trustBadges": ["Secure", "Transparent", "Premium"],
+    "heroCardTitle": "Why visitors stay engaged",
+    "heroCardCopy": "Minimal distractions, transparent messaging, and a focused CTA create a conversion-friendly journey.",
+    "features": [
+      {
+        "title": "Conversion-focused hero",
+        "description": "A luxury visual first impression with one clear next step and flexible copy."
+      },
+      {
+        "title": "Trust infrastructure",
+        "description": "Privacy pages, accessible structure, and secure redirect handling support compliance and confidence."
+      },
+      {
+        "title": "Reusable system",
+        "description": "The same project can power unlimited CPA campaigns by changing settings instead of editing HTML."
+      }
+    ],
+    "benefits": [
+      {
+        "title": "Professional presentation",
+        "description": "Luxury-style visuals and precise spacing create a premium experience."
+      },
+      {
+        "title": "Compliant by design",
+        "description": "Clear language, policy pages, and controlled redirect handling support safer use."
+      },
+      {
+        "title": "Fast and focused",
+        "description": "Optimized structure, lightweight interactions, and mobile-first layouts keep the journey smooth."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Discover",
+        "description": "Visitors see the core promise instantly and understand the value quickly."
+      },
+      {
+        "title": "Evaluate",
+        "description": "Supporting content reassures them with benefits, features, and a calm experience."
+      },
+      {
+        "title": "Continue",
+        "description": "A transparent redirect leads them to the configured offer destination."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Can this page be configured for another offer?",
+        "answer": "Yes. The experience is designed to adapt by changing a single configuration set instead of editing the HTML."
+      },
+      {
+        "question": "Does it support tracking?",
+        "answer": "Yes. Pixel IDs, analytics, tag manager, clarity, and custom scripts can all be configured."
+      },
+      {
+        "question": "Is it mobile optimized?",
+        "answer": "Yes. The layout is mobile-first and responsive across phones, tablets, and desktops."
+      }
+    ],
+    "footerText": "© 2026 Reward Center. All rights reserved.",
+    "privacyText": "We collect only the information needed to operate the site experience, consent preferences, and optional analytics. You can manage your choice from the cookie banner.",
+    "termsText": "This landing platform is intended for lawful promotional use. You agree to use the site in a compliant and responsible manner.",
+    "ctaTitle": "Ready to direct visitors with confidence?",
+    "ctaCopy": "Use the dashboard to update branding, content, tracking, and the destination URL in one place."
+  },
+  "tracking": {
+    "tiktokPixel": "",
+    "facebookPixel": "",
+    "gaId": "",
+    "gtmId": "",
+    "clarityId": "",
+    "customScript": ""
+  },
+  "seo": {
+    "title": "Reward Center",
+    "description": "A premium reusable CPA landing platform with a configurable dashboard and trusted conversion flow.",
+    "keywords": "cpa landing page, rewards, conversion",
+    "canonical": "https://go.bouhaj.com",
+    "favicon": "assets/icons/icon.svg"
+  },
+  "security": {
+    "maintenanceMode": false,
+    "cookieBanner": true,
+    "referrerPolicy": "strict-origin-when-cross-origin",
+    "csp": "default-src 'self' https:; img-src 'self' data: https:; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https:; frame-ancestors 'none'"
+  },
+  "media": {
+    "logoUrl": "",
+    "heroImageUrl": "",
+    "backgroundImageUrl": "",
+    "faviconUrl": "assets/icons/icon.svg"
+  }
+}
