@@ -163,9 +163,33 @@ function resetConfig() {
   }
 }
 
-function deployConfig() {
+async function deployConfig() {
   saveConfig();
-  alert("Configuration saved. Use the exported config.json and push to GitHub Pages when ready.");
+  const password = prompt("Enter your local password");
+  const secret = prompt("Enter your local secret key");
+  if (!password || !secret) {
+    alert("Both fields are required.");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/api/publish", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        password,
+        secret,
+        config: currentConfig
+      })
+    });
+    const result = await response.json();
+    if (!response.ok || !result.ok) {
+      throw new Error(result.error || "Publish failed");
+    }
+    alert(result.message || "Published successfully.");
+  } catch (error) {
+    alert(error.message || "Publish failed.");
+  }
 }
 
 async function initDashboard() {
