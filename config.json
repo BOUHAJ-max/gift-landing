@@ -18,9 +18,9 @@
     "bodyFont": "Inter"
   },
   "content": {
-    "logoText": "Reward Center",
-    "headline": "Discover a premium path to curated reward offers.",
-    "subtitle": "Reward Center presents a polished, trustworthy experience for accessing eligible promotional offers with clear terms, fast navigation, and privacy-first behavior.",
+    "logoText": "BOUHAJ Rewards",
+    "headline": "Claim Your Exclusive Reward Today",
+    "subtitle": "Complete the next step to check your eligibility and unlock today's exclusive reward.",
     "trustBadges": [
       "Secure",
       "Transparent",
@@ -28,40 +28,76 @@
     ],
     "features": [
       {
-        "title": "Conversion-focused hero",
-        "description": "A luxury visual first impression with one clear next step and flexible copy."
+        "title": "Feature 1",
+        "description": "Premium feature"
       },
       {
-        "title": "Trust infrastructure",
-        "description": "Privacy pages, accessible structure, and secure redirect handling support compliance and confidence."
+        "title": "Fast Access",
+        "description": "Premium feature"
       },
       {
-        "title": "Reusable system",
-        "description": "The same project can power unlimited CPA campaigns by changing settings instead of editing HTML."
+        "title": "Reach your selected offer in just a few simple steps.",
+        "description": "Premium feature"
+      },
+      {
+        "title": "Feature 2",
+        "description": "Premium feature"
+      },
+      {
+        "title": "Secure Experience",
+        "description": "Premium feature"
+      },
+      {
+        "title": "Your navigation is protected with a safe and reliable process.",
+        "description": "Premium feature"
+      },
+      {
+        "title": "Feature 3",
+        "description": "Premium feature"
+      },
+      {
+        "title": "Verified Offers",
+        "description": "Premium feature"
+      },
+      {
+        "title": "Access carefully selected promotional opportunities.",
+        "description": "Premium feature"
       }
     ],
     "benefits": [
-      "Professional presentation",
-      "Compliant by design",
-      "Fast and focused"
+      "Fast Access",
+      "Secure Process",
+      "Trusted Experience"
     ],
     "faq": [
       {
-        "question": "Can this page be configured for another offer?",
-        "answer": "Yes. The experience is designed to adapt by changing a single configuration set instead of editing the HTML."
+        "question": "1. Is this process secure?",
+        "answer": "Answer"
       },
       {
-        "question": "Does it support tracking?",
-        "answer": "Yes. Pixel IDs, analytics, tag manager, clarity, and custom scripts can all be configured."
+        "question": "Yes. We use a secure connection to protect your experience.",
+        "answer": "Answer"
       },
       {
-        "question": "Is it mobile optimized?",
-        "answer": "Yes. The layout is mobile-first and responsive across phones, tablets, and desktops."
+        "question": "2. How long does it take?",
+        "answer": "Answer"
+      },
+      {
+        "question": "Most users complete the process in just a few minutes.",
+        "answer": "Answer"
+      },
+      {
+        "question": "3. Do I need to pay anything?",
+        "answer": "Answer"
+      },
+      {
+        "question": "No. Simply follow the instructions provided on the next page.",
+        "answer": "Answer"
       }
     ],
     "footerText": "© 2026 Reward Center. All rights reserved.",
-    "privacyText": "We collect only the information needed to operate the site experience, consent preferences, and optional analytics. You can manage your choice from the cookie banner.",
-    "termsText": "This landing platform is intended for lawful promotional use. You agree to use the site in a compliant and responsible manner.",
+    "privacyText": "We respect your privacy. Any information collected is used only to provide and improve your experience. Your data is handled securely and is never sold to third parties.",
+    "termsText": "By using this website, you agree to comply with our Terms of Use. Availability of offers may vary based on eligibility, location, and advertiser requirements. We reserve the right to modify or discontinue the service at any time without prior notice.",
     "ctaTitle": "Ready to direct visitors with confidence?",
     "ctaCopy": "Use the dashboard to update branding, content, tracking, and the destination URL in one place."
   },
@@ -74,9 +110,9 @@
     "customScript": ""
   },
   "seo": {
-    "title": "Reward Center",
-    "description": "A premium reusable CPA landing platform with a configurable dashboard and trusted conversion flow.",
-    "keywords": "cpa landing page, rewards, conversion",
+    "title": "BOUHAJ Rewards",
+    "description": "Complete a quick verification to check your eligibility and unlock today's exclusive reward. Fast, secure, and designed for a smooth experience.",
+    "keywords": "reward, rewards, exclusive reward, gift, special offer, limited offer, secure rewards, online rewards, promotional offer, reward center",
     "canonical": "https://go.bouhaj.com",
     "favicon": "assets/icons/icon.svg"
   },
