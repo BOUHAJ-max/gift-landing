@@ -44,6 +44,26 @@
       { "value": "100%", "label": "Clear path to the offer" },
       { "value": "24/7", "label": "Accessible, responsive experience" }
     ],
+    "benefitsKicker": "Built for trust",
+    "benefitsTitle": "Built to earn trust quickly",
+    "benefitsDescription": "Every section is designed to feel calm, credible, and conversion-oriented without misleading visitors.",
+    "featuresKicker": "Designed to convert",
+    "featuresTitle": "Every feature is purpose-driven",
+    "featuresDescription": "From the sticky navigation to the supporting policy pages, every element is built to guide visitors forward.",
+    "stepsKicker": "Simple and intentional",
+    "stepsTitle": "How the experience works",
+    "stepsDescription": "A concise journey that helps visitors understand what happens next without feeling rushed or confused.",
+    "testimonialsKicker": "Loved by modern teams",
+    "testimonialsTitle": "Trusted by thoughtful teams",
+    "testimonialsDescription": "Designed for modern promotional campaigns that value clarity, speed, and compliance.",
+    "testimonials": [
+      { "quote": "The experience feels premium without being overbuilt. It is calm, clear, and simple to navigate.", "author": "Mira Chen, Growth Strategist" },
+      { "quote": "The messaging is direct and trustworthy. The page gets the point across in seconds.", "author": "Daniel Ortiz, Product Lead" },
+      { "quote": "The experience behaves beautifully on mobile and desktop, which matters for every campaign.", "author": "Nina Patel, Marketing Director" }
+    ],
+    "faqKicker": "Helpful guidance",
+    "faqTitle": "Frequently asked questions",
+    "faqDescription": "Helpful information built into the page to reduce hesitation and improve clarity.",
     "features": [
       {
         "title": "Feature 1",

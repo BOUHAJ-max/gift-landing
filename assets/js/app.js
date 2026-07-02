@@ -245,11 +245,27 @@ function applyMeta(config) {
   }
 
   const theme = config.design?.theme || "dark";
+  const paletteMap = {
+    dark: { bg: "#040816", bgElevated: "rgba(10, 16, 34, 0.95)", surface: "rgba(255, 255, 255, 0.07)", surfaceStrong: "rgba(255, 255, 255, 0.12)", border: "rgba(255, 255, 255, 0.12)", shadow: "0 24px 70px rgba(2, 6, 23, 0.35)" },
+    light: { bg: "#f5f7ff", bgElevated: "rgba(255, 255, 255, 0.94)", surface: "rgba(124, 147, 255, 0.08)", surfaceStrong: "rgba(124, 147, 255, 0.16)", border: "rgba(15, 23, 42, 0.12)", shadow: "0 24px 70px rgba(15, 23, 42, 0.14)" },
+    blue: { bg: "#07111f", bgElevated: "rgba(9, 19, 39, 0.95)", surface: "rgba(124, 147, 255, 0.12)", surfaceStrong: "rgba(124, 147, 255, 0.2)", border: "rgba(124, 147, 255, 0.2)", shadow: "0 24px 70px rgba(10, 24, 48, 0.28)" },
+    purple: { bg: "#120b20", bgElevated: "rgba(31, 18, 48, 0.96)", surface: "rgba(167, 139, 250, 0.12)", surfaceStrong: "rgba(167, 139, 250, 0.2)", border: "rgba(167, 139, 250, 0.2)", shadow: "0 24px 70px rgba(28, 15, 41, 0.28)" },
+    green: { bg: "#061312", bgElevated: "rgba(9, 26, 22, 0.96)", surface: "rgba(34, 197, 94, 0.12)", surfaceStrong: "rgba(34, 197, 94, 0.2)", border: "rgba(34, 197, 94, 0.2)", shadow: "0 24px 70px rgba(6, 23, 20, 0.26)" },
+    red: { bg: "#16090c", bgElevated: "rgba(51, 11, 20, 0.96)", surface: "rgba(248, 113, 113, 0.12)", surfaceStrong: "rgba(248, 113, 113, 0.2)", border: "rgba(248, 113, 113, 0.2)", shadow: "0 24px 70px rgba(46, 10, 18, 0.28)" }
+  };
+  const palette = paletteMap[theme] || paletteMap.dark;
+
   document.documentElement.setAttribute("data-theme", theme);
   document.body.classList.toggle("theme-light", theme === "light");
   document.body.classList.toggle("theme-dark", theme !== "light");
   document.body.classList.toggle("button-rounded", (config.design?.buttonStyle || "pill") === "rounded");
 
+  document.documentElement.style.setProperty("--bg", palette.bg);
+  document.documentElement.style.setProperty("--bg-elevated", palette.bgElevated);
+  document.documentElement.style.setProperty("--surface", palette.surface);
+  document.documentElement.style.setProperty("--surface-strong", palette.surfaceStrong);
+  document.documentElement.style.setProperty("--border", palette.border);
+  document.documentElement.style.setProperty("--shadow", palette.shadow);
   document.documentElement.style.setProperty("--primary", config.design?.primaryColor || "#7c93ff");
   document.documentElement.style.setProperty("--accent", config.design?.accentColor || "#ffffff");
   document.documentElement.style.setProperty("--secondary", config.design?.secondaryColor || "#8fffd7");
@@ -780,7 +796,7 @@ function handleRedirectPage(config) {
   }, delay);
 }
 
-async function initialize() {
+async function refreshPreview() {
   if (!enforceLocalOnly()) {
     return;
   }
@@ -806,7 +822,19 @@ async function initialize() {
   document.body.classList.toggle("maintenance", Boolean(config.security?.maintenanceMode));
 }
 
+async function initialize() {
+  await refreshPreview();
+}
+
 document.addEventListener("DOMContentLoaded", initialize);
+window.addEventListener("storage", (event) => {
+  if (event.key === "cpaLandingConfig") {
+    refreshPreview();
+  }
+});
+window.addEventListener("cpa-config-updated", () => {
+  refreshPreview();
+});
 
 window.addEventListener("beforeunload", () => {
   if (state.consent) {

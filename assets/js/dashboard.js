@@ -68,6 +68,40 @@ function serializeHeroStats(items) {
     .join("\n");
 }
 
+function parseTestimonials(value) {
+  if (Array.isArray(value)) {
+    return value
+      .filter(Boolean)
+      .map((item) => {
+        if (typeof item === "string") {
+          return { quote: item, author: "" };
+        }
+        return { quote: item?.quote || "", author: item?.author || "" };
+      });
+  }
+
+  return String(value || "")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [quote, ...rest] = line.split("|");
+      return { quote: quote.trim() || "", author: rest.join(" ").trim() || "" };
+    });
+}
+
+function serializeTestimonials(items) {
+  return (items || [])
+    .map((item) => {
+      if (typeof item === "string") {
+        return item;
+      }
+      return `${item?.quote || ""}|${item?.author || ""}`.trim();
+    })
+    .filter(Boolean)
+    .join("\n");
+}
+
 function isLocalAccess() {
   const hostname = window.location.hostname;
   if (window.location.protocol === "file:") {
@@ -123,6 +157,22 @@ function readFormValues() {
       heroHighlights: document.getElementById("heroHighlights").value.split("\n").filter(Boolean),
       navLinks: parseNavLinks(document.getElementById("navLinks").value),
       heroStats: parseHeroStats(document.getElementById("heroStats").value),
+      benefitsKicker: document.getElementById("benefitsKicker").value,
+      benefitsTitle: document.getElementById("benefitsTitle").value,
+      benefitsDescription: document.getElementById("benefitsDescription").value,
+      featuresKicker: document.getElementById("featuresKicker").value,
+      featuresTitle: document.getElementById("featuresTitle").value,
+      featuresDescription: document.getElementById("featuresDescription").value,
+      stepsKicker: document.getElementById("stepsKicker").value,
+      stepsTitle: document.getElementById("stepsTitle").value,
+      stepsDescription: document.getElementById("stepsDescription").value,
+      testimonialsKicker: document.getElementById("testimonialsKicker").value,
+      testimonialsTitle: document.getElementById("testimonialsTitle").value,
+      testimonialsDescription: document.getElementById("testimonialsDescription").value,
+      testimonials: parseTestimonials(document.getElementById("testimonials").value),
+      faqKicker: document.getElementById("faqKicker").value,
+      faqTitle: document.getElementById("faqTitle").value,
+      faqDescription: document.getElementById("faqDescription").value,
       ctaTitle: document.getElementById("ctaTitle").value,
       ctaCopy: document.getElementById("ctaCopy").value,
       footerText: document.getElementById("footerText").value,
@@ -205,6 +255,22 @@ function populateForm(config) {
     { value: "100%", label: "Clear path to the offer" },
     { value: "24/7", label: "Responsive experience" }
   ]);
+  document.getElementById("benefitsKicker").value = config.content.benefitsKicker || "Built for trust";
+  document.getElementById("benefitsTitle").value = config.content.benefitsTitle || "Built to earn trust quickly";
+  document.getElementById("benefitsDescription").value = config.content.benefitsDescription || "Every section is designed to feel calm, credible, and conversion-oriented without misleading visitors.";
+  document.getElementById("featuresKicker").value = config.content.featuresKicker || "Designed to convert";
+  document.getElementById("featuresTitle").value = config.content.featuresTitle || "Every feature is purpose-driven";
+  document.getElementById("featuresDescription").value = config.content.featuresDescription || "From the sticky navigation to the supporting policy pages, every element is built to guide visitors forward.";
+  document.getElementById("stepsKicker").value = config.content.stepsKicker || "Simple and intentional";
+  document.getElementById("stepsTitle").value = config.content.stepsTitle || "How the experience works";
+  document.getElementById("stepsDescription").value = config.content.stepsDescription || "A concise journey that helps visitors understand what happens next without feeling rushed or confused.";
+  document.getElementById("testimonialsKicker").value = config.content.testimonialsKicker || "Loved by modern teams";
+  document.getElementById("testimonialsTitle").value = config.content.testimonialsTitle || "Trusted by thoughtful teams";
+  document.getElementById("testimonialsDescription").value = config.content.testimonialsDescription || "Designed for modern promotional campaigns that value clarity, speed, and compliance.";
+  document.getElementById("testimonials").value = serializeTestimonials(config.content.testimonials || []);
+  document.getElementById("faqKicker").value = config.content.faqKicker || "Helpful guidance";
+  document.getElementById("faqTitle").value = config.content.faqTitle || "Frequently asked questions";
+  document.getElementById("faqDescription").value = config.content.faqDescription || "Helpful information built into the page to reduce hesitation and improve clarity.";
   document.getElementById("ctaTitle").value = config.content.ctaTitle || "";
   document.getElementById("ctaCopy").value = config.content.ctaCopy || "";
   document.getElementById("footerText").value = config.content.footerText || "";
@@ -238,7 +304,8 @@ function saveConfig() {
   const config = readFormValues();
   currentConfig = config;
   localStorage.setItem("cpaLandingConfig", JSON.stringify(config));
-  alert("Settings saved locally.");
+  window.dispatchEvent(new CustomEvent("cpa-config-updated", { detail: config }));
+  alert("Settings saved locally. Open the preview tab to see the changes.");
 }
 
 function escapeHtml(value) {
