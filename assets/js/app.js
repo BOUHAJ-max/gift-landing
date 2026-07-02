@@ -19,13 +19,35 @@ const DEFAULT_CONFIG = {
     logoText: "Reward Center",
     headline: "Discover a premium path to curated reward offers.",
     subtitle: "Reward Center presents a polished, trustworthy experience for accessing eligible promotional offers with clear terms, fast navigation, and privacy-first behavior.",
+    eyebrow: "Secure • Transparent • Premium",
     trustBadges: ["Secure", "Transparent", "Premium"],
     heroCardTitle: "Why visitors stay engaged",
     heroCardCopy: "Minimal distractions, transparent messaging, and a focused CTA create a conversion-friendly journey.",
+    heroHighlights: ["One clear next step", "Transparent messaging", "Fast, trustworthy experience"],
     features: [],
     benefits: [],
     steps: [],
     faq: [],
+    testimonials: [
+      { quote: "The experience feels premium without being overbuilt. It is calm, clear, and simple to navigate.", author: "Mira Chen, Growth Strategist" },
+      { quote: "The messaging is direct and trustworthy. The page gets the point across in seconds.", author: "Daniel Ortiz, Product Lead" },
+      { quote: "The experience behaves beautifully on mobile and desktop, which matters for every campaign.", author: "Nina Patel, Marketing Director" }
+    ],
+    benefitsKicker: "Built for trust",
+    benefitsTitle: "Built to earn trust quickly",
+    benefitsDescription: "Every section is designed to feel calm, credible, and conversion-oriented without misleading visitors.",
+    featuresKicker: "Designed to convert",
+    featuresTitle: "Every feature is purpose-driven",
+    featuresDescription: "From the sticky navigation to the supporting policy pages, every element is built to guide visitors forward.",
+    stepsKicker: "Simple and intentional",
+    stepsTitle: "How the experience works",
+    stepsDescription: "A concise journey that helps visitors understand what happens next without feeling rushed or confused.",
+    testimonialsKicker: "Loved by modern teams",
+    testimonialsTitle: "Trusted by thoughtful teams",
+    testimonialsDescription: "Designed for modern promotional campaigns that value clarity, speed, and compliance.",
+    faqKicker: "Helpful guidance",
+    faqTitle: "Frequently asked questions",
+    faqDescription: "Helpful information built into the page to reduce hesitation and improve clarity.",
     footerText: "© 2026 Reward Center. All rights reserved.",
     privacyText: "",
     termsText: "",
@@ -65,6 +87,10 @@ const state = {
   consent: false,
   config: DEFAULT_CONFIG
 };
+
+function normalizeConfig(config) {
+  return deepMerge(DEFAULT_CONFIG, config || {});
+}
 
 function isLocalAccess() {
   const hostname = window.location.hostname;
@@ -111,16 +137,17 @@ async function loadConfig() {
     baseConfig = DEFAULT_CONFIG;
   }
 
+  const fileConfig = normalizeConfig(baseConfig);
   if (stored) {
     try {
       const parsed = JSON.parse(stored);
-      return deepMerge(baseConfig, parsed);
+      return normalizeConfig(deepMerge(fileConfig, parsed));
     } catch (error) {
-      return deepMerge(baseConfig, {});
+      return fileConfig;
     }
   }
 
-  return deepMerge(baseConfig, {});
+  return fileConfig;
 }
 
 function setCookie(name, value, days) {
@@ -173,9 +200,29 @@ function resolveOfferTarget(target) {
   return "";
 }
 
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function applyMeta(config) {
   const title = config.seo?.title || config.offer?.campaignName || "Reward Center";
   document.title = title;
+
+  const cspMeta = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
+  if (cspMeta) {
+    cspMeta.setAttribute("content", config.security?.csp || "default-src 'self' https:; img-src 'self' data: https:; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https:; frame-ancestors 'none'");
+  }
+
+  const referrerMeta = document.querySelector('meta[name="referrer"]');
+  if (referrerMeta) {
+    referrerMeta.setAttribute("content", config.security?.referrerPolicy || "strict-origin-when-cross-origin");
+  }
+  document.documentElement.setAttribute("referrerpolicy", config.security?.referrerPolicy || "strict-origin-when-cross-origin");
 
   const descriptionMeta = document.querySelector('meta[name="description"]');
   if (descriptionMeta) {
@@ -197,9 +244,11 @@ function applyMeta(config) {
     favicon.setAttribute("href", config.media?.faviconUrl || config.seo?.favicon || "assets/icons/icon.svg");
   }
 
-  if (config.design?.theme) {
-    document.documentElement.setAttribute("data-theme", config.design.theme);
-  }
+  const theme = config.design?.theme || "dark";
+  document.documentElement.setAttribute("data-theme", theme);
+  document.body.classList.toggle("theme-light", theme === "light");
+  document.body.classList.toggle("theme-dark", theme !== "light");
+  document.body.classList.toggle("button-rounded", (config.design?.buttonStyle || "pill") === "rounded");
 
   document.documentElement.style.setProperty("--primary", config.design?.primaryColor || "#7c93ff");
   document.documentElement.style.setProperty("--accent", config.design?.accentColor || "#ffffff");
@@ -207,6 +256,50 @@ function applyMeta(config) {
   document.documentElement.style.setProperty("--radius", `${config.design?.borderRadius || 24}px`);
   document.documentElement.style.setProperty("--font-heading", config.design?.headingFont || "Inter");
   document.documentElement.style.setProperty("--font-body", config.design?.bodyFont || "Inter");
+}
+
+function parseNavLinks(value) {
+  if (Array.isArray(value)) {
+    return value
+      .filter(Boolean)
+      .map((item) => {
+        if (typeof item === "string") {
+          return { label: item, href: "#" };
+        }
+        return { label: item?.label || item?.title || "Link", href: item?.href || item?.url || "#" };
+      });
+  }
+
+  return String(value || "")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [label, ...rest] = line.split("|");
+      return { label: label.trim() || "Link", href: rest.join(" ").trim() || "#" };
+    });
+}
+
+function parseHeroStats(value) {
+  if (Array.isArray(value)) {
+    return value
+      .filter(Boolean)
+      .map((item) => {
+        if (typeof item === "string") {
+          return { value: item, label: "Highlight" };
+        }
+        return { value: item?.value || item?.label || "—", label: item?.label || item?.title || "Highlight" };
+      });
+  }
+
+  return String(value || "")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [valuePart, ...rest] = line.split("|");
+      return { value: valuePart.trim() || "—", label: rest.join(" ").trim() || "Highlight" };
+    });
 }
 
 function renderContent(config) {
@@ -225,6 +318,11 @@ function renderContent(config) {
     subtitle.textContent = config.content?.subtitle || "";
   }
 
+  const heroEyebrow = document.getElementById("hero-eyebrow");
+  if (heroEyebrow) {
+    heroEyebrow.textContent = config.content?.eyebrow || config.content?.heroEyebrow || "Secure • Transparent • Premium";
+  }
+
   const heroCardTitle = document.getElementById("hero-card-title");
   if (heroCardTitle) {
     heroCardTitle.textContent = config.content?.heroCardTitle || "Why visitors stay engaged";
@@ -233,6 +331,133 @@ function renderContent(config) {
   const heroCardCopy = document.getElementById("hero-card-copy");
   if (heroCardCopy) {
     heroCardCopy.textContent = config.content?.heroCardCopy || "";
+  }
+
+  const heroPanelList = document.getElementById("hero-panel-list");
+  if (heroPanelList) {
+    heroPanelList.innerHTML = "";
+    (config.content?.heroHighlights || []).forEach((item) => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      heroPanelList.appendChild(li);
+    });
+  }
+
+  const navLinks = document.getElementById("top-nav");
+  if (navLinks) {
+    navLinks.innerHTML = "";
+    const links = parseNavLinks(config.content?.navLinks || [
+      { label: "Benefits", href: "#benefits" },
+      { label: "Features", href: "#features" },
+      { label: "How it works", href: "#how-it-works" },
+      { label: "FAQ", href: "#faq" }
+    ]);
+    links.forEach((link) => {
+      const anchor = document.createElement("a");
+      anchor.href = link.href || "#";
+      anchor.textContent = link.label || "Link";
+      navLinks.appendChild(anchor);
+    });
+    const cta = document.createElement("a");
+    cta.className = "button button-primary";
+    cta.href = "#contact";
+    cta.textContent = "Get started";
+    navLinks.appendChild(cta);
+  }
+
+  const heroStats = document.getElementById("hero-stats");
+  if (heroStats) {
+    heroStats.innerHTML = "";
+    const stats = parseHeroStats(config.content?.heroStats || [
+      { value: "100%", label: "Clear path to the offer" },
+      { value: "24/7", label: "Accessible, responsive experience" }
+    ]);
+    stats.forEach((item) => {
+      const card = document.createElement("div");
+      card.className = "stat-card";
+      const strong = document.createElement("strong");
+      strong.textContent = item.value;
+      const span = document.createElement("span");
+      span.textContent = item.label;
+      card.appendChild(strong);
+      card.appendChild(span);
+      heroStats.appendChild(card);
+    });
+  }
+
+  const benefitsKicker = document.getElementById("benefits-kicker");
+  if (benefitsKicker) {
+    benefitsKicker.textContent = config.content?.benefitsKicker || "Built for trust";
+  }
+
+  const benefitsTitle = document.getElementById("benefits-title");
+  if (benefitsTitle) {
+    benefitsTitle.textContent = config.content?.benefitsTitle || "Built to earn trust quickly";
+  }
+
+  const benefitsDescription = document.getElementById("benefits-description");
+  if (benefitsDescription) {
+    benefitsDescription.textContent = config.content?.benefitsDescription || "Every section is designed to feel calm, credible, and conversion-oriented without misleading visitors.";
+  }
+
+  const featuresKicker = document.getElementById("features-kicker");
+  if (featuresKicker) {
+    featuresKicker.textContent = config.content?.featuresKicker || "Designed to convert";
+  }
+
+  const featuresTitle = document.getElementById("features-title");
+  if (featuresTitle) {
+    featuresTitle.textContent = config.content?.featuresTitle || "Every feature is purpose-driven";
+  }
+
+  const featuresDescription = document.getElementById("features-description");
+  if (featuresDescription) {
+    featuresDescription.textContent = config.content?.featuresDescription || "From the sticky navigation to the supporting policy pages, every element is built to guide visitors forward.";
+  }
+
+  const stepsKicker = document.getElementById("steps-kicker");
+  if (stepsKicker) {
+    stepsKicker.textContent = config.content?.stepsKicker || "Simple and intentional";
+  }
+
+  const stepsTitle = document.getElementById("steps-title");
+  if (stepsTitle) {
+    stepsTitle.textContent = config.content?.stepsTitle || "How the experience works";
+  }
+
+  const stepsDescription = document.getElementById("steps-description");
+  if (stepsDescription) {
+    stepsDescription.textContent = config.content?.stepsDescription || "A concise journey that helps visitors understand what happens next without feeling rushed or confused.";
+  }
+
+  const testimonialsKicker = document.getElementById("testimonials-kicker");
+  if (testimonialsKicker) {
+    testimonialsKicker.textContent = config.content?.testimonialsKicker || "Loved by modern teams";
+  }
+
+  const testimonialsTitle = document.getElementById("testimonials-title");
+  if (testimonialsTitle) {
+    testimonialsTitle.textContent = config.content?.testimonialsTitle || "Trusted by thoughtful teams";
+  }
+
+  const testimonialsDescription = document.getElementById("testimonials-description");
+  if (testimonialsDescription) {
+    testimonialsDescription.textContent = config.content?.testimonialsDescription || "Designed for modern promotional campaigns that value clarity, speed, and compliance.";
+  }
+
+  const faqKicker = document.getElementById("faq-kicker");
+  if (faqKicker) {
+    faqKicker.textContent = config.content?.faqKicker || "Helpful guidance";
+  }
+
+  const faqTitle = document.getElementById("faq-title");
+  if (faqTitle) {
+    faqTitle.textContent = config.content?.faqTitle || "Frequently asked questions";
+  }
+
+  const faqDescription = document.getElementById("faq-description");
+  if (faqDescription) {
+    faqDescription.textContent = config.content?.faqDescription || "Helpful information built into the page to reduce hesitation and improve clarity.";
   }
 
   const ctaTitle = document.getElementById("cta-title");
@@ -288,7 +513,14 @@ function renderContent(config) {
       card.className = "card";
       const title = typeof item === "string" ? item : item.title;
       const description = typeof item === "string" ? "" : item.description || "";
-      card.innerHTML = `<h3>${title}</h3>${description ? `<p>${description}</p>` : ""}`;
+      const titleNode = document.createElement("h3");
+      titleNode.textContent = title;
+      card.appendChild(titleNode);
+      if (description) {
+        const p = document.createElement("p");
+        p.textContent = description;
+        card.appendChild(p);
+      }
       benefitsGrid.appendChild(card);
     });
   }
@@ -301,7 +533,14 @@ function renderContent(config) {
       card.className = "card";
       const title = typeof item === "string" ? item : item.title;
       const description = typeof item === "string" ? "" : item.description || "";
-      card.innerHTML = `<h3>${title}</h3>${description ? `<p>${description}</p>` : ""}`;
+      const titleNode = document.createElement("h3");
+      titleNode.textContent = title;
+      card.appendChild(titleNode);
+      if (description) {
+        const p = document.createElement("p");
+        p.textContent = description;
+        card.appendChild(p);
+      }
       featuresGrid.appendChild(card);
     });
   }
@@ -314,7 +553,14 @@ function renderContent(config) {
       step.className = "step";
       const title = typeof item === "string" ? item : item.title;
       const description = typeof item === "string" ? "" : item.description || "";
-      step.innerHTML = `<h3>${title}</h3>${description ? `<p>${description}</p>` : ""}`;
+      const titleNode = document.createElement("h3");
+      titleNode.textContent = title;
+      step.appendChild(titleNode);
+      if (description) {
+        const p = document.createElement("p");
+        p.textContent = description;
+        step.appendChild(p);
+      }
       stepsGrid.appendChild(step);
     });
   }
@@ -327,8 +573,35 @@ function renderContent(config) {
       entry.className = "faq-item";
       const question = typeof item === "string" ? item : item.question;
       const answer = typeof item === "string" ? "" : item.answer || "";
-      entry.innerHTML = `<details><summary>${question}</summary><p>${answer}</p></details>`;
+      const details = document.createElement("details");
+      const summary = document.createElement("summary");
+      summary.textContent = question;
+      const p = document.createElement("p");
+      p.textContent = answer;
+      details.appendChild(summary);
+      details.appendChild(p);
+      entry.appendChild(details);
       faqList.appendChild(entry);
+    });
+  }
+
+  const testimonialsGrid = document.getElementById("testimonials-grid");
+  if (testimonialsGrid) {
+    testimonialsGrid.innerHTML = "";
+    (config.content?.testimonials || []).forEach((item) => {
+      const card = document.createElement("article");
+      card.className = "testimonial";
+      const quote = typeof item === "string" ? item : item.quote || "";
+      const author = typeof item === "string" ? "" : item.author || "";
+      const p = document.createElement("p");
+      p.textContent = quote;
+      const strong = document.createElement("strong");
+      strong.textContent = author;
+      card.appendChild(p);
+      if (author) {
+        card.appendChild(strong);
+      }
+      testimonialsGrid.appendChild(card);
     });
   }
 
@@ -343,14 +616,17 @@ function renderContent(config) {
     }
   }
 
-  const heroImage = document.getElementById("hero-image");
-  if (heroImage) {
-    if (config.media?.heroImageUrl) {
-      heroImage.setAttribute("src", config.media.heroImageUrl);
-      heroImage.setAttribute("alt", config.content?.heroCardTitle || "Hero illustration");
+  const heroPanel = document.getElementById("hero-panel");
+  if (heroPanel) {
+    if (config.media?.backgroundImageUrl || config.media?.heroImageUrl) {
+      const image = config.media?.backgroundImageUrl || config.media?.heroImageUrl;
+      heroPanel.style.backgroundImage = `linear-gradient(140deg, rgba(5, 8, 22, 0.76), rgba(5, 8, 22, 0.22)), url('${image}')`;
+      heroPanel.style.backgroundSize = "cover";
+      heroPanel.style.backgroundPosition = "center";
     } else {
-      heroImage.setAttribute("src", "assets/images/og-image.svg");
-      heroImage.setAttribute("alt", config.content?.heroCardTitle || "Hero illustration");
+      heroPanel.style.backgroundImage = "";
+      heroPanel.style.backgroundSize = "";
+      heroPanel.style.backgroundPosition = "";
     }
   }
 

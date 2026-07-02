@@ -21,10 +21,28 @@
     "logoText": "BOUHAJ Rewards",
     "headline": "Claim Your Exclusive Reward Today",
     "subtitle": "Complete the next step to check your eligibility and unlock today's exclusive reward.",
+    "eyebrow": "Secure • Transparent • Premium",
     "trustBadges": [
       "Secure",
       "Transparent",
       "Premium"
+    ],
+    "heroCardTitle": "Why visitors stay engaged",
+    "heroCardCopy": "Minimal distractions, transparent messaging, and a focused CTA create a conversion-friendly journey.",
+    "heroHighlights": [
+      "One clear next step",
+      "Transparent messaging",
+      "Fast, trustworthy experience"
+    ],
+    "navLinks": [
+      { "label": "Benefits", "href": "#benefits" },
+      { "label": "Features", "href": "#features" },
+      { "label": "How it works", "href": "#how-it-works" },
+      { "label": "FAQ", "href": "#faq" }
+    ],
+    "heroStats": [
+      { "value": "100%", "label": "Clear path to the offer" },
+      { "value": "24/7", "label": "Accessible, responsive experience" }
     ],
     "features": [
       {

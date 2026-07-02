@@ -1,5 +1,5 @@
 .dashboard-page {
-  background: #050816;
+  background: linear-gradient(135deg, #040816 0%, #0b1530 100%);
   color: #f8fafc;
 }
 
@@ -12,6 +12,7 @@
   padding: 1.5rem;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
 }
 
 .sidebar-brand {
@@ -44,6 +45,11 @@
   padding: 1rem;
   margin-bottom: 1rem;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+}
+
+.panel h3 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
 }
 
 .dashboard-main {

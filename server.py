@@ -58,11 +58,21 @@ def read_json_body(handler):
 class LocalHandler(BaseHTTPRequestHandler):
     server_version = "RewardLocal/1.0"
 
+    def _apply_security_headers(self, content_type, cache_control):
+        self.send_header("Content-Security-Policy", "default-src 'self' https:; img-src 'self' data: https:; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https:; frame-ancestors 'none'")
+        self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("Permissions-Policy", "geolocation=(), camera=(), microphone=()")
+        self.send_header("Cross-Origin-Opener-Policy", "same-origin")
+        self.send_header("Cross-Origin-Resource-Policy", "same-origin")
+        self.send_header("Cache-Control", cache_control)
+        self.send_header("Content-Type", content_type)
+
     def _send_json(self, status, payload):
         body = json.dumps(payload).encode("utf-8")
         self.send_response(status)
-        self.send_header("Content-Type", "application/json")
-        self.send_header("Cache-Control", "no-store")
+        self._apply_security_headers("application/json", "no-store")
         self.send_header("Access-Control-Allow-Origin", "http://127.0.0.1:8000")
         self.send_header("Access-Control-Allow-Credentials", "true")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
@@ -73,7 +83,7 @@ class LocalHandler(BaseHTTPRequestHandler):
     def _send_text(self, status, text):
         body = text.encode("utf-8")
         self.send_response(status)
-        self.send_header("Content-Type", "text/plain; charset=utf-8")
+        self._apply_security_headers("text/plain; charset=utf-8", "no-store")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
@@ -83,9 +93,11 @@ class LocalHandler(BaseHTTPRequestHandler):
 
     def do_OPTIONS(self):
         self.send_response(204)
+        self._apply_security_headers("text/plain; charset=utf-8", "no-store")
         self.send_header("Access-Control-Allow-Origin", "http://127.0.0.1:8000")
         self.send_header("Access-Control-Allow-Credentials", "true")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.send_header("Content-Length", "0")
         self.end_headers()
 
     def do_GET(self):
@@ -117,23 +129,32 @@ class LocalHandler(BaseHTTPRequestHandler):
             return
 
         content_type = "text/html; charset=utf-8"
+        cache_control = "no-store"
         if target.suffix == ".css":
             content_type = "text/css; charset=utf-8"
+            cache_control = "public, max-age=31536000, immutable"
         elif target.suffix == ".js":
             content_type = "application/javascript; charset=utf-8"
+            cache_control = "public, max-age=31536000, immutable"
         elif target.suffix == ".json":
             content_type = "application/json; charset=utf-8"
+            cache_control = "no-store"
         elif target.suffix == ".svg":
             content_type = "image/svg+xml"
+            cache_control = "public, max-age=31536000, immutable"
         elif target.suffix == ".png":
             content_type = "image/png"
+            cache_control = "public, max-age=31536000, immutable"
 
         data = target.read_bytes()
         self.send_response(200)
-        self.send_header("Content-Type", content_type)
+        self._apply_security_headers(content_type, cache_control)
         self.send_header("Content-Length", str(len(data)))
         self.end_headers()
         self.wfile.write(data)
+
+    def do_HEAD(self):
+        self.do_GET()
 
     def do_POST(self):
         parsed = urlparse(self.path)

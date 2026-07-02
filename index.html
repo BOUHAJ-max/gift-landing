@@ -10,6 +10,11 @@
       content="A premium, transparent landing experience for eligible reward offers with clear information, fast access, and security-first design."
     />
     <meta name="theme-color" content="#0f172a" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' https:; img-src 'self' data: https:; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https:; frame-ancestors 'none'"
+    />
     <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml" />
     <link rel="canonical" href="/" />
     <meta property="og:type" content="website" />
@@ -51,13 +56,7 @@
           <img id="logo" class="brand-mark" src="assets/icons/icon.svg" alt="Reward Center logo" />
           <span id="brand-name">Reward Center</span>
         </a>
-        <nav class="nav-links" aria-label="Primary">
-          <a href="#benefits">Benefits</a>
-          <a href="#features">Features</a>
-          <a href="#how-it-works">How it works</a>
-          <a href="#faq">FAQ</a>
-          <a class="button button-primary" href="#contact">Get started</a>
-        </nav>
+        <nav class="nav-links" id="top-nav" aria-label="Primary"></nav>
       </div>
     </header>
 
@@ -65,9 +64,9 @@
       <section class="hero" id="top">
         <div class="container hero-grid">
           <div class="hero-copy">
-            <span class="eyebrow">Secure • Transparent • Premium</span>
-            <h1>Discover a premium path to curated reward offers.</h1>
-            <p>
+            <span class="eyebrow" id="hero-eyebrow">Secure • Transparent • Premium</span>
+            <h1 id="headline">Discover a premium path to curated reward offers.</h1>
+            <p id="subtitle">
               Reward Center presents a polished, trustworthy experience for accessing eligible promotional offers with clear terms,
               fast navigation, and privacy-first behavior.
             </p>
@@ -75,13 +74,15 @@
               <a class="button button-primary" href="redirect.html" data-config-button>Continue</a>
               <a class="button button-secondary" href="#how-it-works">See how it works</a>
             </div>
+            <div class="hero-stats" id="hero-stats" aria-label="Proof points"></div>
             <div class="trust-badges" id="trust-badges" aria-label="Highlights"></div>
             <div class="benefit-snippets" id="benefit-snippets" aria-label="Benefits"></div>
           </div>
-          <div class="hero-panel" aria-label="Offer overview">
+          <div class="hero-panel" id="hero-panel" aria-label="Offer overview">
             <div class="panel-card">
-              <h3>Why visitors stay engaged</h3>
-              <ul class="panel-list">
+              <h3 id="hero-card-title">Why visitors stay engaged</h3>
+              <p id="hero-card-copy" class="panel-copy">Minimal distractions, transparent messaging, and a focused CTA create a conversion-friendly journey.</p>
+              <ul class="panel-list" id="hero-panel-list">
                 <li>Minimal distractions with one focused CTA.</li>
                 <li>Transparent messaging and accessible content structure.</li>
                 <li>Fast load times and polished transitions on every screen.</li>
@@ -188,7 +189,7 @@
       </div>
     </div>
 
-    <script src="assets/js/auth.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script defer src="assets/js/auth.js"></script>
+    <script defer src="assets/js/app.js"></script>
   </body>
 </html>
