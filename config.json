@@ -1,143 +1,91 @@
 {
   "offer": {
-    "campaignName": "BOUHAJ",
-    "offerUrl": "https://www.google.com/",
+    "campaignName": "Helium Mobile Reward",
+    "offerUrl": "https://www.qckclk.com/view.php?id=5543325&pub=3352803",
     "country": "US",
     "buttonText": "Continue",
     "redirectDelay": 300,
     "enableRedirect": true
   },
   "design": {
-    "primaryColor": "#d3fc03",
-    "secondaryColor": "#ffdd00",
-    "accentColor": "#cddb00",
-    "theme": "red",
+    "primaryColor": "#8B5CF6",
+    "secondaryColor": "#22E7D0",
+    "accentColor": "#FFC15E",
+    "theme": "dark",
     "buttonStyle": "pill",
-    "borderRadius": 40,
-    "headingFont": "Inter",
-    "bodyFont": "Inter"
+    "borderRadius": 22,
+    "headingFont": "Sora",
+    "bodyFont": "Manrope",
+    "animations": true
   },
   "content": {
-    "logoText": "BOUHAJ Rewards",
-    "headline": "Claim Your Exclusive Reward Today",
-    "subtitle": "Complete the next step to check your eligibility and unlock today's exclusive reward.",
-    "eyebrow": "Secure • Transparent • Premium",
-    "trustBadges": [
-      "Secure",
-      "Transparent",
-      "Premium"
-    ],
-    "heroCardTitle": "Why visitors stay engaged",
-    "heroCardCopy": "Minimal distractions, transparent messaging, and a focused CTA create a conversion-friendly journey.",
-    "heroHighlights": [
-      "One clear next step",
-      "Transparent messaging",
-      "Fast, trustworthy experience"
-    ],
-    "navLinks": [
-      { "label": "Benefits", "href": "#benefits" },
-      { "label": "Features", "href": "#features" },
-      { "label": "How it works", "href": "#how-it-works" },
-      { "label": "FAQ", "href": "#faq" }
-    ],
-    "heroStats": [
-      { "value": "100%", "label": "Clear path to the offer" },
-      { "value": "24/7", "label": "Accessible, responsive experience" }
-    ],
-    "benefitsKicker": "Built for trust",
-    "benefitsTitle": "Built to earn trust quickly",
-    "benefitsDescription": "Every section is designed to feel calm, credible, and conversion-oriented without misleading visitors.",
-    "featuresKicker": "Designed to convert",
-    "featuresTitle": "Every feature is purpose-driven",
-    "featuresDescription": "From the sticky navigation to the supporting policy pages, every element is built to guide visitors forward.",
-    "stepsKicker": "Simple and intentional",
-    "stepsTitle": "How the experience works",
-    "stepsDescription": "A concise journey that helps visitors understand what happens next without feeling rushed or confused.",
-    "testimonialsKicker": "Loved by modern teams",
-    "testimonialsTitle": "Trusted by thoughtful teams",
-    "testimonialsDescription": "Designed for modern promotional campaigns that value clarity, speed, and compliance.",
-    "testimonials": [
-      { "quote": "The experience feels premium without being overbuilt. It is calm, clear, and simple to navigate.", "author": "Mira Chen, Growth Strategist" },
-      { "quote": "The messaging is direct and trustworthy. The page gets the point across in seconds.", "author": "Daniel Ortiz, Product Lead" },
-      { "quote": "The experience behaves beautifully on mobile and desktop, which matters for every campaign.", "author": "Nina Patel, Marketing Director" }
-    ],
-    "faqKicker": "Helpful guidance",
-    "faqTitle": "Frequently asked questions",
-    "faqDescription": "Helpful information built into the page to reduce hesitation and improve clarity.",
+    "logoText": "Helium Reward",
+    "headline": "Get the Helium Mobile app and unlock your free subscription.",
+    "subtitle": "A fast, no-catch path to activating your free Helium Mobile plan — download the app, sign up in under a minute, and you're done. Built for US residents on any device.",
+    "trustBadges": ["US Only", "Free Signup", "No Card Needed"],
+    "heroCardTitle": "What you get",
+    "heroCardCopy": "One tap to the official Helium Mobile app page, a quick free sign-up, and your activation is complete — nothing else to buy.",
     "features": [
       {
-        "title": "Feature 1",
-        "description": "Premium feature"
+        "title": "One clear step",
+        "description": "Tap Continue, install the Helium Mobile app, and create your free account. That's the whole process."
       },
       {
-        "title": "Fast Access",
-        "description": "Premium feature"
+        "title": "Built for the US",
+        "description": "This offer is available to real US residents on any device — phone, tablet, or desktop browser."
       },
       {
-        "title": "Reach your selected offer in just a few simple steps.",
-        "description": "Premium feature"
-      },
-      {
-        "title": "Feature 2",
-        "description": "Premium feature"
-      },
-      {
-        "title": "Secure Experience",
-        "description": "Premium feature"
-      },
-      {
-        "title": "Your navigation is protected with a safe and reliable process.",
-        "description": "Premium feature"
-      },
-      {
-        "title": "Feature 3",
-        "description": "Premium feature"
-      },
-      {
-        "title": "Verified Offers",
-        "description": "Premium feature"
-      },
-      {
-        "title": "Access carefully selected promotional opportunities.",
-        "description": "Premium feature"
+        "title": "Transparent terms",
+        "description": "No hidden purchase, no VPN or proxy traffic, no self-completion — just a genuine sign-up."
       }
     ],
     "benefits": [
-      "Fast Access",
-      "Secure Process",
-      "Trusted Experience"
+      {
+        "title": "Free to join",
+        "description": "The Helium Mobile subscription in this offer is completely free to activate — no payment details required."
+      },
+      {
+        "title": "Minutes, not hours",
+        "description": "Downloading the app and completing sign-up typically takes less than a couple of minutes."
+      },
+      {
+        "title": "Real, verified offer",
+        "description": "This links directly to the official Helium Mobile activation flow — no lookalike pages or shortcuts."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Continue",
+        "description": "Tap the Continue button to open the Helium Mobile app page for your device."
+      },
+      {
+        "title": "Sign up",
+        "description": "Create your free Helium Mobile account — no credit card is required for this offer."
+      },
+      {
+        "title": "You're set",
+        "description": "Once your sign-up is complete, your part is done — no further steps needed."
+      }
     ],
     "faq": [
       {
-        "question": "1. Is this process secure?",
-        "answer": "Answer"
+        "question": "Is this offer really free?",
+        "answer": "Yes. This offer only requires downloading the Helium Mobile app and completing a free subscription sign-up."
       },
       {
-        "question": "Yes. We use a secure connection to protect your experience.",
-        "answer": "Answer"
+        "question": "Who can complete this offer?",
+        "answer": "It's open to real people located in the United States, on any device. VPN or proxy traffic is not eligible."
       },
       {
-        "question": "2. How long does it take?",
-        "answer": "Answer"
-      },
-      {
-        "question": "Most users complete the process in just a few minutes.",
-        "answer": "Answer"
-      },
-      {
-        "question": "3. Do I need to pay anything?",
-        "answer": "Answer"
-      },
-      {
-        "question": "No. Simply follow the instructions provided on the next page.",
-        "answer": "Answer"
+        "question": "How long does sign-up take?",
+        "answer": "Most people finish the app download and free sign-up in a couple of minutes."
       }
     ],
-    "footerText": "© 2026 Reward Center. All rights reserved.",
-    "privacyText": "We respect your privacy. Any information collected is used only to provide and improve your experience. Your data is handled securely and is never sold to third parties.",
-    "termsText": "By using this website, you agree to comply with our Terms of Use. Availability of offers may vary based on eligibility, location, and advertiser requirements. We reserve the right to modify or discontinue the service at any time without prior notice.",
-    "ctaTitle": "Ready to direct visitors with confidence?",
-    "ctaCopy": "Use the dashboard to update branding, content, tracking, and the destination URL in one place."
+    "footerText": "© 2026 Helium Reward. All rights reserved.",
+    "privacyText": "We collect only the information needed to operate the site experience, consent preferences, and optional analytics. You can manage your choice from the cookie banner.",
+    "termsText": "This landing page links to a third-party offer (Helium Mobile). Eligibility, terms, and rewards are determined by the offer provider, not by this site.",
+    "ctaTitle": "Ready to activate your free Helium Mobile plan?",
+    "ctaCopy": "Tap Continue to open the official sign-up page and finish in under a couple of minutes."
   },
   "tracking": {
     "tiktokPixel": "",
@@ -148,9 +96,9 @@
     "customScript": ""
   },
   "seo": {
-    "title": "BOUHAJ Rewards",
-    "description": "Complete a quick verification to check your eligibility and unlock today's exclusive reward. Fast, secure, and designed for a smooth experience.",
-    "keywords": "reward, rewards, exclusive reward, gift, special offer, limited offer, secure rewards, online rewards, promotional offer, reward center",
+    "title": "Helium Mobile — Free Sign-Up Offer",
+    "description": "Get the Helium Mobile app and activate your free subscription in a couple of minutes. Available for US residents on any device.",
+    "keywords": "helium mobile, free subscription, app signup, us offer",
     "canonical": "https://go.bouhaj.com",
     "favicon": "assets/icons/icon.svg"
   },
@@ -161,9 +109,9 @@
     "csp": "default-src 'self' https:; img-src 'self' data: https:; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https:; frame-ancestors 'none'"
   },
   "media": {
-    "logoUrl": "https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=300",
-    "heroImageUrl": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600",
-    "backgroundImageUrl": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920",
+    "logoUrl": "",
+    "heroImageUrl": "",
+    "backgroundImageUrl": "",
     "faviconUrl": "assets/icons/icon.svg"
   }
 }
