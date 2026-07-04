@@ -36,6 +36,7 @@ jobs:
           cp robots.txt public/robots.txt
           cp sitemap.xml public/sitemap.xml
           cp CNAME public/CNAME
+          cp config.json public/config.json
           touch public/.nojekyll
           mkdir -p public/assets/css public/assets/js public/assets/icons public/assets/images
           cp assets/css/style.css public/assets/css/style.css
