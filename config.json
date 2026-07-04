@@ -1,91 +1,39 @@
 {
   "offer": {
-    "campaignName": "Helium Mobile Reward",
-    "offerUrl": "https://www.qckclk.com/view.php?id=5543325&pub=3352803",
+    "campaignName": "Beyond the Body",
+    "offerUrl": "https://www.cdnflair.com/unlock/OW0r",
     "country": "US",
-    "buttonText": "Continue",
+    "buttonText": "Unlock My FREE Book",
     "redirectDelay": 300,
     "enableRedirect": true
   },
   "design": {
-    "primaryColor": "#8B5CF6",
-    "secondaryColor": "#22E7D0",
-    "accentColor": "#FFC15E",
+    "primaryColor": "#D4AF37",
+    "secondaryColor": "#2E1065",
+    "accentColor": "#D4AF37",
     "theme": "dark",
     "buttonStyle": "pill",
-    "borderRadius": 22,
-    "headingFont": "Sora",
-    "bodyFont": "Manrope",
+    "borderRadius": 18,
+    "headingFont": "Cormorant Garamond",
+    "bodyFont": "Inter",
     "animations": true
   },
   "content": {
-    "logoText": "Helium Reward",
-    "headline": "Get the Helium Mobile app and unlock your free subscription.",
-    "subtitle": "A fast, no-catch path to activating your free Helium Mobile plan — download the app, sign up in under a minute, and you're done. Built for US residents on any device.",
-    "trustBadges": ["US Only", "Free Signup", "No Card Needed"],
-    "heroCardTitle": "What you get",
-    "heroCardCopy": "One tap to the official Helium Mobile app page, a quick free sign-up, and your activation is complete — nothing else to buy.",
-    "features": [
-      {
-        "title": "One clear step",
-        "description": "Tap Continue, install the Helium Mobile app, and create your free account. That's the whole process."
-      },
-      {
-        "title": "Built for the US",
-        "description": "This offer is available to real US residents on any device — phone, tablet, or desktop browser."
-      },
-      {
-        "title": "Transparent terms",
-        "description": "No hidden purchase, no VPN or proxy traffic, no self-completion — just a genuine sign-up."
-      }
-    ],
-    "benefits": [
-      {
-        "title": "Free to join",
-        "description": "The Helium Mobile subscription in this offer is completely free to activate — no payment details required."
-      },
-      {
-        "title": "Minutes, not hours",
-        "description": "Downloading the app and completing sign-up typically takes less than a couple of minutes."
-      },
-      {
-        "title": "Real, verified offer",
-        "description": "This links directly to the official Helium Mobile activation flow — no lookalike pages or shortcuts."
-      }
-    ],
-    "steps": [
-      {
-        "title": "Continue",
-        "description": "Tap the Continue button to open the Helium Mobile app page for your device."
-      },
-      {
-        "title": "Sign up",
-        "description": "Create your free Helium Mobile account — no credit card is required for this offer."
-      },
-      {
-        "title": "You're set",
-        "description": "Once your sign-up is complete, your part is done — no further steps needed."
-      }
-    ],
-    "faq": [
-      {
-        "question": "Is this offer really free?",
-        "answer": "Yes. This offer only requires downloading the Helium Mobile app and completing a free subscription sign-up."
-      },
-      {
-        "question": "Who can complete this offer?",
-        "answer": "It's open to real people located in the United States, on any device. VPN or proxy traffic is not eligible."
-      },
-      {
-        "question": "How long does sign-up take?",
-        "answer": "Most people finish the app download and free sign-up in a couple of minutes."
-      }
-    ],
-    "footerText": "© 2026 Helium Reward. All rights reserved.",
+    "logoText": "Mohamed Bouhaj",
+    "headline": "Beyond the Body",
+    "subtitle": "This spiritual journey through consciousness and the unseen realms is sold on Amazon for $9.99. For a limited time, unlock your free copy instantly, delivered as a Google Doc.",
+    "trustBadges": ["Sold on Amazon", "Secure & Private", "Instant Access"],
+    "heroCardTitle": "",
+    "heroCardCopy": "",
+    "features": [],
+    "benefits": [],
+    "steps": [],
+    "faq": [],
+    "footerText": "© 2026 Mohamed Bouhaj. All rights reserved.",
     "privacyText": "We collect only the information needed to operate the site experience, consent preferences, and optional analytics. You can manage your choice from the cookie banner.",
-    "termsText": "This landing page links to a third-party offer (Helium Mobile). Eligibility, terms, and rewards are determined by the offer provider, not by this site.",
-    "ctaTitle": "Ready to activate your free Helium Mobile plan?",
-    "ctaCopy": "Tap Continue to open the official sign-up page and finish in under a couple of minutes."
+    "termsText": "This landing platform is intended for lawful promotional use. You agree to use the site in a compliant and responsible manner.",
+    "ctaTitle": "",
+    "ctaCopy": ""
   },
   "tracking": {
     "tiktokPixel": "",
@@ -96,9 +44,9 @@
     "customScript": ""
   },
   "seo": {
-    "title": "Helium Mobile — Free Sign-Up Offer",
-    "description": "Get the Helium Mobile app and activate your free subscription in a couple of minutes. Available for US residents on any device.",
-    "keywords": "helium mobile, free subscription, app signup, us offer",
+    "title": "Beyond the Body — Free Today (Was $9.99 on Amazon)",
+    "description": "Get the spiritual bestseller Beyond the Body free today. Originally $9.99 on Amazon — unlock your instant copy now.",
+    "keywords": "beyond the body, astral projection, lucid dreaming, spiritual book, consciousness, free book",
     "canonical": "https://go.bouhaj.com",
     "favicon": "assets/icons/icon.svg"
   },
@@ -110,7 +58,7 @@
   },
   "media": {
     "logoUrl": "",
-    "heroImageUrl": "",
+    "heroImageUrl": "assets/images/book-cover.png",
     "backgroundImageUrl": "",
     "faviconUrl": "assets/icons/icon.svg"
   }
