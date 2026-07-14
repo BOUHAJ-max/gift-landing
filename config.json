@@ -1,39 +1,51 @@
 {
   "offer": {
-    "campaignName": "Beyond the Body",
-    "offerUrl": "https://www.appstorevault.mobi/unlock/IOG90JuK",
-    "country": "US",
-    "buttonText": "Unlock My FREE Book",
+    "campaignName": "AI Hunt",
+    "offerUrl": "https://www.google.com",
+    "country": "GLOBAL",
+    "buttonText": "Get Started",
     "redirectDelay": 300,
     "enableRedirect": true
   },
   "design": {
-    "primaryColor": "#D4AF37",
-    "secondaryColor": "#2E1065",
-    "accentColor": "#D4AF37",
+    "primaryColor": "#3B82F6",
+    "secondaryColor": "#0B1220",
+    "accentColor": "#8B5CF6",
     "theme": "dark",
     "buttonStyle": "pill",
-    "borderRadius": 18,
-    "headingFont": "Cormorant Garamond",
+    "borderRadius": 16,
+    "headingFont": "Sora",
     "bodyFont": "Inter",
     "animations": true
   },
   "content": {
-    "logoText": "Mohamed Bouhaj",
-    "headline": "Beyond the Body",
-    "subtitle": "This spiritual journey through consciousness and the unseen realms is sold on Amazon for $9.99. For a limited time, unlock your free copy instantly, delivered as a Google Doc.",
-    "trustBadges": ["Sold on Amazon", "Secure & Private", "Instant Access"],
+    "logoText": "AI Hunt",
+    "headline": "Discover the Best AI Tools, Curated for You",
+    "subtitle": "AI Hunt finds, tests, and ranks the world's most powerful AI tools — so you always work with the best, first.",
+    "trustBadges": ["Expert Curated", "Updated Daily", "Trusted Worldwide"],
     "heroCardTitle": "",
     "heroCardCopy": "",
-    "features": [],
-    "benefits": [],
+    "features": [
+      { "title": "Curated by Experts", "description": "Every tool is tested and ranked by real AI practitioners, not algorithms." },
+      { "title": "Updated Daily", "description": "New breakthroughs added the moment they launch, so you're never behind." },
+      { "title": "Trusted Worldwide", "description": "Join a fast-growing community that discovers AI tools first." }
+    ],
+    "benefits": [
+      { "title": "Save Time", "description": "Skip the noise. Find the right tool in seconds, not hours." },
+      { "title": "Stay Ahead", "description": "Use tools your competitors haven't discovered yet." },
+      { "title": "Zero Guesswork", "description": "Transparent rankings based on real performance, not hype." }
+    ],
     "steps": [],
-    "faq": [],
-    "footerText": "© 2026 Mohamed Bouhaj. All rights reserved.",
-    "privacyText": "We collect only the information needed to operate the site experience, consent preferences, and optional analytics. You can manage your choice from the cookie banner.",
-    "termsText": "This landing platform is intended for lawful promotional use. You agree to use the site in a compliant and responsible manner.",
-    "ctaTitle": "",
-    "ctaCopy": ""
+    "faq": [
+      { "question": "Is AI Hunt free to use?", "answer": "Yes. Browsing and discovering AI tools on AI Hunt is completely free." },
+      { "question": "How do you choose which tools to feature?", "answer": "Every tool is evaluated by our team against performance, reliability, and real-world value before it's listed." },
+      { "question": "How often is the list updated?", "answer": "Daily. Our team reviews new AI releases every day to keep the list current." }
+    ],
+    "footerText": "© 2026 AI Hunt. All rights reserved.",
+    "privacyText": "نحن في AI Hunt نلتزم بالتعامل مع بياناتك بمسؤولية وشفافية تامة.",
+    "termsText": "These terms govern visitor use of the AI Hunt landing experience and related navigation.",
+    "ctaTitle": "Ready to find your next favorite AI tool?",
+    "ctaCopy": "Join AI Hunt today and never miss the tools shaping the future."
   },
   "tracking": {
     "tiktokPixel": "",
@@ -44,9 +56,9 @@
     "customScript": ""
   },
   "seo": {
-    "title": "Beyond the Body — Free Today (Was $9.99 on Amazon)",
-    "description": "Get the spiritual bestseller Beyond the Body free today. Originally $9.99 on Amazon — unlock your instant copy now.",
-    "keywords": "beyond the body, astral projection, lucid dreaming, spiritual book, consciousness, free book",
+    "title": "AI Hunt — Discover the Best AI Tools, Curated for You",
+    "description": "AI Hunt finds, tests, and ranks the world's most powerful AI tools — so you always work with the best, first.",
+    "keywords": "AI tools, best AI tools, AI directory, AI Hunt, artificial intelligence",
     "canonical": "https://go.bouhaj.com",
     "favicon": "assets/icons/icon.svg"
   },
@@ -58,7 +70,7 @@
   },
   "media": {
     "logoUrl": "",
-    "heroImageUrl": "assets/images/book-cover.png",
+    "heroImageUrl": "",
     "backgroundImageUrl": "",
     "faviconUrl": "assets/icons/icon.svg"
   }
