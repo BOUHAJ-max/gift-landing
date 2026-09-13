@@ -1,30 +1,33 @@
 ﻿(function () {
-  const product = window.product || (window.productConfig && window.productConfig.product) || {};
-  const translations = {
+  const config = window.PRODUCT_CONFIG || window.productConfig || {};
+  const product = config.product || {};
+  const sale = config.sale || {};
+  const sections = config.sections || {};
+  const translations = config.translations || {
     ar: {
-      nav: ['الرئيسية', 'الفوائد', 'المزايا', 'الخطوات', 'الأسئلة الشائعة'],
-      navHref: ['#top', '#benefits', '#showcase', '#steps', '#faq'],
-      primaryCta: 'اطلب الآن من الموقع',
-      secondaryCta: 'اطلب الآن عبر واتساب',
-      badge: 'منتج مميز',
-      problem: 'المشكلة',
-      solution: 'الحل',
+      nav: ['الرئيسية', 'الفوائد', 'العرض', 'كيف يعمل', 'الأسئلة الشائعة'],
+      navHref: ['#top', '#benefits', '#showcase', '#how-it-works', '#faq'],
+      primaryCta: 'اطلب الآن عبر واتساب',
+      secondaryCta: 'اطلب الآن من الموقع',
+      buyWhatsApp: 'اطلب الآن عبر واتساب',
+      buyWebsite: 'اطلب الآن من الموقع',
       finalTitle: 'ابدأ رحلتك اليوم',
       finalText: 'اختر المنتج الذي يناسب روتينك اليومي بسهولة وثقة.',
       whatsapp: 'واتساب',
+      affiliateDisclosure: 'إفصاح: قد نحصل على عمولة عند إتمام عملية شراء عبر بعض الروابط الموجودة في الصفحة، دون تكلفة إضافية عليك.',
       noSpecs: 'لا توجد مواصفات متاحة في هذا الوقت.'
     },
     en: {
       nav: ['Home', 'Benefits', 'Showcase', 'How it works', 'FAQ'],
-      navHref: ['#top', '#benefits', '#showcase', '#steps', '#faq'],
-      primaryCta: 'Order now on the website',
-      secondaryCta: 'Order via WhatsApp',
-      badge: 'Featured product',
-      problem: 'The problem',
-      solution: 'The solution',
+      navHref: ['#top', '#benefits', '#showcase', '#how-it-works', '#faq'],
+      primaryCta: 'Order via WhatsApp',
+      secondaryCta: 'Order from Website',
+      buyWhatsApp: 'Order via WhatsApp',
+      buyWebsite: 'Order from Website',
       finalTitle: 'Start your routine today',
       finalText: 'Choose the product that fits your daily routine with comfort and confidence.',
       whatsapp: 'WhatsApp',
+      affiliateDisclosure: 'Disclosure: We may earn a commission if you complete a purchase through some links on this page, at no extra cost to you.',
       noSpecs: 'No specifications are available right now.'
     }
   };
@@ -43,92 +46,85 @@
       .replace(/'/g, '&#39;');
   }
 
+  function getTextField(arValue, enValue, fallbackValue) {
+    const value = state.lang === 'ar' ? arValue : enValue;
+    return value || arValue || enValue || fallbackValue || '';
+  }
+
   function formatPrice(value, currency) {
     const numericValue = Number(value || 0);
     if (!Number.isFinite(numericValue)) return currency || 'MAD';
     const locale = state.lang === 'ar' ? 'ar-MA' : 'en-US';
-    return `${currency || 'SAR'} ${numericValue.toLocaleString(locale)}`;
+    return `${currency || 'MAD'} ${numericValue.toLocaleString(locale)}`;
   }
 
-  function getLabel(label, labelEn, fallback) {
-    return state.lang === 'ar' ? (label || fallback) : (labelEn || label || fallback);
+  function isExternalLink(url) {
+    return /^https?:\/\//i.test(String(url || ''));
   }
 
-  function getPrimaryAction() {
-    const type = String(product.type || 'store').toLowerCase();
-    if (type.includes('affiliate') && !type.includes('whatsapp')) {
-      return {
-        url: product.affiliateUrl || '#',
-        label: state.lang === 'ar' ? 'اطلب الآن من الموقع' : 'Order now on the website',
-        kind: 'primary'
-      };
-    }
-    if (type.includes('whatsapp') && !type.includes('store') && !type.includes('affiliate')) {
-      return {
-        url: getWhatsAppUrl(),
-        label: state.lang === 'ar' ? 'اطلب الآن عبر واتساب' : 'Order via WhatsApp',
-        kind: 'whatsapp'
-      };
-    }
-    if (type.includes('affiliate') && type.includes('whatsapp')) {
-      return {
-        url: product.affiliateUrl || '#',
-        label: state.lang === 'ar' ? 'احصل على المنتج' : 'Get the product',
-        kind: 'primary'
-      };
-    }
-    if (type.includes('store') && type.includes('whatsapp')) {
-      return {
-        url: product.storeUrl || '#',
-        label: state.lang === 'ar' ? 'اطلب الآن من الموقع' : 'Order now on the website',
-        kind: 'primary'
-      };
-    }
+  function createWhatsAppLink() {
+    const whatsappConfig = sale.whatsapp || {};
+    if (!whatsappConfig.enabled) return null;
+    const number = String(whatsappConfig.number || '').replace(/[^0-9]/g, '');
+    if (!number) return null;
+
+    const productName = String(product.name || (state.lang === 'ar' ? 'المنتج' : 'Product'));
+    const messageTemplate = String(whatsappConfig.message || 'مرحبا، أريد طلب {product}');
+    const message = messageTemplate
+      .replace(/\{product\}/gi, productName)
+      .replace(/\[PRODUCT NAME\]/gi, productName);
+
     return {
-      url: product.storeUrl || product.affiliateUrl || '#',
-      label: state.lang === 'ar' ? 'اطلب الآن من الموقع' : 'Order now on the website',
-      kind: 'primary'
+      url: `https://wa.me/${number}?text=${encodeURIComponent(message)}`,
+      label: translations[state.lang].buyWhatsApp || 'Order via WhatsApp',
+      kind: 'whatsapp'
     };
   }
 
-  function getWhatsAppUrl() {
-    const productName = product.name || 'المنتج';
-    const rawMessage = (product.whatsappMessage || 'مرحبا، أريد الاستفسار عن منتج [PRODUCT NAME].').replace(/\[PRODUCT NAME\]/gi, productName);
-    const cleanedNumber = String(product.whatsappNumber || '').replace(/[^0-9]/g, '');
-    return `https://wa.me/${cleanedNumber}?text=${encodeURIComponent(rawMessage)}`;
+  function createAffiliateLink() {
+    const affiliateConfig = sale.affiliate || {};
+    const url = String(affiliateConfig.url || '').trim();
+    if (!affiliateConfig.enabled || !url) return null;
+    return {
+      url,
+      label: translations[state.lang].buyWebsite || 'Order from Website',
+      kind: 'affiliate'
+    };
   }
 
-  function setMetaData() {
-    const seo = product.seo || {};
-    const pageTitle = state.lang === 'ar' ? (product.name || 'المنتج') : (product.name || 'Product');
-    document.title = seo.title || pageTitle;
-    const description = state.lang === 'ar' ? (seo.descriptionAr || seo.description || product.description || '') : (seo.description || product.descriptionEn || product.description || '');
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) metaDescription.setAttribute('content', description);
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) canonical.setAttribute('href', seo.canonical || window.location.href);
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute('content', seo.title || pageTitle);
-    const ogDescription = document.querySelector('meta[property="og:description"]');
-    if (ogDescription) ogDescription.setAttribute('content', description);
-    const ogImage = document.querySelector('meta[property="og:image"]');
-    if (ogImage) ogImage.setAttribute('content', seo.ogImage || (product.images && product.images[0] ? product.images[0].src : ''));
-    const favicon = document.querySelector('link[rel="icon"]');
-    if (favicon) favicon.setAttribute('href', product.brand?.favicon || 'favicon.svg');
+  function renderActionButton(action, className) {
+    if (!action || !action.url) return '';
+    const target = isExternalLink(action.url) ? '_blank' : '_self';
+    const rel = isExternalLink(action.url) ? 'noopener noreferrer' : '';
+    return `<a class="${className}" href="${escapeHtml(action.url)}" target="${target}" rel="${rel}" aria-label="${escapeHtml(action.label || 'Purchase')}">${escapeHtml(action.label || 'Purchase')}</a>`;
   }
 
-  function applyBrandColors() {
-    const accent = product.brand?.accent || '#C4E600';
-    const primary = product.brand?.primaryCtaColor || '#171717';
-    const root = document.documentElement;
-    root.style.setProperty('--color-accent', accent);
-    root.style.setProperty('--color-cta', primary);
+  function renderCTAButtons(options = {}) {
+    const { primaryClass = 'btn btn-primary', secondaryClass = 'btn btn-secondary', showPrimary = true, showSecondary = true } = options;
+    const whatsappAction = createWhatsAppLink();
+    const affiliateAction = createAffiliateLink();
+
+    const buttons = [];
+    if (showPrimary && whatsappAction) {
+      buttons.push(renderActionButton(whatsappAction, primaryClass));
+    } else if (showPrimary && affiliateAction) {
+      buttons.push(renderActionButton(affiliateAction, primaryClass));
+    }
+
+    if (showSecondary && affiliateAction && !(whatsappAction && showPrimary)) {
+      // Do not duplicate when the same action is already rendered as primary.
+    } else if (showSecondary && affiliateAction && whatsappAction) {
+      buttons.push(renderActionButton(affiliateAction, secondaryClass));
+    }
+
+    return buttons.join('');
   }
 
   function renderNavigation() {
     const navLinks = document.getElementById('nav-links');
+    const navData = translations[state.lang] || translations.ar;
     if (navLinks) {
-      navLinks.innerHTML = translations[state.lang].nav.map((label, index) => `<a href="${translations[state.lang].navHref[index]}">${escapeHtml(label)}</a>`).join('');
+      navLinks.innerHTML = navData.nav.map((label, index) => `<a href="${escapeHtml(navData.navHref[index] || '#')}">${escapeHtml(label)}</a>`).join('');
     }
 
     const brandText = document.getElementById('brand-text');
@@ -138,11 +134,19 @@
 
     const headerCta = document.getElementById('header-cta');
     if (headerCta) {
-      const action = getPrimaryAction();
-      headerCta.setAttribute('href', action.url || '#');
-      headerCta.textContent = action.kind === 'whatsapp' ? translations[state.lang].secondaryCta : translations[state.lang].primaryCta;
-      headerCta.setAttribute('target', action.url.startsWith('http') ? '_blank' : '_self');
-      headerCta.setAttribute('rel', action.url.startsWith('http') ? 'noopener noreferrer' : '');
+      const primaryAction = createWhatsAppLink() || createAffiliateLink();
+      if (!primaryAction) {
+        headerCta.style.display = 'none';
+        headerCta.removeAttribute('href');
+        headerCta.textContent = '';
+        return;
+      }
+
+      headerCta.style.display = 'inline-flex';
+      headerCta.setAttribute('href', primaryAction.url);
+      headerCta.textContent = primaryAction.label;
+      headerCta.setAttribute('target', isExternalLink(primaryAction.url) ? '_blank' : '_self');
+      headerCta.setAttribute('rel', isExternalLink(primaryAction.url) ? 'noopener noreferrer' : '');
     }
 
     document.querySelectorAll('.lang-btn').forEach((button) => {
@@ -152,46 +156,73 @@
     });
   }
 
+  function setMetaData() {
+    const seo = config.seo || {};
+    const pageTitle = getTextField(product.name, product.name, 'Product');
+    document.title = seo.title || pageTitle;
+
+    const description = getTextField(seo.descriptionAr || seo.description, seo.description, product.description || '');
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) metaDescription.setAttribute('content', description || '');
+
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute('href', seo.canonical || location.href);
+
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', seo.title || pageTitle);
+
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) ogDescription.setAttribute('content', description || '');
+
+    const ogImage = document.querySelector('meta[property="og:image"]');
+    if (ogImage) ogImage.setAttribute('content', seo.ogImage || product.images?.[0]?.src || '');
+
+    const favicon = document.querySelector('link[rel="icon"]');
+    if (favicon) favicon.setAttribute('href', config.brand?.favicon || 'favicon.svg');
+  }
+
+  function applyBrandColors() {
+    const root = document.documentElement;
+    root.style.setProperty('--color-accent', config.brand?.accent || '#C4E600');
+    root.style.setProperty('--color-cta', config.brand?.primaryCtaColor || '#171717');
+  }
+
   function renderHero() {
-    const primaryAction = getPrimaryAction();
-    const secondAction = product.whatsappEnabled && String(product.type || '').toLowerCase().includes('whatsapp') ? {
-      url: getWhatsAppUrl(),
-      label: state.lang === 'ar' ? 'اطلب الآن عبر واتساب' : 'Order via WhatsApp'
-    } : null;
-    const heroProductName = state.lang === 'ar' ? (product.name || 'منتجنا') : (product.name || 'Our product');
-    const badgeText = state.lang === 'ar' ? (product.badge || product.badgeEn || 'Featured') : (product.badgeEn || product.badge || 'Featured');
-    const description = state.lang === 'ar' ? (product.description || '') : (product.descriptionEn || product.description || '');
-    const mainImage = (product.images && product.images[0]) ? product.images[0] : { src: 'assets/images/product-main.svg', alt: heroProductName };
-    const benefits = (product.benefits || []).slice(0, 3);
+    if (!product || !Object.keys(product).length) return '';
+    const heroProductName = getTextField(product.name, product.name, 'Product');
+    const description = getTextField(product.description, product.descriptionEn, '');
+    const mainImage = (product.images && product.images[0]) || { src: 'assets/images/product-main.svg', alt: heroProductName };
+    const benefitHighlights = (config.benefits || []).slice(0, 4);
+    const ctaMarkup = renderCTAButtons({ primaryClass: 'btn btn-primary', secondaryClass: 'btn btn-secondary' });
 
     return `
       <section class="hero section-pad" id="top">
         <div class="container hero-grid">
           <div class="hero-copy">
-            <span class="hero-badge">${escapeHtml(badgeText)}</span>
+            <span class="hero-badge">${escapeHtml(getTextField(product.badge, product.badgeEn, 'Featured'))}</span>
             <h1>${escapeHtml(heroProductName)}</h1>
             <p class="hero-description">${escapeHtml(description)}</p>
             <div class="price-row" aria-label="Price">
               <span class="price-old">${escapeHtml(product.oldPrice ? formatPrice(product.oldPrice, product.currency) : '')}</span>
               <span class="price-current">${escapeHtml(formatPrice(product.price, product.currency))}</span>
-              <span class="discount-badge">${escapeHtml(product.discount || 'خصم')}</span>
+              <span class="discount-badge">${escapeHtml(product.discount || 'Offer')}</span>
             </div>
             <div class="cta-row">
-              <a class="btn btn-primary" href="${escapeHtml(primaryAction.url || '#')}" target="${primaryAction.url.startsWith('http') ? '_blank' : '_self'}" rel="${primaryAction.url.startsWith('http') ? 'noopener noreferrer' : ''}">${escapeHtml(primaryAction.label)}</a>
-              ${secondAction ? `<a class="btn btn-secondary" href="${escapeHtml(secondAction.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(secondAction.label)}</a>` : ''}
+              ${ctaMarkup || ''}
             </div>
             <ul class="hero-meta" aria-label="Key benefits">
-              ${benefits.map((benefit) => `<li>${escapeHtml(getLabel(benefit.title, benefit.titleEn, benefit.title || 'Benefit'))}</li>`).join('')}
+              ${benefitHighlights.map((item) => `<li>${escapeHtml(getTextField(item.title, item.titleEn, item.title || 'Benefit'))}</li>`).join('')}
             </ul>
           </div>
+
           <div class="gallery-panel" aria-label="Product gallery">
             <div class="gallery-main">
-              <img src="${mainImage.src}" alt="${escapeHtml(state.lang === 'ar' ? (mainImage.altAr || mainImage.alt || heroProductName) : (mainImage.alt || heroProductName))}" data-gallery-main loading="eager" />
+              <img src="${escapeHtml(mainImage.src)}" alt="${escapeHtml(getTextField(mainImage.altAr || mainImage.alt, mainImage.alt, heroProductName))}" data-gallery-main loading="eager" />
             </div>
             <div class="thumb-row" aria-label="Product thumbnails">
               ${(product.images || []).map((image, index) => `
-                <button class="thumb-btn ${index === 0 ? 'is-active' : ''}" type="button" data-image-index="${index}" aria-label="${escapeHtml(state.lang === 'ar' ? (image.altAr || image.alt || 'صورة المنتج') : (image.alt || 'Product image'))}">
-                  <img src="${image.src}" alt="" loading="lazy" />
+                <button class="thumb-btn ${index === 0 ? 'is-active' : ''}" type="button" data-image-index="${index}" aria-label="${escapeHtml(getTextField(image.altAr || image.alt, image.alt, 'Product image'))}">
+                  <img src="${escapeHtml(image.src)}" alt="" loading="lazy" />
                 </button>
               `).join('')}
             </div>
@@ -201,45 +232,9 @@
     `;
   }
 
-  function renderTrust() {
-    if (!product.showTrustStrip) return '';
-    const items = (product.trustItems || []).filter((item) => item.enabled !== false);
-    if (!items.length) return '';
-    return `
-      <section class="trust-strip section-pad" aria-label="Trust indicators">
-        <div class="container trust-grid">
-          ${items.map((item) => `<div class="trust-item"><span class="trust-dot" aria-hidden="true"></span><span>${escapeHtml(getLabel(item.label, item.labelEn, item.label || 'Trust item'))}</span></div>`).join('')}
-        </div>
-      </section>
-    `;
-  }
-
-  function renderProblemSolution() {
-    const problemText = state.lang === 'ar' ? (product.problemText || 'غالبية المنتجات اليومية تفتقد إلى التجربة المريحة، الواضحة، والموثوقة، ما يجعل الروتين أقل انتظامًا ويفقد الوقت.') : (product.problemTextEn || product.problemText || 'Most everyday products lack a comfortable, clear, and reliable experience.');
-    const solutionText = state.lang === 'ar' ? (product.solutionText || 'يوفر Luma Glow تجربة يومية محسّنة من خلال تصميم عملي، سهولة استخدام، ومواصفات مدروسة تعزز الراحة والاستمرارية.') : (product.solutionTextEn || product.solutionText || 'Luma Glow creates a smoother day-to-day experience with a thoughtful design and a practical routine.');
-
-    return `
-      <section class="problem-solution section-pad" id="problem-solution">
-        <div class="container split-grid">
-          <article class="info-card">
-            <span class="eyebrow">${translations[state.lang].problem}</span>
-            <h2>${escapeHtml(state.lang === 'ar' ? 'المشكلة' : 'The problem')}</h2>
-            <p>${escapeHtml(problemText)}</p>
-          </article>
-          <article class="info-card accent-card">
-            <span class="eyebrow">${translations[state.lang].solution}</span>
-            <h2>${escapeHtml(state.lang === 'ar' ? 'الحل' : 'The solution')}</h2>
-            <p>${escapeHtml(solutionText)}</p>
-          </article>
-        </div>
-      </section>
-    `;
-  }
-
   function renderBenefits() {
-    if (!product.showBenefits) return '';
-    const benefitList = product.benefits || [];
-    if (!benefitList.length) return '';
+    const benefits = config.benefits || [];
+    if (sections.benefits === false || !benefits.length) return '';
     return `
       <section class="section-pad" id="benefits">
         <div class="container">
@@ -248,11 +243,11 @@
             <h2>${escapeHtml(state.lang === 'ar' ? 'مزايا تناسب الروتين اليومي' : 'Benefits built for everyday use')}</h2>
           </div>
           <div class="benefits-grid">
-            ${benefitList.slice(0, 6).map((item) => `
+            ${benefits.slice(0, 6).map((item) => `
               <article class="benefit-card">
                 <span class="benefit-icon" aria-hidden="true">✦</span>
-                <h3>${escapeHtml(getLabel(item.title, item.titleEn, item.title || 'Benefit'))}</h3>
-                <p>${escapeHtml(getLabel(item.description, item.descriptionEn, item.description || ''))}</p>
+                <h3>${escapeHtml(getTextField(item.title, item.titleEn, item.title || 'Benefit'))}</h3>
+                <p>${escapeHtml(getTextField(item.description, item.descriptionEn, item.description || ''))}</p>
               </article>
             `).join('')}
           </div>
@@ -262,9 +257,8 @@
   }
 
   function renderShowcase() {
-    if (!product.showGallery) return '';
-    const showcase = product.showcase || [];
-    if (!showcase.length) return '';
+    const showcase = config.showcase || [];
+    if (sections.showcase === false || !showcase.length) return '';
     return `
       <section class="section-pad showcase" id="showcase">
         <div class="container">
@@ -275,11 +269,11 @@
           ${showcase.map((item, index) => `
             <article class="showcase-row ${index % 2 !== 0 ? 'row-reverse' : ''}">
               <div class="showcase-media">
-                <img src="${item.image || 'assets/images/product-main.svg'}" alt="${escapeHtml(getLabel(item.title, item.titleEn, item.title || 'Product feature'))}" loading="lazy" />
+                <img src="${escapeHtml(item.image || 'assets/images/product-main.svg')}" alt="${escapeHtml(getTextField(item.title, item.titleEn, item.title || 'Product feature'))}" loading="lazy" />
               </div>
               <div class="showcase-copy">
-                <h3>${escapeHtml(getLabel(item.title, item.titleEn, item.title || 'Feature'))}</h3>
-                <p>${escapeHtml(getLabel(item.text, item.textEn, item.text || ''))}</p>
+                <h3>${escapeHtml(getTextField(item.title, item.titleEn, item.title || 'Feature'))}</h3>
+                <p>${escapeHtml(getTextField(item.text, item.textEn, item.text || ''))}</p>
                 <ul>
                   ${(state.lang === 'ar' ? item.points : item.pointsEn || item.points || []).map((point) => `<li>${escapeHtml(point)}</li>`).join('')}
                 </ul>
@@ -291,12 +285,11 @@
     `;
   }
 
-  function renderSteps() {
-    if (!product.showHowItWorks) return '';
-    const steps = product.steps || [];
-    if (!steps.length) return '';
+  function renderHowItWorks() {
+    const steps = config.howItWorks || [];
+    if (sections.howItWorks === false || !steps.length) return '';
     return `
-      <section class="section-pad steps" id="steps">
+      <section class="section-pad steps" id="how-it-works">
         <div class="container">
           <div class="section-head">
             <span class="eyebrow">${escapeHtml(state.lang === 'ar' ? 'كيف يعمل' : 'How it works')}</span>
@@ -306,8 +299,8 @@
             ${steps.map((step, index) => `
               <article class="step-card">
                 <span class="step-no">${index + 1}</span>
-                <h3>${escapeHtml(getLabel(step.title, step.titleEn, step.title || `Step ${index + 1}`))}</h3>
-                <p>${escapeHtml(getLabel(step.text, step.textEn, step.text || ''))}</p>
+                <h3>${escapeHtml(getTextField(step.title, step.titleEn, step.title || `Step ${index + 1}`))}</h3>
+                <p>${escapeHtml(getTextField(step.description, step.descriptionEn, step.description || ''))}</p>
               </article>
             `).join('')}
           </div>
@@ -316,10 +309,9 @@
     `;
   }
 
-  function renderSpecs() {
-    if (!product.showSpecifications) return '';
-    const specs = product.specifications || [];
-    if (!specs.length) return '';
+  function renderSpecifications() {
+    const specs = config.specifications || [];
+    if (sections.specifications === false || !specs.length) return '';
     return `
       <section class="section-pad specs">
         <div class="container">
@@ -332,7 +324,7 @@
               <tbody>
                 ${specs.map((spec) => `
                   <tr>
-                    <th>${escapeHtml(getLabel(spec.label, spec.labelEn, spec.label || 'Feature'))}</th>
+                    <th>${escapeHtml(getTextField(spec.label, spec.labelEn, spec.label || 'Feature'))}</th>
                     <td>${escapeHtml(spec.value || '')}</td>
                   </tr>
                 `).join('')}
@@ -345,25 +337,30 @@
   }
 
   function renderOffer() {
-    if (!product.showOffer) return '';
-    const offer = product.offer || {};
-    const primaryAction = getPrimaryAction();
+    const offer = config.offer || {};
+    if (sections.offer === false || !offer.enabled) return '';
+    const whatsappAction = createWhatsAppLink();
+    const affiliateAction = createAffiliateLink();
+    const actions = [];
+    if (whatsappAction) actions.push(renderActionButton(whatsappAction, 'btn btn-primary'));
+    if (affiliateAction && whatsappAction) actions.push(renderActionButton(affiliateAction, 'btn btn-secondary'));
+    if (affiliateAction && !whatsappAction) actions.push(renderActionButton(affiliateAction, 'btn btn-primary'));
+
     return `
       <section class="section-pad offer" aria-label="Offer section">
         <div class="container offer-card">
           <div class="offer-copy">
-            <span class="eyebrow">${escapeHtml(getLabel(offer.badge, offer.badgeEn, 'Offer'))}</span>
-            <h2>${escapeHtml(getLabel(offer.title, offer.titleEn, 'Offer'))}</h2>
-            <p>${escapeHtml(getLabel(offer.description, offer.descriptionEn, ''))}</p>
+            <span class="eyebrow">${escapeHtml(getTextField(offer.badge, offer.badgeEn, 'Offer'))}</span>
+            <h2>${escapeHtml(getTextField(offer.title, offer.titleEn, 'Offer'))}</h2>
+            <p>${escapeHtml(getTextField(offer.description, offer.descriptionEn, ''))}</p>
             <div class="offer-price-line">
               <span class="old-price">${escapeHtml(product.oldPrice ? formatPrice(product.oldPrice, product.currency) : '')}</span>
               <span class="new-price">${escapeHtml(formatPrice(product.price, product.currency))}</span>
             </div>
-            ${offer.urgency ? `<p class="urgency">${escapeHtml(getLabel(offer.urgency, offer.urgencyEn, offer.urgency || ''))}</p>` : ''}
+            ${offer.urgency ? `<p class="urgency">${escapeHtml(getTextField(offer.urgency, offer.urgencyEn, offer.urgency || ''))}</p>` : ''}
           </div>
           <div class="offer-actions">
-            <a class="btn btn-primary" href="${escapeHtml(primaryAction.url || '#')}" target="${primaryAction.url.startsWith('http') ? '_blank' : '_self'}" rel="${primaryAction.url.startsWith('http') ? 'noopener noreferrer' : ''}">${escapeHtml(primaryAction.label)}</a>
-            ${product.whatsappEnabled ? `<a class="btn btn-secondary" href="${escapeHtml(getWhatsAppUrl())}" target="_blank" rel="noopener noreferrer">${escapeHtml(state.lang === 'ar' ? 'تواصل واتساب' : 'WhatsApp us')}</a>` : ''}
+            ${actions.join('')}
           </div>
         </div>
       </section>
@@ -371,9 +368,8 @@
   }
 
   function renderReviews() {
-    if (!product.showReviews) return '';
-    const reviews = product.reviews || [];
-    if (!reviews.length) return '';
+    const reviews = config.reviews || [];
+    if (sections.reviews === false || !reviews.length) return '';
     return `
       <section class="section-pad reviews">
         <div class="container">
@@ -385,15 +381,15 @@
             ${reviews.map((review) => `
               <article class="review-card">
                 <div class="review-header">
-                  <div class="review-avatar">${escapeHtml(getLabel(review.name, review.nameEn, review.name || 'A').charAt(0).toUpperCase())}</div>
+                  <div class="review-avatar">${escapeHtml(getTextField(review.name, review.nameEn, review.name || 'A').charAt(0).toUpperCase())}</div>
                   <div>
-                    <strong>${escapeHtml(getLabel(review.name, review.nameEn, review.name || 'Customer'))}</strong>
+                    <strong>${escapeHtml(getTextField(review.name, review.nameEn, review.name || 'Customer'))}</strong>
                     <div class="stars" aria-label="${review.rating || 5} out of 5 stars">
                       ${Array.from({ length: 5 }).map((_, i) => `<span class="star ${i < (review.rating || 5) ? 'filled' : ''}">★</span>`).join('')}
                     </div>
                   </div>
                 </div>
-                <p>${escapeHtml(getLabel(review.text, review.textEn, review.text || ''))}</p>
+                <p>${escapeHtml(getTextField(review.text, review.textEn, review.text || ''))}</p>
               </article>
             `).join('')}
           </div>
@@ -403,9 +399,8 @@
   }
 
   function renderFaq() {
-    if (!product.showFAQ) return '';
-    const faqItems = product.faq || [];
-    if (!faqItems.length) return '';
+    const faqItems = config.faq || [];
+    if (sections.faq === false || !faqItems.length) return '';
     return `
       <section class="section-pad faq" id="faq">
         <div class="container faq-shell">
@@ -416,8 +411,8 @@
           <div class="faq-list">
             ${faqItems.map((item, index) => `
               <details class="faq-item" ${index === 0 ? 'open' : ''}>
-                <summary>${escapeHtml(getLabel(item.question, item.questionEn, item.question || 'Question'))}</summary>
-                <p>${escapeHtml(getLabel(item.answer, item.answerEn, item.answer || ''))}</p>
+                <summary>${escapeHtml(getTextField(item.question, item.questionEn, item.question || 'Question'))}</summary>
+                <p>${escapeHtml(getTextField(item.answer, item.answerEn, item.answer || ''))}</p>
               </details>
             `).join('')}
           </div>
@@ -426,21 +421,32 @@
     `;
   }
 
+  function renderAffiliateDisclosure() {
+    if (!(sale.affiliate && sale.affiliate.enabled)) return '';
+    const disclosureText = translations[state.lang].affiliateDisclosure || 'Disclosure: We may earn a commission when you buy through certain links on this page at no extra cost to you.';
+    return `<p class="affiliate-disclosure">${escapeHtml(disclosureText)}</p>`;
+  }
+
   function renderFinalCta() {
-    const action = getPrimaryAction();
-    const finalTitle = translations[state.lang].finalTitle;
-    const finalText = translations[state.lang].finalText;
+    if (sections.finalCTA === false) return '';
+    const whatsappAction = createWhatsAppLink();
+    const affiliateAction = createAffiliateLink();
+    const actions = [];
+    if (whatsappAction) actions.push(renderActionButton(whatsappAction, 'btn btn-primary'));
+    if (affiliateAction && whatsappAction) actions.push(renderActionButton(affiliateAction, 'btn btn-secondary'));
+    if (affiliateAction && !whatsappAction) actions.push(renderActionButton(affiliateAction, 'btn btn-primary'));
+
     return `
       <section class="section-pad final-cta">
         <div class="container final-cta-card">
           <div>
             <span class="eyebrow">${escapeHtml(state.lang === 'ar' ? 'ابدأ الآن' : 'Get started')}</span>
-            <h2>${escapeHtml(finalTitle)}</h2>
-            <p>${escapeHtml(finalText)}</p>
+            <h2>${escapeHtml(translations[state.lang].finalTitle || 'Start your routine today')}</h2>
+            <p>${escapeHtml(translations[state.lang].finalText || 'Choose the product that fits your daily routine with comfort and confidence.')}</p>
+            ${renderAffiliateDisclosure()}
           </div>
           <div class="final-cta-actions">
-            <a class="btn btn-primary" href="${escapeHtml(action.url || '#')}" target="${action.url.startsWith('http') ? '_blank' : '_self'}" rel="${action.url.startsWith('http') ? 'noopener noreferrer' : ''}">${escapeHtml(action.label)}</a>
-            ${product.whatsappEnabled ? `<a class="btn btn-secondary" href="${escapeHtml(getWhatsAppUrl())}" target="_blank" rel="noopener noreferrer">${escapeHtml(state.lang === 'ar' ? 'اسأل عبر واتساب' : 'Ask via WhatsApp')}</a>` : ''}
+            ${actions.join('')}
           </div>
         </div>
       </section>
@@ -450,8 +456,9 @@
   function renderFooter() {
     const footerText = document.getElementById('footer-text');
     if (footerText) {
-      footerText.textContent = `${new Date().getFullYear()} ${product.brand?.name || product.name || 'Brand'}. ${state.lang === 'ar' ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}`;
+      footerText.textContent = `${new Date().getFullYear()} ${config.brand?.name || product.name || 'Brand'}. ${state.lang === 'ar' ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}`;
     }
+
     const footerLinks = document.getElementById('footer-links');
     if (footerLinks) {
       footerLinks.innerHTML = `
@@ -465,13 +472,14 @@
     const mainImage = document.querySelector('[data-gallery-main]');
     const buttons = document.querySelectorAll('.thumb-btn');
     if (!mainImage || !buttons.length) return;
+
     buttons.forEach((button) => {
       button.addEventListener('click', () => {
         const index = Number(button.dataset.imageIndex || 0);
         const nextImage = (product.images || [])[index];
         if (!nextImage) return;
         mainImage.src = nextImage.src;
-        mainImage.alt = state.lang === 'ar' ? (nextImage.altAr || nextImage.alt || product.name) : (nextImage.alt || product.name);
+        mainImage.alt = getTextField(nextImage.altAr || nextImage.alt, nextImage.alt, product.name || 'Product image');
         buttons.forEach((thumb) => thumb.classList.toggle('is-active', Number(thumb.dataset.imageIndex || 0) === index));
       });
     });
@@ -481,6 +489,7 @@
     const toggle = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
     if (!toggle || !navMenu) return;
+
     toggle.addEventListener('click', () => {
       state.menuOpen = !state.menuOpen;
       navMenu.classList.toggle('is-open', state.menuOpen);
@@ -509,45 +518,50 @@
   function renderFloatingWhatsApp() {
     const button = document.getElementById('floating-whatsapp');
     if (!button) return;
-    if (!product.whatsappEnabled || !product.showWhatsApp) {
+    const whatsappAction = createWhatsAppLink();
+    if (!whatsappAction) {
       button.style.display = 'none';
       return;
     }
+
     button.style.display = 'inline-flex';
-    button.setAttribute('href', getWhatsAppUrl());
+    button.setAttribute('href', whatsappAction.url);
     button.setAttribute('aria-label', state.lang === 'ar' ? 'التواصل عبر واتساب' : 'Contact via WhatsApp');
   }
 
   function renderMobileCta() {
     const mobileCta = document.getElementById('mobile-cta-bar');
     if (!mobileCta) return;
-    const primaryAction = getPrimaryAction();
-    mobileCta.innerHTML = `
-      <a href="${escapeHtml(primaryAction.url || '#')}" target="${primaryAction.url.startsWith('http') ? '_blank' : '_self'}" rel="${primaryAction.url.startsWith('http') ? 'noopener noreferrer' : ''}" class="btn btn-primary">${escapeHtml(primaryAction.label)}</a>
-      ${product.whatsappEnabled && product.showWhatsApp ? `<a href="${escapeHtml(getWhatsAppUrl())}" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">${escapeHtml(state.lang === 'ar' ? 'واتساب' : 'WhatsApp')}</a>` : ''}
-    `;
+    const whatsappAction = createWhatsAppLink();
+    const affiliateAction = createAffiliateLink();
+    const actions = [];
+    if (whatsappAction) actions.push(renderActionButton(whatsappAction, 'btn btn-primary'));
+    if (affiliateAction && whatsappAction) actions.push(renderActionButton(affiliateAction, 'btn btn-secondary'));
+    if (affiliateAction && !whatsappAction) actions.push(renderActionButton(affiliateAction, 'btn btn-primary'));
+
+    mobileCta.innerHTML = actions.join('') || '';
   }
 
   function render() {
     renderNavigation();
     setMetaData();
     applyBrandColors();
+
     const app = document.getElementById('app');
     if (app) {
       app.innerHTML = `
         ${renderHero()}
-        ${renderTrust()}
-        ${renderProblemSolution()}
         ${renderBenefits()}
         ${renderShowcase()}
-        ${renderSteps()}
-        ${renderSpecs()}
+        ${renderHowItWorks()}
+        ${renderSpecifications()}
         ${renderOffer()}
         ${renderReviews()}
         ${renderFaq()}
         ${renderFinalCta()}
       `;
     }
+
     renderFooter();
     renderFloatingWhatsApp();
     renderMobileCta();
