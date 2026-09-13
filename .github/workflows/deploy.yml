@@ -38,13 +38,13 @@ jobs:
           cp CNAME public/CNAME
           cp config.json public/config.json
           touch public/.nojekyll
-          mkdir -p public/assets/css public/assets/js public/assets/icons public/assets/images
-          cp assets/css/style.css public/assets/css/style.css
-          cp assets/js/app.js public/assets/js/app.js
-          cp assets/js/auth.js public/assets/js/auth.js
+          mkdir -p public/css public/js public/assets/icons public/assets/images
+          cp css/style.css public/css/style.css
+          cp js/app.js public/js/app.js
+          cp js/config.js public/js/config.js
+          cp favicon.svg public/favicon.svg
           cp -r assets/icons/. public/assets/icons/
           cp -r assets/images/. public/assets/images/
-          rm -f public/assets/js/dashboard.js public/assets/js/auth.js public/assets/css/dashboard.css
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
