@@ -1,53 +1,29 @@
-# gift-landing
+﻿# Premium static product landing page
 
-A private local-only landing platform with a secure local access gate.
+This project contains a reusable static landing page system designed for product-agnostic ecommerce, affiliate, and WhatsApp-driven offers.
 
-## Features
+## Quick start
 
-- Responsive, mobile-first landing experience
-- Sticky header and premium visual design
-- Accessible semantics and skip links
-- Policy pages for privacy and terms
-- Safe redirect flow with configurable destination
-- Cookie banner and tracking placeholders
-- SEO basics including canonical tags, OpenGraph, Twitter cards, and JSON-LD
-- Local-only private access gate with password and secret key
+Open index.html directly in a browser, or serve the folder locally:
 
-## Private access
-
-The landing page and dashboard are locked behind a local-only authentication gate.
-Use these credentials:
-
-- Password: R3ward!LocalOnly#2026
-- Secret key: M0narch-Alpha-7J2Q-N9V4
-
-These values are intended for local use only.
-
-## Run locally on Windows PowerShell
-
-From PowerShell:
-
-```powershell
-Set-Location C:\Users\user\gift-landing
-powershell -ExecutionPolicy Bypass -File .\launch-local.ps1
-```
-
-## Run locally on WSL / Ubuntu / Debian
-
-From WSL or Ubuntu/Debian:
-
-```bash
-cd /mnt/c/Users/user/gift-landing
-python3 -m http.server 8000
-```
+`powershell
+cd C:\Users\user\gift-landing.worktrees\pasted-text-processing
+python -m http.server 8000
+`
 
 Then open:
 
-- http://127.0.0.1:8000/gift-landing/
-- http://127.0.0.1:8000/gift-landing/dashboard.html
+- http://localhost:8000/
+- http://localhost:8000/privacy.html
+- http://localhost:8000/terms.html
+
+## Configuration
+
+Edit js/config.js to change the product, pricing, gallery, trust items, FAQs, CTA mode, language defaults, and branding without touching the page design.
 
 ## Notes
 
-- The site is intentionally restricted to localhost-only access.
-- The dashboard is hidden from public hosts and GitHub Pages.
-- The private gate can be updated later with a stronger password or custom secret.
+- Static HTML/CSS/JS only
+- Works with GitHub Pages
+- Includes Arabic and English language switching with localStorage persistence
+- Includes WhatsApp CTA, optional review/FAQ/spec sections, and responsive mobile behavior

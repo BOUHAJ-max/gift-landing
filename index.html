@@ -1,130 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Hunt — Discover the Best AI Tools, Curated for You</title>
-    <meta name="description" content="AI Hunt finds, tests, and ranks the world's most powerful AI tools — so you always work with the best, first." />
-    <meta name="theme-color" content="#0B1220" />
-    <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml" />
-    <link rel="canonical" href="/" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <meta name="description" content="منتج عناية يومي فاخر مصمم لتجربة مريحة وموثوقة." />
+    <meta name="theme-color" content="#C4E600" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="AI Hunt" />
-    <meta property="og:title" content="AI Hunt — Discover the Best AI Tools, Curated for You" />
-    <meta property="og:description" content="AI Hunt finds, tests, and ranks the world's most powerful AI tools." />
-    <meta property="og:url" content="/" />
-    <meta property="og:image" content="/assets/images/og-image.png" />
+    <meta property="og:title" content="Luma Glow | Premium Daily Wellness" />
+    <meta property="og:description" content="منتج عناية يومي فاخر مصمم لتجربة مريحة وموثوقة." />
+    <meta property="og:image" content="assets/images/product-main.svg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="AI Hunt — Discover the Best AI Tools, Curated for You" />
-    <meta name="twitter:description" content="AI Hunt finds, tests, and ranks the world's most powerful AI tools." />
-    <meta name="twitter:image" content="/assets/images/og-image.png" />
-    <script type="application/ld+json">
-      { "@context": "https://schema.org", "@type": "WebPage", "name": "AI Hunt", "description": "AI Hunt finds, tests, and ranks the world's most powerful AI tools.", "url": "/" }
-    </script>
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href="https://go.bouhaj.com/" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Luma Glow</title>
   </head>
-  <body class="book-landing">
-    <a class="skip-link" href="#main">Skip to main content</a>
-
+  <body>
+    <a class="skip-link" href="#main">تخطي إلى المحتوى الرئيسي</a>
     <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="#top" aria-label="AI Hunt home">
-          <img id="logo" class="brand-mark" src="assets/icons/icon.svg" alt="logo" />
-          <span id="brand-name">AI Hunt</span>
+      <div class="container header-bar">
+        <a class="brand" href="#top" id="brand-link" aria-label="Brand home">
+          <span class="brand-logo" aria-hidden="true">L</span>
+          <span id="brand-text">Luma Studio</span>
         </a>
-        <nav class="nav-links" aria-label="Primary">
-          <a href="#features">Features</a>
-          <a href="#faq">FAQ</a>
-          <a class="button button-primary" href="redirect.html" data-config-button>Get Started</a>
+
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="site-nav" id="nav-menu" aria-label="Primary navigation">
+          <div class="nav-links" id="nav-links"></div>
         </nav>
+
+        <div class="header-controls">
+          <div class="lang-switcher" aria-label="Language switcher">
+            <button class="lang-btn is-active" type="button" data-lang="ar" aria-pressed="true">العربية</button>
+            <button class="lang-btn" type="button" data-lang="en" aria-pressed="false">English</button>
+          </div>
+          <a class="btn btn-primary" id="header-cta" href="#">اطلب الآن من الموقع</a>
+        </div>
       </div>
     </header>
 
     <main id="main">
-      <section class="hero book-hero" id="top">
-        <div class="cosmic-bg" aria-hidden="true">
-          <span class="orb orb-purple"></span>
-          <span class="orb orb-cyan"></span>
-        </div>
-        <div class="container hero-content">
-          <p class="eyebrow">AI Hunt</p>
-          <h1 id="headline">Discover the Best AI Tools, Curated for You</h1>
-
-          <div class="cover-wrap">
-            <span class="cover-ring" aria-hidden="true"></span>
-            <span class="cover-glow" aria-hidden="true"></span>
-            <img id="hero-image" class="book-cover" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNjAwIDYwMCI+CiAgPGRlZnM+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMTMxYjMzIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBiMTIyMCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNjBhNWZhIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzhiNWNmNiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPGNpcmNsZSBjeD0iMzAwIiBjeT0iMzAwIiByPSIyOTAiIGZpbGw9InVybCgjYmcpIi8+CiAgPGcgc3Ryb2tlPSJ1cmwoI2cpIiBzdHJva2Utd2lkdGg9IjEuNSIgb3BhY2l0eT0iMC43Ij4KICAgIDxsaW5lIHgxPSIzMDAiIHkxPSIzMDAiIHgyPSIxODAiIHkyPSIyMDAiLz4KICAgIDxsaW5lIHgxPSIzMDAiIHkxPSIzMDAiIHgyPSI0MjAiIHkyPSIyMDAiLz4KICAgIDxsaW5lIHgxPSIzMDAiIHkxPSIzMDAiIHgyPSIxODAiIHkyPSI0MDAiLz4KICAgIDxsaW5lIHgxPSIzMDAiIHkxPSIzMDAiIHgyPSI0MjAiIHkyPSI0MDAiLz4KICAgIDxsaW5lIHgxPSIzMDAiIHkxPSIzMDAiIHgyPSIzMDAiIHkyPSIxNTAiLz4KICAgIDxsaW5lIHgxPSIzMDAiIHkxPSIzMDAiIHgyPSIzMDAiIHkyPSI0NTAiLz4KICAgIDxsaW5lIHgxPSIxODAiIHkxPSIyMDAiIHgyPSIzMDAiIHkyPSIxNTAiLz4KICAgIDxsaW5lIHgxPSI0MjAiIHkxPSIyMDAiIHgyPSIzMDAiIHkyPSIxNTAiLz4KICAgIDxsaW5lIHgxPSIxODAiIHkxPSI0MDAiIHgyPSIzMDAiIHkyPSI0NTAiLz4KICAgIDxsaW5lIHgxPSI0MjAiIHkxPSI0MDAiIHgyPSIzMDAiIHkyPSI0NTAiLz4KICA8L2c+CiAgPGNpcmNsZSBjeD0iMzAwIiBjeT0iMzAwIiByPSIyMiIgZmlsbD0idXJsKCNnKSIvPgogIDxjaXJjbGUgY3g9IjE4MCIgY3k9IjIwMCIgcj0iOSIgZmlsbD0iIzYwYTVmYSIvPgogIDxjaXJjbGUgY3g9IjQyMCIgY3k9IjIwMCIgcj0iOSIgZmlsbD0iIzhiNWNmNiIvPgogIDxjaXJjbGUgY3g9IjE4MCIgY3k9IjQwMCIgcj0iOSIgZmlsbD0iIzhiNWNmNiIvPgogIDxjaXJjbGUgY3g9IjQyMCIgY3k9IjQwMCIgcj0iOSIgZmlsbD0iIzYwYTVmYSIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjE1MCIgcj0iOSIgZmlsbD0iIzYwYTVmYSIvPgogIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjQ1MCIgcj0iOSIgZmlsbD0iIzhiNWNmNiIvPgo8L3N2Zz4K" alt="AI Hunt" width="600" height="600" />
-          </div>
-
-          <p class="subtitle" id="subtitle">AI Hunt finds, tests, and ranks the world's most powerful AI tools — so you always work with the best, first.</p>
-
-          <a class="cta-button" id="unlock-button" href="redirect.html" data-config-button>
-            <span>Get Started</span>
-          </a>
-
-          <div class="trust-badges" id="trust-badges" aria-label="Trust indicators"></div>
-        </div>
-      </section>
-
-      <section class="section" id="features">
-        <div class="container">
-          <div class="section-header">
-            <h2>Why AI Hunt</h2>
-            <p>Everything you need to find, evaluate, and adopt the right AI tools — fast.</p>
-          </div>
-          <div class="cards" id="features-grid"></div>
-        </div>
-      </section>
-
-      <section class="section" id="benefits">
-        <div class="container">
-          <div class="section-header">
-            <h2>Built for people who move fast</h2>
-          </div>
-          <div class="cards" id="benefits-grid"></div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container contact-card">
-          <h2 id="cta-title"></h2>
-          <p id="cta-copy"></p>
-          <a class="button button-primary" href="redirect.html" data-config-button>Get Started</a>
-        </div>
-      </section>
-
-      <section class="section" id="faq">
-        <div class="container">
-          <div class="section-header">
-            <h2>Frequently asked questions</h2>
-          </div>
-          <div class="faq-list" id="faq-list"></div>
-        </div>
-      </section>
+      <div id="app"></div>
     </main>
 
-    <footer class="site-footer minimal">
+    <footer class="site-footer">
       <div class="container footer-inner">
-        <p id="footer-text">© 2026 AI Hunt. All rights reserved.</p>
-        <div class="footer-links">
-          <a href="privacy.html">Privacy</a>
-          <a href="terms.html">Terms</a>
-        </div>
+        <p id="footer-text">© 2026 Luma Studio. جميع الحقوق محفوظة.</p>
+        <div class="footer-links" id="footer-links"></div>
       </div>
     </footer>
 
-    <div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookie preferences">
-      <p>This site may use cookies for analytics and optional tracking. You can adjust your preference at any time.</p>
-      <div class="cookie-actions">
-        <button class="button button-secondary" data-cookie-accept type="button">Accept</button>
-        <button class="button button-primary" data-cookie-decline type="button">Decline</button>
-      </div>
-    </div>
+    <a class="floating-whatsapp" id="floating-whatsapp" href="https://wa.me/212618439834" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WA</a>
 
-    <script src="assets/js/auth.js"></script>
-    <script src="assets/js/app.js"></script>
+    <div class="mobile-cta" id="mobile-cta-bar" aria-label="Mobile call to action"></div>
+
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
