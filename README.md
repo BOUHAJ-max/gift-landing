@@ -1,29 +1,98 @@
-﻿# Premium static product landing page
+# Universal Product Landing Page
 
-This project contains a reusable static landing page system designed for product-agnostic ecommerce, affiliate, and WhatsApp-driven offers.
+Static HTML/CSS/JavaScript product page for store, affiliate, and WhatsApp offers.
 
-## Quick start
+## Edit one file
 
-Open index.html directly in a browser, or serve the folder locally:
+Change only `js/config.js`. The page reads the product, images, pricing, sales links,
+sections, benefits, specifications, reviews, FAQ, branding, and SEO from this file.
 
-`powershell
-cd C:\Users\user\gift-landing.worktrees\pasted-text-processing
+### Product details
+
+Edit `PRODUCT_CONFIG.product`:
+
+```js
+name: 'Product name',
+description: 'Arabic description',
+descriptionEn: 'English description',
+price: 299,
+oldPrice: 399,
+currency: 'MAD',
+discount: '25%',
+badge: 'Best seller',
+```
+
+### Product images
+
+1. Copy images into `assets/images/`.
+2. Replace the `images` array in `js/config.js`:
+
+```js
+images: [
+  { src: 'assets/images/product-main.jpg', alt: 'Product front', altAr: 'صورة المنتج' },
+  { src: 'assets/images/product-detail-1.jpg', alt: 'Product detail', altAr: 'تفاصيل المنتج' }
+]
+```
+
+Use local JPG, PNG, or WebP files and keep each image reasonably compressed.
+
+### Sales links
+
+WhatsApp is configured in `PRODUCT_CONFIG.sale.whatsapp`:
+
+```js
+whatsapp: {
+  enabled: true,
+  number: '212618439834',
+  message: 'مرحبا، أريد طلب {product}'
+}
+```
+
+Use the international number without `+`, spaces, or leading zero.
+
+Affiliate links are configured separately in `PRODUCT_CONFIG.sale.affiliate`:
+
+```js
+affiliate: {
+  enabled: true,
+  url: 'https://your-affiliate-network.com/your-tracking-link'
+}
+```
+
+When both are enabled, the page shows two independent buttons:
+one for the affiliate purchase link and one for WhatsApp. Replace the example URL
+with your real tracking URL before publishing. To use WhatsApp only, set
+`affiliate.enabled` to `false`. To use affiliate only, set `whatsapp.enabled` to
+`false`.
+
+### Optional sections
+
+Set values in `PRODUCT_CONFIG.sections` to `true` or `false`:
+
+`benefits`, `showcase`, `howItWorks`, `specifications`, `offer`, `reviews`,
+`faq`, and `finalCTA`.
+
+## Run locally
+
+Open `index.html` directly, or run:
+
+```powershell
 python -m http.server 8000
-`
+```
 
-Then open:
+Then visit `http://localhost:8000/`.
 
-- http://localhost:8000/
-- http://localhost:8000/privacy.html
-- http://localhost:8000/terms.html
+## Deploy
 
-## Configuration
+The project is static and GitHub Pages compatible. Push the repository to GitHub
+and enable Pages using GitHub Actions. The included workflow copies the root
+`css`, `js`, and product assets into the Pages artifact.
 
-Edit js/config.js to change the product, pricing, gallery, trust items, FAQs, CTA mode, language defaults, and branding without touching the page design.
+## Included features
 
-## Notes
-
-- Static HTML/CSS/JS only
-- Works with GitHub Pages
-- Includes Arabic and English language switching with localStorage persistence
-- Includes WhatsApp CTA, optional review/FAQ/spec sections, and responsive mobile behavior
+- Arabic RTL and English LTR language switch
+- Responsive mobile-first layout
+- Product gallery, benefits, showcase, steps, specifications, offer, reviews, FAQ
+- Independent affiliate and WhatsApp CTAs
+- SEO metadata, favicon, privacy and terms pages
+- No backend, database, build step, or paid dependency
