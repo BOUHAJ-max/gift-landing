@@ -1307,12 +1307,21 @@
     }
   }
 
-  async function submitOrder(e) {
+  /*
+   * إرسال الطلب إلى Google Apps Script
+   *
+   * نستخدم HTML Form POST داخل iframe مخفي.
+   * هذا يتجنب مشاكل CORS التي تحدث مع fetch()
+   * عند التعامل مع Google Apps Script Web Apps.
+   */
+  function submitOrder(e) {
     e.preventDefault();
 
     const form = e.currentTarget;
+
     const status =
       form.querySelector('#order-status');
+
     const btn =
       form.querySelector('.order-submit');
 
@@ -1321,7 +1330,7 @@
         new FormData(form).entries()
       );
 
-    data.quantity =
+    const quantity =
       Number(data.quantity || 1);
 
     status.className =
@@ -1337,69 +1346,123 @@
     try {
 
       const endpoint =
-        config.backend?.endpoint ||
-        '/api/create-order';
+        config.backend?.endpoint;
+
+      if (!endpoint) {
+        throw new Error(
+          'BACKEND_ENDPOINT_MISSING'
+        );
+      }
 
       /*
-       * Google Apps Script:
-       * نستخدم URLSearchParams بدلا من JSON
-       * لتجنب طلب CORS preflight.
+       * إنشاء iframe مخفي لاستقبال استجابة Google Apps Script.
        */
+      const iframe =
+        document.createElement('iframe');
 
-      const body = new URLSearchParams({
+      const iframeName =
+        'luma-glow-order-' +
+        Date.now();
+
+      iframe.name = iframeName;
+
+      iframe.style.position = 'fixed';
+      iframe.style.width = '1px';
+      iframe.style.height = '1px';
+      iframe.style.border = '0';
+      iframe.style.opacity = '0';
+      iframe.style.pointerEvents = 'none';
+
+      iframe.setAttribute(
+        'aria-hidden',
+        'true'
+      );
+
+      document.body.appendChild(iframe);
+
+      /*
+       * إنشاء Form POST مخفي.
+       */
+      const postForm =
+        document.createElement('form');
+
+      postForm.method = 'POST';
+      postForm.action = endpoint;
+      postForm.target = iframeName;
+      postForm.style.display = 'none';
+
+      /*
+       * البيانات التي يحتاجها Apps Script.
+       */
+      const fields = {
         name: data.recipient_name || '',
         phone: data.recipient_phone || '',
         city: data.city_name || '',
         address: data.recipient_address || '',
         amount: String(
-          Number(product.price || 0) *
-          Number(data.quantity || 1)
+          Number(product.price || 0) * quantity
         ),
         sku: String(product.sku || ''),
-        quantity: String(
-          data.quantity || 1
-        ),
+        quantity: String(quantity),
         note: ''
-      });
+      };
 
-      const response = await fetch(
-        endpoint,
-        {
-          method: 'POST',
-          body
+      Object.entries(fields).forEach(
+        ([name,value]) => {
+
+          const input =
+            document.createElement('input');
+
+          input.type = 'hidden';
+          input.name = name;
+          input.value = value;
+
+          postForm.appendChild(input);
+
         }
       );
 
-      const result =
-        await response.json().catch(
-          () => ({})
-        );
+      document.body.appendChild(postForm);
 
-      if (
-        !response.ok ||
-        (
-          result.status &&
-          result.status !== 'success'
-        )
-      ) {
-        throw new Error(
-          result.error ||
-          result.status ||
-          'ORDER_FAILED'
-        );
-      }
+      /*
+       * إرسال الطلب.
+       */
+      postForm.submit();
 
-      status.className =
-        'order-status is-success';
+      /*
+       * Google Apps Script يعالج الطلب
+       * داخل الـ iframe.
+       *
+       * نعطيه وقتا كافيا لتنفيذ appendRow
+       * قبل عرض رسالة النجاح للمستخدم.
+       */
+      setTimeout(() => {
 
-      status.textContent =
-        state.lang === 'ar'
-          ? 'تم تسجيل طلبك بنجاح. سنتواصل معك لتأكيده.'
-          : 'Your order was submitted successfully. We will contact you to confirm it.';
+        status.className =
+          'order-status is-success';
 
-      form.reset();
+        status.textContent =
+          state.lang === 'ar'
+            ? 'تم تسجيل طلبك بنجاح. سنتواصل معك لتأكيده.'
+            : 'Your order was submitted successfully. We will contact you to confirm it.';
 
-      updateOrderTotal();
+        form.reset();
+
+        updateOrderTotal();
+
+        btn.disabled = false;
+
+        /*
+         * تنظيف العناصر المخفية بعد الإرسال.
+         */
+        setTimeout(() => {
+
+          postForm.remove();
+          iframe.remove();
+
+        }, 3000);
+
+      }, 2500);
 
     } catch (err) {
 
@@ -1412,8 +1475,6 @@
           : 'Could not submit the order right now. Please try again.';
 
       console.error(err);
-
-    } finally {
 
       btn.disabled = false;
 
