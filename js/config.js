@@ -55,9 +55,8 @@ window.PRODUCT_CONFIG = {
 
   backend: {
     enabled: true,
-    endpoint: '/api/create-order'
-  },
-
+    endpoint: "https://script.google.com/macros/s/AKfycbxLdEXZXThbtKtwjwuqmuFJ99s-c6omNQOpl2zl8-r6miJNViI1jBhQAPHxoPWMwuek/exec"
+}
   benefits: [
     {
       title: 'تهدئة البشرة',
