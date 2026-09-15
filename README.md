@@ -1,6 +1,6 @@
-# Universal Product Landing Page
+# Luma Glow — Universal Product Landing Page
 
-Static HTML/CSS/JavaScript product page for store, affiliate, and WhatsApp offers.
+Premium static HTML/CSS/JavaScript product page for Luma Glow affiliate sales, with a secure optional COD Solutions backend relay.
 
 ## Edit one file
 
@@ -96,3 +96,17 @@ and enable Pages using GitHub Actions. The included workflow copies the root
 - Independent affiliate and WhatsApp CTAs
 - SEO metadata, favicon, privacy and terms pages
 - No backend, database, build step, or paid dependency
+
+
+## Current product
+
+- Product: Disaar Rosemary & Centella Facial Mask
+- SKU: `694177B571535`
+- Selling price: `69 MAD`
+- Compare-at price: `99 MAD`
+- Main sales path: Affiliate
+- WhatsApp: Floating support/contact only
+
+## Backend
+
+`api/create-order.js` is a secure optional COD Solutions order relay for Vercel. Set `COD_API_KEY` as an environment variable; never put the key in frontend files.

@@ -1,194 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Reward Center</title>
-    <meta
-      name="description"
-      content="A premium, transparent landing experience for eligible reward offers with clear information, fast access, and security-first design."
-    />
-    <meta name="theme-color" content="#0f172a" />
-    <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml" />
-    <link rel="canonical" href="/" />
+    <meta name="description" content="قناع ديسار بالروزماري والسنتيلا للعناية بالبشرة — تنظيف، تهدئة وترطيب في روتين بسيط." />
+    <meta name="theme-color" content="#C4E600" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Reward Center" />
-    <meta property="og:title" content="Reward Center" />
-    <meta
-      property="og:description"
-      content="A clear, premium path to verified promotional offers with trustworthy presentation and privacy-first behavior."
-    />
-    <meta property="og:url" content="/" />
-    <meta property="og:image" content="/assets/images/og-image.svg" />
+    <meta property="og:title" content="Luma Glow | قناع ديسار بالروزماري والسنتيلا" />
+    <meta property="og:description" content="قناع ديسار بالروزماري والسنتيلا للعناية بالبشرة — تنظيف، تهدئة وترطيب في روتين بسيط." />
+    <meta property="og:image" content="assets/images/product-main.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Reward Center" />
-    <meta
-      name="twitter:description"
-      content="A premium, transparent landing experience for eligible reward offers with clear information, fast access, and security-first design."
-    />
-    <meta name="twitter:image" content="/assets/images/og-image.svg" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Reward Center",
-        "description": "A premium, transparent landing experience for eligible reward offers with clear information, fast access, and security-first design.",
-        "url": "/",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Reward Center"
-        }
-      }
-    </script>
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href="https://go.bouhaj.com/" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Luma Glow</title>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to main content</a>
+    <a class="skip-link" href="#main">تخطي إلى المحتوى الرئيسي</a>
     <header class="site-header">
-      <div class="container">
-        <a class="brand" href="#top" aria-label="Reward Center home">
-          <img id="logo" class="brand-mark" src="assets/icons/icon.svg" alt="Reward Center logo" />
-          <span id="brand-name">Reward Center</span>
+      <div class="container header-bar">
+        <a class="brand" href="#top" id="brand-link" aria-label="Luma Glow">
+          <span class="brand-logo" aria-hidden="true">L</span>
+          <span id="brand-text">Luma Glow</span>
         </a>
-        <nav class="nav-links" aria-label="Primary">
-          <a href="#benefits">Benefits</a>
-          <a href="#features">Features</a>
-          <a href="#how-it-works">How it works</a>
-          <a href="#faq">FAQ</a>
-          <a class="button button-primary" href="#contact">Get started</a>
+
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="site-nav" id="nav-menu" aria-label="Primary navigation">
+          <div class="nav-links" id="nav-links"></div>
         </nav>
+
+        <div class="header-controls">
+          <div class="lang-switcher" aria-label="Language switcher">
+            <button class="lang-btn is-active" type="button" data-lang="ar" aria-pressed="true">العربية</button>
+            <button class="lang-btn" type="button" data-lang="en" aria-pressed="false">English</button>
+          </div>
+          <a class="btn btn-primary" id="header-cta" href="#">اطلب الآن من الموقع</a>
+        </div>
       </div>
     </header>
 
     <main id="main">
-      <section class="hero" id="top">
-        <div class="container hero-grid">
-          <div class="hero-copy">
-            <span class="eyebrow">Secure • Transparent • Premium</span>
-            <h1>Discover a premium path to curated reward offers.</h1>
-            <p>
-              Reward Center presents a polished, trustworthy experience for accessing eligible promotional offers with clear terms,
-              fast navigation, and privacy-first behavior.
-            </p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="redirect.html" data-config-button>Continue</a>
-              <a class="button button-secondary" href="#how-it-works">See how it works</a>
-            </div>
-            <div class="trust-badges" id="trust-badges" aria-label="Highlights"></div>
-            <div class="benefit-snippets" id="benefit-snippets" aria-label="Benefits"></div>
-          </div>
-          <div class="hero-panel" aria-label="Offer overview">
-            <div class="panel-card">
-              <h3>Why visitors stay engaged</h3>
-              <ul class="panel-list">
-                <li>Minimal distractions with one focused CTA.</li>
-                <li>Transparent messaging and accessible content structure.</li>
-                <li>Fast load times and polished transitions on every screen.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="benefits">
-        <div class="container">
-          <div class="section-header">
-            <h2>Built to earn trust quickly</h2>
-            <p>Every section is designed to feel calm, credible, and conversion-oriented without misleading visitors.</p>
-          </div>
-          <div class="cards" id="benefits-grid"></div>
-        </div>
-      </section>
-
-      <section class="section" id="features">
-        <div class="container">
-          <div class="section-header">
-            <h2>Every feature is purpose-driven</h2>
-            <p>From the sticky navigation to the supporting policy pages, every element is built to guide visitors forward.</p>
-          </div>
-          <div class="features-grid" id="features-grid"></div>
-        </div>
-      </section>
-
-      <section class="section" id="how-it-works">
-        <div class="container">
-          <div class="section-header">
-            <h2>How the experience works</h2>
-            <p>A concise journey that helps visitors understand what happens next without feeling rushed or confused.</p>
-          </div>
-          <div class="steps" id="steps-grid"></div>
-        </div>
-      </section>
-
-      <section class="section" id="testimonials">
-        <div class="container">
-          <div class="section-header">
-            <h2>Trusted by thoughtful teams</h2>
-            <p>Designed for modern promotional campaigns that value clarity, speed, and compliance.</p>
-          </div>
-          <div class="testimonials">
-            <article class="testimonial">
-              <p>“The experience feels premium without being overbuilt. It is calm, clear, and simple to navigate.”</p>
-              <strong>— Mira Chen, Growth Strategist</strong>
-            </article>
-            <article class="testimonial">
-              <p>“The messaging is direct and trustworthy. The page gets the point across in seconds.”</p>
-              <strong>— Daniel Ortiz, Product Lead</strong>
-            </article>
-            <article class="testimonial">
-              <p>“The experience behaves beautifully on mobile and desktop, which matters for every campaign.”</p>
-              <strong>— Nina Patel, Marketing Director</strong>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="faq">
-        <div class="container">
-          <div class="section-header">
-            <h2>Frequently asked questions</h2>
-            <p>Helpful information built into the page to reduce hesitation and improve clarity.</p>
-          </div>
-          <div class="faq-list" id="faq-list"></div>
-        </div>
-      </section>
-
-      <section class="section" id="contact">
-        <div class="container">
-          <div class="contact-card">
-            <h2 id="cta-title">Ready to direct visitors with confidence?</h2>
-            <p id="cta-copy">Use the CTA above to continue to the configured offer destination, or review the policy pages for more details.</p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="redirect.html" data-config-button>Continue</a>
-              <a class="button button-secondary" href="privacy.html">Privacy</a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div id="app"></div>
     </main>
 
     <footer class="site-footer">
-      <div class="container">
-        <p id="footer-text">© 2026 Reward Center. All rights reserved.</p>
-        <div class="footer-links">
-          <a href="privacy.html">Privacy</a>
-          <a href="terms.html">Terms</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contact">Contact</a>
-        </div>
+      <div class="container footer-inner">
+        <p id="footer-text">© 2026 Luma Studio. جميع الحقوق محفوظة.</p>
+        <div class="footer-links" id="footer-links"></div>
       </div>
     </footer>
 
-    <div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookie preferences">
-      <p>This site may use cookies for analytics and optional tracking. You can adjust your preference at any time.</p>
-      <div class="cookie-actions">
-        <button class="button button-secondary" data-cookie-accept type="button">Accept</button>
-        <button class="button button-primary" data-cookie-decline type="button">Decline</button>
-      </div>
-    </div>
+    <a class="floating-whatsapp" id="floating-whatsapp" href="https://wa.me/212618439834" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WA</a>
 
-    <script src="assets/js/auth.js"></script>
-    <script src="assets/js/app.js"></script>
+    <div class="mobile-cta" id="mobile-cta-bar" aria-label="Mobile call to action"></div>
+
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>

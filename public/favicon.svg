@@ -1,0 +1,6 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Luma Studio favicon">
+  <rect width="128" height="128" rx="28" fill="#F7F8F6"/>
+  <rect x="15" y="15" width="98" height="98" rx="24" fill="#171717"/>
+  <path d="M36 71.5 64 28l28 43.5-11.8 18.5H47.8L36 71.5Z" fill="#C4E600"/>
+  <path d="M47 86h34l-7 13H54l-7-13Z" fill="#FFFFFF" opacity="0.9"/>
+</svg>
