@@ -4,51 +4,1647 @@
   const sale = config.sale || {};
   const sections = config.sections || {};
   const translations = config.translations || {
-    ar: { nav: ['الرئيسية','الفوائد','المميزات','طريقة الاستخدام','الأسئلة الشائعة'], navHref:['#top','#benefits','#showcase','#how-it-works','#faq'], primaryCta:'اطلب الآن', secondaryCta:'اطلب الآن', buyWhatsApp:'استفسري عبر واتساب', buyWebsite:'اطلب الآن', finalTitle:'جاهزة لروتين أكثر نضارة؟', finalText:'اطلبي الآن بسهولة والدفع عند الاستلام.', whatsapp:'واتساب', affiliateDisclosure:'', noSpecs:'لا توجد مواصفات متاحة.' },
-    en: { nav:['Home','Benefits','Showcase','How it works','FAQ'], navHref:['#top','#benefits','#showcase','#how-it-works','#faq'], primaryCta:'Order now', secondaryCta:'Order now', buyWhatsApp:'WhatsApp', buyWebsite:'Order now', finalTitle:'Ready for a fresher routine?', finalText:'Order now with cash on delivery.', whatsapp:'WhatsApp', affiliateDisclosure:'', noSpecs:'No specifications are available.' }
+    ar: {
+      nav: ['الرئيسية','الفوائد','المميزات','طريقة الاستخدام','الأسئلة الشائعة'],
+      navHref: ['#top','#benefits','#showcase','#how-it-works','#faq'],
+      primaryCta: 'اطلب الآن',
+      secondaryCta: 'اطلب الآن',
+      buyWhatsApp: 'استفسري عبر واتساب',
+      buyWebsite: 'اطلب الآن',
+      finalTitle: 'جاهزة لروتين أكثر نضارة؟',
+      finalText: 'اطلبي الآن بسهولة والدفع عند الاستلام.',
+      whatsapp: 'واتساب',
+      affiliateDisclosure: '',
+      noSpecs: 'لا توجد مواصفات متاحة.'
+    },
+    en: {
+      nav: ['Home','Benefits','Showcase','How it works','FAQ'],
+      navHref: ['#top','#benefits','#showcase','#how-it-works','#faq'],
+      primaryCta: 'Order now',
+      secondaryCta: 'Order now',
+      buyWhatsApp: 'WhatsApp',
+      buyWebsite: 'Order now',
+      finalTitle: 'Ready for a fresher routine?',
+      finalText: 'Order now with cash on delivery.',
+      whatsapp: 'WhatsApp',
+      affiliateDisclosure: '',
+      noSpecs: 'No specifications are available.'
+    }
   };
-  const state = { lang: localStorage.getItem('landing-lang') || 'ar', menuOpen: false };
 
-  function escapeHtml(value) { return String(value ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
-  function getTextField(arValue,enValue,fallbackValue) { const value=state.lang==='ar'?arValue:enValue; return value||arValue||enValue||fallbackValue||''; }
-  function formatPrice(value,currency) { const n=Number(value||0); if(!Number.isFinite(n)) return currency||'MAD'; return `${currency||'MAD'} ${n.toLocaleString(state.lang==='ar'?'ar-MA':'en-US')}`; }
-  function isCodApiEnabled(){ return Boolean(config.backend?.enabled && (config.sale?.mode==='cod-api' || config.sale?.codApi?.enabled)); }
-  function createWhatsAppLink(){ const w=sale.whatsapp||{}; if(!w.enabled)return null; const n=String(w.number||'').replace(/[^0-9]/g,''); if(!n)return null; const pn=String(product.name||'المنتج'); const msg=String(w.message||'مرحبا، أريد الاستفسار عن {product}').replace(/\{product\}/gi,pn).replace(/\[PRODUCT NAME\]/gi,pn); return {url:`https://wa.me/${n}?text=${encodeURIComponent(msg)}`,label:translations[state.lang].buyWhatsApp||'WhatsApp',kind:'whatsapp'}; }
-  function createAffiliateLink(){ const a=sale.affiliate||{}; const url=String(a.url||'').trim(); if(!a.enabled||!url)return null; return {url,label:translations[state.lang].buyWebsite||'Order now',kind:'affiliate'}; }
-  function createOrderAction(){ if(!isCodApiEnabled()) return null; return { label: translations[state.lang].primaryCta || (state.lang==='ar'?'اطلب الآن':'Order now'), kind:'cod' }; }
-  function renderActionButton(action,className){ if(!action)return ''; if(action.kind==='cod') return `<button class="${className} btn-purchase" type="button" data-open-order aria-label="${escapeHtml(action.label)}">${escapeHtml(action.label)}<span class="btn-arrow" aria-hidden="true">↗</span></button>`; if(!action.url)return ''; const external=/^https?:\/\//i.test(action.url); return `<a class="${className} ${action.kind==='affiliate'?'btn-purchase':''}" href="${escapeHtml(action.url)}" target="${external?'_blank':'_self'}" rel="${external?'noopener noreferrer':''}" aria-label="${escapeHtml(action.label||'Purchase')}">${escapeHtml(action.label||'Purchase')}<span class="btn-arrow" aria-hidden="true">↗</span></a>`; }
-  function renderCTAButtons(){ const buttons=[]; const cod=createOrderAction(); const affiliate=createAffiliateLink(); if(cod) buttons.push(renderActionButton(cod,'btn btn-primary')); else if(affiliate) buttons.push(renderActionButton(affiliate,'btn btn-primary')); return buttons.join(''); }
+  const state = {
+    lang: localStorage.getItem('landing-lang') || 'ar',
+    menuOpen: false
+  };
 
-  function renderNavigation(){
-    const navLinks=document.getElementById('nav-links'); const navData=translations[state.lang]||translations.ar;
-    if(navLinks) navLinks.innerHTML=navData.nav.map((label,i)=>`<a href="${escapeHtml(navData.navHref[i]||'#')}">${escapeHtml(label)}</a>`).join('');
-    const brandText=document.getElementById('brand-text'); if(brandText) brandText.textContent=config.brand?.name||product.name||'Luma Studio';
-    const headerCta=document.getElementById('header-cta'); if(headerCta){ const action=createOrderAction()||createAffiliateLink(); if(!action){headerCta.style.display='none';headerCta.removeAttribute('href');} else if(action.kind==='cod'){headerCta.style.display='inline-flex';headerCta.removeAttribute('href');headerCta.textContent=action.label;headerCta.dataset.openOrder='true';} else {headerCta.style.display='inline-flex';headerCta.href=action.url;headerCta.textContent=action.label;headerCta.target='_blank';headerCta.rel='noopener noreferrer';delete headerCta.dataset.openOrder;} }
-    document.querySelectorAll('.lang-btn').forEach(b=>{const active=b.dataset.lang===state.lang;b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active));});
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;');
   }
-  function setMetaData(){ const seo=config.seo||{}; document.title=seo.title||getTextField(product.name,product.name,'Product'); const d=getTextField(seo.descriptionAr||seo.description,seo.description,product.description||''); const md=document.querySelector('meta[name="description"]');if(md)md.content=d; const can=document.querySelector('link[rel="canonical"]');if(can)can.href=seo.canonical||location.href; const ogt=document.querySelector('meta[property="og:title"]');if(ogt)ogt.content=seo.title||document.title; const ogd=document.querySelector('meta[property="og:description"]');if(ogd)ogd.content=d; const ogi=document.querySelector('meta[property="og:image"]');if(ogi)ogi.content=seo.ogImage||product.images?.[0]?.src||''; }
-  function applyBrandColors(){ const r=document.documentElement;r.style.setProperty('--color-accent',config.brand?.accent||'#C4E600');r.style.setProperty('--color-cta',config.brand?.primaryCtaColor||'#171717'); }
-  function renderHero(){ const main=(product.images&&product.images[0])||{src:'assets/images/product-main.svg',alt:product.name}; const highlights=(config.benefits||[]).slice(0,4); return `<section class="hero section-pad" id="top"><div class="container hero-grid"><div class="hero-copy"><span class="hero-badge">${escapeHtml(getTextField(product.badge,product.badgeEn,'Featured'))}</span><h1>${escapeHtml(getTextField(product.name,product.nameEn,'Product'))}</h1><p class="hero-description">${escapeHtml(getTextField(product.description,product.descriptionEn,''))}</p><div class="price-row"><span class="price-old">${escapeHtml(product.oldPrice?formatPrice(product.oldPrice,product.currency):'')}</span><span class="price-current">${escapeHtml(formatPrice(product.price,product.currency))}</span><span class="discount-badge">${escapeHtml(product.discount||'Offer')}</span></div><div class="cta-row">${renderCTAButtons()}</div><ul class="hero-meta">${highlights.map(i=>`<li>${escapeHtml(getTextField(i.title,i.titleEn,i.title||'Benefit'))}</li>`).join('')}</ul></div><div class="gallery-panel"><div class="gallery-main"><img src="${escapeHtml(main.src)}" alt="${escapeHtml(getTextField(main.altAr||main.alt,main.alt,product.name||'Product'))}" data-gallery-main loading="eager" /></div><div class="thumb-row">${(product.images||[]).map((im,i)=>`<button class="thumb-btn ${i===0?'is-active':''}" type="button" data-image-index="${i}" aria-label="${escapeHtml(getTextField(im.altAr||im.alt,im.alt,'Product image'))}"><img src="${escapeHtml(im.src)}" alt="" loading="lazy" /></button>`).join('')}</div></div></div></section>`; }
-  function renderBenefits(){const b=config.benefits||[];if(sections.benefits===false||!b.length)return '';return `<section class="section-pad" id="benefits"><div class="container"><div class="section-head"><span class="eyebrow">${state.lang==='ar'?'الفوائد':'Benefits'}</span><h2>${state.lang==='ar'?'مزايا تناسب الروتين اليومي':'Benefits built for everyday use'}</h2></div><div class="benefits-grid">${b.slice(0,6).map(i=>`<article class="benefit-card"><span class="benefit-icon">✦</span><h3>${escapeHtml(getTextField(i.title,i.titleEn,i.title||'Benefit'))}</h3><p>${escapeHtml(getTextField(i.description,i.descriptionEn,i.description||''))}</p></article>`).join('')}</div></div></section>`;}
-  function renderShowcase(){const s=config.showcase||[];if(sections.showcase===false||!s.length)return '';return `<section class="section-pad showcase" id="showcase"><div class="container"><div class="section-head"><span class="eyebrow">${state.lang==='ar'?'العرض':'Showcase'}</span><h2>${state.lang==='ar'?'منتج مصمم ليجعل الروتين أسهل':'A product designed to make your routine easier'}</h2></div>${s.map((i,n)=>`<article class="showcase-row ${n%2?'row-reverse':''}"><div class="showcase-media"><img src="${escapeHtml(i.image||'assets/images/product-main.svg')}" alt="${escapeHtml(getTextField(i.title,i.titleEn,'Product feature'))}" loading="lazy" /></div><div class="showcase-copy"><h3>${escapeHtml(getTextField(i.title,i.titleEn,'Feature'))}</h3><p>${escapeHtml(getTextField(i.text,i.textEn,''))}</p><ul>${(state.lang==='ar'?i.points:i.pointsEn||i.points||[]).map(p=>`<li>${escapeHtml(p)}</li>`).join('')}</ul></div></article>`).join('')}</div></section>`;}
-  function renderHowItWorks(){const s=config.howItWorks||[];if(sections.howItWorks===false||!s.length)return '';return `<section class="section-pad steps" id="how-it-works"><div class="container"><div class="section-head"><span class="eyebrow">${state.lang==='ar'?'كيف يعمل':'How it works'}</span><h2>${state.lang==='ar'?'طريقة استخدام بسيطة':'Simple use'}</h2></div><div class="steps-grid">${s.map((x,i)=>`<article class="step-card"><span class="step-no">${i+1}</span><h3>${escapeHtml(getTextField(x.title,x.titleEn,x.title||`Step ${i+1}`))}</h3><p>${escapeHtml(getTextField(x.description,x.descriptionEn,x.description||''))}</p></article>`).join('')}</div></div></section>`;}
-  function renderSpecifications(){const s=config.specifications||[];if(sections.specifications===false||!s.length)return '';return `<section class="section-pad specs"><div class="container"><div class="section-head"><span class="eyebrow">${state.lang==='ar'?'المواصفات':'Specifications'}</span><h2>${state.lang==='ar'?'معلومات المنتج':'Product information'}</h2></div><div class="specs-table-wrap"><table class="specs-table"><tbody>${s.map(x=>`<tr><th>${escapeHtml(getTextField(x.label,x.labelEn,x.label||'Feature'))}</th><td>${escapeHtml(x.value||'')}</td></tr>`).join('')}</tbody></table></div></div></section>`;}
-  function renderOffer(){const o=config.offer||{};if(sections.offer===false||!o.enabled)return '';return `<section class="section-pad offer"><div class="container offer-card"><div class="offer-copy"><span class="eyebrow">${escapeHtml(getTextField(o.badge,o.badgeEn,'Offer'))}</span><h2>${escapeHtml(getTextField(o.title,o.titleEn,'Offer'))}</h2><p>${escapeHtml(getTextField(o.description,o.descriptionEn,''))}</p><div class="offer-price-line"><span class="old-price">${escapeHtml(product.oldPrice?formatPrice(product.oldPrice,product.currency):'')}</span><span class="new-price">${escapeHtml(formatPrice(product.price,product.currency))}</span></div><p class="urgency">${escapeHtml(getTextField(o.urgency,o.urgencyEn,''))}</p></div><div class="offer-actions">${renderCTAButtons()}</div></div></section>`;}
-  function renderReviews(){const r=config.reviews||[];if(sections.reviews===false||!r.length)return '';return `<section class="section-pad reviews"><div class="container"><div class="section-head"><span class="eyebrow">${state.lang==='ar'?'آراء العملاء':'Reviews'}</span><h2>${state.lang==='ar'?'ماذا يقول العملاء؟':'What customers are saying'}</h2></div><div class="reviews-grid">${r.map(x=>`<article class="review-card"><strong>${escapeHtml(getTextField(x.name,x.nameEn,'Customer'))}</strong><p>${escapeHtml(getTextField(x.text,x.textEn,''))}</p></article>`).join('')}</div></div></section>`;}
-  function renderFaq(){const f=config.faq||[];if(sections.faq===false||!f.length)return '';return `<section class="section-pad faq" id="faq"><div class="container faq-shell"><div class="section-head left-align"><span class="eyebrow">${state.lang==='ar'?'الأسئلة الشائعة':'FAQ'}</span><h2>${state.lang==='ar'?'الأسئلة الأكثر شيوعا':'Frequently asked questions'}</h2></div><div class="faq-list">${f.map((x,i)=>`<details class="faq-item" ${i===0?'open':''}><summary>${escapeHtml(getTextField(x.question,x.questionEn,'Question'))}</summary><p>${escapeHtml(getTextField(x.answer,x.answerEn,''))}</p></details>`).join('')}</div></div></section>`;}
-  function renderFinalCta(){if(sections.finalCTA===false)return '';return `<section class="section-pad final-cta"><div class="container final-cta-card"><div><span class="eyebrow">${state.lang==='ar'?'ابدأ الآن':'Get started'}</span><h2>${escapeHtml(translations[state.lang].finalTitle)}</h2><p>${escapeHtml(translations[state.lang].finalText)}</p></div><div class="final-cta-actions">${renderCTAButtons()}</div></div></section>`;}
-  function renderFooter(){const ft=document.getElementById('footer-text');if(ft)ft.textContent=`${new Date().getFullYear()} ${config.brand?.name||'Brand'}. ${state.lang==='ar'?'جميع الحقوق محفوظة.':'All rights reserved.'}`;const fl=document.getElementById('footer-links');if(fl)fl.innerHTML=`<a href="privacy.html">${state.lang==='ar'?'سياسة الخصوصية':'Privacy policy'}</a><a href="terms.html">${state.lang==='ar'?'الشروط':'Terms'}</a>`;}
-  function renderOrderModal(){ if(document.getElementById('order-modal')) return; const m=document.createElement('div');m.id='order-modal';m.className='order-modal';m.hidden=true;m.innerHTML=`<div class="order-modal-backdrop" data-close-order></div><div class="order-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="order-title"><button class="order-modal-close" type="button" data-close-order aria-label="${state.lang==='ar'?'إغلاق':'Close'}">×</button><div class="order-modal-head"><span class="eyebrow">${state.lang==='ar'?'الدفع عند الاستلام':'Cash on delivery'}</span><h2 id="order-title">${state.lang==='ar'?'أكملي طلبك':'Complete your order'}</h2><p>${state.lang==='ar'?'أدخلي بيانات التوصيل وسنتواصل معك لتأكيد الطلب.':'Enter your delivery details and we will contact you to confirm.'}</p></div><form id="order-form" class="order-form"><label>${state.lang==='ar'?'الاسم الكامل':'Full name'}<input name="recipient_name" required maxlength="255" autocomplete="name"></label><label>${state.lang==='ar'?'رقم الهاتف':'Phone number'}<input name="recipient_phone" required maxlength="15" inputmode="tel" autocomplete="tel"></label><label>${state.lang==='ar'?'المدينة':'City'}<input name="city_name" required maxlength="240" autocomplete="address-level2"></label><label>${state.lang==='ar'?'العنوان':'Address'}<textarea name="recipient_address" maxlength="500" autocomplete="street-address"></textarea></label><label>${state.lang==='ar'?'الكمية':'Quantity'}<select name="quantity"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></label><div class="order-total"><span>${state.lang==='ar'?'المجموع':'Total'}</span><strong id="order-total-value">${escapeHtml(formatPrice(product.price,product.currency))}</strong></div><button class="btn btn-primary order-submit" type="submit">${state.lang==='ar'?'تأكيد الطلب':'Confirm order'}</button><p class="order-status" id="order-status" role="status" aria-live="polite"></p></form></div>`;document.body.appendChild(m);const form=m.querySelector('#order-form');form.addEventListener('submit',submitOrder);m.querySelectorAll('[data-close-order]').forEach(el=>el.addEventListener('click',closeOrder));m.querySelector('[name="quantity"]').addEventListener('change',updateOrderTotal);}
-  function updateOrderTotal(){const q=Number(document.querySelector('#order-form [name="quantity"]')?.value||1);const el=document.getElementById('order-total-value');if(el)el.textContent=formatPrice(Number(product.price||69)*q,product.currency);}
-  function openOrder(){if(!isCodApiEnabled()){const a=createAffiliateLink();if(a)location.href=a.url;return;}renderOrderModal();const m=document.getElementById('order-modal');m.hidden=false;document.body.classList.add('order-modal-open');setTimeout(()=>m.querySelector('input')?.focus(),50);}
-  function closeOrder(){const m=document.getElementById('order-modal');if(m){m.hidden=true;document.body.classList.remove('order-modal-open');}}
-  async function submitOrder(e){e.preventDefault();const form=e.currentTarget;const status=form.querySelector('#order-status');const btn=form.querySelector('.order-submit');const data=Object.fromEntries(new FormData(form).entries());data.quantity=Number(data.quantity||1);status.className='order-status is-loading';status.textContent=state.lang==='ar'?'جاري إرسال الطلب...':'Sending order...';btn.disabled=true;try{const endpoint=config.backend?.endpoint||'/api/create-order';const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});const result=await response.json().catch(()=>({}));if(!response.ok||!result.success)throw new Error(result.error||'ORDER_FAILED');status.className='order-status is-success';status.textContent=state.lang==='ar'?'تم تسجيل طلبك بنجاح. سنتواصل معك لتأكيده.':'Your order was submitted successfully. We will contact you to confirm it.';form.reset();updateOrderTotal();}catch(err){status.className='order-status is-error';status.textContent=state.lang==='ar'?'تعذر إرسال الطلب حاليا. حاولي مرة أخرى.':'Could not submit the order right now. Please try again.';console.error(err);}finally{btn.disabled=false;}}
-  function bindGallery(){const main=document.querySelector('[data-gallery-main]');const bs=document.querySelectorAll('.thumb-btn');if(!main)return;bs.forEach(b=>b.addEventListener('click',()=>{const im=(product.images||[])[Number(b.dataset.imageIndex||0)];if(!im)return;main.src=im.src;main.alt=getTextField(im.altAr||im.alt,im.alt,product.name);bs.forEach(x=>x.classList.toggle('is-active',x===b));}));}
-  function bindMenu(){const t=document.getElementById('menu-toggle'),n=document.getElementById('nav-menu');if(!t||!n)return;t.addEventListener('click',()=>{state.menuOpen=!state.menuOpen;n.classList.toggle('is-open',state.menuOpen);t.setAttribute('aria-expanded',String(state.menuOpen));});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{state.menuOpen=false;n.classList.remove('is-open');t.setAttribute('aria-expanded','false');}));}
-  function bindLanguageButtons(){document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>{state.lang=b.dataset.lang||'ar';localStorage.setItem('landing-lang',state.lang);document.getElementById('order-modal')?.remove();render();}));}
-  function bindOrderButtons(){document.querySelectorAll('[data-open-order]').forEach(b=>b.addEventListener('click',openOrder));}
-  function renderFloatingWhatsApp(){const b=document.getElementById('floating-whatsapp');if(!b)return;const a=createWhatsAppLink();if(!a){b.style.display='none';return;}b.style.display='inline-flex';b.href=a.url;b.setAttribute('aria-label',state.lang==='ar'?'التواصل عبر واتساب':'Contact via WhatsApp');}
-  function renderMobileCta(){const m=document.getElementById('mobile-cta-bar');if(!m)return;m.innerHTML=renderCTAButtons();}
-  function render(){renderNavigation();setMetaData();applyBrandColors();const app=document.getElementById('app');if(app)app.innerHTML=`${renderHero()}${renderBenefits()}${renderShowcase()}${renderHowItWorks()}${renderSpecifications()}${renderOffer()}${renderReviews()}${renderFaq()}${renderFinalCta()}`;renderFooter();renderFloatingWhatsApp();renderMobileCta();renderOrderModal();bindGallery();bindMenu();bindLanguageButtons();bindOrderButtons();document.documentElement.lang=state.lang;document.documentElement.dir=state.lang==='ar'?'rtl':'ltr';document.body.dir=document.documentElement.dir;}
+
+  function getTextField(arValue,enValue,fallbackValue) {
+    const value = state.lang === 'ar' ? arValue : enValue;
+    return value || arValue || enValue || fallbackValue || '';
+  }
+
+  function formatPrice(value,currency) {
+    const n = Number(value || 0);
+
+    if (!Number.isFinite(n)) {
+      return currency || 'MAD';
+    }
+
+    return `${currency || 'MAD'} ${n.toLocaleString(
+      state.lang === 'ar' ? 'ar-MA' : 'en-US'
+    )}`;
+  }
+
+  function isCodApiEnabled() {
+    return Boolean(
+      config.backend?.enabled &&
+      (
+        config.sale?.mode === 'cod-api' ||
+        config.sale?.codApi?.enabled
+      )
+    );
+  }
+
+  function createWhatsAppLink() {
+    const w = sale.whatsapp || {};
+
+    if (!w.enabled) return null;
+
+    const n = String(w.number || '').replace(/[^0-9]/g,'');
+
+    if (!n) return null;
+
+    const pn = String(product.name || 'المنتج');
+
+    const msg = String(
+      w.message || 'مرحبا، أريد الاستفسار عن {product}'
+    )
+      .replace(/\{product\}/gi,pn)
+      .replace(/\[PRODUCT NAME\]/gi,pn);
+
+    return {
+      url: `https://wa.me/${n}?text=${encodeURIComponent(msg)}`,
+      label: translations[state.lang].buyWhatsApp || 'WhatsApp',
+      kind: 'whatsapp'
+    };
+  }
+
+  function createAffiliateLink() {
+    const a = sale.affiliate || {};
+    const url = String(a.url || '').trim();
+
+    if (!a.enabled || !url) return null;
+
+    return {
+      url,
+      label: translations[state.lang].buyWebsite || 'Order now',
+      kind: 'affiliate'
+    };
+  }
+
+  function createOrderAction() {
+    if (!isCodApiEnabled()) return null;
+
+    return {
+      label:
+        translations[state.lang].primaryCta ||
+        (state.lang === 'ar' ? 'اطلب الآن' : 'Order now'),
+      kind: 'cod'
+    };
+  }
+
+  function renderActionButton(action,className) {
+    if (!action) return '';
+
+    if (action.kind === 'cod') {
+      return `
+        <button
+          class="${className} btn-purchase"
+          type="button"
+          data-open-order
+          aria-label="${escapeHtml(action.label)}"
+        >
+          ${escapeHtml(action.label)}
+          <span class="btn-arrow" aria-hidden="true">↗</span>
+        </button>
+      `;
+    }
+
+    if (!action.url) return '';
+
+    const external = /^https?:\/\//i.test(action.url);
+
+    return `
+      <a
+        class="${className} ${action.kind === 'affiliate' ? 'btn-purchase' : ''}"
+        href="${escapeHtml(action.url)}"
+        target="${external ? '_blank' : '_self'}"
+        rel="${external ? 'noopener noreferrer' : ''}"
+        aria-label="${escapeHtml(action.label || 'Purchase')}"
+      >
+        ${escapeHtml(action.label || 'Purchase')}
+        <span class="btn-arrow" aria-hidden="true">↗</span>
+      </a>
+    `;
+  }
+
+  function renderCTAButtons() {
+    const buttons = [];
+
+    const cod = createOrderAction();
+    const affiliate = createAffiliateLink();
+
+    if (cod) {
+      buttons.push(
+        renderActionButton(cod,'btn btn-primary')
+      );
+    } else if (affiliate) {
+      buttons.push(
+        renderActionButton(affiliate,'btn btn-primary')
+      );
+    }
+
+    return buttons.join('');
+  }
+
+  function renderNavigation() {
+    const navLinks = document.getElementById('nav-links');
+    const navData = translations[state.lang] || translations.ar;
+
+    if (navLinks) {
+      navLinks.innerHTML = navData.nav
+        .map(
+          (label,i) =>
+            `<a href="${escapeHtml(navData.navHref[i] || '#')}">${escapeHtml(label)}</a>`
+        )
+        .join('');
+    }
+
+    const brandText = document.getElementById('brand-text');
+
+    if (brandText) {
+      brandText.textContent =
+        config.brand?.name ||
+        product.name ||
+        'Luma Studio';
+    }
+
+    const headerCta = document.getElementById('header-cta');
+
+    if (headerCta) {
+      const action =
+        createOrderAction() ||
+        createAffiliateLink();
+
+      if (!action) {
+        headerCta.style.display = 'none';
+        headerCta.removeAttribute('href');
+      } else if (action.kind === 'cod') {
+        headerCta.style.display = 'inline-flex';
+        headerCta.removeAttribute('href');
+        headerCta.textContent = action.label;
+        headerCta.dataset.openOrder = 'true';
+      } else {
+        headerCta.style.display = 'inline-flex';
+        headerCta.href = action.url;
+        headerCta.textContent = action.label;
+        headerCta.target = '_blank';
+        headerCta.rel = 'noopener noreferrer';
+        delete headerCta.dataset.openOrder;
+      }
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      const active = b.dataset.lang === state.lang;
+
+      b.classList.toggle('is-active',active);
+      b.setAttribute('aria-pressed',String(active));
+    });
+  }
+
+  function setMetaData() {
+    const seo = config.seo || {};
+
+    document.title =
+      seo.title ||
+      getTextField(
+        product.name,
+        product.name,
+        'Product'
+      );
+
+    const d = getTextField(
+      seo.descriptionAr || seo.description,
+      seo.description,
+      product.description || ''
+    );
+
+    const md = document.querySelector(
+      'meta[name="description"]'
+    );
+
+    if (md) md.content = d;
+
+    const can = document.querySelector(
+      'link[rel="canonical"]'
+    );
+
+    if (can) {
+      can.href =
+        seo.canonical ||
+        location.href;
+    }
+
+    const ogt = document.querySelector(
+      'meta[property="og:title"]'
+    );
+
+    if (ogt) {
+      ogt.content =
+        seo.title ||
+        document.title;
+    }
+
+    const ogd = document.querySelector(
+      'meta[property="og:description"]'
+    );
+
+    if (ogd) ogd.content = d;
+
+    const ogi = document.querySelector(
+      'meta[property="og:image"]'
+    );
+
+    if (ogi) {
+      ogi.content =
+        seo.ogImage ||
+        product.images?.[0]?.src ||
+        '';
+    }
+  }
+
+  function applyBrandColors() {
+    const r = document.documentElement;
+
+    r.style.setProperty(
+      '--color-accent',
+      config.brand?.accent || '#C4E600'
+    );
+
+    r.style.setProperty(
+      '--color-cta',
+      config.brand?.primaryCtaColor || '#171717'
+    );
+  }
+
+  function renderHero() {
+    const main =
+      (product.images && product.images[0]) || {
+        src: 'assets/images/product-main.svg',
+        alt: product.name
+      };
+
+    const highlights =
+      (config.benefits || []).slice(0,4);
+
+    return `
+      <section class="hero section-pad" id="top">
+        <div class="container hero-grid">
+
+          <div class="hero-copy">
+
+            <span class="hero-badge">
+              ${escapeHtml(
+                getTextField(
+                  product.badge,
+                  product.badgeEn,
+                  'Featured'
+                )
+              )}
+            </span>
+
+            <h1>
+              ${escapeHtml(
+                getTextField(
+                  product.name,
+                  product.nameEn,
+                  'Product'
+                )
+              )}
+            </h1>
+
+            <p class="hero-description">
+              ${escapeHtml(
+                getTextField(
+                  product.description,
+                  product.descriptionEn,
+                  ''
+                )
+              )}
+            </p>
+
+            <div class="price-row">
+
+              <span class="price-old">
+                ${escapeHtml(
+                  product.oldPrice
+                    ? formatPrice(
+                        product.oldPrice,
+                        product.currency
+                      )
+                    : ''
+                )}
+              </span>
+
+              <span class="price-current">
+                ${escapeHtml(
+                  formatPrice(
+                    product.price,
+                    product.currency
+                  )
+                )}
+              </span>
+
+              <span class="discount-badge">
+                ${escapeHtml(
+                  product.discount || 'Offer'
+                )}
+              </span>
+
+            </div>
+
+            <div class="cta-row">
+              ${renderCTAButtons()}
+            </div>
+
+            <ul class="hero-meta">
+              ${highlights.map(i => `
+                <li>
+                  ${escapeHtml(
+                    getTextField(
+                      i.title,
+                      i.titleEn,
+                      i.title || 'Benefit'
+                    )
+                  )}
+                </li>
+              `).join('')}
+            </ul>
+
+          </div>
+
+          <div class="gallery-panel">
+
+            <div class="gallery-main">
+              <img
+                src="${escapeHtml(main.src)}"
+                alt="${escapeHtml(
+                  getTextField(
+                    main.altAr || main.alt,
+                    main.alt,
+                    product.name || 'Product'
+                  )
+                )}"
+                data-gallery-main
+                loading="eager"
+              />
+            </div>
+
+            <div class="thumb-row">
+              ${(product.images || []).map((im,i) => `
+                <button
+                  class="thumb-btn ${i === 0 ? 'is-active' : ''}"
+                  type="button"
+                  data-image-index="${i}"
+                  aria-label="${escapeHtml(
+                    getTextField(
+                      im.altAr || im.alt,
+                      im.alt,
+                      'Product image'
+                    )
+                  )}"
+                >
+                  <img
+                    src="${escapeHtml(im.src)}"
+                    alt=""
+                    loading="lazy"
+                  />
+                </button>
+              `).join('')}
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+    `;
+  }
+
+  function renderBenefits() {
+    const b = config.benefits || {};
+
+    if (
+      sections.benefits === false ||
+      !b.length
+    ) return '';
+
+    return `
+      <section class="section-pad" id="benefits">
+        <div class="container">
+
+          <div class="section-head">
+            <span class="eyebrow">
+              ${state.lang === 'ar' ? 'الفوائد' : 'Benefits'}
+            </span>
+
+            <h2>
+              ${state.lang === 'ar'
+                ? 'مزايا تناسب الروتين اليومي'
+                : 'Benefits built for everyday use'}
+            </h2>
+          </div>
+
+          <div class="benefits-grid">
+
+            ${b.slice(0,6).map(i => `
+              <article class="benefit-card">
+
+                <span class="benefit-icon">
+                  ✦
+                </span>
+
+                <h3>
+                  ${escapeHtml(
+                    getTextField(
+                      i.title,
+                      i.titleEn,
+                      i.title || 'Benefit'
+                    )
+                  )}
+                </h3>
+
+                <p>
+                  ${escapeHtml(
+                    getTextField(
+                      i.description,
+                      i.descriptionEn,
+                      i.description || ''
+                    )
+                  )}
+                </p>
+
+              </article>
+            `).join('')}
+
+          </div>
+
+        </div>
+      </section>
+    `;
+  }
+
+  function renderShowcase() {
+    const s = config.showcase || [];
+
+    if (
+      sections.showcase === false ||
+      !s.length
+    ) return '';
+
+    return `
+      <section class="section-pad showcase" id="showcase">
+        <div class="container">
+
+          <div class="section-head">
+
+            <span class="eyebrow">
+              ${state.lang === 'ar'
+                ? 'العرض'
+                : 'Showcase'}
+            </span>
+
+            <h2>
+              ${state.lang === 'ar'
+                ? 'منتج مصمم ليجعل الروتين أسهل'
+                : 'A product designed to make your routine easier'}
+            </h2>
+
+          </div>
+
+          ${s.map((i,n) => `
+            <article
+              class="showcase-row ${n % 2 ? 'row-reverse' : ''}"
+            >
+
+              <div class="showcase-media">
+                <img
+                  src="${escapeHtml(
+                    i.image ||
+                    'assets/images/product-main.svg'
+                  )}"
+                  alt="${escapeHtml(
+                    getTextField(
+                      i.title,
+                      i.titleEn,
+                      'Product feature'
+                    )
+                  )}"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="showcase-copy">
+
+                <h3>
+                  ${escapeHtml(
+                    getTextField(
+                      i.title,
+                      i.titleEn,
+                      'Feature'
+                    )
+                  )}
+                </h3>
+
+                <p>
+                  ${escapeHtml(
+                    getTextField(
+                      i.text,
+                      i.textEn,
+                      ''
+                    )
+                  )}
+                </p>
+
+                <ul>
+                  ${(state.lang === 'ar'
+                    ? i.points
+                    : i.pointsEn || i.points || []
+                  ).map(p => `
+                    <li>
+                      ${escapeHtml(p)}
+                    </li>
+                  `).join('')}
+                </ul>
+
+              </div>
+
+            </article>
+          `).join('')}
+
+        </div>
+      </section>
+    `;
+  }
+
+  function renderHowItWorks() {
+    const s = config.howItWorks || [];
+
+    if (
+      sections.howItWorks === false ||
+      !s.length
+    ) return '';
+
+    return `
+      <section class="section-pad steps" id="how-it-works">
+        <div class="container">
+
+          <div class="section-head">
+
+            <span class="eyebrow">
+              ${state.lang === 'ar'
+                ? 'كيف يعمل'
+                : 'How it works'}
+            </span>
+
+            <h2>
+              ${state.lang === 'ar'
+                ? 'طريقة استخدام بسيطة'
+                : 'Simple use'}
+            </h2>
+
+          </div>
+
+          <div class="steps-grid">
+
+            ${s.map((x,i) => `
+              <article class="step-card">
+
+                <span class="step-no">
+                  ${i + 1}
+                </span>
+
+                <h3>
+                  ${escapeHtml(
+                    getTextField(
+                      x.title,
+                      x.titleEn,
+                      x.title || `Step ${i + 1}`
+                    )
+                  )}
+                </h3>
+
+                <p>
+                  ${escapeHtml(
+                    getTextField(
+                      x.description,
+                      x.descriptionEn,
+                      x.description || ''
+                    )
+                  )}
+                </p>
+
+              </article>
+            `).join('')}
+
+          </div>
+
+        </div>
+      </section>
+    `;
+  }
+
+  function renderSpecifications() {
+    const s = config.specifications || [];
+
+    if (
+      sections.specifications === false ||
+      !s.length
+    ) return '';
+
+    return `
+      <section class="section-pad specs">
+
+        <div class="container">
+
+          <div class="section-head">
+
+            <span class="eyebrow">
+              ${state.lang === 'ar'
+                ? 'المواصفات'
+                : 'Specifications'}
+            </span>
+
+            <h2>
+              ${state.lang === 'ar'
+                ? 'معلومات المنتج'
+                : 'Product information'}
+            </h2>
+
+          </div>
+
+          <div class="specs-table-wrap">
+
+            <table class="specs-table">
+
+              <tbody>
+
+                ${s.map(x => `
+                  <tr>
+
+                    <th>
+                      ${escapeHtml(
+                        getTextField(
+                          x.label,
+                          x.labelEn,
+                          x.label || 'Feature'
+                        )
+                      )}
+                    </th>
+
+                    <td>
+                      ${escapeHtml(
+                        x.value || ''
+                      )}
+                    </td>
+
+                  </tr>
+                `).join('')}
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+    `;
+  }
+
+  function renderOffer() {
+    const o = config.offer || {};
+
+    if (
+      sections.offer === false ||
+      !o.enabled
+    ) return '';
+
+    return `
+      <section class="section-pad offer">
+
+        <div class="container offer-card">
+
+          <div class="offer-copy">
+
+            <span class="eyebrow">
+              ${escapeHtml(
+                getTextField(
+                  o.badge,
+                  o.badgeEn,
+                  'Offer'
+                )
+              )}
+            </span>
+
+            <h2>
+              ${escapeHtml(
+                getTextField(
+                  o.title,
+                  o.titleEn,
+                  'Offer'
+                )
+              )}
+            </h2>
+
+            <p>
+              ${escapeHtml(
+                getTextField(
+                  o.description,
+                  o.descriptionEn,
+                  ''
+                )
+              )}
+            </p>
+
+            <div class="offer-price-line">
+
+              <span class="old-price">
+                ${escapeHtml(
+                  product.oldPrice
+                    ? formatPrice(
+                        product.oldPrice,
+                        product.currency
+                      )
+                    : ''
+                )}
+              </span>
+
+              <span class="new-price">
+                ${escapeHtml(
+                  formatPrice(
+                    product.price,
+                    product.currency
+                  )
+                )}
+              </span>
+
+            </div>
+
+            <p class="urgency">
+              ${escapeHtml(
+                getTextField(
+                  o.urgency,
+                  o.urgencyEn,
+                  ''
+                )
+              )}
+            </p>
+
+          </div>
+
+          <div class="offer-actions">
+            ${renderCTAButtons()}
+          </div>
+
+        </div>
+
+      </section>
+    `;
+  }
+
+  function renderReviews() {
+    const r = config.reviews || [];
+
+    if (
+      sections.reviews === false ||
+      !r.length
+    ) return '';
+
+    return `
+      <section class="section-pad reviews">
+
+        <div class="container">
+
+          <div class="section-head">
+
+            <span class="eyebrow">
+              ${state.lang === 'ar'
+                ? 'آراء العملاء'
+                : 'Reviews'}
+            </span>
+
+            <h2>
+              ${state.lang === 'ar'
+                ? 'ماذا يقول العملاء؟'
+                : 'What customers are saying'}
+            </h2>
+
+          </div>
+
+          <div class="reviews-grid">
+
+            ${r.map(x => `
+              <article class="review-card">
+
+                <strong>
+                  ${escapeHtml(
+                    getTextField(
+                      x.name,
+                      x.nameEn,
+                      'Customer'
+                    )
+                  )}
+                </strong>
+
+                <p>
+                  ${escapeHtml(
+                    getTextField(
+                      x.text,
+                      x.textEn,
+                      ''
+                    )
+                  )}
+                </p>
+
+              </article>
+            `).join('')}
+
+          </div>
+
+        </div>
+
+      </section>
+    `;
+  }
+
+  function renderFaq() {
+    const f = config.faq || [];
+
+    if (
+      sections.faq === false ||
+      !f.length
+    ) return '';
+
+    return `
+      <section class="section-pad faq" id="faq">
+
+        <div class="container faq-shell">
+
+          <div class="section-head left-align">
+
+            <span class="eyebrow">
+              ${state.lang === 'ar'
+                ? 'الأسئلة الشائعة'
+                : 'FAQ'}
+            </span>
+
+            <h2>
+              ${state.lang === 'ar'
+                ? 'الأسئلة الأكثر شيوعا'
+                : 'Frequently asked questions'}
+            </h2>
+
+          </div>
+
+          <div class="faq-list">
+
+            ${f.map((x,i) => `
+              <details
+                class="faq-item"
+                ${i === 0 ? 'open' : ''}
+              >
+
+                <summary>
+                  ${escapeHtml(
+                    getTextField(
+                      x.question,
+                      x.questionEn,
+                      'Question'
+                    )
+                  )}
+                </summary>
+
+                <p>
+                  ${escapeHtml(
+                    getTextField(
+                      x.answer,
+                      x.answerEn,
+                      ''
+                    )
+                  )}
+                </p>
+
+              </details>
+            `).join('')}
+
+          </div>
+
+        </div>
+
+      </section>
+    `;
+  }
+
+  function renderFinalCta() {
+    if (sections.finalCTA === false) return '';
+
+    return `
+      <section class="section-pad final-cta">
+
+        <div class="container final-cta-card">
+
+          <div>
+
+            <span class="eyebrow">
+              ${state.lang === 'ar'
+                ? 'ابدأ الآن'
+                : 'Get started'}
+            </span>
+
+            <h2>
+              ${escapeHtml(
+                translations[state.lang].finalTitle
+              )}
+            </h2>
+
+            <p>
+              ${escapeHtml(
+                translations[state.lang].finalText
+              )}
+            </p>
+
+          </div>
+
+          <div class="final-cta-actions">
+            ${renderCTAButtons()}
+          </div>
+
+        </div>
+
+      </section>
+    `;
+  }
+
+  function renderFooter() {
+    const ft = document.getElementById('footer-text');
+
+    if (ft) {
+      ft.textContent =
+        `${new Date().getFullYear()} ${
+          config.brand?.name || 'Brand'
+        }. ${
+          state.lang === 'ar'
+            ? 'جميع الحقوق محفوظة.'
+            : 'All rights reserved.'
+        }`;
+    }
+
+    const fl = document.getElementById('footer-links');
+
+    if (fl) {
+      fl.innerHTML = `
+        <a href="privacy.html">
+          ${state.lang === 'ar'
+            ? 'سياسة الخصوصية'
+            : 'Privacy policy'}
+        </a>
+
+        <a href="terms.html">
+          ${state.lang === 'ar'
+            ? 'الشروط'
+            : 'Terms'}
+        </a>
+      `;
+    }
+  }
+
+  function renderOrderModal() {
+    if (document.getElementById('order-modal')) return;
+
+    const m = document.createElement('div');
+
+    m.id = 'order-modal';
+    m.className = 'order-modal';
+    m.hidden = true;
+
+    m.innerHTML = `
+      <div
+        class="order-modal-backdrop"
+        data-close-order
+      ></div>
+
+      <div
+        class="order-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="order-title"
+      >
+
+        <button
+          class="order-modal-close"
+          type="button"
+          data-close-order
+          aria-label="${state.lang === 'ar'
+            ? 'إغلاق'
+            : 'Close'}"
+        >
+          ×
+        </button>
+
+        <div class="order-modal-head">
+
+          <span class="eyebrow">
+            ${state.lang === 'ar'
+              ? 'الدفع عند الاستلام'
+              : 'Cash on delivery'}
+          </span>
+
+          <h2 id="order-title">
+            ${state.lang === 'ar'
+              ? 'أكملي طلبك'
+              : 'Complete your order'}
+          </h2>
+
+          <p>
+            ${state.lang === 'ar'
+              ? 'أدخلي بيانات التوصيل وسنتواصل معك لتأكيد الطلب.'
+              : 'Enter your delivery details and we will contact you to confirm.'}
+          </p>
+
+        </div>
+
+        <form
+          id="order-form"
+          class="order-form"
+        >
+
+          <label>
+            ${state.lang === 'ar'
+              ? 'الاسم الكامل'
+              : 'Full name'}
+
+            <input
+              name="recipient_name"
+              required
+              maxlength="255"
+              autocomplete="name"
+            >
+          </label>
+
+          <label>
+            ${state.lang === 'ar'
+              ? 'رقم الهاتف'
+              : 'Phone number'}
+
+            <input
+              name="recipient_phone"
+              required
+              maxlength="15"
+              inputmode="tel"
+              autocomplete="tel"
+            >
+          </label>
+
+          <label>
+            ${state.lang === 'ar'
+              ? 'المدينة'
+              : 'City'}
+
+            <input
+              name="city_name"
+              required
+              maxlength="240"
+              autocomplete="address-level2"
+            >
+          </label>
+
+          <label>
+            ${state.lang === 'ar'
+              ? 'العنوان'
+              : 'Address'}
+
+            <textarea
+              name="recipient_address"
+              maxlength="500"
+              autocomplete="street-address"
+            ></textarea>
+          </label>
+
+          <label>
+            ${state.lang === 'ar'
+              ? 'الكمية'
+              : 'Quantity'}
+
+            <select name="quantity">
+
+              <option value="1">
+                1
+              </option>
+
+              <option value="2">
+                2
+              </option>
+
+              <option value="3">
+                3
+              </option>
+
+              <option value="4">
+                4
+              </option>
+
+            </select>
+          </label>
+
+          <div class="order-total">
+
+            <span>
+              ${state.lang === 'ar'
+                ? 'المجموع'
+                : 'Total'}
+            </span>
+
+            <strong id="order-total-value">
+              ${escapeHtml(
+                formatPrice(
+                  product.price,
+                  product.currency
+                )
+              )}
+            </strong>
+
+          </div>
+
+          <button
+            class="btn btn-primary order-submit"
+            type="submit"
+          >
+            ${state.lang === 'ar'
+              ? 'تأكيد الطلب'
+              : 'Confirm order'}
+          </button>
+
+          <p
+            class="order-status"
+            id="order-status"
+            role="status"
+            aria-live="polite"
+          ></p>
+
+        </form>
+
+      </div>
+    `;
+
+    document.body.appendChild(m);
+
+    const form =
+      m.querySelector('#order-form');
+
+    form.addEventListener(
+      'submit',
+      submitOrder
+    );
+
+    m.querySelectorAll(
+      '[data-close-order]'
+    ).forEach(el =>
+      el.addEventListener(
+        'click',
+        closeOrder
+      )
+    );
+
+    m.querySelector(
+      '[name="quantity"]'
+    ).addEventListener(
+      'change',
+      updateOrderTotal
+    );
+  }
+
+  function updateOrderTotal() {
+    const q = Number(
+      document.querySelector(
+        '#order-form [name="quantity"]'
+      )?.value || 1
+    );
+
+    const el =
+      document.getElementById(
+        'order-total-value'
+      );
+
+    if (el) {
+      el.textContent =
+        formatPrice(
+          Number(product.price || 69) * q,
+          product.currency
+        );
+    }
+  }
+
+  function openOrder() {
+    if (!isCodApiEnabled()) {
+      const a = createAffiliateLink();
+
+      if (a) {
+        location.href = a.url;
+      }
+
+      return;
+    }
+
+    renderOrderModal();
+
+    const m =
+      document.getElementById(
+        'order-modal'
+      );
+
+    m.hidden = false;
+
+    document.body.classList.add(
+      'order-modal-open'
+    );
+
+    setTimeout(
+      () => m.querySelector('input')?.focus(),
+      50
+    );
+  }
+
+  function closeOrder() {
+    const m =
+      document.getElementById(
+        'order-modal'
+      );
+
+    if (m) {
+      m.hidden = true;
+      document.body.classList.remove(
+        'order-modal-open'
+      );
+    }
+  }
+
+  async function submitOrder(e) {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+    const status =
+      form.querySelector('#order-status');
+    const btn =
+      form.querySelector('.order-submit');
+
+    const data =
+      Object.fromEntries(
+        new FormData(form).entries()
+      );
+
+    data.quantity =
+      Number(data.quantity || 1);
+
+    status.className =
+      'order-status is-loading';
+
+    status.textContent =
+      state.lang === 'ar'
+        ? 'جاري إرسال الطلب...'
+        : 'Sending order...';
+
+    btn.disabled = true;
+
+    try {
+
+      const endpoint =
+        config.backend?.endpoint ||
+        '/api/create-order';
+
+      /*
+       * Google Apps Script:
+       * نستخدم URLSearchParams بدلا من JSON
+       * لتجنب طلب CORS preflight.
+       */
+
+      const body = new URLSearchParams({
+        name: data.recipient_name || '',
+        phone: data.recipient_phone || '',
+        city: data.city_name || '',
+        address: data.recipient_address || '',
+        amount: String(
+          Number(product.price || 0) *
+          Number(data.quantity || 1)
+        ),
+        sku: String(product.sku || ''),
+        quantity: String(
+          data.quantity || 1
+        ),
+        note: ''
+      });
+
+      const response = await fetch(
+        endpoint,
+        {
+          method: 'POST',
+          body
+        }
+      );
+
+      const result =
+        await response.json().catch(
+          () => ({})
+        );
+
+      if (
+        !response.ok ||
+        (
+          result.status &&
+          result.status !== 'success'
+        )
+      ) {
+        throw new Error(
+          result.error ||
+          result.status ||
+          'ORDER_FAILED'
+        );
+      }
+
+      status.className =
+        'order-status is-success';
+
+      status.textContent =
+        state.lang === 'ar'
+          ? 'تم تسجيل طلبك بنجاح. سنتواصل معك لتأكيده.'
+          : 'Your order was submitted successfully. We will contact you to confirm it.';
+
+      form.reset();
+
+      updateOrderTotal();
+
+    } catch (err) {
+
+      status.className =
+        'order-status is-error';
+
+      status.textContent =
+        state.lang === 'ar'
+          ? 'تعذر إرسال الطلب حاليا. حاولي مرة أخرى.'
+          : 'Could not submit the order right now. Please try again.';
+
+      console.error(err);
+
+    } finally {
+
+      btn.disabled = false;
+
+    }
+  }
+
+  function bindGallery() {
+    const main =
+      document.querySelector(
+        '[data-gallery-main]'
+      );
+
+    const bs =
+      document.querySelectorAll(
+        '.thumb-btn'
+      );
+
+    if (!main) return;
+
+    bs.forEach(b =>
+      b.addEventListener(
+        'click',
+        () => {
+
+          const im =
+            (product.images || [])[
+              Number(
+                b.dataset.imageIndex || 0
+              )
+            ];
+
+          if (!im) return;
+
+          main.src = im.src;
+
+          main.alt =
+            getTextField(
+              im.altAr || im.alt,
+              im.alt,
+              product.name
+            );
+
+          bs.forEach(x =>
+            x.classList.toggle(
+              'is-active',
+              x === b
+            )
+          );
+
+        }
+      )
+    );
+  }
+
+  function bindMenu() {
+    const t =
+      document.getElementById(
+        'menu-toggle'
+      );
+
+    const n =
+      document.getElementById(
+        'nav-menu'
+      );
+
+    if (!t || !n) return;
+
+    t.addEventListener(
+      'click',
+      () => {
+
+        state.menuOpen =
+          !state.menuOpen;
+
+        n.classList.toggle(
+          'is-open',
+          state.menuOpen
+        );
+
+        t.setAttribute(
+          'aria-expanded',
+          String(state.menuOpen)
+        );
+
+      }
+    );
+
+    n.querySelectorAll('a')
+      .forEach(a =>
+        a.addEventListener(
+          'click',
+          () => {
+
+            state.menuOpen = false;
+
+            n.classList.remove(
+              'is-open'
+            );
+
+            t.setAttribute(
+              'aria-expanded',
+              'false'
+            );
+
+          }
+        )
+      );
+  }
+
+  function bindLanguageButtons() {
+    document.querySelectorAll(
+      '.lang-btn'
+    ).forEach(b =>
+      b.addEventListener(
+        'click',
+        () => {
+
+          state.lang =
+            b.dataset.lang || 'ar';
+
+          localStorage.setItem(
+            'landing-lang',
+            state.lang
+          );
+
+          document.getElementById(
+            'order-modal'
+          )?.remove();
+
+          render();
+
+        }
+      )
+    );
+  }
+
+  function bindOrderButtons() {
+    document.querySelectorAll(
+      '[data-open-order]'
+    ).forEach(b =>
+      b.addEventListener(
+        'click',
+        openOrder
+      )
+    );
+  }
+
+  function renderFloatingWhatsApp() {
+    const b =
+      document.getElementById(
+        'floating-whatsapp'
+      );
+
+    if (!b) return;
+
+    const a =
+      createWhatsAppLink();
+
+    if (!a) {
+      b.style.display = 'none';
+      return;
+    }
+
+    b.style.display = 'inline-flex';
+
+    b.href = a.url;
+
+    b.setAttribute(
+      'aria-label',
+      state.lang === 'ar'
+        ? 'التواصل عبر واتساب'
+        : 'Contact via WhatsApp'
+    );
+  }
+
+  function renderMobileCta() {
+    const m =
+      document.getElementById(
+        'mobile-cta-bar'
+      );
+
+    if (!m) return;
+
+    m.innerHTML =
+      renderCTAButtons();
+  }
+
+  function render() {
+
+    renderNavigation();
+
+    setMetaData();
+
+    applyBrandColors();
+
+    const app =
+      document.getElementById('app');
+
+    if (app) {
+      app.innerHTML =
+        `${renderHero()}${renderBenefits()}${renderShowcase()}${renderHowItWorks()}${renderSpecifications()}${renderOffer()}${renderReviews()}${renderFaq()}${renderFinalCta()}`;
+    }
+
+    renderFooter();
+
+    renderFloatingWhatsApp();
+
+    renderMobileCta();
+
+    renderOrderModal();
+
+    bindGallery();
+
+    bindMenu();
+
+    bindLanguageButtons();
+
+    bindOrderButtons();
+
+    document.documentElement.lang =
+      state.lang;
+
+    document.documentElement.dir =
+      state.lang === 'ar'
+        ? 'rtl'
+        : 'ltr';
+
+    document.body.dir =
+      document.documentElement.dir;
+  }
+
   render();
+
 })();
