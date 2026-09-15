@@ -55,7 +55,7 @@ window.PRODUCT_CONFIG = {
 
   backend: {
     enabled: true,
-    endpoint: 'https://script.google.com/macros/s/AKfycbyYw6CCQ6fVDQC6LFeet0m4pEPzK_uPRbgkavctSKVaxNd5t-dDTehsOwP_0NEkd6QO/exec'
+    endpoint: 'https://script.google.com/macros/s/AKfycbx0puXov67ivP9B4C5ywIG2jxzjxC9Xw9OnoASyY51TmlrBJkHJ9vKLnfF9T4vDPRL2/exec'
   },
 
   benefits: [
