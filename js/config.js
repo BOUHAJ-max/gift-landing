@@ -55,8 +55,9 @@ window.PRODUCT_CONFIG = {
 
   backend: {
     enabled: true,
-    endpoint: "https://script.google.com/macros/s/AKfycbxLdEXZXThbtKtwjwuqmuFJ99s-c6omNQOpl2zl8-r6miJNViI1jBhQAPHxoPWMwuek/exec"
-}
+    endpoint: 'https://script.google.com/macros/s/AKfycbyYw6CCQ6fVDQC6LFeet0m4pEPzK_uPRbgkavctSKVaxNd5t-dDTehsOwP_0NEkd6QO/exec'
+  },
+
   benefits: [
     {
       title: 'تهدئة البشرة',
@@ -229,6 +230,7 @@ window.PRODUCT_CONFIG = {
       footerTerms: 'الشروط',
       social: 'التواصل'
     },
+
     en: {
       nav: ['Home', 'Benefits', 'Features', 'How it works', 'FAQ'],
       navHref: ['#top', '#benefits', '#showcase', '#how-it-works', '#faq'],
