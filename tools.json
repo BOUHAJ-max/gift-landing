@@ -6,9 +6,31 @@
       "category": "video",
       "badge": "NEW",
       "featured": true,
-      "title": { "ar": "حزمة OpenCut الكاملة", "en": "OpenCut Complete Pack" },
-      "desc": { "ar": "بديل CapCut المجاني: دليل عربي كامل + قالب المنطقة الآمنة + 30 Hook + قوالب سكريبت للريلز", "en": "The free CapCut alternative: full guide + safe-zone template + 30 hooks + Reel script templates" },
+      "title": {
+        "ar": "حزمة OpenCut الكاملة",
+        "en": "OpenCut Complete Pack"
+      },
+      "desc": {
+        "ar": "بديل CapCut المجاني: دليل عربي كامل + قالب المنطقة الآمنة + 30 Hook + قوالب سكريبت للريلز",
+        "en": "The free CapCut alternative: full guide + safe-zone template + 30 hooks + Reel script templates"
+      },
       "url": "https://www.qckclk.com/unlock/IXZot1"
+    },
+    {
+      "id": "live-score",
+      "icon": "⚽",
+      "category": "apps",
+      "badge": "NEW",
+      "featured": true,
+      "title": {
+        "ar": "تطبيق Live Score",
+        "en": "Live Score App"
+      },
+      "desc": {
+        "ar": "تابع نتائج المباريات مباشرة واكتشف تحديثات كرة القدم في مكان واحد. أكمل خطوة الفتح للوصول إلى التطبيق.",
+        "en": "Follow live match scores and football updates in one place. Complete the unlock step to access the app."
+      },
+      "url": "https://www.directcpi.com/unlock/g3dNnHWq"
     }
   ]
 }
