@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#061b3b"/><stop offset=".55" stop-color="#092c59"/><stop offset="1" stop-color="#031326"/></linearGradient>
+ <linearGradient id="field" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#27f58a"/><stop offset="1" stop-color="#087b4b"/></linearGradient>
+ <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6ee7ff"/><stop offset="1" stop-color="#1674ff"/></linearGradient>
+ <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <clipPath id="clip"><rect width="512" height="512" rx="112"/></clipPath>
+</defs>
+<g clip-path="url(#clip)">
+ <rect width="512" height="512" fill="url(#bg)"/>
+ <path d="M0 82 Q256 8 512 82" fill="none" stroke="#64cfff" stroke-opacity=".22" stroke-width="3"/>
+ <g fill="#dff8ff" opacity=".85"><circle cx="72" cy="88" r="5"/><circle cx="120" cy="62" r="4"/><circle cx="392" cy="62" r="5"/><circle cx="448" cy="92" r="4"/></g>
+ <path d="M0 352 Q256 286 512 352 V512 H0Z" fill="url(#field)" opacity=".95"/>
+ <path d="M-20 420 Q256 330 532 420 M-10 465 Q256 375 522 465" fill="none" stroke="#c9ffe3" stroke-opacity=".25" stroke-width="3"/>
+ <path d="M256 345 v167 M110 380 Q256 430 402 380" fill="none" stroke="#e6fff1" stroke-opacity=".5" stroke-width="3"/>
+ <g filter="url(#glow)">
+  <rect x="284" y="104" width="174" height="88" rx="20" fill="#06152a" stroke="url(#blue)" stroke-width="5"/>
+  <circle cx="314" cy="133" r="7" fill="#39ff88"/>
+  <text x="370" y="143" font-family="Arial,sans-serif" font-size="25" font-weight="800" fill="#39ff88" text-anchor="middle">LIVE</text>
+  <text x="371" y="174" font-family="Arial,sans-serif" font-size="27" font-weight="900" fill="#fff" text-anchor="middle">2 : 1</text>
+ </g>
+ <g transform="translate(186 240)" filter="url(#glow)">
+  <circle r="94" fill="#f7fbff" stroke="#7edcff" stroke-width="8"/>
+  <path d="M0-38 36-18 29 24-13 39-43 8-34-29Z" fill="#0a1b31"/>
+  <path d="M0-38 0-89 M36-18 79-44 M29 24 60 65 M-13 39-18 89 M-43 8-88 23 M-34-29-65-65" fill="none" stroke="#0a1b31" stroke-width="15" stroke-linejoin="round"/>
+  <path d="M-83-42 Q-125-5-91 43 M82-41 Q126 1 91 43" fill="none" stroke="#48cfff" stroke-width="8" stroke-linecap="round" opacity=".9"/>
+ </g>
+ <path d="M60 488 Q256 445 452 488" fill="none" stroke="#9aff45" stroke-width="9" stroke-linecap="round"/>
+</g>
+</svg>
