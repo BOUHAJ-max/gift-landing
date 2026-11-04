@@ -18,7 +18,7 @@
     },
     {
       "id": "live-score",
-      "icon": "⚽",
+      "icon": "livescore-icon.svg",
       "category": "apps",
       "badge": "NEW",
       "featured": true,
