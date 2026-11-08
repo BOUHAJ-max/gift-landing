@@ -1,6 +1,34 @@
 {
   "tools": [
     {
+      "id": "paid-surveys-fr",
+      "icon": "survey-check.svg",
+      "category": "apps",
+      "badge": "FRANCE 🇫🇷",
+      "badgeDir": "ltr",
+      "title": {
+        "ar": "Sondages rémunérés",
+        "en": "Sondages rémunérés"
+      },
+      "desc": {
+        "ar": "Réponds à des sondages et cumule des récompenses. Gratuit, avec ton e-mail. Android • France uniquement.",
+        "en": "Réponds à des sondages et cumule des récompenses. Gratuit, avec ton e-mail. Android • France uniquement."
+      },
+      "keywords": [
+        "sondages",
+        "استبيانات",
+        "فرنسا",
+        "ربح",
+        "survey"
+      ],
+      "dir": "ltr",
+      "buttonDir": "ltr",
+      "buttonText": "📋 Commencer les sondages",
+      "url": "https://singingfiles.com/show.php?l=0&u=2474315&id=75402",
+      "target": "_blank",
+      "rel": "noopener nofollow sponsored"
+    },
+    {
       "id": "opencut",
       "icon": "opencut.png",
       "category": "video",
@@ -35,34 +63,6 @@
         "fr": "Suivez les scores des matchs en direct et les actualités du football au même endroit. Effectuez une étape rapide pour accéder à l’application."
       },
       "url": "https://www.directcpi.com/unlock/g3dNnHWq"
-    },
-    {
-      "id": "paid-surveys-fr",
-      "icon": "survey-check.svg",
-      "category": "apps",
-      "badge": "FRANCE 🇫🇷",
-      "badgeDir": "ltr",
-      "title": {
-        "ar": "Sondages rémunérés",
-        "en": "Sondages rémunérés"
-      },
-      "desc": {
-        "ar": "Réponds à des sondages et cumule des récompenses. Gratuit, avec ton e-mail. Android • France uniquement.",
-        "en": "Réponds à des sondages et cumule des récompenses. Gratuit, avec ton e-mail. Android • France uniquement."
-      },
-      "keywords": [
-        "sondages",
-        "استبيانات",
-        "فرنسا",
-        "ربح",
-        "survey"
-      ],
-      "dir": "ltr",
-      "buttonDir": "ltr",
-      "buttonText": "📋 Commencer les sondages",
-      "url": "https://singingfiles.com/show.php?l=0&u=2474315&id=75402",
-      "target": "_blank",
-      "rel": "noopener nofollow sponsored"
     }
   ]
 }
