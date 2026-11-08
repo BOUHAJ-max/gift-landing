@@ -198,7 +198,7 @@ function render(){
       <div class="c-head"><div class="ico">${icon(x.icon)}</div>
       <div class="c-title" ${x.dir? `dir="${esc(x.dir)}"`:''}>${esc(tx(x.title))}${x.badge?`<span class="badge" ${x.badgeDir? `dir="${esc(x.badgeDir)}"`:''}>${esc(x.badge)}</span>`:''}</div></div>
       <p class="c-desc" ${x.dir? `dir="${esc(x.dir)}"`:''}>${esc(tx(x.desc))}</p>
-      <a class="btn${ok?'':' soon'}" style="text-decoration:none" ${x.buttonDir? `dir="${esc(x.buttonDir)}"`:''} href="${ok?esc(x.url):'#'}" ${ok&&x.target? `target="${esc(x.target)}" rel="${esc(x.rel||'')}`:''}>${esc(x.buttonText|| (ok?'⚡ '+T[lang].get:T[lang].soon))}</a></article>`;
+      <a class="btn${ok?'':' soon'}" style="text-decoration:none" ${x.buttonDir? `dir="${esc(x.buttonDir)}"`:''} href="${ok?esc(x.url):'#'}" ${ok&&x.target? `target="${esc(x.target)}" rel="${esc(x.rel||'')}"`:''}>${esc(x.buttonText|| (ok?'⚡ '+T[lang].get:T[lang].soon))}</a></article>`;
   }).join('');
   $('empty').style.display=list.length?'none':'block';
 }
