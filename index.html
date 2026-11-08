@@ -190,15 +190,15 @@ function renderChips(){
 function render(){
   const q=$('q').value.trim().toLowerCase(), target=params.get('t');
   const list=tools.filter(x=>(cat==='all'||x.category===cat)&&
-    (!q||(tx(x.title)+' '+tx(x.desc)).toLowerCase().includes(q)))
+    (!q||(tx(x.title)+' '+tx(x.desc)+' '+(x.keywords||[]).join(' ')).toLowerCase().includes(q)))
     .sort((a,b)=>(b.featured?1:0)-(a.featured?1:0));
   $('grid').innerHTML=list.map((x,i)=>{
     const ok=!!x.url;
     return `<article class="card${x.featured?' feat':''}${x.id===target?' target':''}" data-id="${esc(x.id)}" style="animation-delay:${i*60}ms">
       <div class="c-head"><div class="ico">${icon(x.icon)}</div>
-      <div class="c-title">${esc(tx(x.title))}${x.badge?`<span class="badge">${esc(x.badge)}</span>`:''}</div></div>
-      <p class="c-desc">${esc(tx(x.desc))}</p>
-      <button class="btn${ok?'':' soon'}">${ok?'⚡ '+T[lang].get:T[lang].soon}</button></article>`;
+      <div class="c-title" ${x.dir? `dir="${esc(x.dir)}"`:''}>${esc(tx(x.title))}${x.badge?`<span class="badge" ${x.badgeDir? `dir="${esc(x.badgeDir)}"`:''}>${esc(x.badge)}</span>`:''}</div></div>
+      <p class="c-desc" ${x.dir? `dir="${esc(x.dir)}"`:''}>${esc(tx(x.desc))}</p>
+      <a class="btn${ok?'':' soon'}" ${x.buttonDir? `dir="${esc(x.buttonDir)}"`:''} href="${ok?esc(x.url):'#'}" ${ok&&x.target? `target="${esc(x.target)}" rel="${esc(x.rel||'')}`:''}>${esc(x.buttonText|| (ok?'⚡ '+T[lang].get:T[lang].soon))}</a></article>`;
   }).join('');
   $('empty').style.display=list.length?'none':'block';
 }
@@ -213,12 +213,12 @@ function openTool(id){
 }
 
 /* ======= الأحداث ======= */
-$('grid').addEventListener('click',e=>{const c=e.target.closest('.card');if(c)openTool(c.dataset.id)});
+$('grid').addEventListener('click',e=>{const c=e.target.closest('.card');if(!c)return;const link=e.target.closest('a.btn');if(link){e.stopPropagation();return;}openTool(c.dataset.id)});
 $('grid').addEventListener('pointermove',e=>{const c=e.target.closest('.card');if(c){const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px')}});
 $('chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(b){cat=b.dataset.c;renderChips();render()}});
 $('q').addEventListener('input',render);
 $('langBtn').onclick=()=>{lang=lang==='ar'?'en':'ar';try{localStorage.setItem('lang',lang)}catch(e){}applyLang()};
-$('mGo').onclick=()=>{if(current) location.href=current.url};
+$('mGo').onclick=()=>{if(current){if(current.target==='_blank')window.open(current.url,'_blank','noopener,noreferrer');else location.href=current.url}};
 $('mClose').onclick=()=>$('modal').classList.remove('open');
 $('modal').onclick=e=>{if(e.target.id==='modal')$('modal').classList.remove('open')};
 $('yr').textContent=new Date().getFullYear();
