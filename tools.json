@@ -1,68 +1,212 @@
 {
   "tools": [
     {
-      "id": "paid-surveys-fr",
-      "icon": "survey-check.svg",
-      "category": "apps",
-      "badge": "FRANCE 🇫🇷",
-      "badgeDir": "ltr",
+      "id": "ma-samsung-a53",
+      "icon": "📱",
+      "category": "offers",
+      "badge": "المغرب",
       "title": {
-        "ar": "Sondages rémunérés",
-        "en": "Sondages rémunérés"
+        "ar": "فرصة هاتف Samsung A53",
+        "en": "Samsung A53 offer",
+        "fr": "Offre Samsung A53"
       },
       "desc": {
-        "ar": "Réponds à des sondages et cumule des récompenses. Gratuit, avec ton e-mail. Android • France uniquement.",
-        "en": "Réponds à des sondages et cumule des récompenses. Gratuit, avec ton e-mail. Android • France uniquement."
+        "ar": "اطلع على تفاصيل العرض وشروط المشاركة والأهلية قبل المتابعة.",
+        "en": "View the offer details and eligibility terms before continuing.",
+        "fr": "Consultez les détails de l’offre et les conditions d’éligibilité avant de continuer."
       },
       "keywords": [
-        "sondages",
-        "استبيانات",
-        "فرنسا",
-        "ربح",
-        "survey"
+        "samsung",
+        "a53",
+        "هاتف",
+        "سامسونج",
+        "phone"
       ],
-      "dir": "ltr",
-      "buttonDir": "ltr",
-      "buttonText": "📋 Commencer les sondages",
-      "url": "https://singingfiles.com/show.php?l=0&u=2474315&id=75402",
+      "url": "https://singingfiles.com/show.php?l=0&u=2474315&id=62779",
+      "buttonText": "📱 عرض التفاصيل",
       "target": "_blank",
       "rel": "noopener nofollow sponsored"
     },
     {
-      "id": "opencut",
-      "icon": "opencut.png",
-      "category": "video",
-      "badge": "NEW",
-      "featured": true,
+      "id": "ma-lucky-scanner",
+      "icon": "🔮",
+      "category": "offers",
+      "badge": "المغرب",
       "title": {
-        "ar": "حزمة OpenCut الكاملة",
-        "en": "OpenCut Complete Pack",
-        "fr": "Pack complet OpenCut"
+        "ar": "Lucky Scanner – ماسح الحظ",
+        "en": "Lucky Scanner",
+        "fr": "Lucky Scanner"
       },
       "desc": {
-        "ar": "بديل CapCut المجاني: دليل عربي كامل + قالب المنطقة الآمنة + 30 Hook + قوالب سكريبت للريلز",
-        "en": "The free CapCut alternative: full guide + safe-zone template + 30 hooks + Reel script templates",
-        "fr": "Alternative gratuite à CapCut : guide complet, modèle de zone de sécurité, 30 accroches et modèles de scripts pour Reels."
+        "ar": "اكتشف صفحة العرض وتعرّف على شروطه قبل إدخال أي معلومات.",
+        "en": "Open the offer page and review its terms before entering any information.",
+        "fr": "Consultez la page de l’offre et ses conditions avant de saisir des informations."
       },
-      "url": "https://www.qckclk.com/unlock/IXZot1"
+      "keywords": [
+        "lucky scanner",
+        "حظ",
+        "ماسح",
+        "scanner"
+      ],
+      "url": "https://singingfiles.com/show.php?l=0&u=2474315&id=75398",
+      "buttonText": "🔎 اكتشف العرض",
+      "target": "_blank",
+      "rel": "noopener nofollow sponsored"
     },
     {
-      "id": "live-score",
-      "icon": "livescore-icon.svg",
-      "category": "apps",
-      "badge": "NEW",
-      "featured": true,
+      "id": "ma-banker-player",
+      "icon": "🎮",
+      "category": "offers",
+      "badge": "المغرب",
       "title": {
-        "ar": "تطبيق Live Score",
-        "en": "Live Score App",
-        "fr": "Application Live Score"
+        "ar": "Banker أم Player؟",
+        "en": "Banker or Player?",
+        "fr": "Banker ou Player ?"
       },
       "desc": {
-        "ar": "تابع نتائج المباريات مباشرة واكتشف تحديثات كرة القدم في مكان واحد. أكمل خطوة الفتح للوصول إلى التطبيق.",
-        "en": "Follow live match scores and football updates in one place. Complete the unlock step to access the app.",
-        "fr": "Suivez les scores des matchs en direct et les actualités du football au même endroit. Effectuez une étape rapide pour accéder à l’application."
+        "ar": "عرض ترفيهي تفاعلي. اقرأ شروط المشاركة والتفاصيل في صفحة العرض.",
+        "en": "An interactive entertainment offer. Check the participation terms on the offer page.",
+        "fr": "Une offre de divertissement interactive. Consultez les conditions sur la page de l’offre."
       },
-      "url": "https://www.directcpi.com/unlock/g3dNnHWq"
+      "keywords": [
+        "banker",
+        "player",
+        "لعبة",
+        "ترفيه"
+      ],
+      "url": "https://singingfiles.com/show.php?l=0&u=2474315&id=75583",
+      "buttonText": "🎮 اكتشف العرض",
+      "target": "_blank",
+      "rel": "noopener nofollow sponsored"
+    },
+    {
+      "id": "ma-luck-test",
+      "icon": "🍀",
+      "category": "offers",
+      "badge": "المغرب",
+      "title": {
+        "ar": "اكتشف مقدار حظك",
+        "en": "Discover your luck",
+        "fr": "Découvrez votre chance"
+      },
+      "desc": {
+        "ar": "انتقل إلى صفحة العرض لمعرفة طريقة المشاركة والشروط المطلوبة.",
+        "en": "Visit the offer page to see how to participate and what is required.",
+        "fr": "Visitez la page de l’offre pour connaître les modalités et les conditions."
+      },
+      "keywords": [
+        "حظ",
+        "luck",
+        "اختبار"
+      ],
+      "url": "https://singingfiles.com/show.php?l=0&u=2474315&id=75462",
+      "buttonText": "🍀 جرّب العرض",
+      "target": "_blank",
+      "rel": "noopener nofollow sponsored"
+    },
+    {
+      "id": "ma-tap-coin",
+      "icon": "🪙",
+      "category": "offers",
+      "badge": "المغرب",
+      "title": {
+        "ar": "Tap Coin – عرض المكافآت",
+        "en": "Tap Coin rewards offer",
+        "fr": "Offre de récompenses Tap Coin"
+      },
+      "desc": {
+        "ar": "تعرّف على تفاصيل عرض Tap Coin وشروط الحصول على المكافآت إن كانت متاحة.",
+        "en": "Review the Tap Coin offer and the conditions for any available rewards.",
+        "fr": "Consultez l’offre Tap Coin et les conditions des récompenses éventuellement proposées."
+      },
+      "keywords": [
+        "tap coin",
+        "coins",
+        "مكافآت",
+        "عملات"
+      ],
+      "url": "https://singingfiles.com/show.php?l=0&u=2474315&id=74494",
+      "buttonText": "🪙 عرض التفاصيل",
+      "target": "_blank",
+      "rel": "noopener nofollow sponsored"
+    },
+    {
+      "id": "ma-samsung-s25",
+      "icon": "📱",
+      "category": "offers",
+      "badge": "المغرب",
+      "title": {
+        "ar": "عرض هاتف Samsung Galaxy S25",
+        "en": "Samsung Galaxy S25 offer",
+        "fr": "Offre Samsung Galaxy S25"
+      },
+      "desc": {
+        "ar": "اطلع على تفاصيل العرض وشروط الأهلية. لا تعتبر المشاركة ضمانا للفوز أو الحصول على الهاتف.",
+        "en": "Review the offer details and eligibility. Participation does not guarantee winning or receiving a phone.",
+        "fr": "Consultez les détails et les conditions. La participation ne garantit pas de gagner ou de recevoir un téléphone."
+      },
+      "keywords": [
+        "samsung",
+        "s25",
+        "galaxy",
+        "سامسونج"
+      ],
+      "url": "https://singingfiles.com/show.php?l=0&u=2474315&id=70066",
+      "buttonText": "📱 عرض التفاصيل",
+      "target": "_blank",
+      "rel": "noopener nofollow sponsored"
+    },
+    {
+      "id": "ma-registration-reward",
+      "icon": "🎁",
+      "category": "offers",
+      "badge": "المغرب",
+      "title": {
+        "ar": "عرض مكافأة التسجيل",
+        "en": "Registration reward offer",
+        "fr": "Offre de récompense à l’inscription"
+      },
+      "desc": {
+        "ar": "راجع شروط التسجيل والأهلية أولا، ولا ترسل إلا المعلومات المطلوبة والموثوقة.",
+        "en": "Review the registration and eligibility terms first; only provide information you trust.",
+        "fr": "Vérifiez d’abord les conditions d’inscription et ne fournissez que les informations auxquelles vous faites confiance."
+      },
+      "keywords": [
+        "تسجيل",
+        "مكافأة",
+        "reward",
+        "registration"
+      ],
+      "url": "https://singingfiles.com/show.php?l=0&u=2474315&id=74994",
+      "buttonText": "🎁 عرض التفاصيل",
+      "target": "_blank",
+      "rel": "noopener nofollow sponsored"
+    },
+    {
+      "id": "ma-coins-rewards",
+      "icon": "🪙",
+      "category": "offers",
+      "badge": "المغرب",
+      "title": {
+        "ar": "برنامج مكافآت العملات",
+        "en": "Coin rewards program",
+        "fr": "Programme de récompenses en pièces"
+      },
+      "desc": {
+        "ar": "تعرّف على طريقة عمل البرنامج وشروط المكافآت قبل التسجيل.",
+        "en": "Learn how the program works and review reward terms before registering.",
+        "fr": "Découvrez le fonctionnement du programme et les conditions des récompenses avant de vous inscrire."
+      },
+      "keywords": [
+        "عملات",
+        "مكافآت",
+        "coins",
+        "rewards"
+      ],
+      "url": "https://singingfiles.com/show.php?l=0&u=2474315&id=74321",
+      "buttonText": "🪙 اكتشف البرنامج",
+      "target": "_blank",
+      "rel": "noopener nofollow sponsored"
     }
   ]
 }
