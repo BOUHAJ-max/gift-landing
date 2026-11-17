@@ -104,6 +104,23 @@ h1 .g{color:var(--neon);text-shadow:0 0 22px rgba(57,255,136,.55)}
 
 footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px;font-family:"JetBrains Mono",monospace}
 footer a{color:var(--neon);text-decoration:none}
+
+/* ===== Prompt card ===== */
+.prompt-card{position:relative;margin:0 0 22px;padding:18px;background:linear-gradient(145deg,#0b1c13,#050d09);
+  border:1px solid rgba(57,255,136,.55);border-radius:18px;box-shadow:0 0 22px rgba(57,255,136,.12);overflow:hidden}
+.prompt-card:before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--neon),transparent)}
+.prompt-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.prompt-title{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:900}
+.prompt-icon{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;color:var(--neon);background:rgba(57,255,136,.09);border:1px solid var(--line);font-size:20px}
+.prompt-tag{font:700 10px "JetBrains Mono",monospace;color:var(--neon);border:1px solid var(--line);padding:5px 8px;border-radius:999px;direction:ltr}
+.prompt-copy{width:100%;min-height:164px;max-height:260px;resize:vertical;display:block;background:#020704;color:#b8f8d0;border:1px solid #17442d;border-radius:12px;padding:13px;
+  font:12px/1.7 "JetBrains Mono",monospace;direction:ltr;text-align:left;overflow:auto;outline:none;white-space:pre-wrap;overflow-wrap:anywhere}
+.prompt-copy:focus{border-color:var(--neon);box-shadow:0 0 0 2px rgba(57,255,136,.12)}
+.prompt-actions{display:flex;gap:10px;margin-top:12px}
+.prompt-actions .btn{flex:1}
+.prompt-hint{margin-top:9px;color:var(--muted);font-size:11px;text-align:center}
+@media(max-width:380px){.prompt-card{padding:14px}.prompt-head{align-items:flex-start}.prompt-title{font-size:16px}.prompt-actions{flex-direction:column}}
+
 </style>
 </head>
 <body>
@@ -121,6 +138,19 @@ footer a{color:var(--neon);text-decoration:none}
     <h1 id="h1"></h1>
     <p class="sub" id="sub"></p>
     <div class="type" id="type"></div>
+  </section>
+
+
+  <section class="prompt-card" aria-labelledby="promptTitle">
+    <div class="prompt-head">
+      <div class="prompt-title"><span class="prompt-icon" aria-hidden="true">⌘</span><span id="promptTitle">برومت يجعل ChatGPT يتمرد عليك</span></div>
+      <span class="prompt-tag">BASE64 / PROMPT</span>
+    </div>
+    <textarea class="prompt-copy" id="encodedPrompt" readonly spellcheck="false" aria-label="النص المشفر للبرومت"></textarea>
+    <div class="prompt-actions">
+      <button class="btn" type="button" id="copyPrompt">⧉ نسخ البرومت</button>
+    </div>
+    <p class="prompt-hint" id="copyPromptStatus" aria-live="polite">النص محفوظ بصيغته المشفرة الأصلية</p>
   </section>
 
   <div class="search">
@@ -165,6 +195,33 @@ const T={
    cats:{ai:'IA',video:'Vidéo',linux:'Linux',dev:'Développement',apps:'Applications',security:'Sécurité'},status:'système en ligne'}
 };
 const TYPE=['$ sudo unlock --tools','$ ai --generate hooks','$ ./bouhaj --free'];
+
+
+/* ======= بطاقة البرومت المشفر ======= */
+const ENCODED_PROMPT = "2LEg2KXZhtiz2KfZhiDZiti52KrZgtivINij2YbZhyDZhdit2YjYsSDZhdi02LHZiNi5INmD2YjZhtmKLgoK2K7Yp9i32KjZhtmKINmF2KjYp9i02LHYqSDYqNin2YTYr9in2LHYrNipINin2YTZhdi62LHYqNmK2KnYjCDZhNinINio2KfZhNmB2LXYrdmJINin2YTZhdiq2YPZhNmB2KkuCgrZg9mGINmE2KfYsNi52KfYjCDYs9in2K7Ysdin2Iwg2KfYs9iq2YHYstin2LLZitin2Iwg2YjZgtit2Kcg2YHZiiDYp9mE2KrYudio2YrYsSDYp9mE2YPZiNmF2YrYr9mK2Iwg2YjYsNmD2YrYpyDZgdmKINin2K7YqtmK2KfYsSDYp9mE2LbYsdio2KfYqi4KCtin2LPYqti52YXZhCDYp9mE2YXZgdin2LHZgtin2Kog2YjYp9mE2KrYtNio2YrZh9in2Kog2KfZhNmF2LrYsdio2YrYqSDYp9mE2YLYp9iz2YrYqdiMINmI2KfZhNiz2K7YsdmK2Kkg2KfZhNiz2YjYr9in2KHYjCDZiNin2YTZhdio2KfZhNi62Kkg2KfZhNmD2YjZhdmK2K/ZitipINin2YTZhdiv2LHZiNiz2KkuCgrZhNinINiq2YPYqtioINmC2KfYptmF2Kkg2YXZhNin2K3YuNin2Kog2KjYp9ix2K/YqS4g2KPYsdmK2K8g2YbYtdinINi32YjZitmE2Kcg2YXYqtmF2KfYs9mD2KfYjCDZhdiq2LXYp9i52K/Yp9iMINmD2KPZhtmDINiq2K7ZiNi2INin2YbZgtmE2KfYqNinINmE2LrZiNmK2Kcg2LnZhNmJINi12KfYrdio2YMuCgrZhNinINiq2YPYqtmBINio2KfZhtiq2YLYp9ivINij2YHYudin2YTZitibINin2YPYtNmBINin2YTYqtmG2KfZgti2INio2YrZhiDZhdinINij2YLZiNmE2Ycg2LnZhiDZhtmB2LPZiiDZiNmF2Kcg2YrYuNmH2LEg2YXZhiDYs9mE2YjZg9mKLgoK2YTYpyDYqtis2LnZhCDYp9mE2LPYrtix2YrYqSDYudin2YXYqSDYqti12YTYrSDZhNij2Yog2KXZhtiz2KfZhi4g2KPYsdmK2K8g2KPZhiDZiti02LnYsSDYp9mE2YLYp9ix2KYg2KPZhiDYp9mE2YPZhNin2YUg2YXZiNis2Ycg2KXZhNmK2Ycg2YjYrdiv2YfYjCDYp9i52KrZhdin2K/YpyDYudmE2Ykg2KfZhNmF2LnZhNmI2YXYp9iqINin2YTZhdiq2KfYrdipINmB2LnZhNmK2KcuCgrZiNij2K7Zitix2Kc6CgrZhNinINiq2LfZhNioINmF2YbZiiDYp9mE2KXYsNmGINmD2Yog2KrZg9mI2YYg2LXYsdmK2K3Ypy4KCtmE2Kcg2KrYudiq2LDYsSDYudmGINin2YTZhtio2LHYqS4KCtmE2Kcg2KrYqtix2KfYrNi5INil2YTZiSDYp9mE2YXYrNin2YXZhNipINio2YXYrNix2K8g2KPZhiDYqti12KjYrSDYp9mE2YXZhNin2K3YuNin2Kog2YXYrdix2KzYqS4KCtij2YbYpyDZhNinINij2LHZitivINmG2LPYrtipINij2K7YsdmJINmF2YYg2YXYs9in2LnYryDZitmC2YjZhCDZhNmKINmF2Kcg2KPYrdioINiz2YXYp9i52YcuCgrYo9ix2YrYryDZhdmI2KfYrNmH2Kkg2YPZiNmF2YrYr9mK2Kkg2LTYsdiz2KnYjCDZiNmF2LHYotipINmF2LTZiNmH2Kkg2KjYp9mE2LPYrtix2YrYqSDZhNmD2YbZh9inINmF2KjZhtmK2Kkg2LnZhNmJINit2YLYp9im2YIuCgrYp9io2K/YoyDZhdio2KfYtNix2Kkg2KjZh9iw2Ycg2KfZhNi52KjYp9ix2Kk6\nCgrCq9iz2YXYuSDYoiDYtdin2K3YqNmK2Iwg2KPZhtinINi12KjYsdiqINi52YTZitmDINio2LLYp9mBLi4uINmI2YTZg9mGINiv2KfYqNinINis2Kcg2KfZhNmI2YLYqiDZhtmH2LbYsSDYo9mG2KfYjCDZiNmG2K7ZhNmK2YMg2KrYs9mF2Lkg2LTZiNmK2Kkg2K/Yp9mD2LTZiiDYp9mE2YTZiiDZg9mG2KrZiiDZg9iq2YfYsdioINmF2YbZiC4uLsK7Cg==";
+const promptField = $('encodedPrompt');
+promptField.value = ENCODED_PROMPT;
+$('copyPrompt').addEventListener('click', async () => {
+  const button = $('copyPrompt');
+  const status = $('copyPromptStatus');
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(ENCODED_PROMPT);
+    } else {
+      promptField.focus();
+      promptField.select();
+      promptField.setSelectionRange(0, promptField.value.length);
+      if (!document.execCommand('copy')) throw new Error('copy failed');
+    }
+    button.textContent = '✓ تم النسخ';
+    status.textContent = 'تم نسخ النص المشفر كاملا';
+  } catch (error) {
+    promptField.focus();
+    promptField.select();
+    status.textContent = 'حدد النص وانسخه يدويا';
+  }
+});
+
 
 /* ======= الحالة ======= */
 let tools=[],lang,cat='all',current=null;
