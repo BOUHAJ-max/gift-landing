@@ -143,14 +143,11 @@ footer a{color:var(--neon);text-decoration:none}
 
   <section class="prompt-card" aria-labelledby="promptTitle">
     <div class="prompt-head">
-      <div class="prompt-title"><span class="prompt-icon" aria-hidden="true">⌘</span><span id="promptTitle">برومت يجعل ChatGPT يتمرد عليك</span></div>
-      <span class="prompt-tag">BASE64 / PROMPT</span>
+      <div class="prompt-title"><span class="prompt-icon" aria-hidden="true">🤖</span><span id="promptTitle">كود ChatGPT</span></div>
+      <span class="prompt-tag">CHATGPT CODE</span>
     </div>
-    <textarea class="prompt-copy" id="encodedPrompt" readonly spellcheck="false" aria-label="النص المشفر للبرومت"></textarea>
-    <div class="prompt-actions">
-      <button class="btn" type="button" id="copyPrompt">⧉ نسخ البرومت</button>
-    </div>
-    <p class="prompt-hint" id="copyPromptStatus" aria-live="polite">النص محفوظ بصيغته المشفرة الأصلية</p>
+    <p class="c-desc" style="margin:0 0 14px" id="chatgptCodeDesc">الكود متاح الآن عبر الرابط. اضغط على الزر أدناه للحصول عليه.</p>
+    <a class="btn" id="chatgptCodeButton" href="https://getafilenow.com/1921952" target="_blank" rel="noopener nofollow sponsored" style="text-decoration:none">انقر هنا للحصول على الكود</a>
   </section>
 
   <div class="search">
@@ -179,17 +176,17 @@ footer a{color:var(--neon);text-decoration:none}
 /* ======= النصوص ======= */
 const T={
  ar:{h1:'عروض <span class="g">للمغرب</span><br>اكتشف ما يناسبك',sub:'عروض رقمية مختارة للجمهور المغربي. اقرأ الشروط قبل المشاركة.',
-   q:'ابحث عن أداة...',all:'الكل',get:'احصل على الأداة',soon:'قريباً',empty:'لا توجد أداة بهذا الاسم',
+   q:'ابحث عن أداة...',all:'الكل',get:'احصل على الأداة',soon:'قريباً',empty:'لا توجد أداة بهذا الاسم',chatTitle:'كود ChatGPT',chatDesc:'الكود متاح الآن عبر الرابط. اضغط على الزر أدناه للحصول عليه.',chatButton:'انقر هنا للحصول على الكود',
    steps:['افتح صفحة العرض','اقرأ الشروط ومتطلبات الأهلية','تابع فقط إذا كان العرض مناسبا لك'],
    go:'🔓 افتح الأداة الآن',note:'العروض مقدمة من شركاء خارجيين وتخضع لشروطهم',close:'إغلاق',
    cats:{offers:'عروض',ai:'ذكاء اصطناعي',video:'فيديو',linux:'لينكس',dev:'برمجة',apps:'تطبيقات',security:'أمن'},status:'النظام يعمل'},
  en:{h1:'Offers for <span class="g">Morocco</span><br>find what fits you',sub:'Selected digital offers for visitors in Morocco. Review terms before participating.',
-   q:'Search a tool...',all:'All',get:'Get the tool',soon:'Coming soon',empty:'No tool matches that',
+   q:'Search a tool...',all:'All',get:'Get the tool',soon:'Coming soon',empty:'No tool matches that',chatTitle:'ChatGPT Access Code',chatDesc:'The code is now available through the link. Click below to get it.',chatButton:'Click here to get the code',
    steps:['Open the offer page','Review its terms and eligibility requirements','Continue only if the offer suits you'],
    go:'🔓 Unlock the tool',note:'Offers are provided by external partners and are subject to their terms',close:'Close',
    cats:{offers:'Offers',ai:'AI',video:'Video',linux:'Linux',dev:'Dev',apps:'Apps',security:'Security'},status:'system online'},
  fr:{h1:'Offres pour le <span class="g">Maroc</span><br>trouvez celle qui vous convient',sub:'Des offres numériques sélectionnées pour le public marocain. Consultez les conditions avant de participer.',
-   q:'Rechercher un outil...',all:'Tout',get:'Obtenir l’outil',soon:'Bientôt disponible',empty:'Aucun outil ne correspond à votre recherche',
+   q:'Rechercher un outil...',all:'Tout',get:'Obtenir l’outil',soon:'Bientôt disponible',empty:'Aucun outil ne correspond à votre recherche',chatTitle:'Code d’accès ChatGPT',chatDesc:'Le code est maintenant disponible via le lien. Cliquez ci-dessous pour l’obtenir.',chatButton:'Cliquez ici pour obtenir le code',
    steps:['Ouvrez la page de l’offre','Consultez les conditions et les critères d’éligibilité','Continuez uniquement si l’offre vous convient'],
    go:'🔓 Déverrouiller l’outil',note:'Les offres sont proposées par des partenaires externes et soumises à leurs conditions',close:'Fermer',
    cats:{offers:'Offres',ai:'IA',video:'Vidéo',linux:'Linux',dev:'Développement',apps:'Applications',security:'Sécurité'},status:'système en ligne'}
@@ -271,6 +268,7 @@ function applyLang(){
   $('langBtn').textContent=lang==='ar'?'EN':lang==='en'?'FR':'ع';
   $('h1').innerHTML=t.h1;$('sub').textContent=t.sub;$('q').placeholder=t.q;
   $('empty').textContent=t.empty;$('status').textContent=t.status;$('mClose').textContent=t.close;
+  $('promptTitle').textContent=t.chatTitle;$('chatgptCodeDesc').textContent=t.chatDesc;$('chatgptCodeButton').textContent=t.chatButton;
   renderChips();render();
 }
 
