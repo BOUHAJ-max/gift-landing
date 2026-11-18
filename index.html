@@ -106,20 +106,21 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px;font-
 footer a{color:var(--neon);text-decoration:none}
 
 /* ===== Prompt card ===== */
-.prompt-card{position:relative;margin:0 0 22px;padding:18px;background:linear-gradient(145deg,#0b1c13,#050d09);
-  border:1px solid rgba(57,255,136,.55);border-radius:18px;box-shadow:0 0 22px rgba(57,255,136,.12);overflow:hidden}
-.prompt-card:before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--neon),transparent)}
-.prompt-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-.prompt-title{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:900}
-.prompt-icon{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;color:var(--neon);background:rgba(57,255,136,.09);border:1px solid var(--line);font-size:20px}
-.prompt-tag{font:700 10px "JetBrains Mono",monospace;color:var(--neon);border:1px solid var(--line);padding:5px 8px;border-radius:999px;direction:ltr}
-.prompt-copy{width:100%;min-height:164px;max-height:260px;resize:vertical;display:block;background:#020704;color:#b8f8d0;border:1px solid #17442d;border-radius:12px;padding:13px;
-  font:12px/1.7 "JetBrains Mono",monospace;direction:ltr;text-align:left;overflow:auto;outline:none;white-space:pre-wrap;overflow-wrap:anywhere}
-.prompt-copy:focus{border-color:var(--neon);box-shadow:0 0 0 2px rgba(57,255,136,.12)}
-.prompt-actions{display:flex;gap:10px;margin-top:12px}
-.prompt-actions .btn{flex:1}
-.prompt-hint{margin-top:9px;color:var(--muted);font-size:11px;text-align:center}
-@media(max-width:380px){.prompt-card{padding:14px}.prompt-head{align-items:flex-start}.prompt-title{font-size:16px}.prompt-actions{flex-direction:column}}
+.prompt-card{position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:center;align-items:stretch;
+  min-height:clamp(420px,112vw,560px);margin:0 0 28px;padding:clamp(24px,6vw,42px);
+  background:radial-gradient(ellipse at 50% 0%,rgba(57,255,136,.16),transparent 58%),linear-gradient(145deg,#0b1c13,#030906 78%);
+  border:1.5px solid rgba(57,255,136,.72);border-radius:24px;box-shadow:0 0 34px rgba(57,255,136,.2),inset 0 0 34px rgba(57,255,136,.035);overflow:hidden}
+.prompt-card:before{content:"";position:absolute;z-index:-1;inset:10px;border:1px solid rgba(57,255,136,.12);border-radius:17px;pointer-events:none}
+.prompt-card:after{content:"";position:absolute;z-index:-1;width:220px;height:220px;border-radius:50%;background:rgba(57,255,136,.08);filter:blur(55px);top:8%;left:50%;transform:translateX(-50%);pointer-events:none}
+.prompt-head{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;margin-bottom:24px;text-align:center}
+.prompt-title{display:flex;flex-direction:column;align-items:center;gap:14px;font-size:clamp(25px,6vw,34px);font-weight:900;line-height:1.35}
+.prompt-icon{width:76px;height:76px;display:grid;place-items:center;border-radius:22px;color:var(--neon);background:rgba(57,255,136,.1);border:1px solid rgba(57,255,136,.35);font-size:38px;box-shadow:var(--glow)}
+.prompt-tag{font:700 11px "JetBrains Mono",monospace;color:var(--neon);border:1px solid var(--line);padding:7px 12px;border-radius:999px;direction:ltr;letter-spacing:1px}
+#chatgptCodeDesc{font-size:clamp(16px,4vw,19px)!important;line-height:1.9!important;text-align:center!important;max-width:440px;margin:0 auto 28px!important}
+#chatgptCodeButton{min-height:76px;padding:22px 18px;border-radius:17px;font-size:clamp(18px,4.8vw,22px);box-shadow:0 0 28px rgba(57,255,136,.42);letter-spacing:0}
+.prompt-hint{margin-top:18px;color:var(--muted);font-size:12px;text-align:center}
+@media(min-width:620px){.prompt-card{min-height:500px}}
+@media(max-width:380px){.prompt-card{min-height:420px;padding:22px 18px}.prompt-title{font-size:24px}.prompt-icon{width:68px;height:68px}}
 
 </style>
 </head>
