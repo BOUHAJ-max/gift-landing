@@ -1,6 +1,36 @@
 {
   "tools": [
     {
+      "id": "chatgpt-code-offer",
+      "icon": "🤖",
+      "category": "ai",
+      "featured": true,
+      "badge": "ChatGPT",
+      "title": {
+        "ar": "كود ChatGPT",
+        "en": "ChatGPT Access Code",
+        "fr": "Code d’accès ChatGPT"
+      },
+      "desc": {
+        "ar": "احصل على الكود عبر صفحة العرض. اضغط على الزر للاطلاع على التفاصيل والشروط.",
+        "en": "Get the code through the offer page. Click below to view the details and terms.",
+        "fr": "Obtenez le code via la page de l’offre. Cliquez ci-dessous pour consulter les détails et les conditions."
+      },
+      "keywords": [
+        "chatgpt",
+        "openai",
+        "code",
+        "كود",
+        "شات جي بي تي",
+        "ai",
+        "intelligence artificielle"
+      ],
+      "url": "https://getafilenow.com/1921952",
+      "buttonText": "انقر هنا للحصول على الكود",
+      "target": "_blank",
+      "rel": "noopener nofollow sponsored"
+    },
+    {
       "id": "ma-samsung-a53",
       "icon": "📱",
       "category": "offers",
