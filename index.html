@@ -361,6 +361,8 @@ function detectDeviceLang(){
 if(!lang||!T[lang])lang=detectDeviceLang();
 
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// Only allow secure web destinations from the remotely loaded tools list.
+function safeUrl(value){try{const u=new URL(String(value||''),location.href);return u.protocol==='https:'?u.href:''}catch(e){return ''}}
 const icon=i=>/\.(png|jpe?g|webp|svg|gif)$/i.test(i||'')?`<img src="${esc(i)}" alt="">`:esc(i||'⚡');
 const tx=o=>typeof o==='string'?o:(o?.[lang]||o?.en||o?.ar||'');
 
@@ -386,18 +388,20 @@ function render(){
     (!q||(tx(x.title)+' '+tx(x.desc)+' '+(x.keywords||[]).join(' ')).toLowerCase().includes(q)))
     .sort((a,b)=>(b.featured?1:0)-(a.featured?1:0));
   $('grid').innerHTML=list.map((x,i)=>{
-    const ok=!!x.url;
+    const safeHref=safeUrl(x.url),ok=!!safeHref;
+    const target=x.target==='_blank'?'_blank':x.target==='_self'?'_self':'';
+    const safeRel=target==='_blank'?'noopener noreferrer nofollow sponsored':'';
     return `<article class="card${x.featured?' feat':''}${x.id===target?' target':''}" data-id="${esc(x.id)}" style="animation-delay:${i*60}ms">
       <div class="c-head"><div class="ico">${icon(x.icon)}</div>
       <div class="c-title" ${x.dir? `dir="${esc(x.dir)}"`:''}>${esc(tx(x.title))}${x.badge?`<span class="badge" ${x.badgeDir? `dir="${esc(x.badgeDir)}"`:''}>${esc(x.badge)}</span>`:''}</div></div>
       <p class="c-desc" ${x.dir? `dir="${esc(x.dir)}"`:''}>${esc(tx(x.desc))}</p>
-      <a class="btn${ok?'':' soon'}" style="text-decoration:none" ${x.buttonDir? `dir="${esc(x.buttonDir)}"`:''} href="${ok?esc(x.url):'#'}" ${ok&&x.target? `target="${esc(x.target)}" rel="${esc(x.rel||'')}"`:''}>${esc(x.buttonText|| (ok?'⚡ '+T[lang].get:T[lang].soon))}</a></article>`;
+      <a class="btn${ok?'':' soon'}" style="text-decoration:none" ${x.buttonDir? `dir="${esc(x.buttonDir)}"`:''} href="${ok?esc(safeHref):'#'}" ${ok&&target? `target="${target}" rel="${safeRel}"`:''}>${esc(x.buttonText|| (ok?'⚡ '+T[lang].get:T[lang].soon))}</a></article>`;
   }).join('');
   $('empty').style.display=list.length?'none':'block';
 }
 
 function openTool(id){
-  const x=tools.find(t=>t.id===id); if(!x||!x.url) return;
+  const x=tools.find(t=>t.id===id); if(!x||!safeUrl(x.url)) return;
   current=x;const t=T[lang];
   $('mIco').innerHTML=icon(x.icon);$('mTitle').textContent=tx(x.title);
   $('mSteps').innerHTML=t.steps.map((s,i)=>`<li><b>${i+1}</b>${esc(s)}</li>`).join('');
@@ -412,7 +416,7 @@ $('chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(b){
 $('q').addEventListener('input',render);
 $('langBtn').onclick=()=>{lang=lang==='ar'?'en':lang==='en'?'fr':'ar';manualLang=true;try{localStorage.setItem('lang',lang)}catch(e){}applyLang()};
 addEventListener('languagechange',()=>{if(!manualLang&&!params.has('lang')){lang=detectDeviceLang();applyLang()}});
-$('mGo').onclick=()=>{if(current){if(current.target==='_blank')window.open(current.url,'_blank','noopener,noreferrer');else location.href=current.url}};
+$('mGo').onclick=()=>{if(current){const url=safeUrl(current.url);if(!url)return;if(current.target==='_blank')window.open(url,'_blank','noopener,noreferrer');else location.href=url}};
 $('mClose').onclick=()=>$('modal').classList.remove('open');
 $('modal').onclick=e=>{if(e.target.id==='modal')$('modal').classList.remove('open')};
 $('yr').textContent=new Date().getFullYear();
