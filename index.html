@@ -172,6 +172,35 @@ footer a{color:var(--neon);text-decoration:none}
  .book-visual{transition:none}
 }
 
+
+/* ===== About / privacy slide-out drawer ===== */
+.top{flex-wrap:wrap}
+.about-trigger{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:38px;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(7,18,13,.88);color:var(--neon);font:700 13px "Cairo",sans-serif;cursor:pointer}
+.about-trigger svg{width:17px;height:17px}
+.top-actions{display:flex;align-items:center;gap:8px}
+.about-backdrop{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.68);backdrop-filter:blur(5px);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.about-backdrop.open{opacity:1;visibility:visible}
+.about-drawer{position:absolute;top:0;bottom:0;inset-inline-end:0;width:min(440px,92vw);overflow-y:auto;background:linear-gradient(160deg,#081a11,#030806 72%);border-inline-start:1px solid rgba(57,255,136,.45);box-shadow:0 0 35px rgba(57,255,136,.15);padding:22px 18px 32px;transform:translateX(105%);transition:transform .28s ease}
+html[dir=rtl] .about-drawer{transform:translateX(-105%)}
+.about-backdrop.open .about-drawer{transform:translateX(0)}
+.about-drawer-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.about-drawer-head h2{font-size:21px;color:var(--neon);font-weight:900}
+.about-close{width:38px;height:38px;border:1px solid var(--line);border-radius:11px;background:var(--panel);color:var(--text);font-size:22px;cursor:pointer}
+.about-section{padding:18px 0;border-bottom:1px solid rgba(18,61,41,.8)}
+.about-section h3{font-size:16px;color:var(--neon2);margin-bottom:9px}
+.about-section p,.about-section li{font-size:13px;line-height:1.9;color:#c5ddcf}
+.about-section ul{padding-inline-start:20px;display:grid;gap:5px}
+.about-links{display:grid;gap:10px;margin-top:12px}
+.about-link{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#09170f;color:var(--text);font:800 14px "Cairo",sans-serif;text-decoration:none;transition:.2s}
+.about-link:hover{border-color:var(--neon);transform:translateY(-2px)}
+.about-link svg{width:19px;height:19px;flex:none}
+.about-link.instagram{background:linear-gradient(110deg,rgba(131,58,180,.2),rgba(253,29,29,.15),rgba(252,176,69,.15));border-color:rgba(225,90,130,.5)}
+.about-link.facebook{border-color:rgba(24,119,242,.5)}
+.about-link.amazon{border-color:rgba(255,190,60,.45)}
+.about-small{font-size:11px!important;color:var(--muted)!important}
+@media(max-width:380px){.about-trigger{padding:7px 9px;font-size:12px}.top-actions{gap:6px}}
+@media(prefers-reduced-motion:reduce){.about-backdrop,.about-drawer,.about-link{transition:none}}
+
 </style>
 </head>
 <body>
@@ -415,5 +444,100 @@ fetch('tools.json?v='+Date.now()).then(r=>r.json()).then(d=>{
   if(t){const el=document.querySelector(`[data-id="${CSS.escape(t)}"]`);if(el)el.scrollIntoView({behavior:'smooth',block:'center'});openTool(t)}
 }).catch(()=>{applyLang();$('empty').style.display='block'});
 </script>
+
+<script>
+/* ===== About, social links and privacy drawer (AR / EN / FR) ===== */
+(function(){
+  const copy = {
+    ar:{
+      trigger:'عنّي',title:'نبذة عن محمد',close:'إغلاق',
+      bioTitle:'محمد بوهاج',
+      bio:'محمد بوهاج، المعروف أيضاً بالاسمين الأدبيين Victor Robert وMarcus J. Holloway، كاتب ومصمم ومطور رقمي مستقل، من مواليد 15 مارس 2001. يهتم بالتقنية والتجارة الإلكترونية والكتابة، ويجمع في مشاريعه بين التفكير التحليلي والاهتمام بالجوانب الإبداعية والفلسفية.',
+      careerTitle:'المسار المهني',
+      career:'يعمل في مجالات الخدمات الرقمية والطباعة وتصوير البورتريه بمراكش، ويهتم بمعالجة الصور وتنسيق الوثائق والخدمات الإدارية والرقمية. كما يدير متجر BOUHAJshop، ويطوّر مبادرات تقنية ومحتوى رقمياً من بينها E-Bouhaj Tech، إلى جانب أدوات ويب وتطبيقات مستقلة.',
+      booksTitle:'الكتابة والنشر',
+      books:'يهتم بالكتابة الفلسفية والوجودية والخيال الأدبي، وله أعمال منشورة عبر Amazon KDP، من بينها «ما وراء الجسد» و«مبادئ الذات الأسيرة» و«ماروداي: آخر المتمردين». تتناول كتاباته موضوعات الذات والوجود والتأمل الإنساني.',
+      interestsTitle:'الاهتمامات',
+      interests:['التجارة الإلكترونية: إنشاء المتاجر الرقمية وتسويق المنتجات والخدمات وتصميم صفحات الهبوط.','التقنية: Linux وTermux وWSL والبرمجة بـ Python وNode.js واستكشاف أمن المعلومات.','التصميم والتصوير: تصوير البورتريه ومعالجة الصور وتنسيق الوثائق والهويات البصرية.','الفكر والأدب: الفلسفة والتاريخ وعلم الاجتماع والأدب الكلاسيكي.'],
+      privacyTitle:'سياسة الخصوصية',
+      privacy:'تحترم هذه الصفحة خصوصية زوارها. لا تتضمن الصفحة حالياً نموذجاً يطلب بيانات شخصية مباشرة. قد يُستخدم التخزين المحلي في المتصفح لحفظ اختيار اللغة فقط، كما تُحمّل الصفحة قائمة الأدوات من ملف tools.json.',
+      privacy2:'تحتوي الصفحة على روابط إلى مواقع وخدمات خارجية، بما فيها شركاء العروض ومنصات التواصل وأمازون. عند فتح هذه الروابط، تصبح معالجة بياناتك خاضعة لسياسات تلك الجهات وشروطها، وقد تستخدم ملفات تعريف الارتباط أو تقنيات مشابهة. لا تتحكم هذه الصفحة في ممارسات الخصوصية لدى الأطراف الخارجية.',
+      privacy3:'قد يعالج مزود استضافة الموقع بيانات تقنية أساسية مثل عنوان IP وبيانات المتصفح لأغراض التشغيل والأمان وفق سياساته. يُنصح بمراجعة سياسة كل خدمة خارجية قبل استخدامها. قد تُحدّث هذه السياسة عند إضافة وظائف جديدة إلى الصفحة.',
+      linksTitle:'روابط وحسابات',
+      amazon:'صفحة المؤلف على Amazon',instagram:'تابعني على Instagram',facebook:'تابعني على Facebook'
+    },
+    en:{
+      trigger:'About me',title:'About Mohamed',close:'Close',bioTitle:'Mohamed Bouhaj',
+      bio:'Mohamed Bouhaj, also known by the literary pen names Victor Robert and Marcus J. Holloway, is an independent writer, designer and digital developer, born on 15 March 2001. His interests include technology, e-commerce and writing, bringing analytical thinking together with creative and philosophical interests.',
+      careerTitle:'Professional work',
+      career:'He works in digital services, printing and portrait photography in Marrakech, with interests in image editing, document formatting, and administrative and digital services. He also manages the BOUHAJshop online store and develops digital initiatives including E-Bouhaj Tech, along with independent web tools and applications.',
+      booksTitle:'Writing and publishing',
+      books:'He writes philosophical and existential texts as well as literary fiction. His works published through Amazon KDP include “Beyond the Body”, “Principles of the Captive Self” and “Maroudai: The Last Rebels”. His writing explores identity, existence and human reflection.',
+      interestsTitle:'Interests',
+      interests:['E-commerce: building online stores, marketing products and services, and designing landing pages.','Technology: Linux, Termux, WSL, Python and Node.js, and exploring information security.','Design and photography: portrait photography, image editing, document layout and visual identities.','Ideas and literature: philosophy, history, sociology and classical literature.'],
+      privacyTitle:'Privacy policy',
+      privacy:'This page respects visitors’ privacy. It currently has no form that directly requests personal information. Your language choice may be stored locally in your browser, and the page loads its tools list from tools.json.',
+      privacy2:'This page links to external websites and services, including offer partners, social networks and Amazon. When you follow those links, the relevant third parties’ privacy policies and terms apply. They may use cookies or similar technologies. This page does not control external parties’ privacy practices.',
+      privacy3:'The website hosting provider may process basic technical data, such as IP address and browser information, for operation and security under its own policies. Review each external service’s policy before using it. This policy may be updated when new page features are introduced.',
+      linksTitle:'Links and profiles',amazon:'Author page on Amazon',instagram:'Follow me on Instagram',facebook:'Follow me on Facebook'
+    },
+    fr:{
+      trigger:'À propos',title:'À propos de Mohamed',close:'Fermer',bioTitle:'Mohamed Bouhaj',
+      bio:'Mohamed Bouhaj, également connu sous les pseudonymes littéraires Victor Robert et Marcus J. Holloway, est écrivain, designer et développeur numérique indépendant. Né le 15 mars 2001, il s’intéresse à la technologie, au commerce électronique et à l’écriture, en associant réflexion analytique et créativité.',
+      careerTitle:'Parcours professionnel',
+      career:'Il travaille dans les services numériques, l’impression et la photographie de portrait à Marrakech. Il s’intéresse à la retouche d’images, à la mise en page de documents et aux services administratifs et numériques. Il gère également la boutique BOUHAJshop et développe des projets comme E-Bouhaj Tech, ainsi que des outils web et applications indépendants.',
+      booksTitle:'Écriture et publication',
+      books:'Il écrit des textes philosophiques et existentiels ainsi que de la fiction littéraire. Parmi ses ouvrages publiés sur Amazon KDP figurent « Au-delà du corps », « Principes du moi captif » et « Maroudai : les derniers rebelles ». Ses écrits explorent l’identité, l’existence et la réflexion humaine.',
+      interestsTitle:'Centres d’intérêt',
+      interests:['Commerce électronique : création de boutiques en ligne, marketing et conception de pages d’atterrissage.','Technologie : Linux, Termux, WSL, Python, Node.js et découverte de la sécurité informatique.','Design et photographie : portraits, retouche photo, mise en page et identités visuelles.','Pensée et littérature : philosophie, histoire, sociologie et littérature classique.'],
+      privacyTitle:'Politique de confidentialité',
+      privacy:'Cette page respecte la vie privée de ses visiteurs. Elle ne contient actuellement aucun formulaire demandant directement des informations personnelles. Le choix de langue peut être enregistré localement dans votre navigateur, et la liste des outils est chargée depuis tools.json.',
+      privacy2:'La page contient des liens vers des sites et services externes, notamment des partenaires d’offres, des réseaux sociaux et Amazon. En ouvrant ces liens, les politiques de confidentialité et conditions des tiers concernés s’appliquent. Ils peuvent utiliser des cookies ou technologies similaires. Cette page ne contrôle pas leurs pratiques.',
+      privacy3:'L’hébergeur du site peut traiter certaines données techniques, comme l’adresse IP et les informations du navigateur, pour assurer le fonctionnement et la sécurité selon ses propres règles. Consultez la politique de chaque service externe avant de l’utiliser. Cette politique pourra être mise à jour si de nouvelles fonctionnalités sont ajoutées.',
+      linksTitle:'Liens et profils',amazon:'Page auteur sur Amazon',instagram:'Me suivre sur Instagram',facebook:'Me suivre sur Facebook'
+    }
+  };
+  const icons = {
+    amazon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17c4 3 11 3 16-1M15 16l5 0-1 4M7 5h10v9H7zM9 8h6M9 11h4"/></svg>',
+    instagram:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
+    facebook:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.3V13h2.8v8z"/></svg>'
+  };
+  const langNow=()=>document.documentElement.lang in copy?document.documentElement.lang:'en';
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const trigger=document.createElement('button');
+  trigger.type='button';trigger.className='about-trigger';trigger.setAttribute('aria-haspopup','dialog');trigger.setAttribute('aria-expanded','false');
+  trigger.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span></span>';
+  const top=document.querySelector('.top');
+  const langBtn=document.getElementById('langBtn');
+  if(top&&langBtn){let actions=document.createElement('div');actions.className='top-actions';langBtn.parentNode.insertBefore(actions,langBtn);actions.append(trigger,langBtn);}
+  const backdrop=document.createElement('div');backdrop.className='about-backdrop';backdrop.innerHTML='<aside class="about-drawer" role="dialog" aria-modal="true" aria-labelledby="aboutDrawerTitle" tabindex="-1"><div class="about-drawer-head"><h2 id="aboutDrawerTitle"></h2><button type="button" class="about-close" aria-label="Close">×</button></div><div class="about-content"></div></aside>';
+  document.body.appendChild(backdrop);
+  const drawer=backdrop.querySelector('.about-drawer'),content=backdrop.querySelector('.about-content'),close=backdrop.querySelector('.about-close');
+  function render(){
+    const t=copy[langNow()];
+    trigger.querySelector('span').textContent=t.trigger;
+    document.getElementById('aboutDrawerTitle').textContent=t.title;
+    close.setAttribute('aria-label',t.close);
+    content.innerHTML=
+      '<section class="about-section"><h3>'+esc(t.bioTitle)+'</h3><p>'+esc(t.bio)+'</p></section>'+
+      '<section class="about-section"><h3>'+esc(t.careerTitle)+'</h3><p>'+esc(t.career)+'</p></section>'+
+      '<section class="about-section"><h3>'+esc(t.booksTitle)+'</h3><p>'+esc(t.books)+'</p></section>'+
+      '<section class="about-section"><h3>'+esc(t.interestsTitle)+'</h3><ul>'+t.interests.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></section>'+
+      '<section class="about-section"><h3>'+esc(t.privacyTitle)+'</h3><p>'+esc(t.privacy)+'</p><p style="margin-top:9px">'+esc(t.privacy2)+'</p><p style="margin-top:9px">'+esc(t.privacy3)+'</p></section>'+
+      '<section class="about-section"><h3>'+esc(t.linksTitle)+'</h3><div class="about-links">'+
+      '<a class="about-link amazon" href="https://www.amazon.com/author/bouhaj" target="_blank" rel="noopener noreferrer">'+icons.amazon+esc(t.amazon)+'</a>'+
+      '<a class="about-link instagram" href="https://www.instagram.com/bouhaj.officiel?dmpr=NWdyY2dua2owMXRi" target="_blank" rel="noopener noreferrer">'+icons.instagram+esc(t.instagram)+'</a>'+
+      '<a class="about-link facebook" href="https://www.facebook.com/mohamed.bouhaj.899672" target="_blank" rel="noopener noreferrer">'+icons.facebook+esc(t.facebook)+'</a></div></section>';
+  }
+  function open(){render();backdrop.classList.add('open');trigger.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';drawer.focus();}
+  function shut(){backdrop.classList.remove('open');trigger.setAttribute('aria-expanded','false');document.body.style.overflow='';trigger.focus();}
+  trigger.addEventListener('click',open);close.addEventListener('click',shut);
+  backdrop.addEventListener('click',e=>{if(e.target===backdrop)shut();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&backdrop.classList.contains('open'))shut();});
+  if(langBtn)langBtn.addEventListener('click',()=>setTimeout(render,0));
+  render();
+})();
+</script>
+
 </body>
 </html>
