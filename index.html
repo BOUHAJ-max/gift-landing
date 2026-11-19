@@ -121,7 +121,7 @@ footer a{color:var(--neon);text-decoration:none}
 .prompt-title{display:flex;flex-direction:row;align-items:center;gap:9px;font-size:17px}
 .prompt-icon{width:38px;height:38px;border-radius:11px;font-size:20px}
 .prompt-tag{font-size:9px;padding:5px 7px}
-.prompt-copy{width:100%;height:92px;min-height:92px;max-height:120px;resize:vertical;display:block;background:#020704;color:#b8f8d0;border:1px solid #17442d;border-radius:10px;padding:9px;font:10px/1.5 "JetBrains Mono",monospace;direction:ltr;text-align:left;overflow:auto;outline:none;white-space:pre-wrap;overflow-wrap:anywhere}
+.prompt-copy{width:100%;height:180px;min-height:180px;max-height:320px;resize:vertical;display:block;background:#020704;color:#b8f8d0;border:1px solid #17442d;border-radius:10px;padding:9px;font:10px/1.5 "JetBrains Mono",monospace;direction:ltr;text-align:left;overflow:auto;outline:none;white-space:pre-wrap;overflow-wrap:anywhere}
 .prompt-copy:focus{border-color:var(--neon);box-shadow:0 0 0 2px rgba(57,255,136,.12)}
 .prompt-actions{display:flex;gap:10px;margin-top:9px}
 .prompt-actions .btn{min-height:48px;padding:10px 14px;font-size:16px}
@@ -241,45 +241,51 @@ const promptField = document.getElementById('encodedPrompt');
 const copyPromptButton = document.getElementById('copyPrompt');
 const copyPromptStatus = document.getElementById('copyPromptStatus');
 
-// Fill the visible field immediately; do not depend on the later $ helper.
-promptField.value = ENCODED_PROMPT;
+// Always populate the visible box from the original encoded text.
+if (promptField) {
+  promptField.value = ENCODED_PROMPT;
+  promptField.textContent = ENCODED_PROMPT;
+}
 
-copyPromptButton.addEventListener('click', async () => {
-  const originalLabel = '⧉ نسخ البرومت';
-  copyPromptButton.disabled = true;
-  try {
+if (copyPromptButton && promptField) {
+  copyPromptButton.addEventListener('click', async () => {
+    const originalLabel = '⧉ نسخ البرومت';
+    copyPromptButton.disabled = true;
     let copied = false;
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(ENCODED_PROMPT);
-      copied = true;
-    } else {
-      const helper = document.createElement('textarea');
-      helper.value = ENCODED_PROMPT;
-      helper.setAttribute('readonly', '');
-      helper.style.position = 'fixed';
-      helper.style.top = '0';
-      helper.style.left = '-9999px';
-      helper.style.opacity = '0';
-      document.body.appendChild(helper);
-      helper.focus();
-      helper.select();
-      helper.setSelectionRange(0, helper.value.length);
-      copied = document.execCommand('copy');
-      helper.remove();
+
+    try {
+      // Modern clipboard API (works on HTTPS).
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(ENCODED_PROMPT);
+          copied = true;
+        } catch (clipboardError) {
+          copied = false;
+        }
+      }
+
+      // Mobile/browser fallback: select the visible code itself.
+      if (!copied) {
+        promptField.focus();
+        promptField.select();
+        promptField.setSelectionRange(0, promptField.value.length);
+        copied = document.execCommand('copy');
+      }
+
+      if (!copied) throw new Error('Copy command was not accepted');
+      copyPromptButton.textContent = '✓ تم النسخ';
+      if (copyPromptStatus) copyPromptStatus.textContent = 'تم نسخ النص المشفر كاملاً';
+    } catch (error) {
+      promptField.focus();
+      promptField.select();
+      promptField.setSelectionRange(0, promptField.value.length);
+      copyPromptButton.textContent = originalLabel;
+      if (copyPromptStatus) copyPromptStatus.textContent = 'تم تحديد الكود كاملاً؛ اضغط مطولاً داخل المربع واختر نسخ.';
+    } finally {
+      copyPromptButton.disabled = false;
     }
-    if (!copied) throw new Error('Clipboard copy was rejected');
-    copyPromptButton.textContent = '✓ تم النسخ';
-    copyPromptStatus.textContent = 'تم نسخ النص المشفر كاملا';
-  } catch (error) {
-    promptField.focus();
-    promptField.select();
-    promptField.setSelectionRange(0, promptField.value.length);
-    copyPromptButton.textContent = originalLabel;
-    copyPromptStatus.textContent = 'تعذر النسخ التلقائي؛ تم تحديد النص. اضغط مطولا واختر نسخ.';
-  } finally {
-    copyPromptButton.disabled = false;
-  }
-});
+  });
+}
 
 /* ======= الحالة ======= */
 let tools=[],lang,cat='all',current=null;
