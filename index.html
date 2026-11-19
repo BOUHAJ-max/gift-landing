@@ -126,11 +126,28 @@ footer a{color:var(--neon);text-decoration:none}
 .prompt-actions{display:flex;gap:10px;margin-top:9px}
 .prompt-actions .btn{min-height:48px;padding:10px 14px;font-size:16px}
 .prompt-hint{margin-top:7px;color:var(--muted);font-size:10px;text-align:center}
-.book-card{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;text-align:center;margin:0 0 24px;padding:24px 18px;min-height:190px;background:radial-gradient(ellipse at 50% 0%,rgba(57,255,136,.13),transparent 65%),linear-gradient(145deg,#0b1c13,#030906 78%);border:1.5px solid rgba(57,255,136,.58);border-radius:20px;box-shadow:0 0 24px rgba(57,255,136,.13)}
-.book-icon{width:54px;height:54px;display:grid;place-items:center;border-radius:15px;background:rgba(57,255,136,.1);border:1px solid var(--line);font-size:29px}
-.book-card h2{font-size:clamp(19px,5vw,25px);line-height:1.5;font-weight:900}
-.book-card .btn{max-width:440px;min-height:58px;padding:16px;font-size:18px;text-decoration:none}
-@media(max-width:380px){.prompt-card{padding:13px}.prompt-title{font-size:15px}.prompt-copy{height:82px;min-height:82px}.book-card{padding:20px 15px}}
+.book-card{--book-gold:#ffd84a;position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;margin:8px 0 28px;padding:24px 18px 22px;min-height:0;background:radial-gradient(ellipse at 50% 34%,rgba(0,198,255,.13),transparent 48%),radial-gradient(ellipse at 50% 0%,rgba(255,205,55,.12),transparent 62%),linear-gradient(145deg,#071a22,#03090d 78%);border:1px solid rgba(0,220,255,.38);border-radius:24px;box-shadow:0 0 28px rgba(0,180,255,.13),inset 0 0 32px rgba(0,210,255,.045)}
+.book-card:before{content:"";position:absolute;z-index:-1;inset:-55%;background:conic-gradient(from 0deg,transparent 0 72%,rgba(0,210,255,.09),transparent 83%);animation:bookHalo 12s linear infinite}
+.book-card:after{content:"";position:absolute;z-index:-1;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,#43eaff,transparent);box-shadow:0 0 18px #00cfff}
+@keyframes bookHalo{to{transform:rotate(360deg)}}
+.book-kicker{display:flex;align-items:center;gap:8px;color:#8feaff;font-size:12px;font-weight:800;letter-spacing:.3px}
+.book-kicker-dot{width:7px;height:7px;border-radius:50%;background:#43eaff;box-shadow:0 0 12px #43eaff;animation:blink 1.5s infinite}
+.book-card h2{font-size:clamp(20px,5.4vw,27px);line-height:1.5;font-weight:900;color:#f4fbff;text-shadow:0 2px 20px rgba(0,210,255,.22)}
+.book-visual{position:relative;display:block;width:min(78%,280px);margin:0 auto 2px;border-radius:12px;outline:none;filter:drop-shadow(0 18px 22px rgba(0,0,0,.72)) drop-shadow(0 0 16px rgba(0,190,255,.19));transition:transform .35s ease,filter .35s ease;animation:bookFloat 4.2s ease-in-out infinite}
+.book-visual:before{content:"";position:absolute;inset:12% -10% 3%;z-index:-1;border-radius:50%;background:rgba(0,190,255,.22);filter:blur(34px)}
+.book-visual img{display:block;width:100%;height:auto;border-radius:8px}
+.book-visual:hover,.book-visual:focus-visible{transform:translateY(-7px) rotate(-1.5deg) scale(1.025);filter:drop-shadow(0 22px 26px rgba(0,0,0,.65)) drop-shadow(0 0 24px rgba(0,220,255,.42))}
+@keyframes bookFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.book-subtitle{max-width:420px;color:#b5d4df;font-size:13px;line-height:1.8}
+.book-card .book-cta{position:relative;isolation:isolate;overflow:hidden;max-width:440px;min-height:64px;padding:17px 20px;border-radius:16px;font-size:clamp(17px,4.7vw,21px);font-weight:900;color:#10151a;background:linear-gradient(105deg,#ffe36b,#ffb92f 48%,#ffe36b);box-shadow:0 0 0 1px rgba(255,231,133,.35),0 8px 28px rgba(255,183,40,.28),0 0 26px rgba(255,208,72,.3);text-decoration:none;transition:transform .2s,filter .2s,box-shadow .2s;animation:ctaPulse 2.4s ease-in-out infinite}
+.book-cta:before{content:"";position:absolute;z-index:-1;top:-60%;left:-45%;width:35%;height:220%;background:rgba(255,255,255,.5);transform:rotate(22deg);filter:blur(7px);animation:ctaShine 3.2s ease-in-out infinite}
+.book-cta:active{transform:scale(.98);filter:brightness(1.08)}
+.book-cta:hover{transform:translateY(-3px);filter:brightness(1.07);box-shadow:0 10px 32px rgba(255,183,40,.42),0 0 34px rgba(255,208,72,.4)}
+@keyframes ctaPulse{0%,100%{box-shadow:0 0 0 1px rgba(255,231,133,.3),0 8px 24px rgba(255,183,40,.22),0 0 20px rgba(255,208,72,.22)}50%{box-shadow:0 0 0 1px rgba(255,231,133,.55),0 10px 32px rgba(255,183,40,.42),0 0 34px rgba(255,208,72,.42)}}
+@keyframes ctaShine{0%,55%{left:-45%}85%,100%{left:125%}}
+.book-footnote{color:#7897a5;font-size:10px}
+@media(prefers-reduced-motion:reduce){.book-card:before,.book-kicker-dot,.book-visual,.book-cta,.book-cta:before{animation:none}.book-visual{transition:none}}
+@media(max-width:380px){.prompt-card{padding:13px}.prompt-title{font-size:15px}.prompt-copy{height:82px;min-height:82px}.book-card{padding:20px 15px}.book-visual{width:min(82%,250px)}}
 
 </style>
 </head>
@@ -165,9 +182,14 @@ footer a{color:var(--neon);text-decoration:none}
   </section>
 
   <section class="book-card" aria-labelledby="bookTitle">
-    <div class="book-icon" aria-hidden="true">📘</div>
+    <div class="book-kicker"><span class="book-kicker-dot"></span> كتاب رقمي مميز</div>
     <h2 id="bookTitle">احصل على كتاب غرائب الذكاء الاصطناعي</h2>
-    <a class="btn" id="bookDownloadButton" href="https://getafilenow.com/1921952" target="_blank" rel="noopener nofollow sponsored">اضغط هنا لتحميله</a>
+    <a class="book-visual" href="https://getafilenow.com/1921952" target="_blank" rel="noopener nofollow sponsored" aria-label="تحميل كتاب غرائب الذكاء الاصطناعي">
+      <img src="data:image/webp;base64,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" alt="غلاف كتاب غرائب الذكاء الاصطناعي - تأليف MOHAMED BOUHAJ" loading="eager" decoding="async">
+    </a>
+    <p class="book-subtitle">21 قصة حقيقية عن آلات خدعت البشر، وأدهشت العالم</p>
+    <a class="btn book-cta" id="bookDownloadButton" href="https://getafilenow.com/1921952" target="_blank" rel="noopener nofollow sponsored"><span aria-hidden="true">⬇</span> <span>اضغط هنا لتحميله</span></a>
+    <p class="book-footnote">اضغط على الغلاف أو الزر للانتقال إلى صفحة التحميل</p>
   </section>
 
   <div class="search">
@@ -333,50 +355,6 @@ $('mGo').onclick=()=>{if(current){if(current.target==='_blank')window.open(curre
 $('mClose').onclick=()=>$('modal').classList.remove('open');
 $('modal').onclick=e=>{if(e.target.id==='modal')$('modal').classList.remove('open')};
 $('yr').textContent=new Date().getFullYear();
-
-const promptField = document.getElementById('encodedPrompt');
-const copyPromptButton = document.getElementById('copyPrompt');
-const copyPromptStatus = document.getElementById('copyPromptStatus');
-
-// Fill the visible field immediately; do not depend on the later $ helper.
-promptField.value = ENCODED_PROMPT;
-
-copyPromptButton.addEventListener('click', async () => {
-  const originalLabel = '⧉ نسخ البرومت';
-  copyPromptButton.disabled = true;
-  try {
-    let copied = false;
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(ENCODED_PROMPT);
-      copied = true;
-    } else {
-      const helper = document.createElement('textarea');
-      helper.value = ENCODED_PROMPT;
-      helper.setAttribute('readonly', '');
-      helper.style.position = 'fixed';
-      helper.style.top = '0';
-      helper.style.left = '-9999px';
-      helper.style.opacity = '0';
-      document.body.appendChild(helper);
-      helper.focus();
-      helper.select();
-      helper.setSelectionRange(0, helper.value.length);
-      copied = document.execCommand('copy');
-      helper.remove();
-    }
-    if (!copied) throw new Error('Clipboard copy was rejected');
-    copyPromptButton.textContent = '✓ تم النسخ';
-    copyPromptStatus.textContent = 'تم نسخ النص المشفر كاملا';
-  } catch (error) {
-    promptField.focus();
-    promptField.select();
-    promptField.setSelectionRange(0, promptField.value.length);
-    copyPromptButton.textContent = originalLabel;
-    copyPromptStatus.textContent = 'تعذر النسخ التلقائي؛ تم تحديد النص. اضغط مطولا واختر نسخ.';
-  } finally {
-    copyPromptButton.disabled = false;
-  }
-});
 
 
 /* ======= كتابة متحركة ======= */
