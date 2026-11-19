@@ -6,6 +6,7 @@
 <title>BOUHAJ Tools</title>
 <meta name="description" content="BOUHAJ Tools — free tech & AI tools">
 <meta name="theme-color" content="#030806">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; upgrade-insecure-requests">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -361,9 +362,16 @@ function detectDeviceLang(){
 if(!lang||!T[lang])lang=detectDeviceLang();
 
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-// Only allow secure web destinations from the remotely loaded tools list.
-function safeUrl(value){try{const u=new URL(String(value||''),location.href);return u.protocol==='https:'?u.href:''}catch(e){return ''}}
-const icon=i=>/\.(png|jpe?g|webp|svg|gif)$/i.test(i||'')?`<img src="${esc(i)}" alt="">`:esc(i||'⚡');
+// Accept only absolute HTTPS links; reject credentials and non-web protocols.
+function safeUrl(value){
+  try{
+    const u=new URL(String(value||''));
+    return u.protocol==='https:'&&!u.username&&!u.password?u.href:'';
+  }catch(e){return ''}
+}
+// Images must be simple local asset filenames; other values remain plain text/icons.
+const icon=i=>/^[a-z0-9][a-z0-9._-]*\.(png|jpe?g|webp|svg|gif)$/i.test(i||'')
+  ?`<img src="${esc(i)}" alt="" loading="lazy" decoding="async">`:esc(i||'⚡');
 const tx=o=>typeof o==='string'?o:(o?.[lang]||o?.en||o?.ar||'');
 
 function applyLang(){
@@ -383,19 +391,19 @@ function renderChips(){
 }
 
 function render(){
-  const q=$('q').value.trim().toLowerCase(), target=params.get('t');
+  const q=$('q').value.trim().toLowerCase(), targetId=params.get('t');
   const list=tools.filter(x=>(cat==='all'||x.category===cat)&&
     (!q||(tx(x.title)+' '+tx(x.desc)+' '+(x.keywords||[]).join(' ')).toLowerCase().includes(q)))
     .sort((a,b)=>(b.featured?1:0)-(a.featured?1:0));
   $('grid').innerHTML=list.map((x,i)=>{
     const safeHref=safeUrl(x.url),ok=!!safeHref;
-    const target=x.target==='_blank'?'_blank':x.target==='_self'?'_self':'';
-    const safeRel=target==='_blank'?'noopener noreferrer nofollow sponsored':'';
-    return `<article class="card${x.featured?' feat':''}${x.id===target?' target':''}" data-id="${esc(x.id)}" style="animation-delay:${i*60}ms">
+    const linkTarget=x.target==='_blank'?'_blank':x.target==='_self'?'_self':'';
+    const safeRel=linkTarget==='_blank'?'noopener noreferrer nofollow sponsored':'';
+    return `<article class="card${x.featured?' feat':''}${x.id===targetId?' target':''}" data-id="${esc(x.id)}" style="animation-delay:${i*60}ms">
       <div class="c-head"><div class="ico">${icon(x.icon)}</div>
-      <div class="c-title" ${x.dir? `dir="${esc(x.dir)}"`:''}>${esc(tx(x.title))}${x.badge?`<span class="badge" ${x.badgeDir? `dir="${esc(x.badgeDir)}"`:''}>${esc(x.badge)}</span>`:''}</div></div>
-      <p class="c-desc" ${x.dir? `dir="${esc(x.dir)}"`:''}>${esc(tx(x.desc))}</p>
-      <a class="btn${ok?'':' soon'}" style="text-decoration:none" ${x.buttonDir? `dir="${esc(x.buttonDir)}"`:''} href="${ok?esc(safeHref):'#'}" ${ok&&target? `target="${target}" rel="${safeRel}"`:''}>${esc(x.buttonText|| (ok?'⚡ '+T[lang].get:T[lang].soon))}</a></article>`;
+      <div class="c-title" ${x.dir==='rtl'||x.dir==='ltr'? `dir="${x.dir}"`:''}>${esc(tx(x.title))}${x.badge?`<span class="badge" ${x.badgeDir==='rtl'||x.badgeDir==='ltr'? `dir="${x.badgeDir}"`:''}>${esc(x.badge)}</span>`:''}</div></div>
+      <p class="c-desc" ${x.dir==='rtl'||x.dir==='ltr'? `dir="${x.dir}"`:''}>${esc(tx(x.desc))}</p>
+      <a class="btn${ok?'':' soon'}" style="text-decoration:none" ${x.buttonDir==='rtl'||x.buttonDir==='ltr'? `dir="${x.buttonDir}"`:''} href="${ok?esc(safeHref):'#'}" ${ok&&linkTarget? `target="${linkTarget}" rel="${safeRel}"`:''}>${esc(x.buttonText|| (ok?'⚡ '+T[lang].get:T[lang].soon))}</a></article>`;
   }).join('');
   $('empty').style.display=list.length?'none':'block';
 }
@@ -416,7 +424,7 @@ $('chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(b){
 $('q').addEventListener('input',render);
 $('langBtn').onclick=()=>{lang=lang==='ar'?'en':lang==='en'?'fr':'ar';manualLang=true;try{localStorage.setItem('lang',lang)}catch(e){}applyLang()};
 addEventListener('languagechange',()=>{if(!manualLang&&!params.has('lang')){lang=detectDeviceLang();applyLang()}});
-$('mGo').onclick=()=>{if(current){const url=safeUrl(current.url);if(!url)return;if(current.target==='_blank')window.open(url,'_blank','noopener,noreferrer');else location.href=url}};
+$('mGo').onclick=()=>{if(current){const url=safeUrl(current.url);if(!url)return;if(current.target==='_blank')window.open(url,'_blank','noopener,noreferrer');else location.assign(url)}};
 $('mClose').onclick=()=>$('modal').classList.remove('open');
 $('modal').onclick=e=>{if(e.target.id==='modal')$('modal').classList.remove('open')};
 $('yr').textContent=new Date().getFullYear();
