@@ -202,6 +202,11 @@ html[dir=rtl] .about-drawer{transform:translateX(-105%)}
 @media(max-width:380px){.about-trigger{padding:7px 9px;font-size:12px}.top-actions{gap:6px}}
 @media(prefers-reduced-motion:reduce){.about-backdrop,.about-drawer,.about-link{transition:none}}
 
+
+/* Spiritual articles navigation */
+.spiritual-link{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:38px;padding:7px 13px;border:1px solid rgba(57,255,136,.48);border-radius:999px;color:var(--neon);background:rgba(7,18,13,.82);font:800 13px "Cairo",sans-serif;text-decoration:none;white-space:nowrap;transition:.2s}
+.spiritual-link:hover,.spiritual-link:focus-visible{background:rgba(57,255,136,.12);border-color:var(--neon);box-shadow:var(--glow);outline:none}
+@media(max-width:420px){.top{flex-wrap:wrap}.spiritual-link{margin-inline-start:auto;font-size:12px;padding:6px 10px}}
 </style>
 </head>
 <body>
@@ -211,6 +216,7 @@ html[dir=rtl] .about-drawer{transform:translateX(-105%)}
 <div class="wrap">
   <div class="top">
     <div class="logo"><div class="logo-mark">&gt;_</div><div>BOUHAJ TOOLS<small>by E-BOUHAJ TECH</small></div></div>
+    <a class="spiritual-link" href="spiritual-articles.html">✦ مقالات روحانية</a>
     <button class="lang" id="langBtn">EN</button>
   </div>
 
