@@ -202,14 +202,15 @@ html[dir=rtl] .about-drawer{transform:translateX(-105%)}
 @media(prefers-reduced-motion:reduce){.about-backdrop,.about-drawer,.about-link{transition:none}}
 
 
-/* Floating WhatsApp consultation button */
-.whatsapp-float{position:fixed;z-index:50;inset-inline-start:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:10px;max-width:calc(100vw - 36px);padding:11px 17px 11px 13px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:#25D366;color:#fff;text-decoration:none;font:800 14px "Cairo",sans-serif;box-shadow:0 5px 22px rgba(37,211,102,.38),0 2px 8px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s}
-.whatsapp-float:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(37,211,102,.48),0 3px 10px rgba(0,0,0,.35)}
-.whatsapp-float:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.whatsapp-float svg{width:27px;height:27px;flex:0 0 27px;fill:currentColor}
-.whatsapp-float span{white-space:nowrap}
-@media(max-width:380px){.whatsapp-float{padding:10px 13px 10px 11px;font-size:12px;gap:8px}.whatsapp-float svg{width:24px;height:24px;flex-basis:24px}}
-@media(prefers-reduced-motion:reduce){.whatsapp-float{transition:none}}
+/* Compact WhatsApp action beside the menu; sticky with the top bar */
+.top{position:sticky;top:0;z-index:25;padding:9px 10px 12px;margin:0 -10px 8px;background:rgba(3,8,6,.94);backdrop-filter:blur(12px);border-bottom:1px solid rgba(18,61,41,.65)}
+.whatsapp-top{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;padding:6px 10px;border:1px solid rgba(37,211,102,.55);border-radius:999px;background:rgba(37,211,102,.13);color:#55e889;text-decoration:none;font:800 12px "Cairo",sans-serif;white-space:nowrap;transition:background .2s,border-color .2s}
+.whatsapp-top:hover{background:rgba(37,211,102,.23);border-color:#25D366}
+.whatsapp-top:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.whatsapp-top svg{width:19px;height:19px;flex:0 0 19px;fill:currentColor}
+.whatsapp-top span{white-space:nowrap}
+@media(max-width:380px){.top-actions{gap:5px}.whatsapp-top{min-height:34px;padding:5px 8px;font-size:11px;gap:5px}.whatsapp-top svg{width:17px;height:17px;flex-basis:17px}.about-trigger{padding:6px 8px;min-height:34px}}
+@media(prefers-reduced-motion:reduce){.whatsapp-top{transition:none}}
 
 </style>
 </head>
@@ -523,13 +524,25 @@ fetch('tools.json?v='+Date.now()).then(r=>r.json()).then(d=>{
   trigger.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span></span>';
   const top=document.querySelector('.top');
   const langBtn=document.getElementById('langBtn');
-  if(top&&langBtn){let actions=document.createElement('div');actions.className='top-actions';langBtn.parentNode.insertBefore(actions,langBtn);actions.append(trigger,langBtn);}
+  const whatsapp=document.createElement('a');
+  whatsapp.className='whatsapp-top';
+  whatsapp.href='https://wa.me/212618439834?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%88%D8%B1%D8%AD%D9%85%D8%A9%20%D8%A7%D9%84%D9%84%D9%87%20%D9%88%D8%A8%D8%B1%D9%83%D8%A7%D8%AA%D9%87%20%D9%85%D8%AD%D9%85%D8%AF.';
+  whatsapp.target='_blank';whatsapp.rel='noopener noreferrer';
+  whatsapp.setAttribute('aria-label','استشرني على واتساب');
+  whatsapp.title='استشرني على واتساب';
+  whatsapp.innerHTML='<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 3C8.87 3 3.04 8.78 3.04 15.9c0 2.28.6 4.5 1.75 6.45L3 29l6.85-1.78a13.1 13.1 0 0 0 6.19 1.55h.01c7.17 0 13-5.78 13-12.9 0-3.45-1.36-6.69-3.83-9.13A12.9 12.9 0 0 0 16.04 3zm0 23.58h-.01c-1.9 0-3.76-.51-5.38-1.48l-.39-.23-4.06 1.06 1.08-3.94-.25-.4a10.64 10.64 0 0 1-1.64-5.69c0-5.89 4.81-10.68 10.72-10.68 2.86 0 5.55 1.11 7.57 3.12a10.6 10.6 0 0 1 3.14 7.56c0 5.89-4.81 10.68-10.78 10.68z"/></svg><span>استشرني على واتساب...</span>';
+  const whatsappLabels={ar:'استشرني على واتساب...',en:'WhatsApp consultation',fr:'Me contacter sur WhatsApp'};
+  const actions=document.createElement('div');actions.className='top-actions';
+  if(top&&langBtn){langBtn.parentNode.insertBefore(actions,langBtn);actions.append(trigger,whatsapp,langBtn);}
   const backdrop=document.createElement('div');backdrop.className='about-backdrop';backdrop.innerHTML='<aside class="about-drawer" role="dialog" aria-modal="true" aria-labelledby="aboutDrawerTitle" tabindex="-1"><div class="about-drawer-head"><h2 id="aboutDrawerTitle"></h2><button type="button" class="about-close" aria-label="Close">×</button></div><div class="about-content"></div></aside>';
   document.body.appendChild(backdrop);
   const drawer=backdrop.querySelector('.about-drawer'),content=backdrop.querySelector('.about-content'),close=backdrop.querySelector('.about-close');
   function render(){
     const t=copy[langNow()];
     trigger.querySelector('span').textContent=t.trigger;
+    whatsapp.querySelector('span').textContent=whatsappLabels[langNow()];
+    whatsapp.setAttribute('aria-label',whatsappLabels[langNow()]);
+    whatsapp.title=whatsappLabels[langNow()];
     document.getElementById('aboutDrawerTitle').textContent=t.title;
     close.setAttribute('aria-label',t.close);
     content.innerHTML=
@@ -554,10 +567,7 @@ fetch('tools.json?v='+Date.now()).then(r=>r.json()).then(d=>{
 </script>
 
 
-<a class="whatsapp-float" href="https://wa.me/212618439834?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%88%D8%B1%D8%AD%D9%85%D8%A9%20%D8%A7%D9%84%D9%84%D9%87%20%D9%88%D8%A8%D8%B1%D9%83%D8%A7%D8%AA%D9%87%20%D9%85%D8%AD%D9%85%D8%AF." target="_blank" rel="noopener noreferrer" title="استشرني على واتساب..." aria-label="استشرني على واتساب...">
-  <svg viewBox="0 0 32 32" role="img" aria-hidden="true"><path d="M16.04 3C8.87 3 3.04 8.78 3.04 15.9c0 2.28.6 4.5 1.75 6.45L3 29l6.85-1.78a13.1 13.1 0 0 0 6.19 1.55h.01c7.17 0 13-5.78 13-12.9 0-3.45-1.36-6.69-3.83-9.13A12.9 12.9 0 0 0 16.04 3zm0 23.58h-.01c-1.9 0-3.76-.51-5.38-1.48l-.39-.23-4.06 1.06 1.08-3.94-.25-.4a10.64 10.64 0 0 1-1.64-5.69c0-5.89 4.81-10.68 10.72-10.68 2.86 0 5.55 1.11 7.57 3.12a10.6 10.6 0 0 1 3.14 7.56c0 5.89-4.81 10.68-10.78 10.68zm5.89-8.01c-.32-.16-1.9-.94-2.19-1.05-.29-.1-.5-.16-.71.16-.21.32-.82 1.05-1 1.26-.18.21-.37.24-.69.08-.32-.16-1.35-.5-2.57-1.59-.95-.84-1.59-1.88-1.78-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.98-2.34-.26-.61-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.4-.29.32-1.1 1.08-1.1 2.63s1.13 3.05 1.29 3.26c.16.21 2.22 3.38 5.38 4.74.75.32 1.33.52 1.79.67.75.24 1.43.21 1.97.13.6-.09 1.9-.78 2.17-1.53.27-.76.27-1.4.19-1.53-.08-.13-.29-.21-.61-.37z"/></svg>
-  <span>استشرني على واتساب...</span>
-</a>
+
 
 </body>
 </html>
