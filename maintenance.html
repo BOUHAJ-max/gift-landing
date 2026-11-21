@@ -30,7 +30,7 @@
     if(remaining<=0&&!returned){
       returned=true;
       display.textContent='00:00:00';
-      note.textContent='انتهت مدة الصيانة. جارٍ إعادة تحميل الموقع…';
+      note.textContent='انتهت مدة الصيانة. جارٍ إعادة الموقع للعمل…';
       if(window.parent!==window){
         try{const frame=window.parent.document.getElementById('bouhaj-maintenance-frame');if(frame)frame.remove();window.parent.document.documentElement.classList.remove('maintenance-active');}catch(e){window.top.location.href='/';}
       }else{
