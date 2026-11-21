@@ -3,9 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>أكاديمية Termux | تعلم لينكس والبرمجة من هاتفك</title>
-<meta name="description" content="دليل عملي مجاني لتعلم Termux من الصفر: التثبيت والتحديث وأوامر Linux وPython وNode.js وGit وخادم الويب وأساسيات أمن المعلومات.">
+<title>تعلم Termux من الصفر: دروس Linux وPython وNmap | BOUHAJ</title>
+<meta name="description" content="أكاديمية Termux عربية مجانية: تعلم التثبيت والتحديث وأوامر Linux وإدارة ملفات Android وPython وNode.js وGit وNmap خطوة بخطوة مع أمثلة عملية.">
 <meta name="theme-color" content="#030806">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://go.bouhaj.com/articles/">
+<meta property="og:type" content="website"><meta property="og:locale" content="ar_MA"><meta property="og:site_name" content="BOUHAJ Tools">
+<meta property="og:title" content="أكاديمية Termux | دروس عربية مجانية"><meta property="og:description" content="تعلم Termux وLinux وPython وNode.js وGit من هاتفك عبر دروس عملية مجانية."><meta property="og:url" content="https://go.bouhaj.com/articles/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"أكاديمية Termux","description":"دروس عربية مجانية لتعلم Termux وLinux والبرمجة على Android","url":"https://go.bouhaj.com/articles/","inLanguage":"ar","publisher":{"@type":"Organization","name":"BOUHAJ Tools","url":"https://go.bouhaj.com/"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -27,6 +32,27 @@ a{color:var(--neon)}.wrap{width:min(900px,100% - 28px);margin:auto;padding:18px 
 <p>تعلم كيف تحوّل هاتفك إلى بيئة عمل لينكس مصغّرة: من تثبيت التطبيق وتحديثه، إلى البرمجة وإدارة الملفات وتجربة أدوات الشبكات بطريقة قانونية وآمنة.</p>
 <div class="meta"><span>دليل مجاني</span><span>•</span><span>للمبتدئين والمتقدمين</span><span>•</span><span>إعداد: Mohamed Bouhaj</span></div>
 </section>
+<section class="academy-index" aria-labelledby="lessons-title">
+<h2 id="lessons-title">دروس Termux خطوة بخطوة</h2>
+<p>اختر الدرس الذي تحتاجه، أو ابدأ من التثبيت ثم تابع بالترتيب. لكل موضوع صفحة مستقلة وأوامر وأمثلة عملية.</p>
+<div class="lesson-grid"><a class="lesson-card" href="/articles/install-termux-android/"><span class="lesson-num">01</span><span><strong>تثبيت Termux على أندرويد</strong><small>المصدر الصحيح وخطوات التثبيت الآمن.</small></span><span class="lesson-arrow">←</span></a>
+<a class="lesson-card" href="/articles/update-termux-packages/"><span class="lesson-num">02</span><span><strong>تحديث Termux والحزم</strong><small>أوامر pkg update وpkg upgrade وتجهيز الأدوات.</small></span><span class="lesson-arrow">←</span></a>
+<a class="lesson-card" href="/articles/linux-commands-termux/"><span class="lesson-num">03</span><span><strong>أوامر Linux في Termux</strong><small>شرح pwd وls وcd وإدارة الملفات.</small></span><span class="lesson-arrow">←</span></a>
+<a class="lesson-card" href="/articles/termux-storage-access/"><span class="lesson-num">04</span><span><strong>الوصول إلى ملفات الهاتف</strong><small>تفعيل التخزين والتنقل إلى Download.</small></span><span class="lesson-arrow">←</span></a>
+<a class="lesson-card" href="/articles/python-termux/"><span class="lesson-num">05</span><span><strong>Python على Termux</strong><small>تثبيت Python وتشغيل أول برنامج.</small></span><span class="lesson-arrow">←</span></a>
+<a class="lesson-card" href="/articles/nodejs-termux/"><span class="lesson-num">06</span><span><strong>Node.js على Termux</strong><small>تثبيت Node.js وNPM وتجربة JavaScript.</small></span><span class="lesson-arrow">←</span></a>
+<a class="lesson-card" href="/articles/git-github-termux/"><span class="lesson-num">07</span><span><strong>Git وGitHub من الهاتف</strong><small>إنشاء مستودع محلي واستنساخ المشاريع.</small></span><span class="lesson-arrow">←</span></a>
+<a class="lesson-card" href="/articles/nmap-termux-network-lab/"><span class="lesson-num">08</span><span><strong>Nmap ومختبر الشبكات</strong><small>تثبيت Nmap والتدرب ضمن نطاق مصرح.</small></span><span class="lesson-arrow">←</span></a>
+<a class="lesson-card" href="/articles/local-web-server-termux/"><span class="lesson-num">09</span><span><strong>خادم ويب محلي</strong><small>تشغيل Python HTTP Server على الهاتف.</small></span><span class="lesson-arrow">←</span></a></div>
+</section>
+<style>
+.academy-index{margin:0 0 28px;padding:20px;background:linear-gradient(145deg,#09170f,#050b08);border:1px solid #17442d;border-radius:18px}
+.academy-index h2{color:#39ff88;font-size:22px;margin:0 0 6px}.academy-index>p{color:#9ab6a5;font-size:14px;margin:0 0 16px}
+.lesson-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.lesson-card{display:flex;align-items:center;gap:10px;min-width:0;padding:12px;border:1px solid #17442d;border-radius:12px;background:#06100a;color:#e8fff1;text-decoration:none}
+.lesson-card:hover{border-color:#39ff88}.lesson-num{font:700 12px monospace;color:#39ff88}.lesson-card strong{display:block;font-size:13px}.lesson-card small{display:block;color:#9ab6a5;font-size:11px;line-height:1.5}.lesson-arrow{margin-inline-start:auto;color:#39ff88}
+@media(max-width:560px){.lesson-grid{grid-template-columns:1fr}.academy-index{padding:15px}}
+</style>
 <div class="layout">
 <aside class="toc"><h2>محتويات الدليل</h2><nav>
 <a href="#start">1. ما هو Termux؟</a><a href="#install">2. التثبيت الصحيح</a><a href="#update">3. التحديث الأول</a><a href="#linux">4. أوامر Linux</a><a href="#storage">5. الملفات والتخزين</a><a href="#python">6. Python</a><a href="#node">7. Node.js</a><a href="#git">8. Git وGitHub</a><a href="#network">9. الشبكات وNmap</a><a href="#server">10. خادم ويب محلي</a><a href="#fix">حل المشكلات</a>
