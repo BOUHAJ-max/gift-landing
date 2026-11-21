@@ -9,7 +9,8 @@
 <link rel="canonical" href="https://go.bouhaj.com/">
 <meta property="og:type" content="website"><meta property="og:locale" content="ar_MA"><meta property="og:site_name" content="BOUHAJ TECH">
 <meta property="og:title" content="BOUHAJ TECH | أدوات رقمية مجانية"><meta property="og:description" content="منصة عربية للأدوات الرقمية المجانية والذكاء الاصطناعي والكتب ودروس البرمجة."><meta property="og:url" content="https://go.bouhaj.com/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"BOUHAJ Tools","url":"https://go.bouhaj.com/","inLanguage":["ar","en","fr"],"publisher":{"@type":"Person","name":"Mohamed Bouhaj"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://go.bouhaj.com/#website","name":"BOUHAJ TECH","url":"https://go.bouhaj.com/","inLanguage":["ar","en","fr"],"publisher":{"@id":"https://go.bouhaj.com/#person"}},{"@type":"Person","@id":"https://go.bouhaj.com/#person","name":"Mohamed Bouhaj","url":"https://go.bouhaj.com/","sameAs":["https://www.instagram.com/bouhaj.officiel/","https://www.facebook.com/mohamed.bouhaj.899672","https://www.amazon.com/author/bouhaj"]}]}</script>
+<meta name="author" content="Mohamed Bouhaj"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="BOUHAJ TECH | أدوات رقمية مجانية"><meta name="twitter:description" content="أدوات تقنية وذكاء اصطناعي وكتب مجانية ودروس Termux والبرمجة بالعربية.">
 <meta name="theme-color" content="#030806">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -207,19 +208,11 @@ html[dir=rtl] .about-drawer{transform:translateX(-105%)}
 @media(prefers-reduced-motion:reduce){.about-backdrop,.about-drawer,.about-link{transition:none}}
 
 
-/* Floating WhatsApp consultation button */
-.whatsapp-float{position:fixed;z-index:50;inset-inline-start:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:10px;max-width:calc(100vw - 36px);padding:11px 17px 11px 13px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:#25D366;color:#fff;text-decoration:none;font:800 14px "Cairo",sans-serif;box-shadow:0 5px 22px rgba(37,211,102,.38),0 2px 8px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s}
-.whatsapp-float:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(37,211,102,.48),0 3px 10px rgba(0,0,0,.35)}
-.whatsapp-float:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.whatsapp-float svg{width:27px;height:27px;flex:0 0 27px;fill:currentColor}
-.whatsapp-float span{white-space:nowrap}
-@media(max-width:380px){.whatsapp-float{padding:10px 13px 10px 11px;font-size:12px;gap:8px}.whatsapp-float svg{width:24px;height:24px;flex-basis:24px}}
-@media(prefers-reduced-motion:reduce){.whatsapp-float{transition:none}}
-
-
 .main-nav{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
 .main-nav a{display:inline-flex;align-items:center;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#07120d;color:#b8e9ca;text-decoration:none;font-size:12px;font-weight:800;transition:.2s}
 .main-nav a:hover{border-color:var(--neon);color:var(--neon);transform:translateY(-1px)}
+.main-nav a[data-nav="contact"]{border-color:rgba(37,211,102,.55);color:#8ff0b1}
+.main-nav a[data-nav="privacy"]{border-color:rgba(0,229,255,.4);color:#8eefff}
 @media(max-width:520px){.top{align-items:flex-start}.main-nav{width:100%;justify-content:center}.main-nav a{font-size:11px;padding:7px 10px}}
 </style>
 </head>
@@ -229,9 +222,9 @@ html[dir=rtl] .about-drawer{transform:translateX(-105%)}
 
 <div class="wrap">
   <div class="top">
-    <div class="logo"><div class="logo-mark">&gt;_</div><div>BOUHAJ TOOLS<small>by E-BOUHAJ TECH</small></div></div>
+    <div class="logo"><div class="logo-mark">&gt;_</div><div>BOUHAJ TECH<small>by E-BOUHAJ TECH</small></div></div>
     <button class="lang" id="langBtn">EN</button>
-    <nav class="main-nav" aria-label="التنقل"><a href="#bookPanel">الكتاب المجاني</a><a href="#promptPanel">كود ChatGPT</a><a href="/articles/">أكاديمية Termux</a></nav>
+    <nav class="main-nav" aria-label="التنقل"><a href="#bookPanel" data-nav="book">الكتاب المجاني</a><a href="#promptPanel" data-nav="code">كود ChatGPT</a><a href="/articles/" data-nav="academy">أكاديمية Termux</a><a href="/contact.html" data-nav="contact">تواصل معي</a><a href="/privacy.html" data-nav="privacy">سياسة الخصوصية</a></nav>
   </div>
 
   <section class="hero">
@@ -301,12 +294,12 @@ const T={
  en:{h1:'Your <span class="g">digital hub</span><br>tools, learning and ideas',sub:'Free digital tools, AI resources, books and practical learning guides.',
    q:'Search a tool...',all:'All',get:'Get the tool',soon:'Coming soon',empty:'No tool matches that',chatTitle:'ChatGPT Code',copyPrompt:'⧉ Copy prompt',copyPromptDone:'✓ Copied',copyPromptHint:'Text is preserved in its original encoded format',copyPromptSuccess:'The full encoded text has been copied',copyPromptFallback:'Automatic copy failed; text selected. Long-press and choose Copy.',bookTitle:'Get the AI Wonders of Artificial Intelligence book',bookButton:'Download the book directly',bookKicker:'Featured digital book',bookSubtitle:'21 true stories about machines that fooled people and amazed the world',bookFootnote:'Free PDF — direct download, no offers or redirects',
    steps:['Open the offer page','Review its terms and eligibility requirements','Continue only if the offer suits you'],
-   go:'🔓 Unlock the tool',note:'Offers are provided by external partners and are subject to their terms',close:'Close',
+   go:'🔓 Unlock the tool',note:'External links are governed by their providers’ terms',close:'Close',
    cats:{learning:'Learning',ai:'AI',linux:'Linux',dev:'Development'},status:'system online'},
  fr:{h1:'Votre <span class="g">espace numérique</span><br>outils, savoir et idées',sub:'Des outils gratuits, des ressources IA, des livres numériques et des cours pratiques.',
    q:'Rechercher un outil...',all:'Tout',get:'Obtenir l’outil',soon:'Bientôt disponible',empty:'Aucun outil ne correspond à votre recherche',chatTitle:'Code ChatGPT',copyPrompt:'⧉ Copier le prompt',copyPromptDone:'✓ Copié',copyPromptHint:'Texte conservé dans son format encodé original',copyPromptSuccess:'Le texte encodé complet a été copié',copyPromptFallback:'Copie automatique impossible ; texte sélectionné. Appuyez longuement puis choisissez Copier.',bookTitle:'Découvrez le livre Les curiosités de l’intelligence artificielle',bookButton:'Télécharger le livre directement',bookKicker:'Livre numérique à découvrir',bookSubtitle:'21 histoires vraies de machines qui ont trompé les humains et étonné le monde',bookFootnote:'PDF gratuit — téléchargement direct, sans redirection',
    steps:['Ouvrez la page de l’offre','Consultez les conditions et les critères d’éligibilité','Continuez uniquement si l’offre vous convient'],
-   go:'🔓 Déverrouiller l’outil',note:'Les offres sont proposées par des partenaires externes et soumises à leurs conditions',close:'Fermer',
+   go:'🔓 Déverrouiller l’outil',note:'Les liens externes sont soumis aux conditions de leurs fournisseurs',close:'Fermer',
    cats:{learning:'Apprentissage',ai:'IA',linux:'Linux',dev:'Développement'},status:'système en ligne'}
 };
 const TYPE=['$ sudo unlock --tools','$ ai --generate hooks','$ ./bouhaj --free'];
@@ -393,6 +386,8 @@ function applyLang(){
   $('langBtn').textContent=lang==='ar'?'EN':lang==='en'?'FR':'ع';
   $('h1').innerHTML=t.h1;$('sub').textContent=t.sub;$('q').placeholder=t.q;
   $('empty').textContent=t.empty;$('status').textContent=t.status;$('mClose').textContent=t.close;
+  const navLabels={ar:{book:'الكتاب المجاني',code:'كود ChatGPT',academy:'أكاديمية Termux',contact:'تواصل معي',privacy:'سياسة الخصوصية'},en:{book:'Free book',code:'ChatGPT code',academy:'Termux Academy',contact:'Contact me',privacy:'Privacy policy'},fr:{book:'Livre gratuit',code:'Code ChatGPT',academy:'Académie Termux',contact:'Me contacter',privacy:'Confidentialité'}};
+  document.querySelectorAll('[data-nav]').forEach(a=>{a.textContent=navLabels[lang][a.dataset.nav]||a.textContent});
   $('promptTitle').textContent=t.chatTitle;$('copyPrompt').textContent=t.copyPrompt;$('copyPromptStatus').textContent=t.copyPromptHint;$('bookTitle').textContent=t.bookTitle;$('bookDownloadButton').lastElementChild.textContent=t.bookButton;$('bookKicker').textContent=t.bookKicker;$('bookSubtitle').textContent=t.bookSubtitle;$('bookFootnote').textContent=t.bookFootnote;
   renderChips();render();
 }
@@ -548,7 +543,6 @@ fetch('tools.json?v='+Date.now()).then(r=>r.json()).then(d=>{
       '<section class="about-section"><h3>'+esc(t.careerTitle)+'</h3><p>'+esc(t.career)+'</p></section>'+
       '<section class="about-section"><h3>'+esc(t.booksTitle)+'</h3><p>'+esc(t.books)+'</p></section>'+
       '<section class="about-section"><h3>'+esc(t.interestsTitle)+'</h3><ul>'+t.interests.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></section>'+
-      '<section class="about-section"><h3>'+esc(t.privacyTitle)+'</h3><p>'+esc(t.privacy)+'</p><p style="margin-top:9px">'+esc(t.privacy2)+'</p><p style="margin-top:9px">'+esc(t.privacy3)+'</p></section>'+
       '<section class="about-section"><h3>'+esc(t.linksTitle)+'</h3><div class="about-links">'+
       '<a class="about-link amazon" href="https://www.amazon.com/author/bouhaj" target="_blank" rel="noopener noreferrer">'+icons.amazon+esc(t.amazon)+'</a>'+
       '<a class="about-link instagram" href="https://www.instagram.com/bouhaj.officiel?dmpr=NWdyY2dua2owMXRi" target="_blank" rel="noopener noreferrer">'+icons.instagram+esc(t.instagram)+'</a>'+
@@ -565,10 +559,7 @@ fetch('tools.json?v='+Date.now()).then(r=>r.json()).then(d=>{
 </script>
 
 
-<a class="whatsapp-float" href="https://api.whatsapp.com/send?phone=212618439834&text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%88%D8%B1%D8%AD%D9%85%D8%A9%20%D8%A7%D9%84%D9%84%D9%87%20%D9%88%D8%A8%D8%B1%D9%83%D8%A7%D8%AA%D9%87%20%D9%85%D8%AD%D9%85%D8%AF." target="_blank" rel="noopener noreferrer" title="استشرني على واتساب..." aria-label="استشرني على واتساب...">
-  <svg viewBox="0 0 32 32" role="img" aria-hidden="true"><path d="M16.04 3C8.87 3 3.04 8.78 3.04 15.9c0 2.28.6 4.5 1.75 6.45L3 29l6.85-1.78a13.1 13.1 0 0 0 6.19 1.55h.01c7.17 0 13-5.78 13-12.9 0-3.45-1.36-6.69-3.83-9.13A12.9 12.9 0 0 0 16.04 3zm0 23.58h-.01c-1.9 0-3.76-.51-5.38-1.48l-.39-.23-4.06 1.06 1.08-3.94-.25-.4a10.64 10.64 0 0 1-1.64-5.69c0-5.89 4.81-10.68 10.72-10.68 2.86 0 5.55 1.11 7.57 3.12a10.6 10.6 0 0 1 3.14 7.56c0 5.89-4.81 10.68-10.78 10.68zm5.89-8.01c-.32-.16-1.9-.94-2.19-1.05-.29-.1-.5-.16-.71.16-.21.32-.82 1.05-1 1.26-.18.21-.37.24-.69.08-.32-.16-1.35-.5-2.57-1.59-.95-.84-1.59-1.88-1.78-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.98-2.34-.26-.61-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.4-.29.32-1.1 1.08-1.1 2.63s1.13 3.05 1.29 3.26c.16.21 2.22 3.38 5.38 4.74.75.32 1.33.52 1.79.67.75.24 1.43.21 1.97.13.6-.09 1.9-.78 2.17-1.53.27-.76.27-1.4.19-1.53-.08-.13-.29-.21-.61-.37z"/></svg>
-  <span>استشرني على واتساب...</span>
-</a>
+
 
 </body>
 </html>
