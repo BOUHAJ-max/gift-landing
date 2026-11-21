@@ -27,6 +27,39 @@
       "url": "https://go.bouhaj.com/articles/",
       "buttonText": "افتح الأكاديمية",
       "target": "_self"
+    },
+    {
+      "id": "professional-academy",
+      "icon": "🎓",
+      "category": "learning",
+      "badge": "دورات جديدة",
+      "title": {
+        "ar": "الأكاديمية التقنية",
+        "en": "Technical Academy",
+        "fr": "Académie technique"
+      },
+      "desc": {
+        "ar": "دورات عربية عملية في الأمن السيبراني الأخلاقي وTermux وLinux وPython، مع وحدات وتمارين ومشاريع تطبيقية.",
+        "en": "Practical Arabic courses in ethical cybersecurity, Termux, Linux and Python, with guided modules and projects.",
+        "fr": "Cours pratiques en arabe sur la cybersécurité éthique, Termux, Linux et Python."
+      },
+      "keywords": [
+        "academy",
+        "courses",
+        "cybersecurity",
+        "ethical hacking",
+        "termux",
+        "linux",
+        "python",
+        "أمن سيبراني",
+        "اختبار اختراق أخلاقي",
+        "دورات",
+        "تعلم"
+      ],
+      "url": "https://go.bouhaj.com/academy/",
+      "buttonText": "اكتشف الدورات",
+      "target": "_self",
+      "featured": true
     }
   ]
 }
