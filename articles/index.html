@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>أكاديمية Termux | تعلم لينكس والبرمجة من هاتفك</title>
+<meta name="description" content="دليل عملي مجاني لتعلم Termux من الصفر: التثبيت والتحديث وأوامر Linux وPython وNode.js وGit وخادم الويب وأساسيات أمن المعلومات.">
+<meta name="theme-color" content="#030806">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#030806;--panel:#07120d;--line:#17442d;--neon:#39ff88;--cyan:#00e5ff;--text:#e8fff1;--muted:#9ab6a5;--gold:#ffd23f}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -10%,#10351f 0,transparent 42%),var(--bg);color:var(--text);font-family:Cairo,system-ui,sans-serif;line-height:1.9}
+a{color:var(--neon)}.wrap{width:min(900px,100% - 28px);margin:auto;padding:18px 0 60px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.brand{font:800 14px "JetBrains Mono",monospace;color:var(--neon);direction:ltr}.back{border:1px solid var(--line);border-radius:999px;padding:7px 13px;text-decoration:none;color:var(--text);font-size:13px}
+.hero{padding:42px 8px 30px;text-align:center}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--neon);font:12px "JetBrains Mono",monospace;direction:ltr}.hero h1{font-size:clamp(30px,7vw,54px);line-height:1.25;margin:15px 0}.hero h1 span{color:var(--neon);text-shadow:0 0 20px #39ff8866}.hero p{color:var(--muted);max-width:680px;margin:auto}.meta{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin-top:16px}
+.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:18px;align-items:start}.toc,.article,.lesson{background:linear-gradient(145deg,#09170f,#050b08);border:1px solid var(--line);border-radius:18px}.toc{position:sticky;top:12px;padding:16px}.toc h2{font-size:16px;margin:0 0 10px;color:var(--cyan)}.toc a{display:block;padding:6px 0;color:#c8e5d2;text-decoration:none;font-size:13px;border-bottom:1px solid #12301f}.toc a:hover{color:var(--neon)}.article{padding:clamp(16px,4vw,30px);min-width:0}.intro{font-size:15px;color:#cce2d3}.notice{border-right:3px solid var(--gold);background:#211d0b;padding:12px 14px;border-radius:10px;color:#f5e7ae;font-size:13px;margin:18px 0}.lesson{padding:20px;margin:22px 0;scroll-margin-top:16px}.lesson h2{font-size:21px;margin:0 0 10px;color:var(--neon)}.lesson h3{font-size:16px;color:var(--cyan);margin:18px 0 6px}.lesson p,.lesson li{color:#c7ddce;font-size:14px}.lesson ul,.lesson ol{padding-right:22px}.codebox{position:relative;direction:ltr;text-align:left;background:#020604;border:1px solid #17442d;border-radius:12px;margin:12px 0;overflow:hidden}.codebox pre{margin:0;padding:15px 92px 15px 14px;overflow:auto;color:#aaf5c5;font:13px/1.8 "JetBrains Mono",monospace;white-space:pre}.copy{position:absolute;top:8px;right:8px;border:1px solid #286344;background:#0b1d12;color:var(--neon);border-radius:8px;padding:5px 9px;font:12px Cairo;cursor:pointer}.inline{direction:ltr;unicode-bidi:embed;color:#9fffc1;background:#10271a;padding:1px 5px;border-radius:5px;font-family:"JetBrains Mono",monospace}.ad-slot{display:flex;align-items:center;justify-content:center;margin:22px auto;border:1px dashed #315640;border-radius:12px;color:#779884;background:#06100a;text-align:center;font-size:11px;min-height:64px;max-width:100%;overflow:hidden}.ad-320{width:320px;min-height:50px}.ad-300{width:300px;min-height:250px}.small{font-size:12px!important;color:var(--muted)!important}.end{border-top:1px solid var(--line);padding-top:20px;margin-top:28px;color:var(--muted);font-size:13px}
+@media(max-width:700px){.layout{grid-template-columns:1fr}.toc{position:static}.toc nav{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.lesson{padding:16px}.lesson h2{font-size:19px}}
+@media(max-width:360px){.toc nav{grid-template-columns:1fr}.codebox pre{font-size:11px;padding-right:78px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><a class="back" href="/">← العودة إلى BOUHAJ Tools</a><div class="brand">BOUHAJ TECH / TERMUX</div></header>
+<section class="hero">
+<span class="pill">ANDROID • LINUX • OPEN SOURCE</span>
+<h1>أكاديمية <span>Termux</span></h1>
+<p>تعلم كيف تحوّل هاتفك إلى بيئة عمل لينكس مصغّرة: من تثبيت التطبيق وتحديثه، إلى البرمجة وإدارة الملفات وتجربة أدوات الشبكات بطريقة قانونية وآمنة.</p>
+<div class="meta"><span>دليل مجاني</span><span>•</span><span>للمبتدئين والمتقدمين</span><span>•</span><span>إعداد: Mohamed Bouhaj</span></div>
+</section>
+<div class="layout">
+<aside class="toc"><h2>محتويات الدليل</h2><nav>
+<a href="#start">1. ما هو Termux؟</a><a href="#install">2. التثبيت الصحيح</a><a href="#update">3. التحديث الأول</a><a href="#linux">4. أوامر Linux</a><a href="#storage">5. الملفات والتخزين</a><a href="#python">6. Python</a><a href="#node">7. Node.js</a><a href="#git">8. Git وGitHub</a><a href="#network">9. الشبكات وNmap</a><a href="#server">10. خادم ويب محلي</a><a href="#fix">حل المشكلات</a>
+</nav></aside>
+<main class="article">
+<p class="intro">هذا الدليل يرافقك خطوة بخطوة. افتح تطبيق Termux واكتب الأوامر كما هي، مع الانتباه إلى أن الأوامر حساسة للأحرف والمسافات. لا تنفّذ أمراً لا تفهمه، خصوصاً الأوامر التي تحذف الملفات أو تغيّر صلاحياتها.</p>
+<div class="notice"><strong>تنبيه أمني:</strong> استخدم أدوات الشبكات على أجهزتك أو الشبكات التي تملكها أو لديك إذن صريح لاختبارها. هذا الدليل للتعلم والإدارة المشروعة، وليس لاختراق حسابات أو أجهزة الآخرين.</div>
+<!-- ADSTERRA_BANNER_320x50_SLOT: ضع كود Banner 320x50 هنا بعد استلامه -->
+<div class="ad-slot ad-320" aria-label="مساحة إعلانية">مساحة إعلان 320×50 — ستُفعّل بعد إضافة شفرة Adsterra</div>
+
+<section class="lesson" id="start"><h2>1. ما هو Termux؟</h2>
+<p>Termux تطبيق يوفر طرفية وبيئة Linux على Android دون الحاجة إلى صلاحيات Root. تستطيع من خلاله إدارة الملفات، تثبيت أدوات التطوير، تشغيل Python وNode.js، واستخدام Git وبعض أدوات الشبكات.</p>
+<p>هو ليس توزيعة Linux كاملة بواجهة رسومية افتراضياً؛ بل بيئة سطر أوامر قابلة للتوسّع بحزم تُثبّت عند الحاجة.</p></section>
+
+<section class="lesson" id="install"><h2>2. تثبيت Termux بطريقة صحيحة</h2>
+<ol><li>نزّل Termux من مصدره الرسمي الموثوق مثل صفحة المشروع على GitHub أو F-Droid.</li><li>تحقق من اسم المطوّر والمصدر قبل التثبيت، وتجنب ملفات APK المعدّلة أو المواقع المجهولة.</li><li>إذا احتجت إضافات Termux، ثبّتها من المصدر نفسه الذي ثبّت منه التطبيق؛ لا تخلط نسخاً بتوقيعات مختلفة.</li><li>افتح التطبيق وانتظر ظهور سطر الأوامر.</li></ol>
+<p>المصدر: <a href="https://github.com/termux/termux-app" target="_blank" rel="noopener noreferrer">مستودع Termux الرسمي</a> · <a href="https://f-droid.org/packages/com.termux/" target="_blank" rel="noopener noreferrer">صفحة Termux على F-Droid</a>.</p></section>
+
+<section class="lesson" id="update"><h2>3. التحديث الأول وتجهيز البيئة</h2>
+<p>ابدأ بتحديث قوائم الحزم ثم تثبيت التحديثات المتاحة:</p>
+<div class="codebox"><button class="copy" type="button">نسخ</button><pre>pkg update && pkg upgrade</pre></div>
+<p>قد يُطلب منك تأكيد العملية بكتابة <span class="inline">y</span> ثم الضغط على Enter. بعد ذلك ثبّت أدوات أساسية تحتاجها كثيراً:</p>
+<div class="codebox"><button class="copy" type="button">نسخ</button><pre>pkg install git python nano curl wget</pre></div>
+<p>لفهم المساعدة العامة:</p><div class="codebox"><button class="copy" type="button">نسخ</button><pre>pkg help
+pkg list-installed</pre></div>
+</section>
+
+<section class="lesson" id="linux"><h2>4. أهم أوامر Linux للمبتدئين</h2>
+<ul><li><span class="inline">pwd</span> عرض المسار الحالي.</li><li><span class="inline">ls</span> عرض الملفات والمجلدات.</li><li><span class="inline">ls -la</span> عرض الملفات المخفية والتفاصيل.</li><li><span class="inline">cd اسم_المجلد</span> الدخول إلى مجلد.</li><li><span class="inline">cd ..</span> الرجوع إلى المجلد السابق.</li><li><span class="inline">mkdir projects</span> إنشاء مجلد.</li><li><span class="inline">touch note.txt</span> إنشاء ملف فارغ.</li><li><span class="inline">cp source.txt copy.txt</span> نسخ ملف.</li><li><span class="inline">mv old.txt new.txt</span> نقل ملف أو تغيير اسمه.</li><li><span class="inline">cat note.txt</span> عرض محتوى ملف نصي.</li><li><span class="inline">rm note.txt</span> حذف ملف؛ لا تستخدمه قبل التأكد من الاسم والمسار.</li></ul>
+<div class="notice">تحذير: الأمر <span class="inline">rm -rf</span> قد يحذف مجلدات كاملة دون طلب تأكيد. لا تنسخه من الإنترنت عشوائياً ولا تستخدمه على مسارات لا تعرفها.</div></section>
+
+<section class="lesson" id="storage"><h2>5. الوصول إلى ملفات الهاتف</h2>
+<p>لإتاحة مجلد التخزين المشترك للتطبيق، نفّذ:</p>
+<div class="codebox"><button class="copy" type="button">نسخ</button><pre>termux-setup-storage</pre></div>
+<p>وافق على إذن الوصول الذي يعرضه Android. بعد ذلك ستجد اختصارات التخزين داخل:</p>
+<div class="codebox"><button class="copy" type="button">نسخ</button><pre>ls ~/storage
+cd ~/storage/shared</pre></div>
+<p class="small">لا تمنح تطبيقات غير موثوقة صلاحيات الوصول إلى ملفاتك، ولا تضع كلمات المرور أو المفاتيح الخاصة في مجلدات مشتركة.</p></section>
+
+<!-- ADSTERRA_BANNER_300x250_SLOT: ضع كود Banner 300x250 هنا بعد استلامه -->
+<div class="ad-slot ad-300" aria-label="مساحة إعلانية">مساحة إعلان 300×250 — ستُفعّل بعد إضافة شفرة Adsterra</div>
+
+<section class="lesson" id="python"><h2>6. تثبيت Python وتشغيل أول برنامج</h2>
+<div class="codebox"><button class="copy" type="button">نسخ</button><pre>pkg install python
+python --version</pre></div>
+<p>أنشئ ملفاً بسيطاً:</p><div class="codebox"><button class="copy" type="button">نسخ</button><pre>mkdir -p ~/projects
+cd ~/projects
+nano hello.py</pre></div>
+<p>اكتب داخله:</p><div class="codebox"><button class="copy" type="button">نسخ</button><pre>print("Hello from Termux!")</pre></div>
+<p>احفظ في nano باستخدام Ctrl+O ثم Enter، واخرج بـ Ctrl+X، ثم شغّل:</p><div class="codebox"><button class="copy" type="button">نسخ</button><pre>python hello.py</pre></div>
+<p>لتثبيت مكتبة لمشروعك، استخدم <span class="inline">python -m pip install اسم_المكتبة</span> بعد قراءة توثيقها ومصدرها.</p></section>
+
+<section class="lesson" id="node"><h2>7. تثبيت Node.js</h2>
+<div class="codebox"><button class="copy" type="button">نسخ</button><pre>pkg install nodejs
+node --version
+npm --version</pre></div>
+<p>جرّب JavaScript مباشرة:</p><div class="codebox"><button class="copy" type="button">نسخ</button><pre>node -e "console.log('Hello from Node.js')"</pre></div>
+<p>يمكنك إنشاء مشروع خاص بك داخل <span class="inline">~/projects</span> وتثبيت الحزم التي يحتاجها فقط، مع مراجعة اسم الحزمة ومصدرها قبل التثبيت.</p></section>
+
+<section class="lesson" id="git"><h2>8. استعمال Git وGitHub</h2>
+<p>Git يساعدك على تتبع تغييرات ملفات مشاريعك. ابدأ بإنشاء مجلد مشروع:</p>
+<div class="codebox"><button class="copy" type="button">نسخ</button><pre>pkg install git
+mkdir my-project
+cd my-project
+git init
+echo "# My project" > README.md
+git status</pre></div>
+<p>لنسخ مستودع عام تملكه أو تريد المساهمة فيه:</p><div class="codebox"><button class="copy" type="button">نسخ</button><pre>git clone https://github.com/USERNAME/REPOSITORY.git</pre></div>
+<p>لا تضع رمز الوصول الشخصي (Token) أو كلمة المرور داخل ملف منشور أو أمر محفوظ في سجل الطرفية. استخدم وسائل المصادقة الرسمية والآمنة.</p></section>
+
+<section class="lesson" id="network"><h2>9. أساسيات الشبكات وتجربة Nmap بإذن</h2>
+<p>يمكن استخدام أدوات الشبكات لفهم الأجهزة والخدمات في مختبرك المنزلي أو شبكة تملك تصريحاً لاختبارها. ثبّت Nmap:</p>
+<div class="codebox"><button class="copy" type="button">نسخ</button><pre>pkg install nmap
+nmap --version</pre></div>
+<p>في مختبرك فقط، يمكنك فحص جهاز محدد تعرف عنوانه وتملك الإذن لفحصه:</p>
+<div class="codebox"><button class="copy" type="button">نسخ</button><pre>nmap -sV 192.168.1.10</pre></div>
+<p class="small">استبدل العنوان بعنوان جهازك التجريبي. لا تفحص نطاقات عامة أو شبكات الآخرين دون موافقة واضحة ومسبقة.</p></section>
+
+<section class="lesson" id="server"><h2>10. تشغيل خادم ويب محلي</h2>
+<p>لخدمة ملفات مجلد محلياً على هاتفك، انتقل إلى المجلد ثم شغّل خادم Python على واجهة loopback:</p>
+<div class="codebox"><button class="copy" type="button">نسخ</button><pre>cd ~/projects
+python -m http.server 8000 --bind 127.0.0.1</pre></div>
+<p>افتح المتصفح على الهاتف واكتب <span class="inline">http://127.0.0.1:8000</span>. لإيقاف الخادم ارجع إلى Termux واضغط Ctrl+C.</p>
+<div class="notice">هذا خادم تجريبي بسيط وليس استضافة إنتاجية. لا تعرض مجلدات تحتوي على ملفات خاصة، ولا تربطه بالإنترنت العام دون إعداد حماية مناسب.</div></section>
+
+<section class="lesson" id="fix"><h2>حل مشكلات شائعة</h2>
+<h3>الحزم لا تُحدّث</h3><p>تأكد من اتصال الإنترنت ثم جرّب:</p><div class="codebox"><button class="copy" type="button">نسخ</button><pre>pkg update</pre></div>
+<h3>الأمر غير موجود</h3><p>تحقق من اسم الحزمة وثبّتها باستخدام <span class="inline">pkg install اسم_الحزمة</span> إذا كانت متاحة في مستودعات Termux.</p>
+<h3>امتلأت مساحة التخزين</h3><p>اعرف حجم المجلدات قبل حذف أي شيء. لا تنفّذ أوامر حذف جماعية لا تفهمها.</p>
+<h3>توقفت العملية أو تريد الخروج</h3><p>استخدم Ctrl+C لإيقاف الأمر الجاري، وCtrl+D لإنهاء جلسة الطرفية في الحالات المناسبة.</p></section>
+
+<div class="end"><strong>كلمة أخيرة من Mohamed Bouhaj:</strong><p>تعلم Termux بالتجربة الهادئة: افهم الأمر، جرّبه داخل مجلد تجريبي، ثم انتقل إلى الخطوة التالية. لا تحتاج إلى تنفيذ عشرات الأوامر دفعة واحدة؛ الاستمرار والفهم أهم من السرعة.</p><p><a href="/">العودة إلى الصفحة الرئيسية</a> · <a href="https://github.com/termux/termux-app" target="_blank" rel="noopener noreferrer">المشروع الرسمي لـ Termux</a></p></div>
+</main>
+</div>
+</div>
+<script>
+document.querySelectorAll('.copy').forEach(button=>button.addEventListener('click',async()=>{
+ const code=button.parentElement.querySelector('pre').innerText;
+ try{await navigator.clipboard.writeText(code);button.textContent='تم النسخ ✓';}
+ catch(e){button.textContent='انسخ يدوياً';}
+ setTimeout(()=>button.textContent='نسخ',1800);
+}));
+</script>
+</body>
+</html>
