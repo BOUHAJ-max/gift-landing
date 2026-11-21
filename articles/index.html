@@ -19,7 +19,7 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -10%,#10351f 0,transparent 42%),var(--bg);color:var(--text);font-family:Cairo,system-ui,sans-serif;line-height:1.9}
 a{color:var(--neon)}.wrap{width:min(900px,100% - 28px);margin:auto;padding:18px 0 60px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.brand{font:800 14px "JetBrains Mono",monospace;color:var(--neon);direction:ltr}.back{border:1px solid var(--line);border-radius:999px;padding:7px 13px;text-decoration:none;color:var(--text);font-size:13px}
 .hero{padding:42px 8px 30px;text-align:center}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--neon);font:12px "JetBrains Mono",monospace;direction:ltr}.hero h1{font-size:clamp(30px,7vw,54px);line-height:1.25;margin:15px 0}.hero h1 span{color:var(--neon);text-shadow:0 0 20px #39ff8866}.hero p{color:var(--muted);max-width:680px;margin:auto}.meta{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin-top:16px}
-.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:18px;align-items:start}.toc,.article,.lesson{background:linear-gradient(145deg,#09170f,#050b08);border:1px solid var(--line);border-radius:18px}.toc{position:sticky;top:12px;padding:16px}.toc h2{font-size:16px;margin:0 0 10px;color:var(--cyan)}.toc a{display:block;padding:6px 0;color:#c8e5d2;text-decoration:none;font-size:13px;border-bottom:1px solid #12301f}.toc a:hover{color:var(--neon)}.article{padding:clamp(16px,4vw,30px);min-width:0}.intro{font-size:15px;color:#cce2d3}.notice{border-right:3px solid var(--gold);background:#211d0b;padding:12px 14px;border-radius:10px;color:#f5e7ae;font-size:13px;margin:18px 0}.lesson{padding:20px;margin:22px 0;scroll-margin-top:16px}.lesson h2{font-size:21px;margin:0 0 10px;color:var(--neon)}.lesson h3{font-size:16px;color:var(--cyan);margin:18px 0 6px}.lesson p,.lesson li{color:#c7ddce;font-size:14px}.lesson ul,.lesson ol{padding-right:22px}.codebox{position:relative;direction:ltr;text-align:left;background:#020604;border:1px solid #17442d;border-radius:12px;margin:12px 0;overflow:hidden}.codebox pre{margin:0;padding:15px 92px 15px 14px;overflow:auto;color:#aaf5c5;font:13px/1.8 "JetBrains Mono",monospace;white-space:pre}.copy{position:absolute;top:8px;right:8px;border:1px solid #286344;background:#0b1d12;color:var(--neon);border-radius:8px;padding:5px 9px;font:12px Cairo;cursor:pointer}.inline{direction:ltr;unicode-bidi:embed;color:#9fffc1;background:#10271a;padding:1px 5px;border-radius:5px;font-family:"JetBrains Mono",monospace}.ad-slot{display:flex;align-items:center;justify-content:center;margin:22px auto;border:1px dashed #315640;border-radius:12px;color:#779884;background:#06100a;text-align:center;font-size:11px;min-height:64px;max-width:100%;overflow:hidden}.ad-320{width:320px;min-height:50px}.ad-300{width:300px;min-height:250px}.small{font-size:12px!important;color:var(--muted)!important}.end{border-top:1px solid var(--line);padding-top:20px;margin-top:28px;color:var(--muted);font-size:13px}
+.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:18px;align-items:start}.toc,.article,.lesson{background:linear-gradient(145deg,#09170f,#050b08);border:1px solid var(--line);border-radius:18px}.toc{position:sticky;top:12px;padding:16px}.toc h2{font-size:16px;margin:0 0 10px;color:var(--cyan)}.toc a{display:block;padding:6px 0;color:#c8e5d2;text-decoration:none;font-size:13px;border-bottom:1px solid #12301f}.toc a:hover{color:var(--neon)}.article{padding:clamp(16px,4vw,30px);min-width:0}.intro{font-size:15px;color:#cce2d3}.notice{border-right:3px solid var(--gold);background:#211d0b;padding:12px 14px;border-radius:10px;color:#f5e7ae;font-size:13px;margin:18px 0}.lesson{padding:20px;margin:22px 0;scroll-margin-top:16px}.lesson h2{font-size:21px;margin:0 0 10px;color:var(--neon)}.lesson h3{font-size:16px;color:var(--cyan);margin:18px 0 6px}.lesson p,.lesson li{color:#c7ddce;font-size:14px}.lesson ul,.lesson ol{padding-right:22px}.codebox{position:relative;direction:ltr;text-align:left;background:#020604;border:1px solid #17442d;border-radius:12px;margin:12px 0;overflow:hidden}.codebox pre{margin:0;padding:15px 92px 15px 14px;overflow:auto;color:#aaf5c5;font:13px/1.8 "JetBrains Mono",monospace;white-space:pre}.copy{position:absolute;top:8px;right:8px;border:1px solid #286344;background:#0b1d12;color:var(--neon);border-radius:8px;padding:5px 9px;font:12px Cairo;cursor:pointer}.inline{direction:ltr;unicode-bidi:embed;color:#9fffc1;background:#10271a;padding:1px 5px;border-radius:5px;font-family:"JetBrains Mono",monospace}.small{font-size:12px!important;color:var(--muted)!important}.end{border-top:1px solid var(--line);padding-top:20px;margin-top:28px;color:var(--muted);font-size:13px}
 @media(max-width:700px){.layout{grid-template-columns:1fr}.toc{position:static}.toc nav{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.lesson{padding:16px}.lesson h2{font-size:19px}}
 @media(max-width:360px){.toc nav{grid-template-columns:1fr}.codebox pre{font-size:11px;padding-right:78px}}
 </style>
@@ -61,20 +61,6 @@ a{color:var(--neon)}.wrap{width:min(900px,100% - 28px);margin:auto;padding:18px 
 <main class="article">
 <p class="intro">هذا الدليل يرافقك خطوة بخطوة. افتح تطبيق Termux واكتب الأوامر كما هي، مع الانتباه إلى أن الأوامر حساسة للأحرف والمسافات. لا تنفّذ أمراً لا تفهمه، خصوصاً الأوامر التي تحذف الملفات أو تغيّر صلاحياتها.</p>
 <div class="notice"><strong>تنبيه أمني:</strong> استخدم أدوات الشبكات على أجهزتك أو الشبكات التي تملكها أو لديك إذن صريح لاختبارها. هذا الدليل للتعلم والإدارة المشروعة، وليس لاختراق حسابات أو أجهزة الآخرين.</div>
-<div class="ad-slot ad-320" aria-label="إعلان">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
-<script>
-  atOptions = {
-    'key' : '796e54508a219c27e90dccf6a6a0dbf7',
-    'format' : 'iframe',
-    'height' : 50,
-    'width' : 320,
-    'params' : {}
-  };
-</script>
-<script src="https://bauval.org/22/796e54508a219c27e90dccf6a6a0dbf7"></script>
-</div>
-
 <section class="lesson" id="start"><h2>1. ما هو Termux؟</h2>
 <p>Termux تطبيق يوفر طرفية وبيئة Linux على Android دون الحاجة إلى صلاحيات Root. تستطيع من خلاله إدارة الملفات، تثبيت أدوات التطوير، تشغيل Python وNode.js، واستخدام Git وبعض أدوات الشبكات.</p>
 <p>هو ليس توزيعة Linux كاملة بواجهة رسومية افتراضياً؛ بل بيئة سطر أوامر قابلة للتوسّع بحزم تُثبّت عند الحاجة.</p></section>
@@ -103,20 +89,6 @@ pkg list-installed</pre></div>
 <div class="codebox"><button class="copy" type="button">نسخ</button><pre>ls ~/storage
 cd ~/storage/shared</pre></div>
 <p class="small">لا تمنح تطبيقات غير موثوقة صلاحيات الوصول إلى ملفاتك، ولا تضع كلمات المرور أو المفاتيح الخاصة في مجلدات مشتركة.</p></section>
-
-<div class="ad-slot ad-300" aria-label="إعلان">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
-<script>
-  atOptions = {
-    'key' : '1c8fbdc848e322395dace42db5072e34',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script src="https://bauval.org/22/1c8fbdc848e322395dace42db5072e34"></script>
-</div>
 
 <section class="lesson" id="python"><h2>6. تثبيت Python وتشغيل أول برنامج</h2>
 <div class="codebox"><button class="copy" type="button">نسخ</button><pre>pkg install python
