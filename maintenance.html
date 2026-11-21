@@ -32,7 +32,7 @@
       display.textContent='00:00:00';
       note.textContent='انتهت مدة الصيانة. جارٍ إعادة تحميل الموقع…';
       if(window.parent!==window){
-        try{window.parent.location.reload();}catch(e){window.top.location.href='/';}
+        try{const frame=window.parent.document.getElementById('bouhaj-maintenance-frame');if(frame)frame.remove();window.parent.document.documentElement.classList.remove('maintenance-active');}catch(e){window.top.location.href='/';}
       }else{
         note.textContent='انتهت مدة الصيانة. يمكنك الآن زيارة الصفحة الرئيسية.';
         const link=document.createElement('a');link.href='/';link.textContent='الانتقال إلى الموقع';note.appendChild(link);
