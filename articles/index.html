@@ -4,14 +4,14 @@
 <script src="/maintenance-mode.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>تعلم Termux من الصفر: دروس Linux وPython وNmap | BOUHAJ</title>
-<meta name="description" content="أكاديمية تقنية عربية مجانية تضم 15 دليلاً عملياً في Termux وLinux والشبكات وPython وGit وأمن الويب والنسخ الاحتياطي.">
-<meta name="theme-color" content="#030806">
+<title>مكتبة الدروس التقنية | Termux وLinux وPython | BOUHAJ TECH</title>
+<meta name="description" content="مكتبة BOUHAJ TECH تضم 15 دليلاً تقنياً منظماً في Termux وLinux والشبكات وPython وGit وأمن الويب والنسخ الاحتياطي، مع أمثلة عملية وروابط للمصادر.">
+<meta name="theme-color" content="#0b1220">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://go.bouhaj.com/articles/">
-<meta property="og:type" content="website"><meta property="og:locale" content="ar_MA"><meta property="og:site_name" content="BOUHAJ Tools">
-<meta property="og:title" content="أكاديمية Termux | دروس عربية مجانية"><meta property="og:description" content="تعلم Termux وLinux والشبكات وPython وGit وأمن الويب عبر 15 دليلاً تقنياً عربياً مجانياً."><meta property="og:url" content="https://go.bouhaj.com/articles/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"أكاديمية Termux","description":"مكتبة تقنية عربية تضم أدلة مجانية في Termux وLinux والشبكات والبرمجة والأمن الرقمي","url":"https://go.bouhaj.com/articles/","inLanguage":"ar","publisher":{"@type":"Organization","name":"BOUHAJ Tools","url":"https://go.bouhaj.com/"}}</script>
+<meta property="og:type" content="website"><meta property="og:locale" content="ar_MA"><meta property="og:site_name" content="BOUHAJ TECH">
+<meta property="og:title" content="مكتبة الدروس التقنية | BOUHAJ TECH"><meta property="og:description" content="15 دليلاً تقنياً منظماً في Termux وLinux وPython والشبكات وأمن الويب."><meta property="og:url" content="https://go.bouhaj.com/articles/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"مكتبة الدروس التقنية","description":"مكتبة تضم أدلة عملية في Termux وLinux والشبكات والبرمجة والأمن الرقمي","url":"https://go.bouhaj.com/articles/","inLanguage":"ar","publisher":{"@type":"Organization","name":"BOUHAJ Tools","url":"https://go.bouhaj.com/"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -41,20 +41,52 @@ a{color:#70dfc4}
 .intro{color:#c1d1e2}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 
+
+/* Editorial layout refinement */
+.top{align-items:center;padding:10px 0 16px;border-bottom:1px solid #263c52}
+.top-links{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-start}
+.hero{padding-bottom:34px}
+.academy-index{margin:0 0 34px;padding:clamp(18px,3vw,28px);background:linear-gradient(150deg,#17283c,#111e2e);border:1px solid #2b435b;border-radius:20px;box-shadow:0 14px 34px rgba(0,0,0,.16)}
+.section-heading{margin-bottom:18px}
+.section-kicker{display:inline-block;color:#72e2c9;font:700 11px "JetBrains Mono",monospace;letter-spacing:1px;direction:ltr}
+.academy-index h2,.guide-heading h2{color:#f2f7ff;font-size:clamp(21px,3vw,28px);margin:5px 0 6px}
+.academy-index .section-heading p,.guide-heading p{color:#a6b8cb;font-size:14px;margin:0}
+.lesson-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.lesson-card{min-height:78px;padding:13px 14px;background:linear-gradient(145deg,#1b3047,#142338);border-color:#304a64;border-radius:14px;color:#edf5ff;transition:transform .18s,border-color .18s,background .18s}
+.lesson-card:hover{border-color:#39d6b0;background:linear-gradient(145deg,#203b51,#172b40);transform:translateY(-2px)}
+.lesson-num{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:9px;background:#183a49;color:#72e2c9;font-weight:800}
+.lesson-card strong{font-size:13px;line-height:1.5}
+.lesson-card small{color:#a6b8cb;font-size:11px}
+.lesson-arrow{color:#72e2c9}
+.guide-heading{margin:0 0 16px;padding:0 4px}
+.layout{grid-template-columns:230px minmax(0,1fr);gap:16px}
+.toc,.article{border-color:#2b435b;border-radius:18px}
+.toc{background:linear-gradient(150deg,#17283c,#111e2e)}
+.toc h2{color:#8db7ff}.toc a{border-color:#2b435b;color:#c5d6e8}
+.article{background:linear-gradient(150deg,#17283c,#111e2e)}
+.lesson{background:rgba(10,20,33,.38);border-color:#304a64}
+.lesson h2{color:#72e2c9}.lesson h3{color:#8db7ff}
+.lesson p,.lesson li{color:#c5d6e8}
+.codebox{background:#091321;border-color:#304a64}
+.codebox pre{color:#b9e7dc}.inline{background:#1a3045;color:#a9c9ff}
+.notice{background:rgba(91,68,24,.22);border-right-color:#f4c66a;color:#f1dfb0}
+.end{border-color:#304a64;color:#a6b8cb}
+@media(max-width:700px){.top{align-items:flex-start}.top-links{width:100%;justify-content:center}.lesson-grid{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.toc{position:static}.toc nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:380px){.toc nav{grid-template-columns:1fr}.top-links{gap:6px}.back{font-size:12px;padding:6px 10px}}
+
 </style>
 </head>
 <body>
 <div class="wrap">
-<header class="top"><a class="back" href="/">← العودة إلى BOUHAJ Tools</a><a class="back" href="/academy/">الدورات التقنية</a><a class="back" href="/experiences/">تجاربي الروحية</a><div class="brand">BOUHAJ TECH / TERMUX</div></header>
+<header class="top"><div class="brand">BOUHAJ TECH</div><nav class="top-links" aria-label="التنقل"><a class="back" href="/">الرئيسية</a><a class="back" href="/academy/">الدورات</a><a class="back" href="/experiences/">التجارب</a><a class="back" href="/about.html">من نحن</a><a class="back" href="/contact.html">تواصل</a></nav></header>
 <section class="hero">
-<span class="pill">ANDROID • LINUX • OPEN SOURCE</span>
-<h1>أكاديمية <span>Termux</span></h1>
-<p>تعلم كيف تحوّل هاتفك إلى بيئة عمل لينكس مصغّرة: من تثبيت التطبيق وتحديثه، إلى البرمجة وإدارة الملفات وتجربة أدوات الشبكات بطريقة قانونية وآمنة.</p>
-<div class="meta"><span>دليل مجاني</span><span>•</span><span>للمبتدئين والمتقدمين</span><span>•</span><span>إعداد: Mohamed Bouhaj</span></div>
+<span class="pill">TECHNICAL KNOWLEDGE • PRACTICAL GUIDES</span>
+<h1>مكتبة <span>الدروس التقنية</span></h1>
+<p>مسارات واضحة للتعلم العملي في Termux وLinux والبرمجة والشبكات وأساسيات أمن الويب. اختر موضوعاً للبدء، ثم انتقل إلى الدروس المرتبطة به.</p>
+<div class="meta"><span>15 دليلاً تقنياً</span><span>•</span><span>محتوى عربي عملي</span><span>•</span><span>إعداد: Mohamed Bouhaj</span></div>
 </section>
-<section class="academy-index" aria-labelledby="lessons-title">
-<h2 id="lessons-title">دروس Termux خطوة بخطوة</h2>
-<p>اختر الدرس الذي تحتاجه، أو ابدأ من التثبيت ثم تابع بالترتيب. لكل موضوع صفحة مستقلة وأوامر وأمثلة عملية.</p>
+<section class="academy-index" id="library" aria-labelledby="lessons-title">
+<div class="section-heading"><span class="section-kicker">01 / EXPLORE</span><h2 id="lessons-title">تصفّح الدروس حسب الموضوع</h2><p>اختر أحد الأدلة الخمسة عشر. ابدأ بالأساسيات ثم انتقل إلى البرمجة والشبكات والحماية.</p></div>
 <div class="lesson-grid"><a class="lesson-card" href="/articles/install-termux-android/"><span class="lesson-num">01</span><span><strong>تثبيت Termux على أندرويد</strong><small>المصدر الصحيح وخطوات التثبيت الآمن.</small></span><span class="lesson-arrow">←</span></a>
 <a class="lesson-card" href="/articles/update-termux-packages/"><span class="lesson-num">02</span><span><strong>تحديث Termux والحزم</strong><small>أوامر pkg update وpkg upgrade وتجهيز الأدوات.</small></span><span class="lesson-arrow">←</span></a>
 <a class="lesson-card" href="/articles/linux-commands-termux/"><span class="lesson-num">03</span><span><strong>أوامر Linux في Termux</strong><small>شرح pwd وls وcd وإدارة الملفات.</small></span><span class="lesson-arrow">←</span></a>
@@ -79,6 +111,7 @@ a{color:#70dfc4}
 .lesson-card:hover{border-color:#39ff88}.lesson-num{font:700 12px monospace;color:#39ff88}.lesson-card strong{display:block;font-size:13px}.lesson-card small{display:block;color:#9ab6a5;font-size:11px;line-height:1.5}.lesson-arrow{margin-inline-start:auto;color:#39ff88}
 @media(max-width:560px){.lesson-grid{grid-template-columns:1fr}.academy-index{padding:15px}}
 </style>
+<section class="guide-heading" id="full-guide"><span class="section-kicker">02 / LEARN</span><h2>الدليل الشامل: Termux من البداية</h2><p>مرجع متدرّج يشرح الإعداد والأوامر الأساسية والبرمجة وإدارة الملفات، مع تنبيهات السلامة.</p></section>
 <div class="layout">
 <aside class="toc"><h2>محتويات الدليل</h2><nav>
 <a href="#start">1. ما هو Termux؟</a><a href="#install">2. التثبيت الصحيح</a><a href="#update">3. التحديث الأول</a><a href="#linux">4. أوامر Linux</a><a href="#storage">5. الملفات والتخزين</a><a href="#python">6. Python</a><a href="#node">7. Node.js</a><a href="#git">8. Git وGitHub</a><a href="#network">9. الشبكات وNmap</a><a href="#server">10. خادم ويب محلي</a><a href="#fix">حل المشكلات</a>
