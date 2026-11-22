@@ -258,7 +258,7 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 .pwa-steps{display:grid;gap:9px;margin:14px 0 4px;padding:0;list-style:none}
 .pwa-steps li{display:flex;align-items:flex-start;gap:10px;padding:11px 12px;border:1px solid #2b435b;border-radius:12px;background:#17283c;font-size:13px;line-height:1.7}
 .pwa-steps b{display:grid;place-items:center;flex:none;width:25px;height:25px;border-radius:8px;background:#21483f;color:#8cebd4;font:800 12px "JetBrains Mono",monospace}
-.pwa-modal-note{margin-top:13px;color:#8fa7bd;font-size:11px;line-height:1.7}
+.pwa-external-browser{display:block;margin-top:13px;padding:12px;border-radius:11px;background:#21483f;color:#b8f8e9;text-align:center;text-decoration:none;font-weight:900;font-size:13px}.pwa-external-browser[hidden]{display:none}.pwa-modal-note{margin-top:13px;color:#8fa7bd;font-size:11px;line-height:1.7}
 @media(min-width:620px){.pwa-modal{align-items:center}}
 @media(max-width:520px){.pwa-invite{align-items:stretch;padding:13px}.pwa-install-button{width:100%}}
 @media(prefers-reduced-motion:reduce){.pwa-modal-panel{scroll-behavior:auto}}
@@ -300,6 +300,7 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
       <div class="pwa-modal-head"><h2 id="pwaModalTitle">إضافة BOUHAJ TECH</h2><button class="pwa-modal-close" id="pwaModalClose" type="button" aria-label="إغلاق">×</button></div>
       <p class="pwa-modal-description" id="pwaModalDescription"></p>
       <ol class="pwa-steps" id="pwaInstallSteps"></ol>
+      <a class="pwa-external-browser" id="pwaExternalBrowser" href="#" hidden></a>
       <p class="pwa-modal-note" id="pwaModalNote"></p>
     </div>
   </div>
