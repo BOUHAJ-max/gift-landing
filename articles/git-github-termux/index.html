@@ -45,21 +45,14 @@ mkdir my-project &amp;&amp; cd my-project
 git init
 echo &quot;# My project&quot; &gt; README.md
 git status</code></pre></section>
-<!-- مساحة إعلانية -->
-<div class="ad-slot" style="margin:24px auto;max-width:100%;min-height:80px;text-align:center;overflow:hidden">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
 
-<div id="container-a3d2c3b7dfafdd1619508a46abd294e6"></div>
-</div>
 <section id="part-3"><h2>إنشاء مستودع محلي</h2><p>أنشئ مجلداً للمشروع، ثم نفّذ git init. أضف ملفاً تجريبياً وافحص الحالة بواسطة git status.</p></section><section id="part-4"><h2>استنساخ مستودع</h2><p>استخدم git clone مع رابط المستودع الذي تملكه أو تريد المساهمة فيه. راجع عنوان URL قبل تشغيله.</p></section>
-<!-- مساحة إعلانية -->
-<div class="ad-slot" style="margin:24px auto;text-align:center;max-width:100%;min-height:250px;overflow:hidden">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
 
-
-</div>
 <section id="part-5"><h2>رفع التغييرات</h2><p>قبل push، افهم طريقة المصادقة التي تستخدمها GitHub. لا تشارك Personal Access Token في الصور أو الرسائل أو أوامر محفوظة.</p></section>
-<h2>الأوامر في هذا الدرس</h2><pre><code>pkg install git
+<section id="part-6"><h2>المصادقة مع GitHub دون كشف الأسرار</h2><p>لا تقبل GitHub كلمات المرور العادية للمصادقة عبر Git على HTTPS. استخدم طريقة مصادقة مدعومة مثل GitHub CLI أو Personal Access Token بصلاحيات محدودة أو SSH. لا تلصق الرمز داخل ملف أوامر أو محادثة، ولا تحفظه في مستودع.</p><p>راجع صلاحيات الرمز وتاريخ انتهائه، وألغِه فوراً إذا ظهر في سجل أو صورة أو ملف عام. عند استخدام SSH، احفظ المفتاح الخاص محلياً ولا تشاركه.</p></section>
+<section id="part-7"><h2>مراجعة التغييرات قبل الرفع</h2><p>قبل إرسال commit إلى مستودع عام، راجع الملفات والفرق النصي:</p><pre><code>git status
+git diff --cached
+git log --oneline -5</code></pre><p>تأكد من عدم وجود ملفات <code>.env</code> أو كلمات مرور أو مفاتيح خاصة أو نسخ احتياطية. إذا أضفت سراً إلى commit، فحذفه في commit لاحق لا يزيله من التاريخ؛ ألغِ السر من الخدمة أولاً ثم اتبع إجراء تنظيف التاريخ المناسب.</p><div class="note"><strong>تمرين:</strong> أنشئ README بسيطاً، راجع التغييرات باستخدام git diff، ثم أنشئ commit برسالة واضحة دون إضافة ملفات غير لازمة.</div></section><h2>الأوامر في هذا الدرس</h2><pre><code>pkg install git
 git --version
 git config --global user.name &quot;Your Name&quot;
 git config --global user.email &quot;you@example.com&quot;
@@ -69,12 +62,7 @@ echo &quot;# My project&quot; &gt; README.md
 git status</code></pre>
 <p class="note">ملاحظة: قد تختلف بعض التفاصيل بحسب إصدار Android وإصدار Termux والمستودعات المتاحة. راجع الوثائق الرسمية عند ظهور اختلاف.</p>
 <section class="related"><h2>دروس ذات صلة</h2><ul><li><a href="/articles/python-termux/">Python على Termux</a></li><li><a href="/articles/local-web-server-termux/">خادم ويب محلي</a></li></ul></section>
-<!-- مساحة إعلانية -->
-<div class="ad-slot" style="margin:20px auto;text-align:center;max-width:100%;min-height:50px;overflow:hidden">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
 
-
-</div>
 
 </main>
 <footer>© Mohamed Bouhaj · BOUHAJ Tools · <a href="/articles/">جميع دروس Termux</a></footer>
