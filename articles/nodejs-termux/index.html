@@ -25,21 +25,18 @@ npm --version
 node -e &quot;console.log('Hello from Termux')&quot;
 printf &quot;console.log('My first script')\n&quot; &gt; app.js
 node app.js</code></pre></section>
-<!-- مساحة إعلانية -->
-<div class="ad-slot" style="margin:24px auto;max-width:100%;min-height:80px;text-align:center;overflow:hidden">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
 
-<div id="container-a3d2c3b7dfafdd1619508a46abd294e6"></div>
-</div>
 <section id="part-3"><h2>تشغيل JavaScript مباشرة</h2><p>يمكن تمرير تعليمة قصيرة إلى node باستخدام الخيار -e، وهي طريقة سريعة لاختبار البيئة.</p></section><section id="part-4"><h2>إنشاء ملف JavaScript</h2><p>أنشئ ملفاً بامتداد js واكتب داخله تعليمة console.log، ثم شغله باستخدام node واسم الملف.</p></section>
-<!-- مساحة إعلانية -->
-<div class="ad-slot" style="margin:24px auto;text-align:center;max-width:100%;min-height:250px;overflow:hidden">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
 
-
-</div>
 <section id="part-5"><h2>إدارة الحزم بأمان</h2><p>عند استخدام npm، تحقق من اسم الحزمة وسمعتها ووثائقها، ولا تشغّل سكربتات غير موثوقة قبل مراجعة ما تفعله.</p></section>
-<h2>الأوامر في هذا الدرس</h2><pre><code>pkg install nodejs
+<section id="part-6"><h2>إدارة مشروع Node.js</h2><p>ابدأ مجلد مشروع مستقل، ثم أنشئ ملف إعدادات npm. اقرأ ملف <code>package.json</code> قبل تشغيل أوامر المشروع، لأنه قد يحتوي سكربتات تنفذ أوامر على جهازك.</p><pre><code>mkdir -p ~/projects/node-lab
+cd ~/projects/node-lab
+npm init -y
+printf 'console.log("Node project ready");\n' > app.js
+node app.js</code></pre><p>استخدم <code>npm install</code> فقط بعد مراجعة الاعتماديات، وتجنب تثبيت الحزم العالمية دون حاجة واضحة.</p></section>
+<section id="part-7"><h2>تشخيص أخطاء Node وnpm</h2><ul><li>إذا ظهر <code>command not found</code> فتحقق من تثبيت Node.js ومن PATH.</li><li>إذا فشل تثبيت حزمة، اقرأ اسم الحزمة وإصدار Node ورسالة npm قبل إعادة المحاولة.</li><li>إذا ظهر خطأ module not found، تأكد من أنك داخل مجلد المشروع وأن الاعتمادية مسجلة فيه.</li><li>لا تحذف ملف القفل lockfile عشوائياً؛ فهو يساعد على تثبيت نسخ اعتماديات متسقة.</li></ul><pre><code>node --version
+npm --version
+npm ls --depth=0</code></pre><div class="note"><strong>تمرين:</strong> أنشئ برنامجاً يقرأ مصفوفة أرقام ويطبع مجموعها ومتوسطها، ثم أضف تعليمات التشغيل إلى README.</div></section><h2>الأوامر في هذا الدرس</h2><pre><code>pkg install nodejs
 node --version
 npm --version
 node -e &quot;console.log('Hello from Termux')&quot;
@@ -47,12 +44,7 @@ printf &quot;console.log('My first script')\n&quot; &gt; app.js
 node app.js</code></pre>
 <p class="note">ملاحظة: قد تختلف بعض التفاصيل بحسب إصدار Android وإصدار Termux والمستودعات المتاحة. راجع الوثائق الرسمية عند ظهور اختلاف.</p>
 <section class="related"><h2>دروس ذات صلة</h2><ul><li><a href="/articles/python-termux/">Python في Termux</a></li><li><a href="/articles/git-github-termux/">Git وGitHub</a></li></ul></section>
-<!-- مساحة إعلانية -->
-<div class="ad-slot" style="margin:20px auto;text-align:center;max-width:100%;min-height:50px;overflow:hidden">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
 
-
-</div>
 
 </main>
 <footer>© Mohamed Bouhaj · BOUHAJ Tools · <a href="/articles/">جميع دروس Termux</a></footer>
