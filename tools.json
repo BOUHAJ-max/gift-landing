@@ -4,7 +4,11 @@
       "id": "termux-academy",
       "icon": "⌘",
       "category": "learning",
-      "badge": "مجاني",
+      "badge": {
+        "ar": "دروس مجانية",
+        "en": "Free guides",
+        "fr": "Guides gratuits"
+      },
       "title": {
         "ar": "أكاديمية Termux",
         "en": "Termux Academy",
@@ -25,14 +29,22 @@
         "برمجة"
       ],
       "url": "https://go.bouhaj.com/articles/",
-      "buttonText": "افتح الأكاديمية",
+      "buttonText": {
+        "ar": "افتح المكتبة",
+        "en": "Open the library",
+        "fr": "Ouvrir la bibliothèque"
+      },
       "target": "_self"
     },
     {
       "id": "professional-academy",
       "icon": "🎓",
       "category": "learning",
-      "badge": "دورات جديدة",
+      "badge": {
+        "ar": "مسارات تعليمية",
+        "en": "Learning paths",
+        "fr": "Parcours d’apprentissage"
+      },
       "title": {
         "ar": "الأكاديمية التقنية",
         "en": "Technical Academy",
@@ -57,7 +69,11 @@
         "تعلم"
       ],
       "url": "https://go.bouhaj.com/academy/",
-      "buttonText": "اكتشف الدورات",
+      "buttonText": {
+        "ar": "استكشف الدورات",
+        "en": "Explore courses",
+        "fr": "Découvrir les cours"
+      },
       "target": "_self",
       "featured": true
     }
