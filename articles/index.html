@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>تعلم Termux من الصفر: دروس Linux وPython وNmap | BOUHAJ</title>
-<meta name="description" content="أكاديمية Termux عربية مجانية: تعلم التثبيت والتحديث وأوامر Linux وإدارة ملفات Android وPython وNode.js وGit وNmap خطوة بخطوة مع أمثلة عملية.">
+<meta name="description" content="أكاديمية تقنية عربية مجانية تضم 15 دليلاً عملياً في Termux وLinux والشبكات وPython وGit وأمن الويب والنسخ الاحتياطي.">
 <meta name="theme-color" content="#030806">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://go.bouhaj.com/articles/">
 <meta property="og:type" content="website"><meta property="og:locale" content="ar_MA"><meta property="og:site_name" content="BOUHAJ Tools">
-<meta property="og:title" content="أكاديمية Termux | دروس عربية مجانية"><meta property="og:description" content="تعلم Termux وLinux وPython وNode.js وGit من هاتفك عبر دروس عملية مجانية."><meta property="og:url" content="https://go.bouhaj.com/articles/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"أكاديمية Termux","description":"دروس عربية مجانية لتعلم Termux وLinux والبرمجة على Android","url":"https://go.bouhaj.com/articles/","inLanguage":"ar","publisher":{"@type":"Organization","name":"BOUHAJ Tools","url":"https://go.bouhaj.com/"}}</script>
+<meta property="og:title" content="أكاديمية Termux | دروس عربية مجانية"><meta property="og:description" content="تعلم Termux وLinux والشبكات وPython وGit وأمن الويب عبر 15 دليلاً تقنياً عربياً مجانياً."><meta property="og:url" content="https://go.bouhaj.com/articles/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"أكاديمية Termux","description":"مكتبة تقنية عربية تضم أدلة مجانية في Termux وLinux والشبكات والبرمجة والأمن الرقمي","url":"https://go.bouhaj.com/articles/","inLanguage":"ar","publisher":{"@type":"Organization","name":"BOUHAJ Tools","url":"https://go.bouhaj.com/"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -44,7 +44,13 @@ a{color:var(--neon)}.wrap{width:min(900px,100% - 28px);margin:auto;padding:18px 
 <a class="lesson-card" href="/articles/nodejs-termux/"><span class="lesson-num">06</span><span><strong>Node.js على Termux</strong><small>تثبيت Node.js وNPM وتجربة JavaScript.</small></span><span class="lesson-arrow">←</span></a>
 <a class="lesson-card" href="/articles/git-github-termux/"><span class="lesson-num">07</span><span><strong>Git وGitHub من الهاتف</strong><small>إنشاء مستودع محلي واستنساخ المشاريع.</small></span><span class="lesson-arrow">←</span></a>
 <a class="lesson-card" href="/articles/nmap-termux-network-lab/"><span class="lesson-num">08</span><span><strong>Nmap ومختبر الشبكات</strong><small>تثبيت Nmap والتدرب ضمن نطاق مصرح.</small></span><span class="lesson-arrow">←</span></a>
-<a class="lesson-card" href="/articles/local-web-server-termux/"><span class="lesson-num">09</span><span><strong>خادم ويب محلي</strong><small>تشغيل Python HTTP Server على الهاتف.</small></span><span class="lesson-arrow">←</span></a></div>
+<a class="lesson-card" href="/articles/local-web-server-termux/"><span class="lesson-num">09</span><span><strong>خادم ويب محلي</strong><small>تشغيل Python HTTP Server على الهاتف.</small></span><span class="lesson-arrow">←</span></a>
+<a class="lesson-card" href="/articles/networking-basics/"><span class="lesson-num">10</span><span><strong>أساسيات الشبكات للمبتدئين</strong><small>IP وDNS والمنافذ وTCP وHTTPS.</small></span><span class="lesson-arrow">←</span></a>
+<a class="lesson-card" href="/articles/linux-permissions/"><span class="lesson-num">11</span><span><strong>صلاحيات Linux وchmod</strong><small>المالك والمجموعة وumask والتحكم بالوصول.</small></span><span class="lesson-arrow">←</span></a>
+<a class="lesson-card" href="/articles/git-branches/"><span class="lesson-num">12</span><span><strong>فروع Git ودمج التغييرات</strong><small>branch وmerge وحل التعارضات.</small></span><span class="lesson-arrow">←</span></a>
+<a class="lesson-card" href="/articles/python-venv/"><span class="lesson-num">13</span><span><strong>بيئات Python الافتراضية</strong><small>venv وإدارة المكتبات والمتطلبات.</small></span><span class="lesson-arrow">←</span></a>
+<a class="lesson-card" href="/articles/web-security-basics/"><span class="lesson-num">14</span><span><strong>أساسيات حماية مواقع الويب</strong><small>HTTPS والجلسات والتحقق من المدخلات.</small></span><span class="lesson-arrow">←</span></a>
+<a class="lesson-card" href="/articles/secure-backups/"><span class="lesson-num">15</span><span><strong>النسخ الاحتياطي الآمن</strong><small>قاعدة 3-2-1 والتشفير واختبار الاستعادة.</small></span><span class="lesson-arrow">←</span></a></div>
 </section>
 <style>
 .academy-index{margin:0 0 28px;padding:20px;background:linear-gradient(145deg,#09170f,#050b08);border:1px solid #17442d;border-radius:18px}
