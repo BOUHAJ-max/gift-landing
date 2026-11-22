@@ -215,11 +215,47 @@ html[dir=rtl] .about-drawer{transform:translateX(-105%)}
 .main-nav a[data-nav="contact"]{border-color:rgba(37,211,102,.55);color:#8ff0b1}
 .main-nav a[data-nav="privacy"]{border-color:rgba(0,229,255,.4);color:#8eefff}
 @media(max-width:520px){.top{align-items:flex-start}.main-nav{width:100%;justify-content:center}.main-nav a{font-size:11px;padding:7px 10px}}
+
+/* ===== BOUHAJ TECH visual refresh: lightweight, calm, responsive ===== */
+:root{--bg:#0b1220;--panel:#111d2d;--line:#263c52;--neon:#39d6b0;--neon2:#78a9ff;--text:#edf5ff;--muted:#9aadc2;--warn:#f4c66a;--glow:0 8px 28px rgba(36,190,160,.14)}
+html{background:#0b1220}
+body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transparent 34%),radial-gradient(ellipse at 88% 18%,rgba(28,166,135,.13),transparent 32%),linear-gradient(180deg,#0b1220,#0e1928 55%,#0b1220);color:var(--text)}
+#matrix,.scan{display:none!important}
+.wrap{width:min(1160px,calc(100% - 32px));padding-bottom:48px}
+.top{padding:10px 0 16px;gap:12px}
+.logo{color:#f3f7ff}.logo-mark{background:linear-gradient(135deg,#39d6b0,#78a9ff);color:#081522;border-radius:12px;box-shadow:0 8px 22px #39d6b022}
+.logo small{color:#91a8bd}
+.main-nav a,.about-trigger{background:rgba(20,34,51,.82);border-color:#2b435b;color:#d6e7f5}
+.main-nav a:hover,.about-trigger:hover{border-color:#39d6b0;color:#71e6cc}
+.hero{padding-top:clamp(38px,7vw,76px);padding-bottom:30px}
+.hero .g{background:linear-gradient(90deg,#42dfb8,#8db7ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}
+.sub{color:#b1c3d6}
+.search,.prompt-card,.book-card,.modal .sheet,.about-drawer{background:linear-gradient(145deg,rgba(22,39,59,.97),rgba(15,27,43,.97));border-color:#2a435d;box-shadow:0 16px 42px rgba(0,0,0,.2)}
+.search:focus-within{border-color:#39d6b0;box-shadow:0 0 0 3px rgba(57,214,176,.12)}
+.chips .chip,.main-nav a,.about-link{transition:background-color .18s,border-color .18s,color .18s}
+.card,.lesson-card{background:linear-gradient(150deg,#17283c,#111e2e);border-color:#2b435b;box-shadow:0 10px 28px rgba(0,0,0,.16)}
+.card:hover{border-color:#39d6b0;transform:translateY(-3px)}
+.btn{background:linear-gradient(110deg,#39d6b0,#7caeff);color:#071522;box-shadow:0 7px 20px rgba(57,214,176,.15)}
+.book-card{border-color:#7c6840}
+.book-kicker{color:#f4c66a}
+.book-visual:after{background:rgba(120,169,255,.18)}
+.book-card .book-cta{background:linear-gradient(105deg,#f6d58a,#e9ad54);color:#241b0c;box-shadow:0 8px 24px rgba(233,173,84,.18);animation:none}
+.book-card .book-cta:before{display:none}
+.prompt-card{border-color:#36506b}
+.prompt-icon{background:#183a49;color:#75e2cd}
+.prompt-tag{background:#172f42;color:#a9c9e7}
+.about-drawer{background:linear-gradient(160deg,#17283c,#0c1726 78%);border-color:#39d6b0}
+.about-trigger svg{color:#39d6b0}
+.about-section h3{color:#8db7ff}
+.about-link{background:#17283c;border-color:#314a64}
+@media(max-width:600px){.wrap{width:min(100% - 22px,1160px)}.hero{padding-top:34px}.top{gap:9px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
 </style>
 </head>
 <body>
-<canvas id="matrix"></canvas>
-<div class="scan"></div>
+
+
 
 <div class="wrap">
   <div class="top">
@@ -447,16 +483,8 @@ $('yr').textContent=new Date().getFullYear();
   setTimeout(()=>typeLoop(i,j+(del?-1:1),del),del?30:65);
 })();
 
-/* ======= خلفية ماتريكس ======= */
-(function(){
-  const c=$('matrix'),x=c.getContext('2d');let cols,drops;
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  function size(){c.width=innerWidth;c.height=innerHeight;cols=Math.floor(c.width/16);drops=Array(cols).fill(0).map(()=>Math.random()*-50)}
-  size();addEventListener('resize',size);
-  setInterval(()=>{x.fillStyle='rgba(3,8,6,.12)';x.fillRect(0,0,c.width,c.height);
-    x.fillStyle='#39ff88';x.font='14px JetBrains Mono,monospace';
-    drops.forEach((y,i)=>{const ch='01$>_#{}';x.fillText(ch[Math.random()*ch.length|0],i*16,y*16);drops[i]=y*16>c.height&&Math.random()>.97?0:y+1})},55);
-})();
+/* Matrix animation removed: static gradient background reduces CPU and battery use. */
+
 
 /* ======= تحميل الأدوات ======= */
 fetch('tools.json?v='+Date.now()).then(r=>r.json()).then(d=>{
