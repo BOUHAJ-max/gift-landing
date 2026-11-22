@@ -1,6 +1,8 @@
 (function(){
  "use strict";
  const button=document.getElementById("pwaInstallButton");
+ const floating=document.getElementById("pwaFloatingInstall");
+ const invite=document.querySelector(".pwa-invite");
  const modal=document.getElementById("pwaInstallModal");
  if(!button||!modal)return;
  const $=id=>document.getElementById(id);
@@ -28,8 +30,12 @@
   modal.classList.add("open");modal.setAttribute("aria-hidden","false");$("pwaModalClose").focus();
  }
  function closeModal(){modal.classList.remove("open");modal.setAttribute("aria-hidden","true");button.focus();}
+ function hideInstallUI(){
+  [button,floating,invite].filter(Boolean).forEach(el=>el.style.setProperty("display","none","important"));
+  modal.classList.remove("open");modal.setAttribute("aria-hidden","true");
+ }
  function refresh(){
-  if(installed()){button.hidden=true;return;}
+  if(installed()){hideInstallUI();return;}
   const t=strings[lang()];
   button.hidden=false;
   button.textContent=deferredPrompt?t.ready:t.button;
@@ -48,7 +54,7 @@
  window.addEventListener("beforeinstallprompt",event=>{
   event.preventDefault();deferredPrompt=event;refresh();
  });
- window.addEventListener("appinstalled",()=>{deferredPrompt=null;button.hidden=true;});
+ window.addEventListener("appinstalled",()=>{deferredPrompt=null;hideInstallUI();});
  window.addEventListener("pageshow",refresh);
  refresh();
  if("serviceWorker" in navigator&&location.protocol==="https:"){
