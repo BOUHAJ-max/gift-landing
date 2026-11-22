@@ -263,6 +263,15 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 @media(max-width:520px){.pwa-invite{align-items:stretch;padding:13px}.pwa-install-button{width:100%}}
 @media(prefers-reduced-motion:reduce){.pwa-modal-panel{scroll-behavior:auto}}
 
+
+/* PWA install CTA visibility fix: keep the action easy to find on phones */
+.pwa-invite{position:relative!important;display:flex!important;visibility:visible!important;opacity:1!important;z-index:20!important}
+.pwa-install-button{display:inline-flex!important;visibility:visible!important;opacity:1!important;min-height:48px!important;font-size:15px!important}
+@media(max-width:620px){
+ .pwa-invite{position:sticky!important;bottom:calc(10px + env(safe-area-inset-bottom))!important;z-index:900!important;display:flex!important;flex-direction:column!important;gap:10px!important;margin:12px 0 22px!important;padding:13px!important;border:1px solid #55d9bf!important;background:rgba(17,31,49,.97)!important;box-shadow:0 12px 34px rgba(0,0,0,.42),0 0 0 1px rgba(57,214,176,.12)!important;backdrop-filter:blur(12px)!important}
+ .pwa-invite-copy{width:100%!important;flex:none!important}
+ .pwa-install-button{width:100%!important;min-height:50px!important;font-size:16px!important;letter-spacing:.1px!important}
+}
 </style>
 </head>
 <body>
@@ -626,6 +635,6 @@ fetch('tools.json?v='+Date.now()).then(r=>r.json()).then(d=>{
 
 
 
-<script src="/pwa-install.js" defer></script>
+<script src="/pwa-install.js?v=2" defer></script>
 </body>
 </html>
