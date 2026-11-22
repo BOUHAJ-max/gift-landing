@@ -23,32 +23,20 @@
 pkg upgrade
 pkg install git python nano curl wget
 pkg list-installed</code></pre></section>
-<!-- مساحة إعلانية -->
-<div class="ad-slot" style="margin:24px auto;max-width:100%;min-height:80px;text-align:center;overflow:hidden">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
 
-<div id="container-a3d2c3b7dfafdd1619508a46abd294e6"></div>
-</div>
 <section id="part-3"><h2>تثبيت أدوات البداية</h2><p>يمكنك تثبيت محرر نصوص وأدوات تنزيل وإدارة إصدارات لتسهيل الدروس اللاحقة. ثبّت ما تحتاجه فقط حتى لا تستهلك مساحة الهاتف دون داعٍ.</p></section><section id="part-4"><h2>أوامر مفيدة للتحقق</h2><p>استخدم أوامر المساعدة وقائمة الحزم المثبتة لمعرفة حالة البيئة. إذا فشل التحديث، تحقق من اتصال الإنترنت والمستودع ورسالة الخطأ كاملة.</p></section>
-<!-- مساحة إعلانية -->
-<div class="ad-slot" style="margin:24px auto;text-align:center;max-width:100%;min-height:250px;overflow:hidden">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
 
-
-</div>
 <section id="part-5"><h2>متى أعيد المحاولة؟</h2><p>إذا ظهرت أخطاء مرآة المستودع أو انقطاع الاتصال، أعد المحاولة بعد استقرار الإنترنت، ولا تنفذ أوامر حذف عشوائية لمعالجة مشكلة لا تعرف سببها.</p></section>
-<h2>الأوامر في هذا الدرس</h2><pre><code>pkg update
+<section id="part-6"><h2>فهم رسائل مدير الحزم</h2><p>يمثل <code>pkg</code> واجهة مبسطة لإدارة الحزم في Termux. يقوم <code>pkg update</code> بتحديث قوائم الحزم المتاحة، بينما يقوم <code>pkg upgrade</code> بترقية الحزم المثبتة. لا يعني تحديث القوائم وحده أن البرامج المثبتة أصبحت محدثة.</p><p>اقرأ ملخص العمليات قبل الموافقة، وانتبه إلى الحزم التي ستزال أو تستبدل. إذا كان التغيير كبيراً، احفظ ملفات مشاريعك أولاً وتأكد من توفر مساحة كافية.</p><pre><code>pkg update
+pkg list-upgradable
+pkg upgrade</code></pre></section>
+<section id="part-7"><h2>التعامل مع فشل المستودعات</h2><p>عند فشل الوصول إلى مرآة مستودع، ميّز بين مشكلة الإنترنت ومشكلة المرآة. جرّب شبكة أخرى، وتحقق من إعدادات التاريخ والوقت، ثم استخدم أداة تغيير المرآة الرسمية المتاحة في نسختك عند الحاجة.</p><ul><li>لا تحذف مجلدات الحزم يدوياً.</li><li>لا تضف مستودعات مجهولة أو مفاتيح توقيع غير موثوقة.</li><li>احتفظ برسالة الخطأ كاملة عند طلب المساعدة، مع حذف أي بيانات خاصة.</li></ul><div class="note"><strong>تمرين:</strong> حدّث الفهارس، ثم اعرض الحزم المثبتة وسجّل ثلاث حزم تستخدمها وسبب حاجتك إليها.</div></section><h2>الأوامر في هذا الدرس</h2><pre><code>pkg update
 pkg upgrade
 pkg install git python nano curl wget
 pkg list-installed</code></pre>
 <p class="note">ملاحظة: قد تختلف بعض التفاصيل بحسب إصدار Android وإصدار Termux والمستودعات المتاحة. راجع الوثائق الرسمية عند ظهور اختلاف.</p>
 <section class="related"><h2>دروس ذات صلة</h2><ul><li><a href="/articles/install-termux-android/">تثبيت Termux</a></li><li><a href="/articles/linux-commands-termux/">أوامر Linux</a></li></ul></section>
-<!-- مساحة إعلانية -->
-<div class="ad-slot" style="margin:20px auto;text-align:center;max-width:100%;min-height:50px;overflow:hidden">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
 
-
-</div>
 
 </main>
 <footer>© Mohamed Bouhaj · BOUHAJ Tools · <a href="/articles/">جميع دروس Termux</a></footer>
