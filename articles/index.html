@@ -22,6 +22,25 @@ a{color:var(--neon)}.wrap{width:min(900px,100% - 28px);margin:auto;padding:18px 
 .layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:18px;align-items:start}.toc,.article,.lesson{background:linear-gradient(145deg,#09170f,#050b08);border:1px solid var(--line);border-radius:18px}.toc{position:sticky;top:12px;padding:16px}.toc h2{font-size:16px;margin:0 0 10px;color:var(--cyan)}.toc a{display:block;padding:6px 0;color:#c8e5d2;text-decoration:none;font-size:13px;border-bottom:1px solid #12301f}.toc a:hover{color:var(--neon)}.article{padding:clamp(16px,4vw,30px);min-width:0}.intro{font-size:15px;color:#cce2d3}.notice{border-right:3px solid var(--gold);background:#211d0b;padding:12px 14px;border-radius:10px;color:#f5e7ae;font-size:13px;margin:18px 0}.lesson{padding:20px;margin:22px 0;scroll-margin-top:16px}.lesson h2{font-size:21px;margin:0 0 10px;color:var(--neon)}.lesson h3{font-size:16px;color:var(--cyan);margin:18px 0 6px}.lesson p,.lesson li{color:#c7ddce;font-size:14px}.lesson ul,.lesson ol{padding-right:22px}.codebox{position:relative;direction:ltr;text-align:left;background:#020604;border:1px solid #17442d;border-radius:12px;margin:12px 0;overflow:hidden}.codebox pre{margin:0;padding:15px 92px 15px 14px;overflow:auto;color:#aaf5c5;font:13px/1.8 "JetBrains Mono",monospace;white-space:pre}.copy{position:absolute;top:8px;right:8px;border:1px solid #286344;background:#0b1d12;color:var(--neon);border-radius:8px;padding:5px 9px;font:12px Cairo;cursor:pointer}.inline{direction:ltr;unicode-bidi:embed;color:#9fffc1;background:#10271a;padding:1px 5px;border-radius:5px;font-family:"JetBrains Mono",monospace}.small{font-size:12px!important;color:var(--muted)!important}.end{border-top:1px solid var(--line);padding-top:20px;margin-top:28px;color:var(--muted);font-size:13px}
 @media(max-width:700px){.layout{grid-template-columns:1fr}.toc{position:static}.toc nav{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.lesson{padding:16px}.lesson h2{font-size:19px}}
 @media(max-width:360px){.toc nav{grid-template-columns:1fr}.codebox pre{font-size:11px;padding-right:78px}}
+
+/* BOUHAJ TECH unified editorial palette */
+:root{color-scheme:dark;--bg:#0b1220;--panel:#142236;--line:#2b435b;--neon:#39d6b0;--cyan:#8db7ff;--text:#edf5ff;--muted:#a6b8cb;--gold:#f4c66a}
+body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.18),transparent 38%),radial-gradient(ellipse at 90% 15%,rgba(28,166,135,.12),transparent 32%),#0b1220;color:var(--text)}
+.wrap{width:min(1040px,calc(100% - 30px))}
+.brand{color:#63e3c5}
+.back,.pill{border-color:#36516b;background:rgba(20,34,54,.7);color:#b9d1e8}
+.hero{padding-top:clamp(34px,6vw,62px)}
+.hero h1{color:#f2f7ff}
+.meta{color:#9fb3c8}
+.lesson-card,.article,.toc,.notice,.codebox{background:linear-gradient(150deg,#17283c,#111e2e);border-color:#2b435b;box-shadow:0 12px 30px rgba(0,0,0,.14)}
+.lesson-card{transition:transform .18s,border-color .18s}
+.lesson-card:hover{border-color:#39d6b0;transform:translateY(-3px)}
+.lesson-num{background:#183a49;color:#72e2c9}
+a{color:#70dfc4}
+.copy{background:linear-gradient(110deg,#39d6b0,#8db7ff);color:#071522;border:0}
+.intro{color:#c1d1e2}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
 </style>
 </head>
 <body>
