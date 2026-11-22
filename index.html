@@ -12,7 +12,7 @@
 <meta property="og:title" content="BOUHAJ TECH | أدوات رقمية مجانية"><meta property="og:description" content="منصة عربية تقدم شروحات تقنية ودروساً عملية في البرمجة وLinux والشبكات والأمن الرقمي."><meta property="og:url" content="https://go.bouhaj.com/">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://go.bouhaj.com/#website","name":"BOUHAJ TECH","url":"https://go.bouhaj.com/","inLanguage":["ar","en","fr"],"publisher":{"@id":"https://go.bouhaj.com/#person"}},{"@type":"Person","@id":"https://go.bouhaj.com/#person","name":"Mohamed Bouhaj","url":"https://go.bouhaj.com/","sameAs":["https://www.instagram.com/bouhaj.officiel/","https://www.facebook.com/mohamed.bouhaj.899672","https://www.amazon.com/author/bouhaj"]}]}</script>
 <meta name="author" content="Mohamed Bouhaj"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="BOUHAJ TECH | أدوات رقمية مجانية"><meta name="twitter:description" content="شروحات تقنية ودروس عملية في Termux وLinux وPython والشبكات والأمن الرقمي.">
-<meta name="theme-color" content="#030806">
+<meta name="theme-color" content="#0b1220">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -114,7 +114,6 @@ footer a{color:var(--neon);text-decoration:none}
 
 /* ===== Main offers stage ===== */
 .offers-stage{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:stretch;margin:0 0 30px}
-.prompt-card,.book-card{position:relative;isolation:isolate;overflow:hidden;min-width:0;min-height:0;margin:0;padding:18px;border-radius:22px}
 .prompt-card{display:flex;flex-direction:column;justify-content:center;align-items:stretch;background:radial-gradient(ellipse at 50% 0%,rgba(57,255,136,.16),transparent 58%),linear-gradient(145deg,#0b1c13,#030906 78%);border:1.5px solid rgba(57,255,136,.72);box-shadow:0 0 28px rgba(57,255,136,.18),inset 0 0 28px rgba(57,255,136,.035)}
 .prompt-card:before{content:"";position:absolute;z-index:-1;inset:8px;border:1px solid rgba(57,255,136,.12);border-radius:16px;pointer-events:none}
 .prompt-card:after{content:"";position:absolute;z-index:-1;width:180px;height:180px;border-radius:50%;background:rgba(57,255,136,.08);filter:blur(55px);top:8%;left:50%;transform:translateX(-50%);pointer-events:none}
@@ -127,36 +126,8 @@ footer a{color:var(--neon);text-decoration:none}
 .prompt-actions{display:flex;gap:10px;margin-top:9px}
 .prompt-actions .btn{width:100%;min-height:48px;padding:10px 14px;font-size:16px}
 .prompt-hint{margin-top:7px;color:var(--muted);font-size:10px;text-align:center}
-.book-card{--book-gold:#ffd84a;display:grid;grid-template-columns:minmax(110px,.78fr) minmax(0,1.22fr);grid-template-areas:"cover info";direction:rtl;align-items:center;gap:16px;text-align:right;background:radial-gradient(ellipse at 78% 35%,rgba(0,198,255,.16),transparent 48%),radial-gradient(ellipse at 50% 0%,rgba(255,205,55,.12),transparent 62%),linear-gradient(145deg,#071a22,#03090d 78%);border:1px solid rgba(0,220,255,.48);box-shadow:0 0 32px rgba(0,180,255,.17),inset 0 0 32px rgba(0,210,255,.05)}
-.book-card:before{content:"";position:absolute;z-index:-1;inset:-55%;background:conic-gradient(from 0deg,transparent 0 72%,rgba(0,210,255,.09),transparent 83%);animation:bookHalo 12s linear infinite;pointer-events:none}
-.book-card:after{content:"";position:absolute;z-index:-1;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,#43eaff,transparent);box-shadow:0 0 18px #00cfff}
-@keyframes bookHalo{to{transform:rotate(360deg)}}
-.book-cover-column{grid-area:cover;min-width:0;display:flex;align-items:center;justify-content:center;direction:rtl}
-.book-info{grid-area:info;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:9px;direction:rtl;text-align:right}
-.book-kicker{display:flex;align-items:center;gap:8px;color:#8feaff;font-size:12px;font-weight:800;letter-spacing:.3px}
-.book-kicker-dot{width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:#43eaff;box-shadow:0 0 12px #43eaff;animation:blink 1.5s infinite}
-.book-card h2{font-size:clamp(18px,2.35vw,27px);line-height:1.5;font-weight:900;color:#f4fbff;text-shadow:0 2px 20px rgba(0,210,255,.22);text-align:right}
-.book-visual{position:relative;display:block;width:min(100%,220px);margin:0 auto;border-radius:8px;outline:none;transform:perspective(900px) rotateY(-8deg);transform-origin:right center;filter:drop-shadow(-10px 16px 18px rgba(0,0,0,.62)) drop-shadow(0 0 14px rgba(0,190,255,.22));transition:transform .35s ease,filter .35s ease;animation:bookFloat 4.2s ease-in-out infinite}
-.book-visual:before{content:"";position:absolute;z-index:2;top:0;bottom:0;right:0;width:9px;background:linear-gradient(90deg,rgba(4,17,22,.05),rgba(2,9,13,.65));border-radius:0 7px 7px 0;pointer-events:none}
-.book-visual:after{content:"";position:absolute;inset:12% -10% 3%;z-index:-1;border-radius:50%;background:rgba(0,190,255,.24);filter:blur(30px);pointer-events:none}
-.book-visual img{display:block;width:100%;height:auto;border-radius:8px;direction:rtl;unicode-bidi:plaintext}
-.book-visual:hover,.book-visual:focus-visible{transform:perspective(900px) translateY(-5px) rotateY(-4deg) scale(1.025);filter:drop-shadow(-12px 20px 22px rgba(0,0,0,.6)) drop-shadow(0 0 22px rgba(0,220,255,.4))}
-@keyframes bookFloat{0%,100%{translate:0 0}50%{translate:0 -5px}}
-.book-subtitle{max-width:420px;color:#b5d4df;font-size:12px;line-height:1.8;text-align:right}
-.book-card .book-cta{position:relative;isolation:isolate;overflow:hidden;width:100%;max-width:340px;min-height:54px;padding:13px 15px;border-radius:14px;font-size:clamp(15px,1.8vw,19px);font-weight:900;color:#10151a;background:linear-gradient(105deg,#ffe36b,#ffb92f 48%,#ffe36b);box-shadow:0 0 0 1px rgba(255,231,133,.35),0 8px 25px rgba(255,183,40,.3),0 0 24px rgba(255,208,72,.28);text-decoration:none;transition:transform .2s,filter .2s,box-shadow .2s;animation:ctaPulse 2.4s ease-in-out infinite}
-.book-cta:before{content:"";position:absolute;z-index:-1;top:-60%;left:-45%;width:35%;height:220%;background:rgba(255,255,255,.5);transform:rotate(22deg);filter:blur(7px);animation:ctaShine 3.2s ease-in-out infinite}
-.book-cta:active{transform:scale(.98);filter:brightness(1.08)}
-.book-cta:hover{transform:translateY(-3px);filter:brightness(1.07);box-shadow:0 10px 32px rgba(255,183,40,.42),0 0 34px rgba(255,208,72,.4)}
-@keyframes ctaPulse{0%,100%{box-shadow:0 0 0 1px rgba(255,231,133,.3),0 8px 24px rgba(255,183,40,.22),0 0 20px rgba(255,208,72,.22)}50%{box-shadow:0 0 0 1px rgba(255,231,133,.55),0 10px 32px rgba(255,183,40,.42),0 0 34px rgba(255,208,72,.42)}}
-@keyframes ctaShine{0%,55%{left:-45%}85%,100%{left:125%}}
-.book-footnote{color:#7897a5;font-size:9px;line-height:1.6}
 @media(max-width:760px){
  .offers-stage{grid-template-columns:1fr;gap:12px;margin-top:-8px}
- .book-card{grid-template-columns:minmax(105px,.82fr) minmax(0,1.18fr);gap:12px;padding:16px 14px}
- .book-visual{width:min(100%,170px)}
- .book-card h2{font-size:clamp(17px,4.8vw,23px)}
- .book-info{gap:7px}
- .book-card .book-cta{min-height:48px;padding:11px 10px;font-size:16px}
  .prompt-card{padding:14px}
  .prompt-copy{height:88px;min-height:88px;max-height:130px}
  .prompt-title{font-size:16px}
@@ -165,18 +136,11 @@ footer a{color:var(--neon);text-decoration:none}
  .prompt-hint{margin-top:5px}
 }
 @media(max-width:380px){
- .book-card{grid-template-columns:100px minmax(0,1fr);gap:10px;padding:13px 11px}
- .book-visual{width:100%}
- .book-card h2{font-size:16px}
- .book-subtitle{font-size:11px}
- .book-card .book-cta{font-size:14px;min-height:44px}
  .prompt-card{padding:12px}
  .prompt-copy{height:78px;min-height:78px}
  .prompt-tag{font-size:8px}
 }
 @media(prefers-reduced-motion:reduce){
- .book-card:before,.book-kicker-dot,.book-visual,.book-cta,.book-cta:before{animation:none}
- .book-visual{transition:none}
 }
 
 
@@ -230,17 +194,11 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 .hero{padding-top:clamp(38px,7vw,76px);padding-bottom:30px}
 .hero .g{background:linear-gradient(90deg,#42dfb8,#8db7ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}
 .sub{color:#b1c3d6}
-.search,.prompt-card,.book-card,.modal .sheet,.about-drawer{background:linear-gradient(145deg,rgba(22,39,59,.97),rgba(15,27,43,.97));border-color:#2a435d;box-shadow:0 16px 42px rgba(0,0,0,.2)}
 .search:focus-within{border-color:#39d6b0;box-shadow:0 0 0 3px rgba(57,214,176,.12)}
 .chips .chip,.main-nav a,.about-link{transition:background-color .18s,border-color .18s,color .18s}
 .card,.lesson-card{background:linear-gradient(150deg,#17283c,#111e2e);border-color:#2b435b;box-shadow:0 10px 28px rgba(0,0,0,.16)}
 .card:hover{border-color:#39d6b0;transform:translateY(-3px)}
 .btn{background:linear-gradient(110deg,#39d6b0,#7caeff);color:#071522;box-shadow:0 7px 20px rgba(57,214,176,.15)}
-.book-card{border-color:#7c6840}
-.book-kicker{color:#f4c66a}
-.book-visual:after{background:rgba(120,169,255,.18)}
-.book-card .book-cta{background:linear-gradient(105deg,#f6d58a,#e9ad54);color:#241b0c;box-shadow:0 8px 24px rgba(233,173,84,.18);animation:none}
-.book-card .book-cta:before{display:none}
 .prompt-card{border-color:#36506b}
 .prompt-icon{background:#183a49;color:#75e2cd}
 .prompt-tag{background:#172f42;color:#a9c9e7}
@@ -261,7 +219,7 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
   <div class="top">
     <div class="logo"><div class="logo-mark">&gt;_</div><div>BOUHAJ TECH<small>by E-BOUHAJ TECH</small></div></div>
     <button class="lang" id="langBtn">EN</button>
-    <nav class="main-nav" aria-label="التنقل"><a href="#promptPanel" data-nav="code">كود ChatGPT</a><a href="/articles/" data-nav="academy">أكاديمية Termux</a><a href="/experiences/" data-nav="experiences">تجاربي الروحية</a><a href="/academy/" data-nav="courses">الدورات التقنية</a><a href="/contact.html" data-nav="contact">تواصل معي</a><a href="/privacy.html" data-nav="privacy">سياسة الخصوصية</a><a href="/about.html">من نحن</a></nav>
+    <nav class="main-nav" aria-label="التنقل"><a href="#promptPanel" data-nav="code">أداة ChatGPT</a><a href="/articles/">مكتبة المقالات</a><a href="/academy/" data-nav="courses">الدورات التقنية</a><a href="/experiences/">التجارب الشخصية</a><a href="/about.html">من نحن</a><a href="/contact.html" data-nav="contact">التواصل</a><a href="/privacy.html" data-nav="privacy">الخصوصية</a></nav>
   </div>
 
   <section class="hero">
@@ -409,7 +367,7 @@ function applyLang(){
   $('langBtn').textContent=lang==='ar'?'EN':lang==='en'?'FR':'ع';
   $('h1').innerHTML=t.h1;$('sub').textContent=t.sub;$('q').placeholder=t.q;
   $('empty').textContent=t.empty;$('status').textContent=t.status;$('mClose').textContent=t.close;
-  const navLabels={ar:{code:'كود ChatGPT',academy:'أكاديمية Termux',courses:'الدورات التقنية',contact:'تواصل معي',privacy:'سياسة الخصوصية'},en:{code:'ChatGPT code',academy:'Termux Academy',courses:'Courses',contact:'Contact me',privacy:'Privacy policy'},fr:{code:'Code ChatGPT',academy:'Académie Termux',courses:'Cours',contact:'Me contacter',privacy:'Confidentialité'}};
+  const navLabels={ar:{code:'كود ChatGPT',academy:'مكتبة المقالات',courses:'الدورات التقنية',contact:'تواصل معي',privacy:'سياسة الخصوصية'},en:{code:'ChatGPT code',academy:'Articles',courses:'Courses',contact:'Contact me',privacy:'Privacy policy'},fr:{code:'Code ChatGPT',academy:'Articles',courses:'Cours',contact:'Me contacter',privacy:'Confidentialité'}};
   document.querySelectorAll('[data-nav]').forEach(a=>{a.textContent=navLabels[lang][a.dataset.nav]||a.textContent});
   $('promptTitle').textContent=t.chatTitle;$('copyPrompt').textContent=t.copyPrompt;$('copyPromptStatus').textContent=t.copyPromptHint;
   renderChips();render();
