@@ -23,32 +23,18 @@
 nmap --version
 # استبدل العنوان بعنوان جهاز مختبرك المصرح به
 nmap -sV 192.168.1.10</code></pre></section>
-<!-- مساحة إعلانية -->
-<div class="ad-slot" style="margin:24px auto;max-width:100%;min-height:80px;text-align:center;overflow:hidden">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
 
-<div id="container-a3d2c3b7dfafdd1619508a46abd294e6"></div>
-</div>
 <section id="part-3"><h2>فحص جهاز واحد</h2><p>يمكن إجراء فحص أساسي لعنوان جهاز داخل مختبرك. استبدل العنوان بعنوان الجهاز التجريبي الصحيح.</p></section><section id="part-4"><h2>قراءة النتائج</h2><p>تعرض النتائج المنافذ التي ظهرت أثناء الفحص وحالة كل منها، وقد تتضمن أسماء خدمات وتخمينات إصدار. لا تعني النتيجة وحدها وجود ثغرة.</p></section>
-<!-- مساحة إعلانية -->
-<div class="ad-slot" style="margin:24px auto;text-align:center;max-width:100%;min-height:250px;overflow:hidden">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
 
-
-</div>
 <section id="part-5"><h2>تقليل المخاطر</h2><p>تجنب الفحص الواسع أو المتكرر على شبكات لا تديرها. احتفظ بنطاق الاختبار مكتوباً، وأوقف الفحص إذا طلب مالك النظام ذلك.</p></section>
-<h2>الأوامر في هذا الدرس</h2><pre><code>pkg install nmap
+<section id="part-6"><h2>قراءة نتائج Nmap بمسؤولية</h2><p>قد تظهر حالة المنفذ <code>open</code> عندما تستجيب خدمة على المنفذ، و<code>closed</code> عندما يمكن الوصول إلى الجهاز لكن لا توجد خدمة تستمع إليه، و<code>filtered</code> عندما تمنع آلية تصفية تحديد الحالة بوضوح. هذه الحالات تصف نتيجة الفحص من نقطة الشبكة التي أجريت منها الاختبار، وليست حكماً نهائياً على أمان الجهاز.</p><p>اسم الخدمة أو رقم إصدارها الذي تعرضه أداة الكشف قد يكون تخميناً أو بصمة غير دقيقة. تحقق من إعدادات الجهاز وسجلاته قبل اتخاذ قرار أمني.</p><pre><code>nmap -sV --reason 192.168.1.10</code></pre><p>نفّذ المثال فقط على جهاز مختبر تملكه أو لديك تصريح واضح بفحصه.</p></section>
+<section id="part-7"><h2>تحديد نطاق المختبر وتوثيق النتائج</h2><p>قبل بدء أي اختبار، وثّق عنوان الجهاز المصرح، والوقت، ونوع الفحص، والحد الأقصى لمعدل الطلبات، وجهة الاتصال عند ظهور أثر غير متوقع. ابدأ بفحص محدود وتوقف إذا ظهرت مؤشرات ضغط أو انقطاع.</p><ul><li>لا تفحص عناوين عامة أو شبكات الجيران أو شبكات العمل دون موافقة مكتوبة.</li><li>لا تستخدم نتائج الفحص لمحاولة الدخول أو تجاوز المصادقة.</li><li>احذف أو أخفِ عناوين IP الداخلية وأي معلومات حساسة قبل نشر تقرير عام.</li></ul><div class="note"><strong>تمرين:</strong> أنشئ مختبراً محلياً بجهازين تملكهما، واكتب تقريراً يشرح النطاق والنتائج والقيود دون تنفيذ أي استغلال.</div></section><h2>الأوامر في هذا الدرس</h2><pre><code>pkg install nmap
 nmap --version
 # استبدل العنوان بعنوان جهاز مختبرك المصرح به
 nmap -sV 192.168.1.10</code></pre>
 <p class="note">ملاحظة: قد تختلف بعض التفاصيل بحسب إصدار Android وإصدار Termux والمستودعات المتاحة. راجع الوثائق الرسمية عند ظهور اختلاف.</p>
 <section class="related"><h2>دروس ذات صلة</h2><ul><li><a href="/articles/linux-commands-termux/">أوامر Linux</a></li><li><a href="/articles/update-termux-packages/">تحديث Termux</a></li></ul></section>
-<!-- مساحة إعلانية -->
-<div class="ad-slot" style="margin:20px auto;text-align:center;max-width:100%;min-height:50px;overflow:hidden">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
 
-
-</div>
 
 </main>
 <footer>© Mohamed Bouhaj · BOUHAJ Tools · <a href="/articles/">جميع دروس Termux</a></footer>
