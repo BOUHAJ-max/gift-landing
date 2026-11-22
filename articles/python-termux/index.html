@@ -26,21 +26,25 @@ cd ~/projects
 nano hello.py
 # اكتب: print('Hello from Termux!')
 python hello.py</code></pre></section>
-<!-- مساحة إعلانية -->
-<div class="ad-slot" style="margin:24px auto;max-width:100%;min-height:80px;text-align:center;overflow:hidden">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
 
-<div id="container-a3d2c3b7dfafdd1619508a46abd294e6"></div>
-</div>
 <section id="part-3"><h2>كتابة أول برنامج</h2><p>افتح محرر nano وأنشئ ملف hello.py. اكتب سطر طباعة بسيطاً، ثم احفظ الملف واخرج من المحرر.</p></section><section id="part-4"><h2>تشغيل البرنامج</h2><p>نفّذ الملف باستخدام أمر python متبوعاً باسم الملف. إذا ظهر النص في الطرفية فقد عمل البرنامج كما ينبغي.</p></section>
-<!-- مساحة إعلانية -->
-<div class="ad-slot" style="margin:24px auto;text-align:center;max-width:100%;min-height:250px;overflow:hidden">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
 
-
-</div>
 <section id="part-5"><h2>تثبيت المكتبات</h2><p>استخدم pip عبر python -m pip عند الحاجة إلى مكتبة. اقرأ توثيق المكتبة وتأكد من توافقها مع بيئة Android قبل تثبيتها.</p></section>
-<h2>الأوامر في هذا الدرس</h2><pre><code>pkg install python
+<section id="part-6"><h2>تشغيل سكربت منظم ومعالجة الإدخال</h2><p>بعد نجاح أول برنامج، افصل الكود في ملف واحرص على التحقق من مدخلات المستخدم. المثال التالي يحسب مجموع رقمين ويتعامل مع الإدخال غير الرقمي:</p><pre><code>def main():
+    try:
+        first = float(input("First number: "))
+        second = float(input("Second number: "))
+    except ValueError:
+        print("Please enter valid numbers.")
+        return
+    print("Total:", first + second)
+
+if __name__ == "__main__":
+    main()</code></pre><p>شغّله باستخدام <code>python app.py</code>، ثم جرّب أرقاماً صحيحة ومدخلات غير صالحة ولاحظ الفرق.</p></section>
+<section id="part-7"><h2>تنظيم المشروع والمكتبات</h2><p>أنشئ مجلد مشروع مستقل، واحتفظ بملف README يشرح طريقة التشغيل. عندما تحتاج مكتبة خارجية، تحقق من توثيقها وتوافقها مع Termux وAndroid قبل تثبيتها.</p><pre><code>mkdir -p ~/projects/my-python-app
+cd ~/projects/my-python-app
+python -m pip --version
+python -m pip install requests</code></pre><p>ليس كل مشروع Python يحتاج إلى مكتبات خارجية. ابدأ بمكتبات Python القياسية عندما تفي بالغرض، ولا تنفّذ تعليمات تثبيت من مصدر غير موثوق.</p><div class="note"><strong>تمرين:</strong> أنشئ برنامجاً يحوّل درجات الحرارة بين Celsius وFahrenheit، واكتب في README مثالين للمدخلات والنتائج المتوقعة.</div></section><h2>الأوامر في هذا الدرس</h2><pre><code>pkg install python
 python --version
 mkdir -p ~/projects
 cd ~/projects
@@ -49,12 +53,7 @@ nano hello.py
 python hello.py</code></pre>
 <p class="note">ملاحظة: قد تختلف بعض التفاصيل بحسب إصدار Android وإصدار Termux والمستودعات المتاحة. راجع الوثائق الرسمية عند ظهور اختلاف.</p>
 <section class="related"><h2>دروس ذات صلة</h2><ul><li><a href="/articles/nodejs-termux/">تثبيت Node.js</a></li><li><a href="/articles/git-github-termux/">Git وGitHub</a></li></ul></section>
-<!-- مساحة إعلانية -->
-<div class="ad-slot" style="margin:20px auto;text-align:center;max-width:100%;min-height:50px;overflow:hidden">
-<div class="ad-label" style="font-size:11px;line-height:1.4;color:#888;text-align:center;margin:0 0 6px">إعلان</div>
 
-
-</div>
 
 </main>
 <footer>© Mohamed Bouhaj · BOUHAJ Tools · <a href="/articles/">جميع دروس Termux</a></footer>
