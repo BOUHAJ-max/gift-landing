@@ -4,8 +4,8 @@
 <script src="/maintenance-mode.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>BOUHAJ TECH | أدوات رقمية مجانية وذكاء اصطناعي وكتب عربية</title>
-<meta name="description" content="بوابتك الرقمية المجانية: أدوات تقنية وذكاء اصطناعي وكتب ودورات عربية في الأمن السيبراني وTermux وPython والبرمجة.">
+<title>BOUHAJ TECH | أدوات رقمية ودروس برمجة وأمن سيبراني | BOUHAJ TECH</title>
+<meta name="description" content="منصة عربية تقدم شروحات أصلية في Termux وLinux وPython والشبكات والأمن الرقمي، مع دورات وأدوات تقنية ومعلومات عن الناشر.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://go.bouhaj.com/">
 <meta property="og:type" content="website"><meta property="og:locale" content="ar_MA"><meta property="og:site_name" content="BOUHAJ TECH">
@@ -261,7 +261,7 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
   <div class="top">
     <div class="logo"><div class="logo-mark">&gt;_</div><div>BOUHAJ TECH<small>by E-BOUHAJ TECH</small></div></div>
     <button class="lang" id="langBtn">EN</button>
-    <nav class="main-nav" aria-label="التنقل"><a href="#promptPanel" data-nav="code">كود ChatGPT</a><a href="/articles/" data-nav="academy">أكاديمية Termux</a><a href="/experiences/" data-nav="experiences">تجاربي الروحية</a><a href="/academy/" data-nav="courses">الدورات التقنية</a><a href="/contact.html" data-nav="contact">تواصل معي</a><a href="/privacy.html" data-nav="privacy">سياسة الخصوصية</a></nav>
+    <nav class="main-nav" aria-label="التنقل"><a href="#promptPanel" data-nav="code">كود ChatGPT</a><a href="/articles/" data-nav="academy">أكاديمية Termux</a><a href="/experiences/" data-nav="experiences">تجاربي الروحية</a><a href="/academy/" data-nav="courses">الدورات التقنية</a><a href="/contact.html" data-nav="contact">تواصل معي</a><a href="/privacy.html" data-nav="privacy">سياسة الخصوصية</a><a href="/about.html">من نحن</a></nav>
   </div>
 
   <section class="hero">
@@ -292,7 +292,7 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
   <div class="grid" id="grid"></div>
   <p class="empty" id="empty"></p>
 
-  <footer>© <span id="yr"></span> BOUHAJ TECH · <a href="/academy/">الدورات التقنية</a> · <a href="/articles/">دروس Termux</a> · <a href="/contact.html">التواصل</a> · <a href="/privacy.html">الخصوصية</a> · <a href="https://www.instagram.com/bouhaj.officiel/" target="_blank" rel="noopener noreferrer">Instagram</a></footer>
+  <footer>© <span id="yr"></span> BOUHAJ TECH · <a href="/academy/">الدورات التقنية</a> · <a href="/articles/">دروس Termux</a> · <a href="/contact.html">التواصل</a> · <a href="/privacy.html">الخصوصية</a> · <a href="/about.html">من نحن</a> · <a href="https://www.instagram.com/bouhaj.officiel/" target="_blank" rel="noopener noreferrer">Instagram</a></footer>
 </div>
 
 <div class="modal" id="modal">
@@ -309,17 +309,17 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 <script>
 /* ======= النصوص ======= */
 const T={
- ar:{h1:'بوابتك <span class="g">الرقمية</span><br>أدوات ومعرفة بلا تعقيد',sub:'أدوات تقنية مجانية، موارد للذكاء الاصطناعي، كتب رقمية ودروس عملية باللغة العربية.',
+ ar:{h1:'بوابتك <span class="g">الرقمية</span><br>أدوات ومعرفة بلا تعقيد',sub:'شروحات تقنية ومقالات تعليمية ودورات عربية في البرمجة وLinux والشبكات والأمن الرقمي.',
    q:'ابحث عن أداة...',all:'الكل',get:'احصل على الأداة',soon:'قريباً',empty:'لا توجد أداة بهذا الاسم',chatTitle:'كود ChatGPT',copyPrompt:'⧉ نسخ البرومت',copyPromptDone:'✓ تم النسخ',copyPromptHint:'النص محفوظ بصيغته المشفرة الأصلية',copyPromptSuccess:'تم نسخ النص المشفر كاملا',copyPromptFallback:'تعذر النسخ التلقائي؛ تم تحديد النص. اضغط مطولا واختر نسخ.',bookTitle:'احصل على كتاب غرائب الذكاء الاصطناعي',bookButton:'تحميل الكتاب مباشرة',bookKicker:'كتاب رقمي مميز',bookSubtitle:'21 قصة حقيقية عن آلات خدعت البشر، وأدهشت العالم',bookFootnote:'ملف PDF مجاني — تحميل مباشر دون عروض أو تحويلات',
    steps:['افتح صفحة العرض','اقرأ الشروط ومتطلبات الأهلية','تابع فقط إذا كان العرض مناسبا لك'],
    go:'🔓 افتح الأداة الآن',note:'العروض مقدمة من شركاء خارجيين وتخضع لشروطهم',close:'إغلاق',
    cats:{learning:'تعلم',ai:'ذكاء اصطناعي',linux:'لينكس',dev:'برمجة'},status:'النظام يعمل'},
- en:{h1:'Your <span class="g">digital hub</span><br>tools, learning and ideas',sub:'Free digital tools, AI resources, books and practical learning guides.',
+ en:{h1:'Your <span class="g">digital hub</span><br>tools, learning and ideas',sub:'Practical guides and Arabic learning resources for programming, Linux, networking and digital security.',
    q:'Search a tool...',all:'All',get:'Get the tool',soon:'Coming soon',empty:'No tool matches that',chatTitle:'ChatGPT Code',copyPrompt:'⧉ Copy prompt',copyPromptDone:'✓ Copied',copyPromptHint:'Text is preserved in its original encoded format',copyPromptSuccess:'The full encoded text has been copied',copyPromptFallback:'Automatic copy failed; text selected. Long-press and choose Copy.',bookTitle:'Get the AI Wonders of Artificial Intelligence book',bookButton:'Download the book directly',bookKicker:'Featured digital book',bookSubtitle:'21 true stories about machines that fooled people and amazed the world',bookFootnote:'Free PDF — direct download, no offers or redirects',
    steps:['Open the offer page','Review its terms and eligibility requirements','Continue only if the offer suits you'],
    go:'🔓 Unlock the tool',note:'External links are governed by their providers’ terms',close:'Close',
    cats:{learning:'Learning',ai:'AI',linux:'Linux',dev:'Development'},status:'system online'},
- fr:{h1:'Votre <span class="g">espace numérique</span><br>outils, savoir et idées',sub:'Des outils gratuits, des ressources IA, des livres numériques et des cours pratiques.',
+ fr:{h1:'Votre <span class="g">espace numérique</span><br>outils, savoir et idées',sub:'Des guides pratiques en programmation, Linux, réseaux et sécurité numérique.',
    q:'Rechercher un outil...',all:'Tout',get:'Obtenir l’outil',soon:'Bientôt disponible',empty:'Aucun outil ne correspond à votre recherche',chatTitle:'Code ChatGPT',copyPrompt:'⧉ Copier le prompt',copyPromptDone:'✓ Copié',copyPromptHint:'Texte conservé dans son format encodé original',copyPromptSuccess:'Le texte encodé complet a été copié',copyPromptFallback:'Copie automatique impossible ; texte sélectionné. Appuyez longuement puis choisissez Copier.',bookTitle:'Découvrez le livre Les curiosités de l’intelligence artificielle',bookButton:'Télécharger le livre directement',bookKicker:'Livre numérique à découvrir',bookSubtitle:'21 histoires vraies de machines qui ont trompé les humains et étonné le monde',bookFootnote:'PDF gratuit — téléchargement direct, sans redirection',
    steps:['Ouvrez la page de l’offre','Consultez les conditions et les critères d’éligibilité','Continuez uniquement si l’offre vous convient'],
    go:'🔓 Déverrouiller l’outil',note:'Les liens externes sont soumis aux conditions de leurs fournisseurs',close:'Fermer',
