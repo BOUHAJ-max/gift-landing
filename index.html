@@ -219,6 +219,20 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 .tools-section .search{border-radius:15px}
 .tools-section .chips{padding-bottom:16px}
 
+
+/* ===== Cheerful follow announcement ===== */
+.follow-announcement{position:relative;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:4px 0 22px;padding:13px 16px;border:1px solid #f5c400;border-radius:16px;background:linear-gradient(105deg,#fff3a6,#ffd84d 48%,#fff0a0);color:#493600;box-shadow:0 8px 24px rgba(255,197,0,.2),inset 0 1px 0 rgba(255,255,255,.8);overflow:hidden;isolation:isolate;animation:follow-pop .65s both}
+.follow-announcement:before{content:"";position:absolute;inset:-50% auto -50% -35%;width:24%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);transform:rotate(18deg);animation:follow-shine 4.5s ease-in-out infinite;z-index:-1}
+.follow-announcement p{font-size:clamp(13px,2vw,16px);font-weight:900;line-height:1.7;text-align:center}
+.follow-announcement .follow-cta{display:inline-flex;align-items:center;justify-content:center;gap:7px;flex:none;padding:8px 14px;border-radius:999px;background:#172b45;color:#fff;text-decoration:none;font-size:13px;font-weight:900;box-shadow:0 4px 12px rgba(23,43,69,.2);transition:transform .2s,box-shadow .2s}
+.follow-announcement .follow-cta:hover{transform:translateY(-2px);box-shadow:0 7px 16px rgba(23,43,69,.25)}
+.follow-announcement .follow-cta svg{width:17px;height:17px;animation:follow-bounce 1.8s ease-in-out infinite}
+@keyframes follow-pop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes follow-shine{0%,65%{left:-35%}100%{left:130%}}
+@keyframes follow-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@media(max-width:520px){.follow-announcement{gap:8px;padding:11px 10px;margin-bottom:18px}.follow-announcement p{width:100%}}
+@media(prefers-reduced-motion:reduce){.follow-announcement,.follow-announcement:before,.follow-announcement .follow-cta svg{animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -231,6 +245,14 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
     <button class="lang" id="langBtn">EN</button>
     <nav class="main-nav" aria-label="التنقل"><a href="#promptPanel" data-nav="code">أداة ChatGPT</a><a href="/articles/" data-nav="academy">مكتبة المقالات</a><a href="/academy/" data-nav="courses">الدورات التقنية</a><a href="/experiences/" data-nav="experiences">التجارب الشخصية</a><a href="/about.html" data-nav="about">من نحن</a><a href="/contact.html" data-nav="contact">التواصل</a><a href="/privacy.html" data-nav="privacy">الخصوصية</a></nav>
   </div>
+
+  <aside class="follow-announcement" aria-label="إعلان متابعة">
+    <p id="followMessage">ديرو أبوني الشباب، خلي معاك شي فولو… كاين الغرائب والعجائب عندي! 😄</p>
+    <a class="follow-cta" id="followLink" href="https://www.instagram.com/bouhaj.officiel/" target="_blank" rel="noopener noreferrer" aria-label="تابعني على إنستغرام">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      <span id="followLabel">فولو</span>
+    </a>
+  </aside>
 
   <main id="main-content">
   <section class="hero">
@@ -378,6 +400,8 @@ const tx=o=>typeof o==='string'?o:(o?.[lang]||o?.en||o?.ar||'');
 
 function applyLang(){
   const t=T[lang];
+  const followCopy={ar:{message:'ديرو أبوني الشباب، خلي معاك شي فولو… كاين الغرائب والعجائب عندي! 😄',label:'فولو',aria:'تابعني على إنستغرام'},en:{message:'Hit that follow, folks! Stick around — I have plenty of weird and wonderful things here! 😄',label:'Follow',aria:'Follow me on Instagram'},fr:{message:'Abonnez-vous les amis ! Restez dans le coin — il y a plein de choses étonnantes ici ! 😄',label:'Suivre',aria:'Me suivre sur Instagram'}}[lang];
+  $('followMessage').textContent=followCopy.message;$('followLabel').textContent=followCopy.label;$('followLink').setAttribute('aria-label',followCopy.aria);
   document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
   $('langBtn').textContent=lang==='ar'?'EN':lang==='en'?'FR':'ع';
   $('h1').innerHTML=t.h1;$('sub').textContent=t.sub;$('q').placeholder=t.q;
