@@ -303,7 +303,9 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 .dragon-book{--accent:#58baff}.lion-book{--accent:#e5bd79}
 .book-art{display:block;flex:none;width:112px;aspect-ratio:640/900;position:relative;perspective:700px;filter:drop-shadow(8px 12px 9px rgba(0,0,0,.45));transition:transform .25s}
 .book-art:before{content:"";position:absolute;z-index:-1;inset:2px -7px 2px 4px;border-radius:3px;background:linear-gradient(90deg,#050b14,#26394d 14%,#080f1a 18%,#050b14);transform:rotateY(-13deg) translateX(5px)}
-.book-art img{display:block;width:100%;height:100%;object-fit:cover;border-radius:3px 7px 7px 3px;border:1px solid rgba(255,255,255,.23);transform:rotateY(-8deg);transform-origin:left center}
+/* Fast first-paint cover loading */
+.book-art{aspect-ratio:3/4;contain:layout paint}
+.book-art img{content-visibility:visible;display:block;width:100%;height:100%;object-fit:cover;border-radius:3px 7px 7px 3px;border:1px solid rgba(255,255,255,.23);transform:rotateY(-8deg);transform-origin:left center}
 .book-card:hover .book-art{transform:translateY(-3px) rotate(-2deg)}
 .book-copy{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0}
 .book-kicker{font:700 9px "JetBrains Mono",monospace;letter-spacing:1px;color:var(--accent);direction:ltr}
@@ -340,6 +342,8 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 @media(prefers-reduced-motion:reduce){.about-menu summary,.about-chevron{transition:none}.about-menu-panel{animation:none}}
 
 </style>
+<link rel="preload" as="image" href="/assets/rebellious-novel-cover.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/wadi-al-aql-cover.jpg" fetchpriority="high">
 </head>
 <body>
 <!-- Persistent PWA install action -->
@@ -398,11 +402,11 @@ body{padding-bottom:92px!important}
     <div class="literary-heading"><span class="literary-eyebrow">THE LITERARY COLLECTION</span><h2 id="literaryShelfTitle">عوالم تُقرأ… وتبقى في الذاكرة</h2><p>اختر بوابتك إلى الحكاية؛ لكل رواية عالمها ورمزها الخاص.</p></div>
     <div class="literary-grid">
       <a class="book-card dragon-book" href="/rebellious-novel/" aria-label="افتح الرواية المتمردة">
-        <span class="book-art"><img src="/assets/rebellious-novel-cover.jpg" alt="غلاف الرواية المتمردة بتنين أزرق" loading="lazy"></span>
+        <span class="book-art"><img src="/assets/rebellious-novel-cover.jpg" alt="غلاف الرواية المتمردة بتنين أزرق" width="180" height="240" loading="eager" fetchpriority="high" decoding="async"></span>
         <span class="book-copy"><span class="book-kicker">THE REBELLIOUS NOVEL</span><strong>الرواية المتمردة</strong><span>تنين يفتح أبواب الخيال والتمرد وأسئلة الهوية.</span><span class="book-open">اكتشف فصول الرواية <b>←</b></span></span>
       </a>
       <a class="book-card lion-book" href="/wadi-al-aql/" aria-label="افتح رواية وادي العقل">
-        <span class="book-art"><img src="/assets/wadi-al-aql-cover.jpg" alt="غلاف رواية وادي العقل بأسد ذهبي" loading="lazy"></span>
+        <span class="book-art"><img src="/assets/wadi-al-aql-cover.jpg" alt="غلاف رواية وادي العقل بأسد ذهبي" width="180" height="240" loading="eager" fetchpriority="high" decoding="async"></span>
         <span class="book-copy"><span class="book-kicker">WADI AL-AQL CHRONICLES</span><strong>رواية وادي العقل</strong><span>أسد يحرس بوابة الصحراء؛ حيث تتواجه الحكمة والتناقض.</span><span class="book-open">ادخل إلى الوادي <b>←</b></span></span>
       </a>
     </div>
