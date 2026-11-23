@@ -573,14 +573,14 @@ const tx=o=>typeof o==='string'?o:(o?.[lang]||o?.en||o?.ar||'');
 
 function applyLang(){
   const t=T[lang];
-  const followCopy={ar:{message:'ديرو أبوني الشباب، خلي معاك شي فولو… كاين الغرائب والعجائب عندي! 😄',label:'فولو',aria:'تابعني على إنستغرام'},en:{message:'Hit that follow, folks! Stick around — I have plenty of weird and wonderful things here! 😄',label:'Follow',aria:'Follow me on Instagram'},fr:{message:'Abonnez-vous les amis ! Restez dans le coin — il y a plein de choses étonnantes ici ! 😄',label:'Suivre',aria:'Me suivre sur Instagram'}}[lang];
-  $('followMessage').textContent=followCopy.message;$('followLabel').textContent=followCopy.label;$('followLink').setAttribute('aria-label',followCopy.aria);
+  // The follow announcement was removed; missing legacy nodes must not interrupt language switching.
   document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
   $('langBtn').textContent=lang==='ar'?'EN':lang==='en'?'FR':'ع';
   $('h1').innerHTML=t.h1;$('sub').textContent=t.sub;$('q').placeholder=t.q;
   $('empty').textContent=t.empty;$('status').textContent=t.status;$('mClose').textContent=t.close;
-  const navLabels={ar:{code:'أداة ChatGPT',academy:'مكتبة المقالات',courses:'الدورات التقنية',experiences:'التجارب الشخصية',rebellious:'الرواية المتمردة',wadi:'رواية وادي العقل',about:'من نحن',contact:'التواصل',privacy:'الخصوصية'},en:{code:'ChatGPT tool',academy:'Articles',courses:'Courses',experiences:'Personal experiences',rebellious:'The Rebellious Novel',wadi:'Wadi Al-Aql Novel',about:'About',contact:'Contact',privacy:'Privacy'},fr:{code:'Outil ChatGPT',academy:'Articles',courses:'Formations',experiences:'Expériences personnelles',rebellious:'Le roman rebelle',wadi:'Le roman de Wadi Al-Aql',about:'À propos',contact:'Contact',privacy:'Confidentialité'}};
-  document.querySelectorAll('[data-nav]').forEach(a=>{a.textContent=navLabels[lang][a.dataset.nav]||a.textContent});
+  const navLabels={ar:['المكتبة الأدبية','المقالات','الدورات','التجارب','أداة ChatGPT','عنّي والسياسات'],en:['Literary Library','Articles','Courses','Experiences','ChatGPT Tool','About & Policies'],fr:['Bibliothèque littéraire','Articles','Formations','Expériences','Outil ChatGPT','À propos et politiques']};
+  const nav=document.querySelector('.main-nav');
+  if(nav){const links=nav.querySelectorAll(':scope > a');links.forEach((a,i)=>{if(navLabels[lang][i]){const icon=a.querySelector('[aria-hidden="true"]');a.textContent=navLabels[lang][i];if(icon)a.prepend(icon)}});const summary=nav.querySelector('.about-menu > summary');if(summary){const icon=summary.querySelector('[aria-hidden="true"]');summary.textContent=navLabels[lang][5];if(icon)summary.prepend(icon)}}
   $('toolsHeading').textContent=t.toolsHeading;$('toolsDescription').textContent=t.toolsDescription;$('toolsSearch').setAttribute('aria-label',t.searchLabel);
   ['Courses','Articles','Contact','Privacy','About'].forEach(k=>{const el=$('footer'+k);if(el)el.textContent=t['footer'+k]});
   $('promptTitle').textContent=t.chatTitle;$('copyPrompt').textContent=t.copyPrompt;$('copyPromptStatus').textContent=t.copyPromptHint;
