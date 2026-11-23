@@ -1,16 +1,15 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<script src="/maintenance-mode.js"></script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>كيفية الوصول إلى ملفات الهاتف من Termux | BOUHAJ Tools</title>
+<title>كيفية الوصول إلى ملفات الهاتف من Termux | BOUHAJ TECH</title>
 <meta name="description" content="شرح أمر termux-setup-storage والوصول إلى مجلد Download وملفات Android المشتركة من الطرفية."><meta name="keywords" content="Termux storage, termux-setup-storage, الوصول إلى ملفات الهاتف">
 <meta name="author" content="Mohamed Bouhaj"><meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://go.bouhaj.com/articles/termux-storage-access/">
-<meta property="og:type" content="article"><meta property="og:locale" content="ar_MA"><meta property="og:site_name" content="BOUHAJ Tools"><meta property="og:title" content="كيفية الوصول إلى ملفات الهاتف من Termux"><meta property="og:description" content="شرح أمر termux-setup-storage والوصول إلى مجلد Download وملفات Android المشتركة من الطرفية."><meta property="og:url" content="https://go.bouhaj.com/articles/termux-storage-access/">
-<meta name="twitter:card" content="summary"><meta name="twitter:title" content="كيفية الوصول إلى ملفات الهاتف من Termux"><meta name="twitter:description" content="شرح أمر termux-setup-storage والوصول إلى مجلد Download وملفات Android المشتركة من الطرفية.">
+<meta property="og:type" content="article"><meta property="og:locale" content="ar_MA"><meta property="og:site_name" content="BOUHAJ TECH"><meta property="og:title" content="كيفية الوصول إلى ملفات الهاتف من Termux"><meta property="og:description" content="شرح أمر termux-setup-storage والوصول إلى مجلد Download وملفات Android المشتركة من الطرفية."><meta property="og:url" content="https://go.bouhaj.com/articles/termux-storage-access/">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="كيفية الوصول إلى ملفات الهاتف من Termux"><meta name="twitter:description" content="شرح أمر termux-setup-storage والوصول إلى مجلد Download وملفات Android المشتركة من الطرفية.">
 <meta name="theme-color" content="#030806">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"كيفية الوصول إلى ملفات الهاتف من Termux","description":"شرح أمر termux-setup-storage والوصول إلى مجلد Download وملفات Android المشتركة من الطرفية.","inLanguage":"ar","author":{"@type":"Person","name":"Mohamed Bouhaj"},"publisher":{"@type":"Organization","name":"BOUHAJ Tools","url":"https://go.bouhaj.com/"},"mainEntityOfPage":"https://go.bouhaj.com/articles/termux-storage-access/","keywords":"Termux storage, termux-setup-storage, الوصول إلى ملفات الهاتف"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"كيفية الوصول إلى ملفات الهاتف من Termux","description":"شرح أمر termux-setup-storage والوصول إلى مجلد Download وملفات Android المشتركة من الطرفية.","inLanguage":"ar","author":{"@type":"Person","name":"Mohamed Bouhaj"},"publisher":{"@type":"Organization","name":"BOUHAJ TECH","url":"https://go.bouhaj.com/"},"mainEntityOfPage":"https://go.bouhaj.com/articles/termux-storage-access/","keywords":"Termux storage, termux-setup-storage, الوصول إلى ملفات الهاتف"}</script>
 <style>
 :root{color-scheme:dark;--bg:#030806;--panel:#07120d;--line:#17442d;--neon:#39ff88;--cyan:#00e5ff;--text:#e8fff1;--muted:#9ab6a5}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -10%,#10351f 0,transparent 42%),var(--bg);color:var(--text);font:16px/1.95 system-ui,"IBM Plex Sans Arabic",sans-serif}.wrap{width:min(850px,calc(100% - 28px));margin:auto;padding:18px 0 60px}.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.top a,.related a{color:var(--neon)}.top a{border:1px solid var(--line);padding:6px 12px;border-radius:999px;text-decoration:none}.brand{font:700 13px monospace;color:var(--neon);direction:ltr}.hero{text-align:center;padding:42px 8px 26px}.pill{color:var(--neon);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font:12px monospace;direction:ltr;display:inline-block}.hero h1{font-size:clamp(27px,6vw,44px);line-height:1.4;margin:15px 0}.hero p{color:var(--muted);max-width:720px;margin:auto}.meta{font-size:12px;color:var(--muted);margin-top:14px}.content{background:linear-gradient(145deg,#09170f,#050b08);border:1px solid var(--line);border-radius:18px;padding:clamp(17px,4vw,30px)}.intro{font-size:17px;color:#d5ecdd}.content h2{font-size:21px;color:var(--neon);margin:28px 0 8px}.content p,.content li{color:#c7ddce}.content pre{direction:ltr;text-align:left;white-space:pre-wrap;overflow:auto;background:#020604;border:1px solid var(--line);border-radius:12px;padding:15px;color:#aaf5c5;font:13px/1.8 monospace}.related{border-top:1px solid var(--line);margin-top:28px;padding-top:18px}.related h2{color:var(--cyan)}.related li{margin:5px 0}.note{font-size:12px;color:var(--muted)}footer{margin-top:24px;color:var(--muted);font-size:12px;text-align:center}a:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
@@ -21,9 +20,10 @@
 <link rel="stylesheet" href="/assets/site.css?v=2">
 <script src="/assets/site.js?v=1" defer></script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5006130101466731" crossorigin="anonymous"></script>
+<meta property="og:image" content="https://go.bouhaj.com/assets/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="BOUHAJ TECH — دروس تقنية عملية بالعربية"><meta name="twitter:image" content="https://go.bouhaj.com/assets/og-image.png">
 </head>
 <body><div class="wrap">
-<header class="top"><a href="/articles/">← أكاديمية Termux</a><a href="/">BOUHAJ Tools</a><span class="brand">BOUHAJ TECH / TERMUX</span></header>
+<header class="top"><a href="/articles/">← أكاديمية Termux</a><a href="/">BOUHAJ TECH</a><span class="brand">BOUHAJ TECH / TERMUX</span></header>
 <header class="hero"><span class="pill">TERMUX • ANDROID • LINUX</span><h1>كيفية الوصول إلى ملفات الهاتف من Termux</h1><p>شرح أمر termux-setup-storage والوصول إلى مجلد Download وملفات Android المشتركة من الطرفية.</p><div class="meta">إعداد: Mohamed Bouhaj · دليل مجاني · قراءة عملية</div></header>
 <main class="content"><p class="intro">يحتاج Termux إلى إذن Android للوصول إلى مساحة التخزين المشتركة. يشرح هذا الدرس كيفية تفعيل الإذن والتنقل إلى المجلدات دون تعريض ملفاتك للخطر.</p><section id="part-1"><h2>طلب إذن التخزين</h2><p>نفّذ أمر إعداد التخزين داخل Termux. سيعرض Android نافذة إذن؛ راجعها واسمح بالوصول إذا كنت تريد استخدام ملفاتك من الطرفية.</p></section><section id="part-2"><h2>استكشاف الاختصارات</h2><p>بعد منح الإذن، أنشئ Termux اختصارات داخل مجلد storage في مجلد المستخدم. اعرضها أولاً لمعرفة الأسماء المتاحة على جهازك.</p><pre><code>termux-setup-storage
 ls ~/storage
@@ -52,6 +52,6 @@ cp ~/storage/shared/Download/example.txt ~/projects/</code></pre>
 
 
 </main>
-<footer>© Mohamed Bouhaj · BOUHAJ Tools · <a href="/articles/">جميع دروس Termux</a></footer>
+<footer>© Mohamed Bouhaj · BOUHAJ TECH · <a href="/articles/">جميع دروس Termux</a></footer>
 </div><script src="/i18n.js?v=6" defer></script>
 </body></html>

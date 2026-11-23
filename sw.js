@@ -1,4 +1,4 @@
-const CACHE_NAME="bouhaj-speed-v4";
+const CACHE_NAME="bouhaj-speed-v5";
 const CORE_ASSETS=[
  "/pwa-icon.svg",
  "/manifest.webmanifest",
@@ -21,16 +21,23 @@ self.addEventListener("fetch",event=>{
  const url=new URL(request.url);
  if(url.origin!==self.location.origin) return;
  if(request.mode==="navigate"){
+  // Network first: visitors always get the latest page when online;
+  // the cached copy is used only when the network is slow or unavailable.
   event.respondWith((async()=>{
    const cache=await caches.open(CACHE_NAME);
-   const cached=await cache.match(request) || (url.pathname==="/" ? await cache.match("/") : null);
-   const update=fetch(request).then(response=>{
-    if(response&&response.ok){cache.put(request,response.clone());if(url.pathname==="/")cache.put("/",response.clone())}
+   const network=fetch(request).then(response=>{
+    if(response&&response.ok){const copy=response.clone();event.waitUntil(cache.put(request,copy))}
     return response;
-   }).catch(()=>null);
-   if(cached){event.waitUntil(update);return cached}
-   const fresh=await update;
-   if(fresh)return fresh;
+   });
+   network.catch(()=>{});
+   const timeout=new Promise(resolve=>setTimeout(()=>resolve(null),4000));
+   try{
+    const fresh=await Promise.race([network,timeout]);
+    if(fresh)return fresh;
+   }catch(e){}
+   const cached=await cache.match(request);
+   if(cached)return cached;
+   try{const late=await network;if(late)return late}catch(e){}
    return (await cache.match("/offline.html"))||new Response("You are offline.",{status:503,headers:{"Content-Type":"text/plain; charset=utf-8"}});
   })());
   return;
