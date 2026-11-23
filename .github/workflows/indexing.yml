@@ -1,0 +1,48 @@
+name: Sitemap and IndexNow
+
+on:
+  push:
+    branches: [main]
+    paths: ["**.html"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rebuild sitemap.xml
+        run: |
+          python3 tools/build_sitemap.py
+          if ! git diff --quiet sitemap.xml; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add sitemap.xml
+            git commit -m "Update sitemap.xml"
+            git push
+          fi
+
+      - name: Notify search engines (IndexNow)
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          KEY="9364296b18dc4a5829d8e18d5638ade5"
+          if [ -n "$BEFORE" ] && git cat-file -e "$BEFORE" 2>/dev/null; then
+            FILES=$(git diff --name-only --diff-filter=AM "$BEFORE" "$AFTER" -- '*.html')
+          else
+            FILES=$(git ls-files '*.html')
+          fi
+          URLS=$(printf '%s\n' $FILES | grep -vE '^(offline|maintenance|404)\.html$' \
+            | sed -E 's#(^|/)index\.html$#\1#; s#^#https://go.bouhaj.com/#' | sort -u)
+          [ -z "$URLS" ] && { echo "No page changes"; exit 0; }
+          echo "$URLS"
+          JSON=$(printf '%s\n' $URLS | python3 -c 'import json,sys;u=[l.strip() for l in sys.stdin if l.strip()];print(json.dumps({"host":"go.bouhaj.com","key":"'"$KEY"'","keyLocation":"https://go.bouhaj.com/'"$KEY"'.txt","urlList":u}))')
+          curl -sS -o /dev/null -w "IndexNow HTTP %{http_code}\n" -X POST https://api.indexnow.org/indexnow \
+            -H "Content-Type: application/json; charset=utf-8" --data "$JSON" || true

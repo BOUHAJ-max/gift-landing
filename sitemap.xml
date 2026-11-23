@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://go.bouhaj.com/about.html</loc><lastmod>2026-11-22</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://go.bouhaj.com/</loc><lastmod>2026-11-21</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://go.bouhaj.com/articles/</loc><lastmod>2026-11-22</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://go.bouhaj.com/articles/install-termux-android/</loc><lastmod>2026-11-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/articles/update-termux-packages/</loc><lastmod>2026-11-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/articles/linux-commands-termux/</loc><lastmod>2026-11-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/articles/termux-storage-access/</loc><lastmod>2026-11-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/articles/python-termux/</loc><lastmod>2026-11-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/articles/nodejs-termux/</loc><lastmod>2026-11-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/articles/git-github-termux/</loc><lastmod>2026-11-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/articles/nmap-termux-network-lab/</loc><lastmod>2026-11-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/articles/local-web-server-termux/</loc><lastmod>2026-11-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/contact.html</loc><lastmod>2026-11-21</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://go.bouhaj.com/privacy.html</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://go.bouhaj.com/academy/</loc><lastmod>2026-11-21</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://go.bouhaj.com/academy/cybersecurity/</loc><lastmod>2026-11-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/academy/termux-linux/</loc><lastmod>2026-11-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/academy/python/</loc><lastmod>2026-11-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/articles/networking-basics/</loc><lastmod>2026-11-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/articles/linux-permissions/</loc><lastmod>2026-11-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/articles/git-branches/</loc><lastmod>2026-11-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/articles/python-venv/</loc><lastmod>2026-11-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/articles/web-security-basics/</loc><lastmod>2026-11-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/articles/secure-backups/</loc><lastmod>2026-11-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/experiences/</loc><lastmod>2026-11-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/experiences/astral-projection/</loc><lastmod>2026-11-22</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/</loc><lastmod>2026-11-23</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://go.bouhaj.com/academy/</loc><lastmod>2026-11-23</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://go.bouhaj.com/articles/</loc><lastmod>2026-11-23</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://go.bouhaj.com/academy/cybersecurity/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/academy/python/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/academy/termux-linux/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/articles/git-branches/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/articles/git-github-termux/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/articles/install-termux-android/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/articles/linux-commands-termux/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/articles/linux-permissions/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/articles/local-web-server-termux/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/articles/networking-basics/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/articles/nmap-termux-network-lab/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/articles/nodejs-termux/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/articles/python-termux/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/articles/python-venv/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/articles/secure-backups/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/articles/termux-storage-access/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/articles/update-termux-packages/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/articles/web-security-basics/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/experiences/</loc><lastmod>2026-11-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://go.bouhaj.com/rebellious-novel/</loc><lastmod>2026-11-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/rebellious-novel/identity-flexible-part-3/</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://go.bouhaj.com/rebellious-novel/mirror-sciences-tailor/</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://go.bouhaj.com/wadi-al-aql/</loc><lastmod>2026-11-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/experiences/astral-projection/</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
   <url><loc>https://go.bouhaj.com/rebellious-novel/ghabira-memory/</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://go.bouhaj.com/rebellious-novel/identity-flexible-part-4/</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
   <url><loc>https://go.bouhaj.com/rebellious-novel/identity-flexible-part-1/</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
   <url><loc>https://go.bouhaj.com/rebellious-novel/identity-flexible-part-2/</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://go.bouhaj.com/rebellious-novel/identity-flexible-part-3/</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://go.bouhaj.com/rebellious-novel/identity-flexible-part-4/</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
   <url><loc>https://go.bouhaj.com/rebellious-novel/maroudai-zumaria-manifesto/</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://go.bouhaj.com/wadi-al-aql/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://go.bouhaj.com/wadi-al-aql/one-day/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://go.bouhaj.com/rebellious-novel/mirror-sciences-tailor/</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
   <url><loc>https://go.bouhaj.com/wadi-al-aql/al-qadar-al-mahtum/</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
   <url><loc>https://go.bouhaj.com/wadi-al-aql/ashbah-al-wafaa/</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
   <url><loc>https://go.bouhaj.com/wadi-al-aql/hadatha-dhata-laylah/</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://go.bouhaj.com/wadi-al-aql/one-day/</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://go.bouhaj.com/about.html</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://go.bouhaj.com/contact.html</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://go.bouhaj.com/privacy.html</loc><lastmod>2026-11-23</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
 </urlset>
