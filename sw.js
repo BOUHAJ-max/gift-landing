@@ -1,5 +1,12 @@
-const CACHE_NAME="bouhaj-shell-v1";
-const CORE_ASSETS=["/pwa-icon.svg","/manifest.webmanifest","/offline.html"];
+const CACHE_NAME="bouhaj-speed-v2";
+const CORE_ASSETS=[
+ "/pwa-icon.svg",
+ "/manifest.webmanifest",
+ "/offline.html",
+ "/tools.json",
+ "/assets/rebellious-novel-cover.jpg",
+ "/assets/wadi-al-aql-cover.jpg"
+];
 self.addEventListener("install",event=>{
  event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.addAll(CORE_ASSETS)).then(()=>self.skipWaiting()));
 });
@@ -12,10 +19,28 @@ self.addEventListener("fetch",event=>{
  const url=new URL(request.url);
  if(url.origin!==self.location.origin) return;
  if(request.mode==="navigate"){
-  event.respondWith(fetch(request).catch(()=>caches.match("/offline.html").then(cached=>cached||new Response("You are offline.",{status:503,headers:{"Content-Type":"text/plain; charset=utf-8"}}))));
+  event.respondWith((async()=>{
+   const cache=await caches.open(CACHE_NAME);
+   const cached=await cache.match(request) || (url.pathname==="/" ? await cache.match("/") : null);
+   const update=fetch(request).then(response=>{
+    if(response&&response.ok){cache.put(request,response.clone());if(url.pathname==="/")cache.put("/",response.clone())}
+    return response;
+   }).catch(()=>null);
+   if(cached){event.waitUntil(update);return cached}
+   const fresh=await update;
+   if(fresh)return fresh;
+   return (await cache.match("/offline.html"))||new Response("You are offline.",{status:503,headers:{"Content-Type":"text/plain; charset=utf-8"}});
+  })());
   return;
  }
  if(CORE_ASSETS.includes(url.pathname)){
-  event.respondWith(caches.match(request).then(cached=>cached||fetch(request)));
+  event.respondWith((async()=>{
+   const cache=await caches.open(CACHE_NAME);
+   const cached=await cache.match(request);
+   const update=fetch(request).then(response=>{if(response&&response.ok)cache.put(request,response.clone());return response}).catch(()=>null);
+   if(cached){event.waitUntil(update);return cached}
+   const fresh=await update;
+   return fresh||new Response("",{status:504});
+  })());
  }
 });
