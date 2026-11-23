@@ -20,7 +20,7 @@
 <meta name="theme-color" content="#0b1220">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#030806;--panel:#07120d;--line:#123d29;--neon:#39ff88;--neon2:#00e5ff;
@@ -29,7 +29,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{background:var(--bg);color:var(--text)}
-body{font-family:"Cairo",system-ui,sans-serif;min-height:100vh;overflow-x:hidden}
+body{font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;min-height:100vh;overflow-x:hidden}
 #matrix{position:fixed;inset:0;z-index:0;opacity:.18;pointer-events:none}
 .scan{position:fixed;inset:0;z-index:1;pointer-events:none;
   background:repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 1px,transparent 1px 3px)}
@@ -60,14 +60,14 @@ h1 .g{color:var(--neon);text-shadow:0 0 22px rgba(57,255,136,.55)}
 /* controls */
 .search{position:relative;margin:8px 0 12px}
 .search input{width:100%;background:var(--panel);border:1px solid var(--line);color:var(--text);
-  font:600 15px "Cairo",sans-serif;padding:14px 46px 14px 16px;border-radius:14px;outline:none;transition:.2s}
+  font:600 15px "IBM Plex Sans Arabic",sans-serif;padding:14px 46px 14px 16px;border-radius:14px;outline:none;transition:.2s}
 [dir=ltr] .search input{padding:14px 16px 14px 46px}
 .search input:focus{border-color:var(--neon);box-shadow:var(--glow)}
 .search svg{position:absolute;top:50%;transform:translateY(-50%);inset-inline-start:15px;color:var(--muted)}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 14px;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
 .chip{flex:none;background:var(--panel);border:1px solid var(--line);color:var(--muted);
-  font:700 13px "Cairo",sans-serif;padding:8px 14px;border-radius:999px;cursor:pointer;transition:.2s}
+  font:700 13px "IBM Plex Sans Arabic",sans-serif;padding:8px 14px;border-radius:999px;cursor:pointer;transition:.2s}
 .chip.on{color:#02130a;background:var(--neon);border-color:var(--neon);box-shadow:var(--glow)}
 
 /* cards */
@@ -90,7 +90,7 @@ h1 .g{color:var(--neon);text-shadow:0 0 22px rgba(57,255,136,.55)}
   padding:2px 7px;border-radius:6px;margin-inline-start:6px;vertical-align:middle}
 .c-desc{color:var(--muted);font-size:14px;margin:10px 0 14px;line-height:1.6}
 .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;cursor:pointer;
-  font:800 15px "Cairo",sans-serif;color:#02130a;background:linear-gradient(90deg,var(--neon),#2cf0b0);
+  font:800 15px "IBM Plex Sans Arabic",sans-serif;color:#02130a;background:linear-gradient(90deg,var(--neon),#2cf0b0);
   padding:13px;border-radius:12px;box-shadow:var(--glow);transition:filter .2s}
 .btn:active{filter:brightness(1.15)}
 .btn.soon{background:#0d1f16;color:var(--muted);box-shadow:none;cursor:default}
@@ -113,7 +113,7 @@ h1 .g{color:var(--neon);text-shadow:0 0 22px rgba(57,255,136,.55)}
 .steps b{flex:none;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
   font:700 13px "JetBrains Mono",monospace;color:var(--neon);border:1px solid var(--neon)}
 .note{color:var(--muted);font-size:12px;text-align:center;margin-top:12px}
-.x{display:block;margin:12px auto 0;background:none;border:0;color:var(--muted);font:600 14px "Cairo";cursor:pointer}
+.x{display:block;margin:12px auto 0;background:none;border:0;color:var(--muted);font:600 14px "IBM Plex Sans Arabic";cursor:pointer}
 
 footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px;font-family:"JetBrains Mono",monospace}
 footer a{color:var(--neon);text-decoration:none}
@@ -152,7 +152,7 @@ footer a{color:var(--neon);text-decoration:none}
 
 /* ===== About / privacy slide-out drawer ===== */
 .top{flex-wrap:wrap}
-.about-trigger{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:38px;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(7,18,13,.88);color:var(--neon);font:700 13px "Cairo",sans-serif;cursor:pointer}
+.about-trigger{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:38px;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(7,18,13,.88);color:var(--neon);font:700 13px "IBM Plex Sans Arabic",sans-serif;cursor:pointer}
 .about-trigger svg{width:17px;height:17px}
 .top-actions{display:flex;align-items:center;gap:8px}
 .about-backdrop{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.68);backdrop-filter:blur(5px);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
@@ -168,7 +168,7 @@ html[dir=rtl] .about-drawer{transform:translateX(-105%)}
 .about-section p,.about-section li{font-size:13px;line-height:1.9;color:#c5ddcf}
 .about-section ul{padding-inline-start:20px;display:grid;gap:5px}
 .about-links{display:grid;gap:10px;margin-top:12px}
-.about-link{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#09170f;color:var(--text);font:800 14px "Cairo",sans-serif;text-decoration:none;transition:.2s}
+.about-link{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#09170f;color:var(--text);font:800 14px "IBM Plex Sans Arabic",sans-serif;text-decoration:none;transition:.2s}
 .about-link:hover{border-color:var(--neon);transform:translateY(-2px)}
 .about-link svg{width:19px;height:19px;flex:none}
 .about-link.instagram{background:linear-gradient(110deg,rgba(131,58,180,.2),rgba(253,29,29,.15),rgba(252,176,69,.15));border-color:rgba(225,90,130,.5)}
@@ -253,7 +253,7 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 .pwa-invite-icon{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#39d6b0,#78a9ff);color:#071522;font-size:22px}
 .pwa-invite-text strong{display:block;color:#f2f7ff;font-size:15px;font-weight:900}
 .pwa-invite-text span{display:block;color:#b1c3d6;font-size:12px;line-height:1.6;margin-top:3px}
-.pwa-install-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:43px;padding:10px 16px;border:0;border-radius:12px;background:linear-gradient(110deg,#39d6b0,#7caeff);color:#071522;font:900 14px "Cairo",sans-serif;cursor:pointer;box-shadow:0 7px 18px rgba(57,214,176,.16)}
+.pwa-install-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:43px;padding:10px 16px;border:0;border-radius:12px;background:linear-gradient(110deg,#39d6b0,#7caeff);color:#071522;font:900 14px "IBM Plex Sans Arabic",sans-serif;cursor:pointer;box-shadow:0 7px 18px rgba(57,214,176,.16)}
 .pwa-install-button:focus-visible,.pwa-modal-close:focus-visible{outline:3px solid #f4c66a;outline-offset:3px}
 .pwa-install-button[hidden]{display:none}
 .pwa-modal{position:fixed;inset:0;z-index:2147483001;display:none;align-items:flex-end;justify-content:center;padding:16px max(16px,env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));background:rgba(4,10,18,.78);backdrop-filter:blur(7px)}
@@ -347,8 +347,10 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 </style>
 <link rel="preload" as="image" href="/assets/rebellious-novel-cover.jpg" fetchpriority="high">
 <link rel="preload" as="image" href="/assets/wadi-al-aql-cover.jpg" fetchpriority="high">
+<link rel="stylesheet" href="/assets/site.css?v=1">
+<script src="/assets/site.js?v=1" defer></script>
 </head>
-<body>
+<body class="page-home">
 <!-- Persistent PWA install action -->
 <button id="pwaFloatingInstall" type="button" aria-haspopup="dialog" aria-controls="pwaInstallModal" aria-label="جديد: تثبيت تطبيق الموقع">📲 <span>ثبّت تطبيق الموقع</span><b class="pwa-new-badge">NEW</b></button>
 <style>
@@ -364,7 +366,11 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 .pwa-chrome-panel .pwa-modal-head h2{flex:1;text-align:center}
 .pwa-chrome-panel .pwa-modal-description{margin:10px 0 18px}
 .pwa-chrome-panel .pwa-external-browser{display:flex;align-items:center;justify-content:center;gap:9px;margin:0;padding:15px;border-radius:13px;background:linear-gradient(110deg,#ffe968,#ffc928);color:#302600;font-size:15px;font-weight:900;box-shadow:0 8px 20px #f4cb3b30}
-.pwa-chrome-panel .pwa-external-browser[hidden]{display:none}\n/* Keep the dialog above the floating CTA so the Chrome link is never obscured. */\n.pwa-modal.open{z-index:2147483001!important}\n.pwa-modal.open .pwa-modal-panel{position:relative;z-index:1;margin-bottom:0;max-height:min(78dvh,680px);overflow-y:auto;overscroll-behavior:contain}\n@media(prefers-reduced-motion:reduce){#pwaFloatingInstall .pwa-new-badge{animation:none!important}}
+.pwa-chrome-panel .pwa-external-browser[hidden]{display:none}
+/* Keep the dialog above the floating CTA so the Chrome link is never obscured. */
+.pwa-modal.open{z-index:2147483001!important}
+.pwa-modal.open .pwa-modal-panel{position:relative;z-index:1;margin-bottom:0;max-height:min(78dvh,680px);overflow-y:auto;overscroll-behavior:contain}
+@media(prefers-reduced-motion:reduce){#pwaFloatingInstall .pwa-new-badge{animation:none!important}}
 /* Prevent the floating install pill from covering the Chrome action inside its dialog. */
 #pwaFloatingInstall[hidden]{display:none!important}
 body:has(#pwaInstallModal.open) #pwaFloatingInstall{display:none!important;visibility:hidden!important;pointer-events:none!important}
@@ -401,19 +407,6 @@ body{padding-bottom:92px!important}
     </nav>
   </div>
 
-  <section class="literary-shelf" id="literary-shelf" aria-labelledby="literaryShelfTitle">
-    <div class="literary-heading"><span class="literary-eyebrow">THE LITERARY COLLECTION</span><h2 id="literaryShelfTitle">عوالم تُقرأ… وتبقى في الذاكرة</h2><p>اختر بوابتك إلى الحكاية؛ لكل رواية عالمها ورمزها الخاص.</p></div>
-    <div class="literary-grid">
-      <a class="book-card dragon-book" href="/rebellious-novel/" aria-label="افتح الرواية المتمردة">
-        <span class="book-art"><img src="/assets/rebellious-novel-cover.jpg" alt="غلاف الرواية المتمردة بتنين أزرق" width="180" height="240" loading="eager" fetchpriority="high" decoding="async"></span>
-        <span class="book-copy"><span class="book-kicker">THE REBELLIOUS NOVEL</span><strong>الرواية المتمردة</strong><span>تنين يفتح أبواب الخيال والتمرد وأسئلة الهوية.</span><span class="book-open">اكتشف فصول الرواية <b>←</b></span></span>
-      </a>
-      <a class="book-card lion-book" href="/wadi-al-aql/" aria-label="افتح رواية وادي العقل">
-        <span class="book-art"><img src="/assets/wadi-al-aql-cover.jpg" alt="غلاف رواية وادي العقل بأسد ذهبي" width="180" height="240" loading="eager" fetchpriority="high" decoding="async"></span>
-        <span class="book-copy"><span class="book-kicker">WADI AL-AQL CHRONICLES</span><strong>رواية وادي العقل</strong><span>أسد يحرس بوابة الصحراء؛ حيث تتواجه الحكمة والتناقض.</span><span class="book-open">ادخل إلى الوادي <b>←</b></span></span>
-      </a>
-    </div>
-  </section>
 
 
 
@@ -433,8 +426,35 @@ body{padding-bottom:92px!important}
     <h1 id="h1">بوابتك <span class="g">الرقمية</span><br>أدوات ومعرفة بلا تعقيد</h1>
     <p class="sub" id="sub"></p>
     <div class="type" id="type"></div>
+    <div class="ds-hero-actions"><a class="ds-btn ds-btn-primary" id="heroCta1" href="/academy/">ابدأ التعلم</a><a class="ds-btn ds-btn-ghost" id="heroCta2" href="/articles/">تصفح المقالات</a></div>
   </section>
 
+  <section class="literary-shelf" id="literary-shelf" aria-labelledby="literaryShelfTitle">
+    <div class="literary-heading"><span class="literary-eyebrow">THE LITERARY COLLECTION</span><h2 id="literaryShelfTitle">عوالم تُقرأ… وتبقى في الذاكرة</h2><p>اختر بوابتك إلى الحكاية؛ لكل رواية عالمها ورمزها الخاص.</p></div>
+    <div class="literary-grid">
+      <a class="book-card dragon-book" href="/rebellious-novel/" aria-label="افتح الرواية المتمردة">
+        <span class="book-art"><img src="/assets/rebellious-novel-cover.jpg" alt="غلاف الرواية المتمردة بتنين أزرق" width="180" height="240" loading="eager" fetchpriority="high" decoding="async"></span>
+        <span class="book-copy"><span class="book-kicker">THE REBELLIOUS NOVEL</span><strong>الرواية المتمردة</strong><span>تنين يفتح أبواب الخيال والتمرد وأسئلة الهوية.</span><span class="book-open">اكتشف فصول الرواية <b>←</b></span></span>
+      </a>
+      <a class="book-card lion-book" href="/wadi-al-aql/" aria-label="افتح رواية وادي العقل">
+        <span class="book-art"><img src="/assets/wadi-al-aql-cover.jpg" alt="غلاف رواية وادي العقل بأسد ذهبي" width="180" height="240" loading="eager" fetchpriority="high" decoding="async"></span>
+        <span class="book-copy"><span class="book-kicker">WADI AL-AQL CHRONICLES</span><strong>رواية وادي العقل</strong><span>أسد يحرس بوابة الصحراء؛ حيث تتواجه الحكمة والتناقض.</span><span class="book-open">ادخل إلى الوادي <b>←</b></span></span>
+      </a>
+    </div>
+  </section>
+
+
+
+  <section class="tools-section" aria-labelledby="toolsHeading">
+    <div class="tools-heading"><span>02 / DISCOVER</span><h2 id="toolsHeading">استكشف الأدوات الرقمية</h2><p id="toolsDescription">مجموعة مختارة من الأدوات والخدمات الرقمية، مع بحث سريع وتصنيفات تساعدك على الوصول لما تحتاجه.</p></div>
+  <div class="search" id="toolsSearch" role="search" aria-label="البحث في الأدوات">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" autocomplete="off">
+  </div>
+  <div class="chips" id="chips"></div>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty"></p>
+  </section>
 
   <div class="offers-stage">
     <section class="prompt-card" id="promptPanel" aria-labelledby="promptTitle">
@@ -447,17 +467,6 @@ body{padding-bottom:92px!important}
       <p class="prompt-hint" id="copyPromptStatus" aria-live="polite">النص محفوظ بصيغته المشفرة الأصلية</p>
     </section>
   </div>
-
-  <section class="tools-section" aria-labelledby="toolsHeading">
-    <div class="tools-heading"><span>02 / DISCOVER</span><h2 id="toolsHeading">استكشف الأدوات الرقمية</h2><p id="toolsDescription">مجموعة مختارة من الأدوات والخدمات الرقمية، مع بحث سريع وتصنيفات تساعدك على الوصول لما تحتاجه.</p></div>
-  <div class="search" id="toolsSearch" role="search" aria-label="البحث في الأدوات">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-    <input id="q" type="search" autocomplete="off">
-  </div>
-  <div class="chips" id="chips"></div>
-  <div class="grid" id="grid"></div>
-  <p class="empty" id="empty"></p>
-  </section>
   </main>
 
   <footer class="site-footer"><div class="footer-main">© <span id="yr"></span> BOUHAJ TECH <span class="footer-dot">•</span> <a href="/academy/" id="footerCourses">الدورات التقنية</a> <span class="footer-dot">•</span> <a href="/articles/" id="footerArticles">مكتبة المقالات</a> <span class="footer-dot">•</span> <a href="https://www.instagram.com/bouhaj.officiel/" target="_blank" rel="noopener noreferrer">Instagram</a></div><div class="footer-note">المعرفة تبدأ بسؤال… والخصوصية حق أصيل.</div></footer>
@@ -583,6 +592,7 @@ function applyLang(){
   if(nav){const links=nav.querySelectorAll(':scope > a');links.forEach((a,i)=>{if(navLabels[lang][i]){const icon=a.querySelector('[aria-hidden="true"]');a.textContent=navLabels[lang][i];if(icon)a.prepend(icon)}});const summary=nav.querySelector('.about-menu > summary');if(summary){const icon=summary.querySelector('[aria-hidden="true"]');summary.textContent=navLabels[lang][5];if(icon)summary.prepend(icon)}}
   $('toolsHeading').textContent=t.toolsHeading;$('toolsDescription').textContent=t.toolsDescription;$('toolsSearch').setAttribute('aria-label',t.searchLabel);
   ['Courses','Articles','Contact','Privacy','About'].forEach(k=>{const el=$('footer'+k);if(el)el.textContent=t['footer'+k]});
+  {const hc={ar:['ابدأ التعلم','تصفح المقالات'],en:['Start learning','Browse articles'],fr:['Commencer à apprendre','Parcourir les articles']}[lang]||[];const b1=$('heroCta1'),b2=$('heroCta2');if(b1&&hc[0])b1.textContent=hc[0];if(b2&&hc[1])b2.textContent=hc[1];}
   $('promptTitle').textContent=t.chatTitle;$('copyPrompt').textContent=t.copyPrompt;$('copyPromptStatus').textContent=t.copyPromptHint;
   renderChips();render();
 }
