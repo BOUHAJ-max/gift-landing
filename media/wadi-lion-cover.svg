@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 900">
+<defs><linearGradient id="bg2" x2="1" y2="1"><stop stop-color="#17162c"/><stop offset=".55" stop-color="#29294b"/><stop offset="1" stop-color="#090d1c"/></linearGradient><radialGradient id="moon"><stop stop-color="#fff0bd" stop-opacity=".7"/><stop offset="1" stop-color="#f0b85a" stop-opacity="0"/></radialGradient><linearGradient id="mane" x2="1" y2="1"><stop stop-color="#f6d58b"/><stop offset=".55" stop-color="#b77937"/><stop offset="1" stop-color="#603a25"/></linearGradient></defs>
+<rect width="640" height="900" fill="url(#bg2)"/><circle cx="320" cy="335" r="290" fill="url(#moon)"/><circle cx="320" cy="335" r="120" fill="#f5dba2" opacity=".08"/>
+<path d="M0 710 110 630 220 690 350 610 470 685 560 620 640 670V900H0Z" fill="#10162a"/>
+<g stroke="#f2d38f" stroke-width="9" stroke-linejoin="round">
+<path d="M320 130 365 183 432 156 449 225 520 249 490 316 548 370 493 423 511 495 435 507 411 578 340 550 287 603 245 543 170 555 171 478 103 442 145 377 101 318 171 277 164 204 242 204 278 139Z" fill="url(#mane)"/>
+<path d="M320 213Q404 213 435 296L423 414Q407 510 320 547Q233 510 217 414L205 296Q236 213 320 213Z" fill="#e9c98d"/>
+<path d="M225 283Q258 231 298 278L282 329 229 326Z" fill="#6c4030"/><path d="M415 283Q382 231 342 278L358 329 411 326Z" fill="#6c4030"/>
+<path d="M245 350Q278 323 305 351L296 375 251 374Z" fill="#201b24" stroke="none"/><path d="M395 350Q362 323 335 351L344 375 389 374Z" fill="#201b24" stroke="none"/>
+<path d="M301 407Q320 385 339 407L320 431Z" fill="#38232a"/><path d="M320 430Q299 463 267 451M320 430Q341 463 373 451" fill="none"/>
+<path d="M266 469Q320 497 374 469" fill="none" stroke="#8c4e36" stroke-width="8"/>
+</g>
+<g stroke="#f6dfa9" stroke-width="4" opacity=".8"><path d="M245 435 160 420M245 455 152 463M395 435 480 420M395 455 488 463"/></g>
+<g fill="#fff0c7"><circle cx="80" cy="170" r="4"/><circle cx="550" cy="160" r="4"/><circle cx="95" cy="540" r="3"/><circle cx="550" cy="570" r="4"/></g>
+<text x="320" y="735" fill="#fff2cf" font-family="serif" font-size="58" font-weight="bold" text-anchor="middle">رواية وادي العقل</text><text x="320" y="797" fill="#e4bd79" font-family="sans-serif" font-size="23" letter-spacing="8" text-anchor="middle">MOHAMED BOUHAJ</text>
+</svg>
