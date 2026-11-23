@@ -352,6 +352,13 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 .pwa-chrome-panel .pwa-modal-description{margin:10px 0 18px}
 .pwa-chrome-panel .pwa-external-browser{display:flex;align-items:center;justify-content:center;gap:9px;margin:0;padding:15px;border-radius:13px;background:linear-gradient(110deg,#ffe968,#ffc928);color:#302600;font-size:15px;font-weight:900;box-shadow:0 8px 20px #f4cb3b30}
 .pwa-chrome-panel .pwa-external-browser[hidden]{display:none}\n/* Keep the dialog above the floating CTA so the Chrome link is never obscured. */\n.pwa-modal.open{z-index:2147483001!important}\n.pwa-modal.open .pwa-modal-panel{position:relative;z-index:1;margin-bottom:0;max-height:min(78dvh,680px);overflow-y:auto;overscroll-behavior:contain}\n@media(prefers-reduced-motion:reduce){#pwaFloatingInstall .pwa-new-badge{animation:none!important}}
+/* Prevent the floating install pill from covering the Chrome action inside its dialog. */
+#pwaFloatingInstall[hidden]{display:none!important}
+body:has(#pwaInstallModal.open) #pwaFloatingInstall{display:none!important;visibility:hidden!important;pointer-events:none!important}
+.pwa-modal{z-index:2147483646!important}
+.pwa-modal.open{align-items:center!important;padding-top:max(18px,env(safe-area-inset-top))!important;padding-bottom:max(18px,env(safe-area-inset-bottom))!important}
+.pwa-modal.open .pwa-modal-panel{width:min(100%,430px)!important;max-height: min(78vh, 78dvh, 620px)!important;overflow-y:auto!important;padding-bottom:24px!important}
+@media(max-width:520px){.pwa-modal.open .pwa-modal-panel{border-radius:22px!important}.pwa-chrome-panel .pwa-external-browser{min-height:54px!important}}
 body{padding-bottom:92px!important}
 @media(min-width:760px){#pwaFloatingInstall{left:auto!important;right:22px!important;bottom:22px!important;transform:none!important;width:auto!important;min-width:235px!important}#pwaFloatingInstall:active{transform:scale(.97)!important}}
 @media(prefers-reduced-motion:reduce){#pwaFloatingInstall,#pwaFloatingInstall .pwa-new-badge{animation:none!important}}
