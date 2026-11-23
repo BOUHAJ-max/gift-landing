@@ -184,6 +184,13 @@ html[dir=rtl] .about-drawer{transform:translateX(-105%)}
 .main-nav a[data-nav="contact"]{border-color:rgba(37,211,102,.55);color:#8ff0b1}
 .main-nav a[data-nav="privacy"]{border-color:rgba(0,229,255,.4);color:#8eefff}
 @media(max-width:520px){.top{align-items:flex-start}.main-nav{width:100%;justify-content:center}.main-nav a{font-size:11px;padding:7px 10px}}
+/* Rebellious Novel — neon blue new-section marker */
+.main-nav a.rebellious-nav{gap:7px;border-color:rgba(35,150,255,.55);color:#b9dcff;background:linear-gradient(110deg,rgba(10,48,94,.48),rgba(12,27,54,.8));box-shadow:0 0 13px rgba(0,128,255,.12)}
+.main-nav a.rebellious-nav:hover{border-color:#36a3ff;color:#e2f2ff;box-shadow:0 0 18px rgba(0,145,255,.28)}
+.rebellious-new{display:inline-flex;align-items:center;border:1px solid #168cff;border-radius:6px;padding:1px 6px;color:#d9efff;background:#0754a6;font:800 9px "JetBrains Mono",monospace;letter-spacing:.4px;animation:rebelliousPulse 1.15s ease-in-out infinite;box-shadow:0 0 8px #078cff,0 0 18px #078cff88}
+@keyframes rebelliousPulse{0%,100%{opacity:1;box-shadow:0 0 7px #078cff,0 0 15px #078cff77}50%{opacity:.48;box-shadow:0 0 2px #078cff,0 0 6px #078cff55}}
+@media(prefers-reduced-motion:reduce){.rebellious-new{animation:none}}
+
 
 /* ===== BOUHAJ TECH visual refresh: lightweight, calm, responsive ===== */
 :root{--bg:#0b1220;--panel:#111d2d;--line:#263c52;--neon:#39d6b0;--neon2:#78a9ff;--text:#edf5ff;--muted:#9aadc2;--warn:#f4c66a;--glow:0 8px 28px rgba(36,190,160,.14)}
@@ -292,7 +299,7 @@ body{padding-bottom:86px!important}
   <div class="top">
     <div class="logo"><div class="logo-mark">&gt;_</div><div>BOUHAJ TECH<small>by E-BOUHAJ TECH</small></div></div>
     <button class="lang" id="langBtn">EN</button>
-    <nav class="main-nav" aria-label="التنقل"><a href="#promptPanel" data-nav="code">أداة ChatGPT</a><a href="/articles/" data-nav="academy">مكتبة المقالات</a><a href="/academy/" data-nav="courses">الدورات التقنية</a><a href="/experiences/" data-nav="experiences">التجارب الشخصية</a><a href="/about.html" data-nav="about">من نحن</a><a href="/contact.html" data-nav="contact">التواصل</a><a href="/privacy.html" data-nav="privacy">الخصوصية</a></nav>
+    <nav class="main-nav" aria-label="التنقل"><a href="#promptPanel" data-nav="code">أداة ChatGPT</a><a href="/articles/" data-nav="academy">مكتبة المقالات</a><a href="/academy/" data-nav="courses">الدورات التقنية</a><a href="/experiences/" data-nav="experiences">التجارب الشخصية</a><a href="/rebellious-novel/" data-nav="rebellious" class="rebellious-nav">الرواية المتمردة <span class="rebellious-new">جديد</span></a><a href="/about.html" data-nav="about">من نحن</a><a href="/contact.html" data-nav="contact">التواصل</a><a href="/privacy.html" data-nav="privacy">الخصوصية</a></nav>
   </div>
 
   <aside class="follow-announcement" aria-label="إعلان متابعة">
@@ -476,7 +483,7 @@ function applyLang(){
   $('langBtn').textContent=lang==='ar'?'EN':lang==='en'?'FR':'ع';
   $('h1').innerHTML=t.h1;$('sub').textContent=t.sub;$('q').placeholder=t.q;
   $('empty').textContent=t.empty;$('status').textContent=t.status;$('mClose').textContent=t.close;
-  const navLabels={ar:{code:'أداة ChatGPT',academy:'مكتبة المقالات',courses:'الدورات التقنية',experiences:'التجارب الشخصية',about:'من نحن',contact:'التواصل',privacy:'الخصوصية'},en:{code:'ChatGPT tool',academy:'Articles',courses:'Courses',experiences:'Personal experiences',about:'About',contact:'Contact',privacy:'Privacy'},fr:{code:'Outil ChatGPT',academy:'Articles',courses:'Formations',experiences:'Expériences personnelles',about:'À propos',contact:'Contact',privacy:'Confidentialité'}};
+  const navLabels={ar:{code:'أداة ChatGPT',academy:'مكتبة المقالات',courses:'الدورات التقنية',experiences:'التجارب الشخصية',rebellious:'الرواية المتمردة',about:'من نحن',contact:'التواصل',privacy:'الخصوصية'},en:{code:'ChatGPT tool',academy:'Articles',courses:'Courses',experiences:'Personal experiences',rebellious:'The Rebellious Novel',about:'About',contact:'Contact',privacy:'Privacy'},fr:{code:'Outil ChatGPT',academy:'Articles',courses:'Formations',experiences:'Expériences personnelles',rebellious:'Le roman rebelle',about:'À propos',contact:'Contact',privacy:'Confidentialité'}};
   document.querySelectorAll('[data-nav]').forEach(a=>{a.textContent=navLabels[lang][a.dataset.nav]||a.textContent});
   $('toolsHeading').textContent=t.toolsHeading;$('toolsDescription').textContent=t.toolsDescription;$('toolsSearch').setAttribute('aria-label',t.searchLabel);
   ['Courses','Articles','Contact','Privacy','About'].forEach(k=>{const el=$('footer'+k);if(el)el.textContent=t['footer'+k]});
