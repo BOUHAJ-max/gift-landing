@@ -299,7 +299,7 @@ body{padding-bottom:86px!important}
   <div class="top">
     <div class="logo"><div class="logo-mark">&gt;_</div><div>BOUHAJ TECH<small>by E-BOUHAJ TECH</small></div></div>
     <button class="lang" id="langBtn">EN</button>
-    <nav class="main-nav" aria-label="التنقل"><a href="#promptPanel" data-nav="code">أداة ChatGPT</a><a href="/articles/" data-nav="academy">مكتبة المقالات</a><a href="/academy/" data-nav="courses">الدورات التقنية</a><a href="/experiences/" data-nav="experiences">التجارب الشخصية</a><a href="/rebellious-novel/" data-nav="rebellious" class="rebellious-nav">الرواية المتمردة <span class="rebellious-new">جديد</span></a><a href="/about.html" data-nav="about">من نحن</a><a href="/contact.html" data-nav="contact">التواصل</a><a href="/privacy.html" data-nav="privacy">الخصوصية</a></nav>
+    <nav class="main-nav" aria-label="التنقل"><a href="#promptPanel" data-nav="code">أداة ChatGPT</a><a href="/articles/" data-nav="academy">مكتبة المقالات</a><a href="/academy/" data-nav="courses">الدورات التقنية</a><a href="/experiences/" data-nav="experiences">التجارب الشخصية</a><a href="/rebellious-novel/" data-nav="rebellious" class="rebellious-nav">الرواية المتمردة <span class="rebellious-new">جديد</span></a><a href="/wadi-al-aql/" data-nav="wadi">رواية وادي العقل</a><a href="/about.html" data-nav="about">من نحن</a><a href="/contact.html" data-nav="contact">التواصل</a><a href="/privacy.html" data-nav="privacy">الخصوصية</a></nav>
   </div>
 
   <aside class="follow-announcement" aria-label="إعلان متابعة">
@@ -483,7 +483,7 @@ function applyLang(){
   $('langBtn').textContent=lang==='ar'?'EN':lang==='en'?'FR':'ع';
   $('h1').innerHTML=t.h1;$('sub').textContent=t.sub;$('q').placeholder=t.q;
   $('empty').textContent=t.empty;$('status').textContent=t.status;$('mClose').textContent=t.close;
-  const navLabels={ar:{code:'أداة ChatGPT',academy:'مكتبة المقالات',courses:'الدورات التقنية',experiences:'التجارب الشخصية',rebellious:'الرواية المتمردة',about:'من نحن',contact:'التواصل',privacy:'الخصوصية'},en:{code:'ChatGPT tool',academy:'Articles',courses:'Courses',experiences:'Personal experiences',rebellious:'The Rebellious Novel',about:'About',contact:'Contact',privacy:'Privacy'},fr:{code:'Outil ChatGPT',academy:'Articles',courses:'Formations',experiences:'Expériences personnelles',rebellious:'Le roman rebelle',about:'À propos',contact:'Contact',privacy:'Confidentialité'}};
+  const navLabels={ar:{code:'أداة ChatGPT',academy:'مكتبة المقالات',courses:'الدورات التقنية',experiences:'التجارب الشخصية',rebellious:'الرواية المتمردة',wadi:'رواية وادي العقل',about:'من نحن',contact:'التواصل',privacy:'الخصوصية'},en:{code:'ChatGPT tool',academy:'Articles',courses:'Courses',experiences:'Personal experiences',rebellious:'The Rebellious Novel',wadi:'Wadi Al-Aql Novel',about:'About',contact:'Contact',privacy:'Privacy'},fr:{code:'Outil ChatGPT',academy:'Articles',courses:'Formations',experiences:'Expériences personnelles',rebellious:'Le roman rebelle',wadi:'Le roman de Wadi Al-Aql',about:'À propos',contact:'Contact',privacy:'Confidentialité'}};
   document.querySelectorAll('[data-nav]').forEach(a=>{a.textContent=navLabels[lang][a.dataset.nav]||a.textContent});
   $('toolsHeading').textContent=t.toolsHeading;$('toolsDescription').textContent=t.toolsDescription;$('toolsSearch').setAttribute('aria-label',t.searchLabel);
   ['Courses','Articles','Contact','Privacy','About'].forEach(k=>{const el=$('footer'+k);if(el)el.textContent=t['footer'+k]});
