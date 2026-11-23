@@ -337,13 +337,24 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 </head>
 <body>
 <!-- Persistent PWA install action -->
-<button id="pwaFloatingInstall" type="button" onclick="document.getElementById('pwaInstallButton')?.click()" aria-label="تثبيت تطبيق الموقع على هاتفك">📲 <span>تثبيت تطبيق الموقع على هاتفك</span></button>
+<button id="pwaFloatingInstall" type="button" aria-haspopup="dialog" aria-controls="pwaInstallModal" aria-label="جديد: تثبيت تطبيق الموقع">📲 <span>ثبّت تطبيق الموقع</span><b class="pwa-new-badge">NEW</b></button>
 <style>
-#pwaFloatingInstall{position:fixed!important;left:50%!important;bottom:calc(14px + env(safe-area-inset-bottom))!important;transform:translateX(-50%)!important;z-index:2147483000!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;width:min( calc(100% - 28px),360px)!important;min-height:54px!important;padding:12px 18px!important;border:2px solid #d7fff4!important;border-radius:999px!important;background:linear-gradient(110deg,#19b894,#78aaff)!important;color:#061522!important;font:900 16px/1.3 system-ui,sans-serif!important;box-shadow:0 8px 30px #0009,0 0 0 4px #39d6b033!important;cursor:pointer!important;visibility:visible!important;opacity:1!important}
+#pwaFloatingInstall{position:fixed!important;left:50%!important;bottom:calc(14px + env(safe-area-inset-bottom))!important;transform:translateX(-50%)!important;z-index:2147483000!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;width:min(calc(100% - 28px),370px)!important;min-height:58px!important;padding:11px 18px!important;border:2px solid #fff7b2!important;border-radius:999px!important;background:linear-gradient(110deg,#fff27a 0%,#ffe34e 48%,#ffc928 100%)!important;color:#302600!important;font:900 16px/1.3 system-ui,sans-serif!important;box-shadow:0 8px 28px #0008,0 0 0 4px #ffe45a30,0 0 26px #ffe45a65!important;cursor:pointer!important;visibility:visible!important;opacity:1!important;animation:lemon-glow 2.8s ease-in-out infinite}
 #pwaFloatingInstall span{display:inline!important}
-body{padding-bottom:86px!important}
-@media(min-width:760px){#pwaFloatingInstall{left:auto!important;right:22px!important;bottom:22px!important;transform:none!important;width:auto!important;min-width:230px!important}}
-@media(prefers-reduced-motion:no-preference){#pwaFloatingInstall{animation:pwa-float-in .45s ease-out both}@keyframes pwa-float-in{from{opacity:0;translate:0 16px}to{opacity:1;translate:0 0}}}
+#pwaFloatingInstall .pwa-new-badge{display:inline-flex;align-items:center;justify-content:center;padding:4px 7px;border-radius:7px;background:#172c31;color:#eaff91;font:900 9px/1 system-ui,sans-serif;letter-spacing:1px;box-shadow:0 0 10px #b6f34d90;animation:new-blink 1.2s steps(2,end) infinite}
+#pwaFloatingInstall:active{transform:translateX(-50%) scale(.97)!important}
+#pwaFloatingInstall:focus-visible{outline:3px solid #fff!important;outline-offset:4px}
+@keyframes lemon-glow{0%,100%{box-shadow:0 8px 28px #0008,0 0 0 4px #ffe45a25,0 0 17px #ffe45a50}50%{box-shadow:0 8px 30px #0009,0 0 0 6px #ffe45a40,0 0 30px #fff07c99}}
+@keyframes new-blink{0%,100%{opacity:1}50%{opacity:.42}}
+.pwa-chrome-panel{width:min(100%,430px);text-align:center}
+.pwa-chrome-panel .pwa-modal-head{margin-bottom:8px}
+.pwa-chrome-panel .pwa-modal-head h2{flex:1;text-align:center}
+.pwa-chrome-panel .pwa-modal-description{margin:10px 0 18px}
+.pwa-chrome-panel .pwa-external-browser{display:flex;align-items:center;justify-content:center;gap:9px;margin:0;padding:15px;border-radius:13px;background:linear-gradient(110deg,#ffe968,#ffc928);color:#302600;font-size:15px;font-weight:900;box-shadow:0 8px 20px #f4cb3b30}
+.pwa-chrome-panel .pwa-external-browser[hidden]{display:none}
+body{padding-bottom:92px!important}
+@media(min-width:760px){#pwaFloatingInstall{left:auto!important;right:22px!important;bottom:22px!important;transform:none!important;width:auto!important;min-width:235px!important}#pwaFloatingInstall:active{transform:scale(.97)!important}}
+@media(prefers-reduced-motion:reduce){#pwaFloatingInstall,#pwaFloatingInstall .pwa-new-badge{animation:none!important}}
 </style>
 
 
@@ -379,23 +390,11 @@ body{padding-bottom:86px!important}
   </aside>
 
 
-  <section class="pwa-invite" aria-labelledby="pwaInviteTitle">
-    <div class="pwa-invite-copy">
-      <span class="pwa-invite-icon" aria-hidden="true">⌂</span>
-      <div class="pwa-invite-text">
-        <strong id="pwaInviteTitle">خلّي BOUHAJ TECH قريب منك</strong>
-        <span id="pwaInviteDescription">أضف الموقع إلى الشاشة الرئيسية وافتحه بسرعة مثل التطبيقات.</span>
-      </div>
-    </div>
-    <button class="pwa-install-button" id="pwaInstallButton" type="button">＋ تثبيت تطبيق الموقع على هاتفك</button>
-  </section>
   <div class="pwa-modal" id="pwaInstallModal" role="dialog" aria-modal="true" aria-labelledby="pwaModalTitle" aria-hidden="true">
-    <div class="pwa-modal-panel">
-      <div class="pwa-modal-head"><h2 id="pwaModalTitle">إضافة BOUHAJ TECH</h2><button class="pwa-modal-close" id="pwaModalClose" type="button" aria-label="إغلاق">×</button></div>
-      <p class="pwa-modal-description" id="pwaModalDescription"></p>
-      <ol class="pwa-steps" id="pwaInstallSteps"></ol>
-      <a class="pwa-external-browser" id="pwaExternalBrowser" href="#" hidden></a>
-      <p class="pwa-modal-note" id="pwaModalNote"></p>
+    <div class="pwa-modal-panel pwa-chrome-panel">
+      <div class="pwa-modal-head"><h2 id="pwaModalTitle">تثبيت BOUHAJ TECH</h2><button class="pwa-modal-close" id="pwaModalClose" type="button" aria-label="إغلاق">×</button></div>
+      <p class="pwa-modal-description" id="pwaModalDescription">افتح الموقع في متصفح Chrome للحصول على أفضل تجربة وإمكانية تثبيته على هاتفك.</p>
+      <a class="pwa-external-browser" id="pwaExternalBrowser" href="https://go.bouhaj.com/">افتح الموقع في Chrome <span aria-hidden="true">↗</span></a>
     </div>
   </div>
 
