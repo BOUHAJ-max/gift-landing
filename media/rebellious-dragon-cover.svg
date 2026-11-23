@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 900">
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#07152b"/><stop offset=".55" stop-color="#102c50"/><stop offset="1" stop-color="#050b18"/></linearGradient><linearGradient id="fire" x2="0" y2="1"><stop stop-color="#8fe8ff"/><stop offset=".5" stop-color="#328dff"/><stop offset="1" stop-color="#123c9b"/></linearGradient><radialGradient id="orb"><stop stop-color="#7cecff" stop-opacity=".55"/><stop offset="1" stop-color="#247bff" stop-opacity="0"/></radialGradient></defs>
+<rect width="640" height="900" fill="url(#bg)"/><circle cx="330" cy="370" r="260" fill="url(#orb)"/>
+<path d="M0 690 130 610 220 670 330 590 440 670 550 600 640 650V900H0Z" fill="#08101e"/>
+<g fill="none" stroke="#4ab9ff" stroke-opacity=".22"><path d="M60 0V900M580 0V900M0 90H640M0 810H640" stroke-width="2"/></g>
+<path d="M132 566Q85 435 178 326Q235 258 333 276Q410 284 448 226Q473 191 515 207Q482 235 493 268Q511 300 555 304Q511 340 466 326Q425 382 370 395Q422 450 400 515Q370 588 281 590Q222 603 181 653Z" fill="#102d55" stroke="#55c8ff" stroke-width="13" stroke-linejoin="round"/>
+<path d="M177 338Q91 251 67 151Q171 178 241 263Q194 218 188 142Q294 207 319 282" fill="#123e72" stroke="#63d6ff" stroke-width="10" stroke-linejoin="round"/>
+<path d="M357 290Q405 205 489 165Q475 233 446 284Q493 255 556 267Q509 326 455 337" fill="#153c70" stroke="#63d6ff" stroke-width="9"/>
+<path d="M420 327Q455 294 500 305L532 332 489 351 450 347Z" fill="#d9f8ff"/><circle cx="465" cy="319" r="9" fill="#061326"/><path d="M520 338l35 10-34 12" fill="none" stroke="#9cecff" stroke-width="8"/>
+<path d="M247 400Q158 455 192 547Q220 618 310 603Q377 594 389 528Q348 564 298 535Q257 511 277 466Q298 423 355 412Q303 383 247 400Z" fill="url(#fire)" stroke="#79dcff" stroke-width="8"/>
+<path d="M290 468Q226 454 202 405Q273 415 307 442Q289 398 304 359Q354 407 344 454" fill="#2c91e8" stroke="#91eaff" stroke-width="7"/>
+<path d="M210 610Q135 666 83 638Q137 730 237 675M356 591Q434 656 513 619Q474 704 374 669" fill="none" stroke="#2786d4" stroke-width="22" stroke-linecap="round"/>
+<g fill="#b5efff"><circle cx="112" cy="265" r="4"/><circle cx="526" cy="465" r="5"/><circle cx="92" cy="520" r="3"/><circle cx="554" cy="120" r="4"/><circle cx="328" cy="115" r="3"/></g>
+<text x="320" y="760" fill="#eaf7ff" font-family="serif" font-size="54" font-weight="bold" text-anchor="middle">الرواية المتمردة</text><text x="320" y="817" fill="#8bcfff" font-family="sans-serif" font-size="23" letter-spacing="8" text-anchor="middle">MOHAMED BOUHAJ</text>
+</svg>
