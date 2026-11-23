@@ -255,7 +255,7 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 .pwa-install-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:43px;padding:10px 16px;border:0;border-radius:12px;background:linear-gradient(110deg,#39d6b0,#7caeff);color:#071522;font:900 14px "Cairo",sans-serif;cursor:pointer;box-shadow:0 7px 18px rgba(57,214,176,.16)}
 .pwa-install-button:focus-visible,.pwa-modal-close:focus-visible{outline:3px solid #f4c66a;outline-offset:3px}
 .pwa-install-button[hidden]{display:none}
-.pwa-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:flex-end;justify-content:center;padding:16px;background:rgba(4,10,18,.72);backdrop-filter:blur(7px)}
+.pwa-modal{position:fixed;inset:0;z-index:2147483001;display:none;align-items:flex-end;justify-content:center;padding:16px max(16px,env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));background:rgba(4,10,18,.78);backdrop-filter:blur(7px)}
 .pwa-modal.open{display:flex}
 .pwa-modal-panel{width:min(100%,480px);max-height:min(82vh,680px);overflow:auto;padding:22px 20px 20px;border:1px solid #45617b;border-radius:22px;background:#111f31;color:#edf5ff;box-shadow:0 20px 60px rgba(0,0,0,.38)}
 .pwa-modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
@@ -341,17 +341,17 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 <style>
 #pwaFloatingInstall{position:fixed!important;left:50%!important;bottom:calc(14px + env(safe-area-inset-bottom))!important;transform:translateX(-50%)!important;z-index:2147483000!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;width:min(calc(100% - 28px),370px)!important;min-height:58px!important;padding:11px 18px!important;border:2px solid #fff7b2!important;border-radius:999px!important;background:linear-gradient(110deg,#fff27a 0%,#ffe34e 48%,#ffc928 100%)!important;color:#302600!important;font:900 16px/1.3 system-ui,sans-serif!important;box-shadow:0 8px 28px #0008,0 0 0 4px #ffe45a30,0 0 26px #ffe45a65!important;cursor:pointer!important;visibility:visible!important;opacity:1!important;animation:lemon-glow 2.8s ease-in-out infinite}
 #pwaFloatingInstall span{display:inline!important}
-#pwaFloatingInstall .pwa-new-badge{display:inline-flex;align-items:center;justify-content:center;padding:4px 7px;border-radius:7px;background:#172c31;color:#eaff91;font:900 9px/1 system-ui,sans-serif;letter-spacing:1px;box-shadow:0 0 10px #b6f34d90;animation:new-blink 1.2s steps(2,end) infinite}
+#pwaFloatingInstall .pwa-new-badge{display:inline-flex;align-items:center;justify-content:center;padding:4px 8px;border-radius:7px;background:#e01932;color:#fff;font:900 9px/1 system-ui,sans-serif;letter-spacing:1px;box-shadow:0 0 12px #ff173d99;animation:new-red-blink .85s steps(2,end) infinite}
 #pwaFloatingInstall:active{transform:translateX(-50%) scale(.97)!important}
 #pwaFloatingInstall:focus-visible{outline:3px solid #fff!important;outline-offset:4px}
 @keyframes lemon-glow{0%,100%{box-shadow:0 8px 28px #0008,0 0 0 4px #ffe45a25,0 0 17px #ffe45a50}50%{box-shadow:0 8px 30px #0009,0 0 0 6px #ffe45a40,0 0 30px #fff07c99}}
-@keyframes new-blink{0%,100%{opacity:1}50%{opacity:.42}}
+@keyframes new-red-blink{0%,100%{opacity:1;background:#f01836;box-shadow:0 0 13px #ff173dba}50%{opacity:.48;background:#9f1025;box-shadow:0 0 3px #ff173d55}}
 .pwa-chrome-panel{width:min(100%,430px);text-align:center}
 .pwa-chrome-panel .pwa-modal-head{margin-bottom:8px}
 .pwa-chrome-panel .pwa-modal-head h2{flex:1;text-align:center}
 .pwa-chrome-panel .pwa-modal-description{margin:10px 0 18px}
 .pwa-chrome-panel .pwa-external-browser{display:flex;align-items:center;justify-content:center;gap:9px;margin:0;padding:15px;border-radius:13px;background:linear-gradient(110deg,#ffe968,#ffc928);color:#302600;font-size:15px;font-weight:900;box-shadow:0 8px 20px #f4cb3b30}
-.pwa-chrome-panel .pwa-external-browser[hidden]{display:none}
+.pwa-chrome-panel .pwa-external-browser[hidden]{display:none}\n/* Keep the dialog above the floating CTA so the Chrome link is never obscured. */\n.pwa-modal.open{z-index:2147483001!important}\n.pwa-modal.open .pwa-modal-panel{position:relative;z-index:1;margin-bottom:0;max-height:min(78dvh,680px);overflow-y:auto;overscroll-behavior:contain}\n@media(prefers-reduced-motion:reduce){#pwaFloatingInstall .pwa-new-badge{animation:none!important}}
 body{padding-bottom:92px!important}
 @media(min-width:760px){#pwaFloatingInstall{left:auto!important;right:22px!important;bottom:22px!important;transform:none!important;width:auto!important;min-width:235px!important}#pwaFloatingInstall:active{transform:scale(.97)!important}}
 @media(prefers-reduced-motion:reduce){#pwaFloatingInstall,#pwaFloatingInstall .pwa-new-badge{animation:none!important}}
