@@ -286,6 +286,12 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 .main-nav a span{font-size:15px;color:#72dec8}
 .main-nav a.nav-literature{background:linear-gradient(110deg,#163b54,#202b50);border-color:#438fc0;color:#e6f5ff}
 .main-nav a:hover{background:#1b344b;border-color:#5edbc4;color:#fff;transform:translateY(-2px)}
+/* Luminous dual-fire treatment: lemon gold + royal violet */
+.literary-shelf{position:relative;isolation:isolate;border-color:rgba(255,220,70,.48);box-shadow:0 0 0 1px rgba(190,70,255,.18),0 0 18px rgba(255,218,55,.34),0 0 42px rgba(177,65,255,.27),inset 0 0 28px rgba(255,215,60,.045);animation:literary-dual-fire 4.2s ease-in-out infinite}
+.literary-shelf:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;background:radial-gradient(ellipse at 8% 5%,rgba(255,225,70,.15),transparent 42%),radial-gradient(ellipse at 96% 95%,rgba(190,70,255,.18),transparent 48%);opacity:.9}
+.literary-shelf>*{position:relative;z-index:1}
+@keyframes literary-dual-fire{0%,100%{box-shadow:0 0 0 1px rgba(190,70,255,.18),0 0 16px rgba(255,218,55,.28),0 0 34px rgba(177,65,255,.22),inset 0 0 24px rgba(255,215,60,.035)}50%{box-shadow:0 0 0 2px rgba(190,70,255,.32),0 0 28px rgba(255,218,55,.48),0 0 58px rgba(177,65,255,.4),inset 0 0 34px rgba(255,215,60,.08)}}
+@media(prefers-reduced-motion:reduce){.literary-shelf{animation:none!important}}
 .literary-shelf{width:min(100%,1040px);margin:4px auto 34px;padding:24px 20px 22px;border:1px solid rgba(105,155,190,.24);border-radius:24px;background:linear-gradient(145deg,rgba(20,39,59,.92),rgba(11,23,38,.96));box-shadow:0 18px 48px rgba(0,0,0,.18);overflow:hidden}
 .literary-heading{text-align:center;margin:0 auto 20px}
 .literary-eyebrow{font:700 10px "JetBrains Mono",monospace;letter-spacing:2px;color:#75dcca;direction:ltr;display:inline-block}
@@ -388,23 +394,6 @@ body{padding-bottom:92px!important}
     </nav>
   </div>
 
-  <aside class="follow-announcement" aria-label="إعلان متابعة">
-    <p id="followMessage">ديرو أبوني الشباب، خلي معاك شي فولو… كاين الغرائب والعجائب عندي! 😄</p>
-    <a class="follow-cta" id="followLink" href="https://www.instagram.com/bouhaj.officiel/" target="_blank" rel="noopener noreferrer" aria-label="تابعني على إنستغرام">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-      <span id="followLabel">فولو</span>
-    </a>
-  </aside>
-
-
-  <div class="pwa-modal" id="pwaInstallModal" role="dialog" aria-modal="true" aria-labelledby="pwaModalTitle" aria-hidden="true">
-    <div class="pwa-modal-panel pwa-chrome-panel">
-      <div class="pwa-modal-head"><h2 id="pwaModalTitle">تثبيت BOUHAJ TECH</h2><button class="pwa-modal-close" id="pwaModalClose" type="button" aria-label="إغلاق">×</button></div>
-      <p class="pwa-modal-description" id="pwaModalDescription">افتح الموقع في متصفح Chrome للحصول على أفضل تجربة وإمكانية تثبيته على هاتفك.</p>
-      <a class="pwa-external-browser" id="pwaExternalBrowser" href="https://go.bouhaj.com/">افتح الموقع في Chrome <span aria-hidden="true">↗</span></a>
-    </div>
-  </div>
-
   <section class="literary-shelf" id="literary-shelf" aria-labelledby="literaryShelfTitle">
     <div class="literary-heading"><span class="literary-eyebrow">THE LITERARY COLLECTION</span><h2 id="literaryShelfTitle">عوالم تُقرأ… وتبقى في الذاكرة</h2><p>اختر بوابتك إلى الحكاية؛ لكل رواية عالمها ورمزها الخاص.</p></div>
     <div class="literary-grid">
@@ -418,6 +407,19 @@ body{padding-bottom:92px!important}
       </a>
     </div>
   </section>
+
+
+
+
+  <div class="pwa-modal" id="pwaInstallModal" role="dialog" aria-modal="true" aria-labelledby="pwaModalTitle" aria-hidden="true">
+    <div class="pwa-modal-panel pwa-chrome-panel">
+      <div class="pwa-modal-head"><h2 id="pwaModalTitle">تثبيت BOUHAJ TECH</h2><button class="pwa-modal-close" id="pwaModalClose" type="button" aria-label="إغلاق">×</button></div>
+      <p class="pwa-modal-description" id="pwaModalDescription">افتح الموقع في متصفح Chrome للحصول على أفضل تجربة وإمكانية تثبيته على هاتفك.</p>
+      <a class="pwa-external-browser" id="pwaExternalBrowser" href="https://go.bouhaj.com/">افتح الموقع في Chrome <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+
+  
   <main id="main-content">
   <section class="hero">
     <span class="term"><span class="dot"></span><span id="status">system online</span></span>
