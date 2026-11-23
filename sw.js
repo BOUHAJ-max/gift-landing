@@ -1,9 +1,9 @@
-const CACHE_NAME="bouhaj-speed-v3";
+const CACHE_NAME="bouhaj-speed-v4";
 const CORE_ASSETS=[
  "/pwa-icon.svg",
  "/manifest.webmanifest",
  "/offline.html",
- "/assets/site.css?v=1",
+ "/assets/site.css?v=2",
  "/assets/site.js?v=1",
  "/tools.json",
  "/assets/rebellious-novel-cover.jpg",

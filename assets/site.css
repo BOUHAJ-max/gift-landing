@@ -437,3 +437,4 @@ small{font-size:max(12px,.8em)}
 .item:hover{border-color:var(--ds-border-strong)!important}
 .item .ico,.ico{background:var(--ds-accent-soft)!important;color:var(--ds-accent)!important}
 body:not(.page-home) main,body:not(.page-home) .wrap{background-color:transparent}
+[hidden]{display:none!important}
