@@ -309,6 +309,30 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 @media(max-width:360px){.book-card{gap:12px;padding:12px}.book-art{width:88px}.book-copy strong{font-size:16px}.book-copy>span:not(.book-kicker):not(.book-open){font-size:11px}.book-open{font-size:10px;padding:7px 9px}}
 @media(prefers-reduced-motion:reduce){.book-card,.book-art,.main-nav a{transition:none}}
 
+
+/* About & policies dropdown — compact navigation, secondary destinations */
+.main-nav{position:relative}
+.about-menu{position:relative;display:inline-block;z-index:20}
+.about-menu summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 14px;border:1px solid #42617a;border-radius:13px;background:linear-gradient(135deg,#172b40,#111f31);color:#dcecff;font-size:12px;font-weight:800;user-select:none;transition:.2s}
+.about-menu summary::-webkit-details-marker{display:none}
+.about-menu summary:hover,.about-menu[open] summary{border-color:#5bd8c2;color:#fff;background:#1b3548}
+.about-menu summary>span:first-child{font-size:15px;color:#72dec8}
+.about-chevron{font-size:16px;color:#8eaec5;transition:transform .2s}
+.about-menu[open] .about-chevron{transform:rotate(180deg)}
+.about-menu-panel{position:absolute;top:calc(100% + 10px);inset-inline-end:0;width:min(280px,calc(100vw - 42px));padding:8px;border:1px solid #34516a;border-radius:16px;background:rgba(12,25,40,.98);box-shadow:0 18px 45px #0009;backdrop-filter:blur(16px);display:grid;gap:5px;animation:aboutMenuIn .16s ease-out}
+.about-menu-panel a{display:flex;align-items:center;gap:12px;padding:11px 12px;border:1px solid transparent;border-radius:11px;background:transparent;color:#e7f2ff;text-decoration:none}
+.about-menu-panel a:hover{border-color:#345b70;background:#1a3045}
+.about-menu-panel a>span:first-child{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:#173d48;color:#75dfca;font-size:17px;flex:none}
+.about-menu-panel a>span:last-child{display:grid;gap:2px;text-align:right}
+.about-menu-panel strong{font-size:12px}.about-menu-panel small{font-size:10px;color:#9eb3c6;font-weight:500}
+@keyframes aboutMenuIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+.site-footer{display:grid;gap:8px;text-align:center;padding:22px 12px 28px;margin-top:22px;border-top:1px solid rgba(104,145,174,.18);color:#91a7bb;font-size:11px}
+.footer-main{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap}
+.site-footer a{color:#b6d9e8;text-decoration:none}.site-footer a:hover{color:#69dfc6}
+.footer-dot{color:#4c7187}.footer-note{font-size:10px;color:#71899f}
+@media(max-width:520px){.about-menu summary{min-height:39px;padding:7px 11px;font-size:11px}.about-menu-panel{inset-inline-end:0}.site-footer{padding-bottom:32px}}
+@media(prefers-reduced-motion:reduce){.about-menu summary,.about-chevron{transition:none}.about-menu-panel{animation:none}}
+
 </style>
 </head>
 <body>
@@ -329,7 +353,21 @@ body{padding-bottom:86px!important}
   <div class="top">
     <div class="logo"><div class="logo-mark">&gt;_</div><div>BOUHAJ TECH<small>by E-BOUHAJ TECH</small></div></div>
     <button class="lang" id="langBtn">EN</button>
-    <nav class="main-nav" aria-label="التنقل الرئيسي"><a href="#literary-shelf" class="nav-literature"><span aria-hidden="true">✦</span> المكتبة الأدبية</a><a href="/articles/"><span aria-hidden="true">▤</span> المقالات</a><a href="/academy/"><span aria-hidden="true">⌘</span> الدورات</a><a href="/experiences/"><span aria-hidden="true">◉</span> التجارب</a><a href="#promptPanel"><span aria-hidden="true">✧</span> أداة ChatGPT</a></nav>
+    <nav class="main-nav" aria-label="التنقل الرئيسي">
+      <a href="#literary-shelf" class="nav-literature"><span aria-hidden="true">✦</span> المكتبة الأدبية</a>
+      <a href="/articles/"><span aria-hidden="true">▤</span> المقالات</a>
+      <a href="/academy/"><span aria-hidden="true">⌘</span> الدورات</a>
+      <a href="/experiences/"><span aria-hidden="true">◉</span> التجارب</a>
+      <a href="#promptPanel"><span aria-hidden="true">✧</span> أداة ChatGPT</a>
+      <details class="about-menu">
+        <summary><span aria-hidden="true">☰</span> عنّي والسياسات <span class="about-chevron" aria-hidden="true">⌄</span></summary>
+        <div class="about-menu-panel">
+          <a href="/about.html"><span aria-hidden="true">♙</span><span><strong id="footerAbout">من نحن</strong><small>نبذة عن صاحب الموقع والمنصة</small></span></a>
+          <a href="/contact.html"><span aria-hidden="true">✉</span><span><strong id="footerContact">التواصل</strong><small>للاقتراحات والاستفسارات</small></span></a>
+          <a href="/privacy.html"><span aria-hidden="true">♧</span><span><strong id="footerPrivacy">الخصوصية</strong><small>سياسة الخصوصية وحماية البيانات</small></span></a>
+        </div>
+      </details>
+    </nav>
   </div>
 
   <aside class="follow-announcement" aria-label="إعلان متابعة">
@@ -407,7 +445,7 @@ body{padding-bottom:86px!important}
   </section>
   </main>
 
-  <footer>© <span id="yr"></span> BOUHAJ TECH · <a href="/academy/" id="footerCourses">الدورات التقنية</a> · <a href="/articles/" id="footerArticles">مكتبة المقالات</a> · <a href="/contact.html" id="footerContact">التواصل</a> · <a href="/privacy.html" id="footerPrivacy">الخصوصية</a> · <a href="/about.html" id="footerAbout">من نحن</a> · <a href="https://www.instagram.com/bouhaj.officiel/" target="_blank" rel="noopener noreferrer">Instagram</a></footer>
+  <footer class="site-footer"><div class="footer-main">© <span id="yr"></span> BOUHAJ TECH <span class="footer-dot">•</span> <a href="/academy/" id="footerCourses">الدورات التقنية</a> <span class="footer-dot">•</span> <a href="/articles/" id="footerArticles">مكتبة المقالات</a> <span class="footer-dot">•</span> <a href="https://www.instagram.com/bouhaj.officiel/" target="_blank" rel="noopener noreferrer">Instagram</a></div><div class="footer-note">المعرفة تبدأ بسؤال… والخصوصية حق أصيل.</div></footer>
 </div>
 
 <div class="modal" id="modal">
