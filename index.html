@@ -279,6 +279,36 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
  .pwa-invite-copy{width:100%!important;flex:none!important}
  .pwa-install-button{width:100%!important;min-height:50px!important;font-size:16px!important;letter-spacing:.1px!important}
 }
+
+/* ===== Literary destinations: curated book-cover navigation ===== */
+.main-nav{width:100%;justify-content:center;gap:9px;padding:5px 0 9px}
+.main-nav a{min-height:42px;padding:8px 15px;border-radius:13px;background:rgba(21,39,58,.78);border-color:#304a64;color:#d9e9f7;font-size:12px;gap:7px}
+.main-nav a span{font-size:15px;color:#72dec8}
+.main-nav a.nav-literature{background:linear-gradient(110deg,#163b54,#202b50);border-color:#438fc0;color:#e6f5ff}
+.main-nav a:hover{background:#1b344b;border-color:#5edbc4;color:#fff;transform:translateY(-2px)}
+.literary-shelf{width:min(100%,1040px);margin:4px auto 34px;padding:24px 20px 22px;border:1px solid rgba(105,155,190,.24);border-radius:24px;background:linear-gradient(145deg,rgba(20,39,59,.92),rgba(11,23,38,.96));box-shadow:0 18px 48px rgba(0,0,0,.18);overflow:hidden}
+.literary-heading{text-align:center;margin:0 auto 20px}
+.literary-eyebrow{font:700 10px "JetBrains Mono",monospace;letter-spacing:2px;color:#75dcca;direction:ltr;display:inline-block}
+.literary-heading h2{font-size:clamp(20px,4vw,28px);font-weight:900;margin:6px 0;color:#f0f6ff}
+.literary-heading p{font-size:13px;color:#a8bbce}
+.literary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.book-card{--accent:#58baff;display:flex;align-items:center;gap:18px;min-width:0;padding:18px;border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);border-radius:19px;background:radial-gradient(ellipse at 20% 50%,color-mix(in srgb,var(--accent) 13%,transparent),transparent 62%),linear-gradient(145deg,#172b40,#101d2e);text-decoration:none;color:#edf5ff;transition:transform .22s,border-color .22s,box-shadow .22s;position:relative;isolation:isolate}
+.book-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 14px 32px color-mix(in srgb,var(--accent) 16%,transparent)}
+.dragon-book{--accent:#58baff}.lion-book{--accent:#e5bd79}
+.book-art{display:block;flex:none;width:112px;aspect-ratio:640/900;position:relative;perspective:700px;filter:drop-shadow(8px 12px 9px rgba(0,0,0,.45));transition:transform .25s}
+.book-art:before{content:"";position:absolute;z-index:-1;inset:2px -7px 2px 4px;border-radius:3px;background:linear-gradient(90deg,#050b14,#26394d 14%,#080f1a 18%,#050b14);transform:rotateY(-13deg) translateX(5px)}
+.book-art img{display:block;width:100%;height:100%;object-fit:cover;border-radius:3px 7px 7px 3px;border:1px solid rgba(255,255,255,.23);transform:rotateY(-8deg);transform-origin:left center}
+.book-card:hover .book-art{transform:translateY(-3px) rotate(-2deg)}
+.book-copy{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0}
+.book-kicker{font:700 9px "JetBrains Mono",monospace;letter-spacing:1px;color:var(--accent);direction:ltr}
+.book-copy strong{font-size:clamp(17px,2.3vw,23px);font-weight:900;line-height:1.45}
+.book-copy>span:not(.book-kicker):not(.book-open){font-size:12px;line-height:1.8;color:#b3c5d7}
+.book-open{display:inline-flex;align-items:center;gap:12px;margin-top:6px;padding:8px 12px;border-radius:10px;background:color-mix(in srgb,var(--accent) 17%,#0d1b2b);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent);font-size:11px;font-weight:800;color:#eaf5ff}
+.book-open b{font-size:16px;color:var(--accent)}
+@media(max-width:680px){.literary-shelf{padding:20px 13px;margin-bottom:26px}.literary-grid{grid-template-columns:1fr;gap:12px}.book-card{padding:14px 15px;gap:16px}.book-art{width:105px}.main-nav{gap:7px}.main-nav a{min-height:39px;padding:7px 11px;font-size:11px}}
+@media(max-width:360px){.book-card{gap:12px;padding:12px}.book-art{width:88px}.book-copy strong{font-size:16px}.book-copy>span:not(.book-kicker):not(.book-open){font-size:11px}.book-open{font-size:10px;padding:7px 9px}}
+@media(prefers-reduced-motion:reduce){.book-card,.book-art,.main-nav a{transition:none}}
+
 </style>
 </head>
 <body>
@@ -299,7 +329,7 @@ body{padding-bottom:86px!important}
   <div class="top">
     <div class="logo"><div class="logo-mark">&gt;_</div><div>BOUHAJ TECH<small>by E-BOUHAJ TECH</small></div></div>
     <button class="lang" id="langBtn">EN</button>
-    <nav class="main-nav" aria-label="التنقل"><a href="#promptPanel" data-nav="code">أداة ChatGPT</a><a href="/articles/" data-nav="academy">مكتبة المقالات</a><a href="/academy/" data-nav="courses">الدورات التقنية</a><a href="/experiences/" data-nav="experiences">التجارب الشخصية</a><a href="/rebellious-novel/" data-nav="rebellious" class="rebellious-nav">الرواية المتمردة <span class="rebellious-new">جديد</span></a><a href="/wadi-al-aql/" data-nav="wadi">رواية وادي العقل</a><a href="/about.html" data-nav="about">من نحن</a><a href="/contact.html" data-nav="contact">التواصل</a><a href="/privacy.html" data-nav="privacy">الخصوصية</a></nav>
+    <nav class="main-nav" aria-label="التنقل الرئيسي"><a href="#literary-shelf" class="nav-literature"><span aria-hidden="true">✦</span> المكتبة الأدبية</a><a href="/articles/"><span aria-hidden="true">▤</span> المقالات</a><a href="/academy/"><span aria-hidden="true">⌘</span> الدورات</a><a href="/experiences/"><span aria-hidden="true">◉</span> التجارب</a><a href="#promptPanel"><span aria-hidden="true">✧</span> أداة ChatGPT</a></nav>
   </div>
 
   <aside class="follow-announcement" aria-label="إعلان متابعة">
@@ -331,6 +361,19 @@ body{padding-bottom:86px!important}
     </div>
   </div>
 
+  <section class="literary-shelf" id="literary-shelf" aria-labelledby="literaryShelfTitle">
+    <div class="literary-heading"><span class="literary-eyebrow">THE LITERARY COLLECTION</span><h2 id="literaryShelfTitle">عوالم تُقرأ… وتبقى في الذاكرة</h2><p>اختر بوابتك إلى الحكاية؛ لكل رواية عالمها ورمزها الخاص.</p></div>
+    <div class="literary-grid">
+      <a class="book-card dragon-book" href="/rebellious-novel/" aria-label="افتح الرواية المتمردة">
+        <span class="book-art"><img src="/media/rebellious-dragon-cover.svg" alt="غلاف الرواية المتمردة بتنين أزرق" loading="lazy"></span>
+        <span class="book-copy"><span class="book-kicker">THE REBELLIOUS NOVEL</span><strong>الرواية المتمردة</strong><span>تنين يفتح أبواب الخيال والتمرد وأسئلة الهوية.</span><span class="book-open">اكتشف فصول الرواية <b>←</b></span></span>
+      </a>
+      <a class="book-card lion-book" href="/wadi-al-aql/" aria-label="افتح رواية وادي العقل">
+        <span class="book-art"><img src="/media/wadi-lion-cover.svg" alt="غلاف رواية وادي العقل بأسد ذهبي" loading="lazy"></span>
+        <span class="book-copy"><span class="book-kicker">WADI AL-AQL CHRONICLES</span><strong>رواية وادي العقل</strong><span>أسد يحرس بوابة الصحراء؛ حيث تتواجه الحكمة والتناقض.</span><span class="book-open">ادخل إلى الوادي <b>←</b></span></span>
+      </a>
+    </div>
+  </section>
   <main id="main-content">
   <section class="hero">
     <span class="term"><span class="dot"></span><span id="status">system online</span></span>
