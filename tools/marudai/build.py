@@ -7,7 +7,7 @@ ROOT = os.path.abspath(os.path.join(HERE, '..', '..'))
 OUT = ROOT + '/marudai'
 BASE = 'https://go.bouhaj.com'
 LANGS = ['ar', 'en', 'fr']
-COVER = '/assets/marudai-cover.jpg'
+COVER = '/assets/marudai-cover-v2.jpg'
 
 ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI','XXII','XXIII','XXIV','XXV']
 PARTS_AT = {1: 'ONE', 4: 'TWO', 8: 'THREE', 11: 'FOUR', 14: 'FIVE'}  # chapter number -> part that starts before it
@@ -209,7 +209,7 @@ def main():
     npub = len(secs)
     body = f'''<main class="mr-main mr-index">
 <section class="mr-hero">
-<img class="mr-cover" src="{COVER}" alt="غلاف رواية آخر المتمردين: ماروداي" width="600" height="900" fetchpriority="high">
+<img class="mr-cover" src="{COVER}" alt="غلاف رواية آخر المتمردين: ماروداي" width="640" height="1024" fetchpriority="high">
 <div>
 <span class="mr-eyebrow">الرواية الكاملة</span>
 <h1>آخر المتمردين: ماروداي</h1>
