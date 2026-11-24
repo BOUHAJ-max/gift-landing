@@ -1,21 +1,42 @@
 {
   "id": "/reader/",
-  "name": "روايات بوهاج — قارئ الروايات",
-  "short_name": "روايات بوهاج",
+  "name": "Bouhaj Reader — قارئ روايات محمد بوهاج",
+  "short_name": "Bouhaj Reader",
   "description": "اقرأ روايات محمد بوهاج: ضوء الشمعة، الكتاب الكريمي، التحكم في الإضاءة، القراءة الصوتية، وملء الشاشة.",
   "lang": "ar",
   "dir": "rtl",
   "start_url": "/reader/?source=app",
   "scope": "/reader/",
   "display": "fullscreen",
-  "display_override": ["fullscreen", "standalone"],
+  "display_override": [
+    "fullscreen",
+    "standalone"
+  ],
   "orientation": "portrait",
   "background_color": "#100d13",
   "theme_color": "#100d13",
-  "categories": ["books", "entertainment"],
+  "categories": [
+    "books",
+    "entertainment"
+  ],
   "icons": [
-    {"src": "/reader/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
-    {"src": "/reader/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
-    {"src": "/reader/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+    {
+      "src": "/reader/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/reader/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/reader/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }

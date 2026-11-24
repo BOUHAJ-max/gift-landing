@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>روايات بوهاج | قارئ الروايات</title>
+<title>Bouhaj Reader | قارئ روايات محمد بوهاج</title>
 <meta name="description" content="تطبيق قراءة روايات محمد بوهاج: وضع ضوء الشمعة، والكتاب الكريمي، والتحكم في الإضاءة، والقراءة الصوتية، ووضع ملء الشاشة، بالعربية والإنجليزية والفرنسية.">
 <link rel="canonical" href="https://go.bouhaj.com/reader/">
 <meta name="theme-color" content="#120d0a">
 <meta name="robots" content="index,follow">
-<meta property="og:type" content="website"><meta property="og:title" content="روايات بوهاج | قارئ الروايات"><meta property="og:description" content="اقرأ روايات محمد بوهاج في تطبيق مصمم للقراءة: ضوء الشمعة، الكتاب الكريمي، القراءة الصوتية."><meta property="og:url" content="https://go.bouhaj.com/reader/"><meta property="og:image" content="https://go.bouhaj.com/reader/icons/og.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website"><meta property="og:title" content="Bouhaj Reader | قارئ روايات محمد بوهاج"><meta property="og:description" content="اقرأ روايات محمد بوهاج في تطبيق مصمم للقراءة: ضوء الشمعة، الكتاب الكريمي، القراءة الصوتية."><meta property="og:url" content="https://go.bouhaj.com/reader/"><meta property="og:image" content="https://go.bouhaj.com/reader/icons/og.jpg"><meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="/reader/manifest.webmanifest">
 <link rel="icon" href="/reader/icons/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/reader/icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="روايات بوهاج">
+<meta name="apple-mobile-web-app-title" content="Bouhaj Reader">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/reader/reader.css?v=1">
+<link rel="stylesheet" href="/reader/reader.css?v=2">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5006130101466731" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -34,15 +34,20 @@
   <div class="sheet-grab" aria-hidden="true"></div>
   <h2 id="setTitle" data-t="settings"></h2>
   <div class="set-row"><span data-t="theme"></span>
-    <div class="seg" id="themes">
-      <button data-theme="night"><i class="sw sw-night"></i><span data-t="night"></span></button>
-      <button data-theme="cream"><i class="sw sw-cream"></i><span data-t="cream"></span></button>
-      <button data-theme="day"><i class="sw sw-day"></i><span data-t="day"></span></button>
-      <button data-theme="candle"><i class="sw sw-candle"></i><span data-t="candle"></span></button>
+    <div class="seg seg-grid" id="themes">
+      <button data-theme="night"><i class="sw sw-night" data-ic="moon"></i><span data-t="night"></span></button>
+      <button data-theme="cream"><i class="sw sw-cream" data-ic="paper"></i><span data-t="cream"></span></button>
+      <button data-theme="day"><i class="sw sw-day" data-ic="day"></i><span data-t="day"></span></button>
+      <button data-theme="candle"><i class="sw sw-candle" data-ic="candle"></i><span data-t="candle"></span></button>
+      <button data-theme="comfort"><i class="sw sw-comfort" data-ic="eye"></i><span data-t="comfort"></span></button>
+      <button data-theme="sunlight"><i class="sw sw-sun" data-ic="sun"></i><span data-t="sunlight"></span></button>
     </div>
   </div>
-  <label class="set-row"><span><span data-t="brightness"></span> <output id="brightOut"></output></span><input type="range" id="bright" min="25" max="100" step="1"></label>
-  <label class="set-row"><span><span data-t="warmth"></span> <output id="warmOut"></output></span><input type="range" id="warm" min="0" max="100" step="1"></label>
+  <label class="set-row"><span class="lbl" data-ic="bright"><span data-t="brightness"></span> <output id="brightOut"></output></span><input type="range" id="bright" min="25" max="100" step="1"></label>
+  <label class="set-row"><span class="lbl" data-ic="candle"><span data-t="warmth"></span> <output id="warmOut"></output></span><input type="range" id="warm" min="0" max="100" step="1"></label>
+  <div class="set-row"><span data-t="layout"></span>
+    <div class="seg seg-sm" id="layouts"><button data-layout="scroll" data-ic="scroll"><span data-t="scrollM"></span></button><button data-layout="pages" data-ic="pages"><span data-t="pagesM"></span></button></div>
+  </div>
   <div class="set-row"><span data-t="size"></span>
     <div class="stepper"><button id="fontMinus" aria-label="A-">A−</button><output id="fontOut"></output><button id="fontPlus" aria-label="A+">A+</button></div>
   </div>
@@ -55,7 +60,9 @@
   </div>
   <div class="set-row"><span data-t="spacing"></span>
     <div class="seg seg-sm" id="spacing">
-      <button data-lh="1.75">≡</button><button data-lh="2">☰</button><button data-lh="2.3">⋮⋮</button>
+      <button data-lh="1.75" aria-label="1.75"><svg class="ic" viewBox="0 0 24 24"><path d="M5 8h14M5 12h14M5 16h14"/></svg></button>
+      <button data-lh="2" aria-label="2"><svg class="ic" viewBox="0 0 24 24"><path d="M5 6h14M5 12h14M5 18h14"/></svg></button>
+      <button data-lh="2.3" aria-label="2.3"><svg class="ic" viewBox="0 0 24 24"><path d="M5 4h14M5 12h14M5 20h14"/></svg></button>
     </div>
   </div>
   <div class="set-row"><span data-t="lang"></span>
@@ -66,19 +73,27 @@
   <div class="set-row toggles">
     <button class="tog" id="justify"><span data-t="justify"></span><i></i></button>
     <button class="tog" id="wake"><span data-t="wake"></span><i></i></button>
+    <button class="tog" id="flame"><span data-t="flame"></span><i></i></button>
   </div>
-  <button class="wide-btn" id="fsBtn" data-t="fullscreen"></button>
+  <button class="wide-btn" id="fsBtn" data-ic="full"><span data-t="fullscreen"></span></button>
 </section>
 
 <!-- Read aloud -->
 <section class="tts" id="tts" hidden aria-label="TTS">
-  <button class="tts-btn" id="ttsPlay" aria-label="play"></button>
-  <div class="tts-info"><strong data-t="listen"></strong><span id="ttsState"></span></div>
-  <div class="seg seg-sm" id="rates"><button data-rate="0.8">0.8×</button><button data-rate="1">1×</button><button data-rate="1.25">1.25×</button><button data-rate="1.5">1.5×</button></div>
-  <button class="icon-btn" id="ttsClose" aria-label="close">✕</button>
+  <div class="tts-row">
+    <button class="icon-btn" id="ttsPrev" aria-label="previous" data-ic="prevP"></button>
+    <button class="tts-btn" id="ttsPlay" aria-label="play"></button>
+    <button class="icon-btn" id="ttsNext" aria-label="next" data-ic="nextP"></button>
+    <div class="tts-info"><strong data-t="listen"></strong><span id="ttsState"></span></div>
+    <button class="icon-btn" id="ttsClose" aria-label="close" data-ic="close"></button>
+  </div>
+  <div class="tts-row">
+    <div class="seg seg-sm" id="voices"><button data-voice="female" data-ic="female"><span data-t="female"></span></button><button data-voice="male" data-ic="male"><span data-t="male"></span></button></div>
+    <div class="seg seg-sm" id="rates"><button data-rate="0.8">0.8×</button><button data-rate="1">1×</button><button data-rate="1.25">1.25×</button><button data-rate="1.5">1.5×</button></div>
+  </div>
 </section>
 
 <div class="toast" id="toast" role="status" hidden></div>
-<script src="/reader/reader.js?v=1" defer></script>
+<script src="/reader/reader.js?v=2" defer></script>
 </body>
 </html>

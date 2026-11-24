@@ -533,3 +533,16 @@ html[dir=rtl] .hx-feature h2{text-align:right}
 .reader-cta small{font-size:13px;color:var(--ds-muted)}
 .reader-cta b{color:#d8a75a;font-size:20px}
 html[dir=ltr] .reader-cta b{transform:scaleX(-1)}
+.reader-beta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:0 0 18px;padding:16px 18px;border-radius:var(--ds-r-lg);border:1px solid rgba(216,167,90,.4);background:radial-gradient(500px 160px at 0% 0%,rgba(216,167,90,.16),transparent 70%),var(--ds-surface)}
+.reader-beta img{flex:none;border-radius:13px;box-shadow:0 8px 20px -8px rgba(0,0,0,.6)}
+.rb-copy{flex:1;min-width:220px;display:flex;flex-direction:column;gap:3px}
+.rb-tag{align-self:flex-start;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;background:#d8a75a;color:#1a1006}
+.rb-copy strong{font-size:19px;letter-spacing:.2px}
+.rb-copy small{font-size:13.5px;color:var(--ds-muted);line-height:1.7}
+.rb-actions{display:flex;gap:8px;flex-wrap:wrap}
+.rb-btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 16px;border-radius:11px;font-weight:600;font-size:14px;text-decoration:none!important}
+.rb-main{background:#d8a75a;color:#1a1006!important}
+.rb-main:hover{background:#e6b970}
+.rb-ghost{border:1px solid var(--ds-border-strong);color:var(--ds-text)!important}
+.rb-ghost:hover{border-color:var(--ds-text-2)}
+@media(max-width:640px){.rb-actions{width:100%}.rb-btn{flex:1}}
