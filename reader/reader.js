@@ -26,7 +26,8 @@ const P={
  download:'<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>', home:'<path d="M4 11l8-7 8 7v9H4z"/>',
  clock:'<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>', check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
  female:'<circle cx="12" cy="9" r="5"/><path d="M12 14v7M9 18h6"/>', male:'<circle cx="10" cy="14" r="5"/><path d="M14 10l6-6M15 4h5v5"/>',
- ext:'<path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/>'
+ ext:'<path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/>',
+ share:'<path d="M12 3v12M8 7l4-4 4 4M5 12v8h14v-8"/>', plus:'<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8"/>', dots:'<circle cx="12" cy="5" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="19" r="1.3" fill="currentColor"/>'
 };
 const I=(n,cls='')=>`<svg class="ic ${cls}" viewBox="0 0 24 24" aria-hidden="true">${P[n]}</svg>`;
 
@@ -95,12 +96,13 @@ async function viewLibrary(){
   app.innerHTML=bar('',null)+`<main class="lib">
    <section class="hero"><h2>${t('heroT')}</h2><p>${t('heroP')}</p>
    <ul class="feats">${feats.map(([i,k])=>`<li>${I(i)}<span>${t(k)}</span></li>`).join('')}</ul></section>
+   ${installed()?'':`<button class="ins-banner" data-act="install"><img src="/reader/icons/icon-192.png" alt="" width="44" height="44"><span><strong>${it('t')}</strong><small>${it('d')}</small></span>${I('download')}</button>`}
    ${cont}
    <h3 class="sec-h">${t('novels')}</h3>
    <div class="books">${LIB.books.map(b=>`<a class="bk" href="#/b/${b.id}"><div class="bk-cover"><img src="${b.cover}" alt="${esc(tt(b.title))}" loading="lazy"></div><strong>${esc(tt(b.title))}</strong><span>${b.chapters.length} ${t('chapters')}</span><div class="meter"><i style="width:${Math.round(bookPct(b)*100)}%"></i></div></a>`).join('')}</div>
-   <footer class="lib-foot"><button class="install" id="installBtn">${I('download')}${t('install')}</button><a href="/">${I('home')}${t('site')}</a></footer>
+   <footer class="lib-foot">${installed()?'':`<button class="install" data-act="install">${I('download')}${t('install')}</button>`}<a href="/">${I('home')}${t('site')}</a></footer>
   </main>`;
-  $('#installBtn').onclick=doInstall; window.scrollTo(0,0);
+  window.scrollTo(0,0);
 }
 
 async function viewBook(id){
@@ -303,10 +305,52 @@ addEventListener('keydown',e=>{ if(e.key==='Escape'){closeSheet();$('#toc')&&($(
 let tid; function toast(m){ const el=$('#toast'); el.textContent=m; el.hidden=false; clearTimeout(tid); tid=setTimeout(()=>el.hidden=true,4500) }
 
 /* ---------------- install ---------------- */
+const IT={
+ ar:{t:'ثبّت Bouhaj Reader',d:'أضفه إلى الشاشة الرئيسية ليفتح كتطبيق بملء الشاشة، ويعمل دون إنترنت.',now:'تثبيت الآن',wait:'جارٍ تجهيز التثبيت…',chrome:'افتح في Chrome للتثبيت',inapp:'أنت داخل متصفح تطبيق آخر (مثل إنستغرام) لا يسمح بالتثبيت. سنفتح الصفحة في Chrome، ثم اضغط «تثبيت الآن».',ios1:'اضغط زر المشاركة',ios2:'اختر «إضافة إلى الشاشة الرئيسية»',ios3:'اضغط «إضافة»',iosSafari:'افتح في Safari',iosInapp:'التثبيت على آيفون يتم من Safari فقط. افتح الرابط في Safari ثم اتبع الخطوات:',menu1:'افتح قائمة المتصفح',menu2:'اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية»',menuHint:'إن لم يظهر زر التثبيت تلقائياً، استخدم قائمة المتصفح:',done:'التطبيق مثبّت على جهازك',later:'لاحقاً',copy:'نسخ الرابط',copied:'تم نسخ الرابط'},
+ en:{t:'Install Bouhaj Reader',d:'Add it to your home screen to open it like an app, full screen, even offline.',now:'Install now',wait:'Preparing install…',chrome:'Open in Chrome to install',inapp:'You’re in another app’s browser (like Instagram), which can’t install apps. We’ll open the page in Chrome; then tap “Install now”.',ios1:'Tap the Share button',ios2:'Choose “Add to Home Screen”',ios3:'Tap “Add”',iosSafari:'Open in Safari',iosInapp:'On iPhone, apps are installed from Safari only. Open the link in Safari, then follow these steps:',menu1:'Open the browser menu',menu2:'Choose “Install app” or “Add to Home screen”',menuHint:'If the install button doesn’t appear automatically, use the browser menu:',done:'The app is installed on your device',later:'Later',copy:'Copy link',copied:'Link copied'},
+ fr:{t:'Installer Bouhaj Reader',d:'Ajoutez-le à l’écran d’accueil pour l’ouvrir comme une application, en plein écran, même hors ligne.',now:'Installer maintenant',wait:'Préparation de l’installation…',chrome:'Ouvrir dans Chrome pour installer',inapp:'Vous êtes dans le navigateur d’une autre application (comme Instagram), qui ne permet pas l’installation. Nous allons ouvrir la page dans Chrome ; touchez ensuite « Installer maintenant ».',ios1:'Touchez le bouton Partager',ios2:'Choisissez « Sur l’écran d’accueil »',ios3:'Touchez « Ajouter »',iosSafari:'Ouvrir dans Safari',iosInapp:'Sur iPhone, l’installation se fait uniquement depuis Safari. Ouvrez le lien dans Safari, puis suivez ces étapes :',menu1:'Ouvrez le menu du navigateur',menu2:'Choisissez « Installer l’application » ou « Ajouter à l’écran d’accueil »',menuHint:'Si le bouton d’installation n’apparaît pas automatiquement, utilisez le menu du navigateur :',done:'L’application est installée sur votre appareil',later:'Plus tard',copy:'Copier le lien',copied:'Lien copié'}};
+const it=k=>(IT[L]||IT.ar)[k];
+const UA=navigator.userAgent||'';
+const isAndroid=/Android/i.test(UA), isIOS=/iPhone|iPad|iPod/i.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+const inApp=/Instagram|FBAN|FBAV|FB_IAB|Messenger|Line\/|TikTok|musical_ly|Snapchat|Twitter|; wv\)/i.test(UA);
+const isChrome=/Chrome\/\d/i.test(UA)&&!/EdgA?|OPR|SamsungBrowser|YaBrowser|UCBrowser|Firefox/i.test(UA);
+const installed=()=>matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches||navigator.standalone===true;
+const INSTALL_URL='https://go.bouhaj.com/reader/?install=1';
 let deferred=null;
-addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;document.body.classList.add('can-install')});
-async function doInstall(){ if(!deferred)return; deferred.prompt(); await deferred.userChoice; deferred=null; document.body.classList.remove('can-install') }
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;document.body.classList.add('can-install');refreshSheet()});
+addEventListener('appinstalled',()=>{deferred=null;closeInstall();toast(it('done'))});
+function openInChrome(){ location.href='intent://go.bouhaj.com/reader/?install=1#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='+encodeURIComponent(INSTALL_URL)+';end' }
+function openInSafari(){ location.href='x-safari-https://go.bouhaj.com/reader/?install=1' }
+function sheetHTML(){
+  const step=(n,txt,ic)=>`<li><b>${n}</b><span>${txt}</span>${ic?I(ic):''}</li>`;
+  let body='',btn='';
+  if(isAndroid&&(inApp||!isChrome)){ body=`<p>${it('inapp')}</p>`; btn=`<button class="btn" id="insGo">${I('ext')}${it('chrome')}</button>` }
+  else if(isIOS){ body=(inApp||!/Safari/i.test(UA)||/CriOS|FxiOS/i.test(UA)?`<p>${it('iosInapp')}</p>`:'')+`<ol class="steps">${step(1,it('ios1'),'share')}${step(2,it('ios2'),'plus')}${step(3,it('ios3'))}</ol>`; if(inApp||/CriOS|FxiOS/i.test(UA))btn=`<button class="btn" id="insSafari">${I('ext')}${it('iosSafari')}</button><button class="btn ghost" id="insCopy">${it('copy')}</button>` }
+  else if(deferred){ btn=`<button class="btn big" id="insNow">${I('download')}${it('now')}</button>` }
+  else { body=`<p>${it('menuHint')}</p><ol class="steps">${step(1,it('menu1'),'dots')}${step(2,it('menu2'),'download')}</ol>`; btn=`<button class="btn big" id="insNow" disabled>${it('wait')}</button>` }
+  return `<div class="ins-card"><img src="/reader/icons/icon-192.png" alt="" width="72" height="72"><h3>${it('t')}</h3><p class="ins-d">${it('d')}</p>${body}<div class="ins-btns">${btn}<button class="btn ghost" id="insLater">${it('later')}</button></div></div>`;
+}
+function refreshSheet(){ const sh=$('#installSheet'); if(!sh||sh.hidden)return; sh.innerHTML=sheetHTML(); bindSheet() }
+function bindSheet(){
+  $('#insNow')&&($('#insNow').onclick=async()=>{ if(!deferred)return; deferred.prompt(); const r=await deferred.userChoice; deferred=null; document.body.classList.remove('can-install'); if(r&&r.outcome==='accepted')closeInstall(); else refreshSheet() });
+  $('#insGo')&&($('#insGo').onclick=openInChrome);
+  $('#insSafari')&&($('#insSafari').onclick=openInSafari);
+  $('#insCopy')&&($('#insCopy').onclick=async()=>{try{await navigator.clipboard.writeText(INSTALL_URL);toast(it('copied'))}catch(e){prompt('',INSTALL_URL)}});
+  $('#insLater').onclick=closeInstall;
+}
+function openInstall(){
+  if(installed())return toast(it('done'));
+  if(deferred&&!isIOS&&!(isAndroid&&inApp)){ deferred.prompt(); deferred.userChoice.then(r=>{deferred=null;document.body.classList.remove('can-install');if(!r||r.outcome!=='accepted'){showSheet()}}); return }
+  if(isAndroid&&(inApp||!isChrome)){ openInChrome(); setTimeout(showSheet,900); return }
+  showSheet();
+}
+function showSheet(){ let sh=$('#installSheet'); if(!sh){sh=document.createElement('div');sh.id='installSheet';sh.className='ins';document.body.appendChild(sh)} sh.hidden=false; sh.innerHTML=sheetHTML(); bindSheet() }
+function closeInstall(){ const sh=$('#installSheet'); if(sh)sh.hidden=true }
+const doInstall=openInstall;
+document.addEventListener('click',e=>{ if(e.target.closest('[data-act=install]'))openInstall() });
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('/reader/sw.js',{scope:'/reader/'}).catch(()=>{}));
+// Arriving from "open in Chrome": show the install card right away (browsers need one tap to install)
+if(new URLSearchParams(location.search).has('install')&&!installed())setTimeout(showSheet,400);
 
 /* ---------------- router ---------------- */
 function go(h){ location.hash=h }

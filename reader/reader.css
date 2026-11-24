@@ -236,3 +236,30 @@ html[data-layout=pages] .tap-a{left:0} html[data-layout=pages] .tap-b{right:0}
 html[data-layout=pages] .chrome-hidden .bar,html[data-layout=pages] .chrome-hidden .rd-foot{transform:none}
 html[data-layout=pages][data-theme=cream] body{background:var(--paper)}
 @media(max-width:520px){.hide-sm{display:none}}
+
+/* ===================== install ===================== */
+.install{display:inline-flex!important}
+.ins-banner{display:flex;align-items:center;gap:14px;width:100%;margin:20px 0 4px;padding:14px 16px;border-radius:18px;border:1px solid var(--accent);background:linear-gradient(120deg,var(--hl),var(--bg2) 70%);color:var(--ink);text-align:start;cursor:pointer}
+.ins-banner img{flex:none;border-radius:11px}
+.ins-banner span{flex:1;display:flex;flex-direction:column;gap:3px}
+.ins-banner strong{font-size:16px}
+.ins-banner small{font-size:13px;color:var(--muted);line-height:1.6}
+.ins-banner>.ic{color:var(--accent);width:24px;height:24px}
+.ins{position:fixed;inset:0;z-index:1300;display:flex;align-items:flex-end;justify-content:center;padding:16px;background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+@media(min-width:620px){.ins{align-items:center}}
+.ins-card{width:min(440px,100%);padding:26px 22px calc(20px + var(--safe-b));border-radius:24px;background:var(--bg2);color:var(--ink);text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.5);animation:up .25s ease}
+.ins-card img{margin:0 auto 12px;border-radius:18px;box-shadow:0 12px 28px -10px rgba(0,0,0,.6)}
+.ins-card h3{margin:0 0 6px;font-size:21px}
+.ins-card p{margin:0 0 12px;color:var(--ink2);font-size:14.5px;line-height:1.75}
+.ins-d{color:var(--muted)!important}
+.steps{list-style:none;margin:6px 0 14px;padding:0;display:grid;gap:8px;text-align:start}
+.steps li{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:12px;border:1px solid var(--line);font-size:14px}
+.steps b{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--hl);color:var(--accent);font-size:13px}
+.steps span{flex:1}
+.steps .ic{color:var(--accent)}
+.ins-btns{display:grid;gap:8px;margin-top:6px}
+.ins-btns .btn{width:100%}
+.btn.big{min-height:54px;font-size:17px}
+.btn[disabled]{opacity:.6}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+html .btn.ghost,html .rd-end .ghost{color:var(--ink)!important;background:transparent!important;border:1px solid var(--line)!important}
