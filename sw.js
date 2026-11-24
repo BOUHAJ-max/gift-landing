@@ -1,12 +1,12 @@
-const CACHE_NAME="bouhaj-speed-v5";
+const CACHE_NAME="bouhaj-speed-v6";
 const CORE_ASSETS=[
  "/pwa-icon.svg",
  "/manifest.webmanifest",
  "/offline.html",
- "/assets/site.css?v=2",
+ "/assets/site.css?v=3",
  "/assets/site.js?v=1",
  "/tools.json",
- "/assets/rebellious-novel-cover.jpg",
+ "/assets/rebellious-novel-cover-v2.jpg",
  "/assets/wadi-al-aql-cover.jpg"
 ];
 self.addEventListener("install",event=>{

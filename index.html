@@ -345,9 +345,9 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 @media(prefers-reduced-motion:reduce){.about-menu summary,.about-chevron{transition:none}.about-menu-panel{animation:none}}
 
 </style>
-<link rel="preload" as="image" href="/assets/rebellious-novel-cover.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/rebellious-novel-cover-v2.jpg" fetchpriority="high">
 <link rel="preload" as="image" href="/assets/wadi-al-aql-cover.jpg" fetchpriority="high">
-<link rel="stylesheet" href="/assets/site.css?v=2">
+<link rel="stylesheet" href="/assets/site.css?v=3">
 <script src="/assets/site.js?v=1" defer></script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5006130101466731" crossorigin="anonymous"></script>
 <meta property="og:image" content="https://go.bouhaj.com/assets/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="BOUHAJ TECH — دروس تقنية عملية بالعربية"><meta name="twitter:image" content="https://go.bouhaj.com/assets/og-image.png">
@@ -423,18 +423,50 @@ body{padding-bottom:92px!important}
   
   <main id="main-content">
   <section class="hero">
-    <span class="term"><span class="dot"></span><span id="status">system online</span></span>
+    <span class="term" hidden><span class="dot"></span><span id="status">system online</span></span>
     <h1 id="h1">بوابتك <span class="g">الرقمية</span><br>أدوات ومعرفة بلا تعقيد</h1>
     <p class="sub" id="sub"></p>
     <div class="type" id="type"></div>
     <div class="ds-hero-actions"><a class="ds-btn ds-btn-primary" id="heroCta1" href="/academy/">ابدأ التعلم</a><a class="ds-btn ds-btn-ghost" id="heroCta2" href="/articles/">تصفح المقالات</a></div>
+    <ul class="hx-stats"><li><b>14</b><span>درساً عملياً</span></li><li><b>3</b><span>دورات متكاملة</span></li><li><b>2</b><span>روايتان</span></li><li><b>3</b><span>لغات</span></li></ul>
+  </section>
+
+  <section class="hx-section" id="paths" aria-labelledby="pathsTitle">
+    <div class="hx-head"><span class="hx-eyebrow">01 · مسارات المعرفة</span><h2 id="pathsTitle">كل ما تحتاجه في مكان واحد</h2><p>أربعة أقسام واضحة: دروس قصيرة، ودورات متكاملة، ومكتبة أدبية، وتجارب شخصية.</p></div>
+    <div class="hx-paths">
+      <a class="hx-path" href="/articles/"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2Zm0 0A2 2 0 0 0 6 22h12"/><path d="M8 7h6M8 11h6"/></svg></span><strong>مكتبة الدروس</strong><span>شروحات عملية في Termux وLinux وPython وGit والشبكات.</span><em>14 درساً</em></a>
+      <a class="hx-path" href="/academy/"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5Z"/><path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/><path d="M22 9v6"/></svg></span><strong>الأكاديمية التقنية</strong><span>دورات متدرجة بوحدات وتمارين ومشاريع تطبيقية.</span><em>3 دورات</em></a>
+      <a class="hx-path" href="#literary-shelf"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2Z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7Z"/></svg></span><strong>المكتبة الأدبية</strong><span>روايتان بعوالم خاصة: الرواية المتمردة ووادي العقل.</span><em>روايتان</em></a>
+      <a class="hx-path" href="/experiences/"><span class="hx-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 0 12 6 6 0 0 0 0-12Z"/><path d="M12 15v6M8 21h8M3.5 9H2M22 9h-1.5M5 3.5 4 2.5M19 3.5l1-1"/></svg></span><strong>تجاربي</strong><span>تجارب شخصية وتأملات في الوعي والأحلام الواضحة.</span><em>مقالات شخصية</em></a>
+    </div>
+  </section>
+
+  <section class="hx-section" id="courses" aria-labelledby="coursesTitle">
+    <div class="hx-head hx-head-row"><div><span class="hx-eyebrow">02 · الأكاديمية</span><h2 id="coursesTitle">دورات تبدأ معك من الصفر</h2><p>كل دورة مقسمة إلى وحدات قصيرة، مع تمارين ومشروع نهائي.</p></div><a class="hx-more" href="/academy/">كل الدورات <b aria-hidden="true">←</b></a></div>
+    <div class="hx-courses">
+      <a class="hx-course" href="/academy/cybersecurity/"><span class="hx-level">مبتدئ ← متوسط</span><strong>مدخل إلى الأمن السيبراني الأخلاقي</strong><span>الشبكات والتهديدات وحماية الأنظمة، مع مختبرات قانونية آمنة.</span><span class="hx-meta">8 وحدات · مختبرات قانونية</span></a>
+      <a class="hx-course" href="/academy/termux-linux/"><span class="hx-level">من الصفر</span><strong>احتراف Termux وLinux على Android</strong><span>الأوامر والملفات والحزم والصلاحيات وSSH وGit والخادم المحلي.</span><span class="hx-meta">7 وحدات · مشروع تطبيقي</span></a>
+      <a class="hx-course" href="/academy/python/"><span class="hx-level">مبتدئ ← متوسط</span><strong>Python من الأساس إلى المشاريع</strong><span>المتغيرات والحلقات والدوال والملفات وواجهات API ومشروع نهائي.</span><span class="hx-meta">8 وحدات · مشروع نهائي</span></a>
+    </div>
+  </section>
+
+  <section class="hx-section" id="latest" aria-labelledby="latestTitle">
+    <div class="hx-head hx-head-row"><div><span class="hx-eyebrow">03 · الدروس</span><h2 id="latestTitle">دروس مختارة للبدء</h2><p>شروحات قصيرة ومباشرة، كل درس يحل مشكلة واحدة.</p></div><a class="hx-more" href="/articles/">كل الدروس <b aria-hidden="true">←</b></a></div>
+    <div class="hx-articles">
+      <a class="hx-article" href="/articles/install-termux-android/"><span class="hx-tag">Termux</span><strong>كيفية تثبيت Termux على أندرويد من المصدر الصحيح</strong><span>التثبيت من F-Droid أو GitHub والتحقق من المصدر.</span></a>
+      <a class="hx-article" href="/articles/linux-commands-termux/"><span class="hx-tag">Linux</span><strong>أهم أوامر Linux في Termux للمبتدئين مع أمثلة</strong><span>مرجع عملي لأوامر التنقل وإدارة الملفات.</span></a>
+      <a class="hx-article" href="/articles/python-termux/"><span class="hx-tag">Python</span><strong>تثبيت Python على Termux وتشغيل أول برنامج</strong><span>من التثبيت إلى أول ملف hello.py وتثبيت المكتبات.</span></a>
+      <a class="hx-article" href="/articles/git-branches/"><span class="hx-tag">Git</span><strong>تعلم فروع Git: branch وmerge وحل التعارضات</strong><span>اعمل على ميزات منفصلة وادمجها دون فقدان عملك.</span></a>
+      <a class="hx-article" href="/articles/networking-basics/"><span class="hx-tag">الشبكات</span><strong>أساسيات الشبكات للمبتدئين: IP وDNS وTCP وHTTPS</strong><span>افهم كيف تنتقل البيانات بين جهازك والإنترنت.</span></a>
+      <a class="hx-article" href="/articles/web-security-basics/"><span class="hx-tag">الأمن</span><strong>أساسيات حماية مواقع الويب: HTTPS والجلسات والتحقق من المدخلات</strong><span>المبادئ الأساسية لحماية تطبيقات الويب.</span></a>
+    </div>
   </section>
 
   <section class="literary-shelf" id="literary-shelf" aria-labelledby="literaryShelfTitle">
-    <div class="literary-heading"><span class="literary-eyebrow">THE LITERARY COLLECTION</span><h2 id="literaryShelfTitle">عوالم تُقرأ… وتبقى في الذاكرة</h2><p>اختر بوابتك إلى الحكاية؛ لكل رواية عالمها ورمزها الخاص.</p></div>
+    <div class="literary-heading"><span class="literary-eyebrow">04 · المكتبة الأدبية</span><h2 id="literaryShelfTitle">عوالم تُقرأ… وتبقى في الذاكرة</h2><p>اختر بوابتك إلى الحكاية؛ لكل رواية عالمها ورمزها الخاص.</p></div>
     <div class="literary-grid">
       <a class="book-card dragon-book" href="/rebellious-novel/" aria-label="افتح الرواية المتمردة">
-        <span class="book-art"><img src="/assets/rebellious-novel-cover.jpg" alt="غلاف الرواية المتمردة بتنين أزرق" width="180" height="240" loading="eager" fetchpriority="high" decoding="async"></span>
+        <span class="book-art"><img src="/assets/rebellious-novel-cover-v2.jpg" alt="غلاف الرواية المتمردة بتنين أزرق" width="180" height="240" loading="eager" fetchpriority="high" decoding="async"></span>
         <span class="book-copy"><span class="book-kicker">THE REBELLIOUS NOVEL</span><strong>الرواية المتمردة</strong><span>تنين يفتح أبواب الخيال والتمرد وأسئلة الهوية.</span><span class="book-open">اكتشف فصول الرواية <b>←</b></span></span>
       </a>
       <a class="book-card lion-book" href="/wadi-al-aql/" aria-label="افتح رواية وادي العقل">
@@ -444,9 +476,22 @@ body{padding-bottom:92px!important}
     </div>
   </section>
 
+  <section class="hx-section" id="book" aria-labelledby="bookTitle">
+    <div class="hx-feature">
+      <img class="hx-feature-cover" src="/assets/beyond-the-body-cover.jpg" alt="غلاف كتاب Beyond the Body لمحمد بوهاج" width="480" height="720" loading="lazy" decoding="async">
+      <div class="hx-feature-copy"><span class="hx-eyebrow">05 · كتاب وتجارب</span><h2 id="bookTitle">Beyond the Body</h2><p>خمس سنوات من تجارب الخروج الواعي من الجسد والأحلام الواضحة، يوثقها محمد بوهاج بأسلوب شخصي وتأملي.</p>
+        <div class="hx-actions"><a class="ds-btn ds-btn-primary" href="/experiences/astral-projection/">اقرأ التجربة</a><a class="ds-btn ds-btn-ghost" href="https://www.amazon.com/author/bouhaj" target="_blank" rel="noopener noreferrer">صفحة المؤلف على Amazon</a></div></div>
+    </div>
+  </section>
+
+  <section class="hx-section hx-about" aria-labelledby="aboutTitle">
+    <div><span class="hx-eyebrow">من نحن</span><h2 id="aboutTitle">معرفة عربية واضحة ومجانية</h2><p>BOUHAJ TECH منصة يديرها محمد بوهاج لتبسيط التقنية والأمن الرقمي بالعربية، إلى جانب أعماله الأدبية وتجاربه الشخصية.</p></div>
+    <div class="hx-actions"><a class="ds-btn ds-btn-ghost" href="/about.html">تعرف علينا</a><a class="ds-btn ds-btn-primary" href="/contact.html">تواصل معنا</a></div>
+  </section>
 
 
-  <section class="tools-section" aria-labelledby="toolsHeading">
+
+  <section class="tools-section" hidden aria-labelledby="toolsHeading">
     <div class="tools-heading"><span>02 / DISCOVER</span><h2 id="toolsHeading">استكشف الأدوات الرقمية</h2><p id="toolsDescription">مجموعة مختارة من الأدوات والخدمات الرقمية، مع بحث سريع وتصنيفات تساعدك على الوصول لما تحتاجه.</p></div>
   <div class="search" id="toolsSearch" role="search" aria-label="البحث في الأدوات">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -470,7 +515,16 @@ body{padding-bottom:92px!important}
   </div>
   </main>
 
-  <footer class="site-footer"><div class="footer-main">© <span id="yr"></span> BOUHAJ TECH <span class="footer-dot">•</span> <a href="/academy/" id="footerCourses">الدورات التقنية</a> <span class="footer-dot">•</span> <a href="/articles/" id="footerArticles">مكتبة المقالات</a> <span class="footer-dot">•</span> <a href="https://www.instagram.com/bouhaj.officiel/" target="_blank" rel="noopener noreferrer">Instagram</a></div><div class="footer-note">المعرفة تبدأ بسؤال… والخصوصية حق أصيل.</div></footer>
+  <footer class="site-footer hx-footer">
+    <div class="hx-foot-grid">
+      <div class="hx-foot-brand"><div class="logo"><div class="logo-mark">&gt;_</div><div>BOUHAJ TECH</div></div><p>دروس تقنية عملية بالعربية، وأعمال أدبية، وتجارب شخصية.</p></div>
+      <nav aria-label="تعلّم"><h3>تعلّم</h3><a href="/articles/" id="footerArticles">مكتبة المقالات</a><a href="/academy/" id="footerCourses">الدورات التقنية</a></nav>
+      <nav aria-label="المكتبة"><h3>المكتبة</h3><a href="/rebellious-novel/">الرواية المتمردة</a><a href="/wadi-al-aql/">رواية وادي العقل</a><a href="/experiences/">تجاربي</a></nav>
+      <nav aria-label="الموقع"><h3>الموقع</h3><a href="/about.html">من نحن</a><a href="/contact.html">تواصل معنا</a><a href="/privacy.html">سياسة الخصوصية</a></nav>
+      <nav aria-label="تابعنا"><h3>تابعنا</h3><a href="https://www.instagram.com/bouhaj.officiel/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/mohamed.bouhaj.899672" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.amazon.com/author/bouhaj" target="_blank" rel="noopener noreferrer">Amazon</a></nav>
+    </div>
+    <div class="footer-main">© <span id="yr"></span> BOUHAJ TECH</div><div class="footer-note">المعرفة تبدأ بسؤال… والخصوصية حق أصيل.</div>
+  </footer>
 </div>
 
 <div class="modal" id="modal">
@@ -762,6 +816,7 @@ fetch('/tools.json').then(r=>r.json()).then(d=>{
 
 
 
+<script src="/i18n.js?v=7" defer></script>
 <script src="/pwa-install.js?v=5" defer></script>
 </body>
 </html>

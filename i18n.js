@@ -156,32 +156,58 @@ const COURSE=[
 const allEntries=[...entries,...COMMON,...LESSONS,...MORE,...COURSE];
 const map=new Map(allEntries.map(a=>[a[0],a]));
 const originals=new WeakMap();
-const ignoredTags=new Set(['SCRIPT','STYLE','CODE','PRE','TEXTAREA','INPUT','SELECT','OPTION','SVG','NOSCRIPT']);
+const attrOriginals=new WeakMap();
+const ATTRS=['placeholder','title','aria-label','alt'];
+const homeBtn=document.querySelector('#langBtn');
+if(homeBtn&&L.includes(document.documentElement.lang))lang=document.documentElement.lang;
+// Per-page dictionary: /i18n/<page>.json, fetched only when a non-Arabic language is shown.
+const pageKey=(location.pathname.replace(/^\/+|\/+$/g,'').replace(/\/index\.html$|\.html$/,'').replace(/\//g,'--'))||'home';
+let pageState='idle';
+function loadPage(){
+ if(pageState!=='idle')return;
+ pageState='loading';
+ fetch('/i18n/'+pageKey+'.json?v=7',{credentials:'same-origin'}).then(r=>r.ok?r.json():[]).then(rows=>{
+   (Array.isArray(rows)?rows:[]).forEach(r=>{if(Array.isArray(r)&&r.length===3)map.set(r[0],r)});
+   pageState='done';if(lang!=='ar')translate();
+ }).catch(()=>{pageState='done'});
+}
 function translate(){
- document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+ if(lang!=='ar')loadPage();
+ const idx=L.indexOf(lang);
+ if(!homeBtn){document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';}
  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let node;
  while(node=walker.nextNode()){
-   const parent=node.parentElement;if(!parent||ignoredTags.has(parent.tagName)||parent.closest('script,style,code,pre,textarea,input,select,svg,noscript,[contenteditable="true"]'))continue;
+   const parent=node.parentElement;if(!parent||parent.closest('script,style,code,pre,textarea,input,select,svg,noscript,[contenteditable="true"],[data-no-i18n]'))continue;
    if(!originals.has(node))originals.set(node,node.nodeValue);
-   const original=originals.get(node),key=original.trim(),row=map.get(key);
-   if(row){const translated=row[L.indexOf(lang)];node.nodeValue=original.replace(key,translated);}
+   const original=originals.get(node),key=original.trim().replace(/\s+/g,' '),row=map.get(key);
+   if(row){node.nodeValue=original.replace(original.trim(),row[idx]);}
    else node.nodeValue=original;
  }
- document.querySelectorAll('[data-i18n-original]').forEach(el=>{const orig=el.getAttribute('data-i18n-original');const row=map.get(orig);if(row)el.textContent=row[L.indexOf(lang)]});
- for(const attr of ['placeholder','title','aria-label']){
-   const key='i18n'+attr.replace(/-/g,'');
-   document.querySelectorAll('['+attr+']').forEach(el=>{if(!el.dataset[key])el.dataset[key]=el.getAttribute(attr);const orig=el.dataset[key],row=map.get(orig);if(row)el.setAttribute(attr,row[L.indexOf(lang)]);else el.setAttribute(attr,orig)});
+ document.querySelectorAll('[data-i18n-original]').forEach(el=>{const row=map.get(el.getAttribute('data-i18n-original'));if(row)el.textContent=row[idx]});
+ for(const attr of ATTRS){
+   document.querySelectorAll('['+attr+']').forEach(el=>{
+     let store=attrOriginals.get(el);if(!store){store={};attrOriginals.set(el,store)}
+     if(!(attr in store))store[attr]=el.getAttribute(attr);
+     const orig=store[attr],row=map.get((orig||'').trim());
+     el.setAttribute(attr,row?row[idx]:orig);
+   });
  }
- const titleMap=map.get(document.title);if(titleMap)document.title=titleMap[L.indexOf(lang)];
+ if(!originals.has(document))originals.set(document,document.title);
+ const t=map.get(originals.get(document).trim());document.title=t?t[idx]:originals.get(document);
  const picker=document.querySelector('.site-language-picker');if(picker)picker.value=lang;
+ document.dispatchEvent(new CustomEvent('site:lang',{detail:lang}));
 }
 function addPicker(){
  const host=document.querySelector('.top')||document.querySelector('header')||document.body;
- const select=document.createElement('select');select.className='site-language-picker';select.setAttribute('aria-label','Select language');select.innerHTML='<option value="ar">العربية</option><option value="en">English</option><option value="fr">Français</option>';select.value=lang;
- select.style.cssText='font:700 13px system-ui;padding:8px 10px;border:1px solid #39d6b0;border-radius:999px;background:#142236;color:#edf5ff;min-height:38px;max-width:125px;cursor:pointer';
+ const select=document.createElement('select');select.className='site-language-picker';select.setAttribute('aria-label','Language');select.setAttribute('data-no-i18n','');
+ select.innerHTML='<option value="ar">العربية</option><option value="en">English</option><option value="fr">Français</option>';select.value=lang;
+ select.style.cssText='font:600 13px system-ui,sans-serif;padding:7px 10px;border:1px solid rgba(148,163,184,.35);border-radius:999px;background:#111a2a;color:#e7edf5;min-height:36px;max-width:125px;cursor:pointer';
  select.addEventListener('change',()=>{lang=select.value;try{localStorage.setItem('lang',lang)}catch(e){}translate()});
  host.appendChild(select);
 }
-if(!document.querySelector('#langBtn'))addPicker();
+if(homeBtn){
+ // The home page owns its language button; follow the language it sets on <html>.
+ new MutationObserver(()=>{const l=document.documentElement.lang;if(L.includes(l)&&l!==lang){lang=l;translate()}}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+}else addPicker();
 translate();
 })();
