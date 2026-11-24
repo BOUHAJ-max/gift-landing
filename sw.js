@@ -1,6 +1,7 @@
-const CACHE_NAME="bouhaj-speed-v6";
+const CACHE_NAME="bouhaj-speed-v7";
 const CORE_ASSETS=[
- "/pwa-icon.svg",
+ "/assets/icons/icon.svg",
+ "/assets/icons/icon-192.png",
  "/manifest.webmanifest",
  "/offline.html",
  "/assets/site.css?v=3",
