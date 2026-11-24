@@ -1,3 +1,5 @@
+# أهلاً أيها الفاحص 👋 — إن وجدت ثغرة فأبلغني: /.well-known/security.txt
+# Hello, scanner. Found a bug? Tell me: /.well-known/security.txt
 User-agent: *
 Allow: /
 

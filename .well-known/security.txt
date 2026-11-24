@@ -1,0 +1,8 @@
+# إن وجدت ثغرة أمنية، كن بطلاً وأبلغني قبل أن يستغلها غيرك. شكراً لك.
+# If you find a security issue, be a hero and tell me first. Thank you.
+Contact: https://wa.me/212618439834
+Contact: mailto:bouhajshop.support@gmail.com
+Preferred-Languages: ar, en, fr
+Canonical: https://go.bouhaj.com/.well-known/security.txt
+Expires: 2027-12-31T23:59:00.000Z
+# محمد بوهاج · BOUHAJ TECH

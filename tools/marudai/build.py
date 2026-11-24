@@ -126,7 +126,7 @@ show(l);document.addEventListener('site:lang',e=>show(e.detail));})();
 FOOT = '''<footer class="mr-foot"><p>© 2024 محمد بوهاج · جميع الحقوق محفوظة</p><p><a href="https://www.amazon.com/author/bouhaj" target="_blank" rel="noopener noreferrer">صفحة المؤلف على Amazon</a></p></footer>
 </div>
 ''' + LANG_JS + '''<script src="/i18n.js?v=7" defer></script>
-</body>
+<script src="/assets/greet.js" defer></script>\n</body>
 </html>
 '''
 
