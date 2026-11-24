@@ -32,6 +32,16 @@ export default {
       try { body = await request.json(); } catch { return json({ error: "Invalid JSON" }, 400); }
       if (!body || !["visit", "install"].includes(body.type)) return json({ error: "Unsupported event" }, 400);
 
+      // Soft rate limit so the counters can't be flooded (uses Cloudflare's own edge, no IP storage).
+      const ip = request.headers.get("CF-Connecting-IP") || "0";
+      const bucket = Math.floor(Date.now() / 60000);
+      const rlKey = new Request("https://rl/" + bucket + "/" + ip);
+      const cache = caches.default;
+      const seen = await cache.match(rlKey);
+      const n = seen ? Number(await seen.text()) : 0;
+      if (n >= 40) return json({ ok: true, throttled: true });
+      await cache.put(rlKey, new Response(String(n + 1), { headers: { "Cache-Control": "max-age=60" } }));
+
       // Store only an aggregate event type and timestamp; never read or persist request IP/headers.
       await env.DB.prepare("INSERT INTO analytics_events (event_type, created_at) VALUES (?, unixepoch())")
         .bind(body.type).run();

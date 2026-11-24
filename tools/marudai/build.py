@@ -87,7 +87,7 @@ def head(page_title, desc, url, img):
     return f'''<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8">\n<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; upgrade-insecure-requests">\n<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{html.escape(page_title)}</title>
 <meta name="description" content="{html.escape(desc)}">

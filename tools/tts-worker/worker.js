@@ -37,6 +37,16 @@ export default {
     const rate = Math.min(2, Math.max(0.5, Number(body.rate) || 1));
     if (!text) return new Response('Empty text', { status: 400, headers: cors(origin) });
 
+    // Per-IP rate limit (protects Azure's free monthly quota from abuse).
+    const ip = request.headers.get('CF-Connecting-IP') || '0';
+    const bucket = Math.floor(Date.now() / 60000);
+    const rlKey = new Request('https://rl/' + bucket + '/' + ip);
+    const rlCache = caches.default;
+    const seen = await rlCache.match(rlKey);
+    const n = seen ? Number(await seen.text()) : 0;
+    if (n >= 60) return new Response('Too many requests', { status: 429, headers: cors(origin) });
+    ctx.waitUntil(rlCache.put(rlKey, new Response(String(n + 1), { headers: { 'Cache-Control': 'max-age=60' } })));
+
     const voice = env[`${lang.toUpperCase()}_${gender.toUpperCase()}`] || VOICES[lang][gender];
     const pct = Math.round((rate - 1) * 100);
     const ssml = `<speak version="1.0" xml:lang="${LOCALE[lang]}"><voice name="${voice}"><prosody rate="${pct >= 0 ? '+' : ''}${pct}%">${xml(text)}</prosody></voice></speak>`;
