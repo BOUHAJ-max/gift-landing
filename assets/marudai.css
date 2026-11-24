@@ -1,0 +1,55 @@
+/* The Last Rebel: Marudai — reading pages */
+.mr-page .wrap{width:min(1080px,calc(100% - 32px))}
+.mr-main{padding:clamp(20px,4vw,48px) 0 40px}
+.mr-text[lang=ar]{font-family:"Amiri",serif}
+.mr-text[lang=en],.mr-text[lang=fr]{font-family:"Lora",Georgia,serif}
+.mr-text{max-width:720px;margin:0 auto}
+.mr-text h1{font-size:clamp(28px,4vw,42px)!important;line-height:1.35!important;text-align:center;margin:8px 0 28px!important;color:var(--ds-text)}
+.mr-text h2{font-family:var(--ds-font);font-size:clamp(20px,2.4vw,26px);margin:2em 0 .6em;color:var(--ds-text)}
+.mr-text p{font-size:clamp(18px,1.3vw + 12px,21px);line-height:2;color:var(--ds-text-2);margin:0 0 1.1em;text-wrap:pretty}
+.mr-text[lang=en] p,.mr-text[lang=fr] p{line-height:1.85;font-size:clamp(17px,1.2vw + 11px,20px)}
+.mr-text blockquote{margin:1.6em 0;padding:16px 22px;border-inline-start:3px solid #4aa8ff;background:rgba(74,168,255,.07);border-radius:10px;font-style:italic;font-size:clamp(17px,1.2vw + 11px,20px);line-height:1.9;color:var(--ds-text)}
+.mr-text .mr-cite{text-align:end;font-family:var(--ds-font);font-size:14px!important;color:var(--ds-muted)!important;margin-top:-.6em}
+.mr-orn{text-align:center;color:#4aa8ff!important;letter-spacing:.6em;margin:1.6em 0!important}
+.mr-kicker{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;font-size:14px;color:var(--ds-muted);margin-bottom:8px}
+.mr-kicker a{color:#7cc4ff;text-decoration:none}
+.mr-part{text-align:center;margin:0 auto 28px;padding:22px;border:1px solid rgba(74,168,255,.25);border-radius:var(--ds-r-lg);background:radial-gradient(400px 160px at 50% 0,rgba(74,168,255,.12),transparent 70%);max-width:720px}
+.mr-part span{display:block;font-size:13px;font-weight:600;color:#7cc4ff;letter-spacing:.5px}
+.mr-part strong{display:block;font-size:clamp(20px,2.6vw,28px);margin-top:6px;color:var(--ds-text)}
+.mr-fallback{max-width:720px;margin:0 auto 20px;padding:10px 14px;border-radius:10px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.3);color:var(--ds-text-2);font-size:14px}
+.mr-nav{max-width:720px;margin:48px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mr-nav a{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border:1px solid var(--ds-border);border-radius:var(--ds-r);background:var(--ds-surface);text-decoration:none;color:var(--ds-text)!important;transition:border-color .15s}
+.mr-nav a:hover{border-color:#4aa8ff}
+.mr-nav small{font-size:12px;color:var(--ds-muted)}
+.mr-nav span{font-weight:600;font-size:15px;line-height:1.5}
+.mr-next{text-align:end}
+.mr-foot{text-align:center;color:var(--ds-muted);font-size:13px;padding:28px 0 12px;border-top:1px solid var(--ds-border);margin-top:40px}
+.mr-foot a{color:var(--ds-text-2)}
+/* index */
+.mr-hero{display:grid;grid-template-columns:260px 1fr;gap:40px;align-items:center;margin-bottom:56px}
+.mr-cover{width:100%;height:auto;border-radius:6px 12px 12px 6px;box-shadow:0 30px 60px -20px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.06)}
+.mr-eyebrow{font-size:13px;font-weight:600;color:#7cc4ff}
+.mr-hero h1{font-size:clamp(32px,5vw,54px);line-height:1.2;margin:8px 0 10px}
+.mr-by{font-size:18px;color:var(--ds-text-2);margin:0}
+.mr-stats{display:flex;flex-wrap:wrap;gap:8px;color:var(--ds-muted);font-size:14px;margin:14px 0 0}
+.mr-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.mr-note{margin-top:16px;font-size:13px;color:var(--ds-muted)}
+.mr-front{padding:clamp(20px,4vw,36px);border:1px solid var(--ds-border);border-radius:var(--ds-r-lg);background:var(--ds-surface);margin-bottom:48px}
+.mr-front>h2:first-child{margin-top:0;text-align:center}
+.mr-toc{max-width:760px;margin:0 auto}
+.mr-toc h2{font-size:clamp(22px,2.6vw,28px);margin-bottom:16px}
+.mr-toc ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.mr-toc a{display:flex;gap:14px;align-items:baseline;padding:14px 16px;border:1px solid var(--ds-border);border-radius:12px;background:var(--ds-surface);text-decoration:none;color:var(--ds-text)!important;transition:border-color .15s,transform .15s}
+.mr-toc a:hover{border-color:#4aa8ff;transform:translateY(-1px)}
+.mr-num{flex:none;min-width:84px;font-size:13px;font-weight:600;color:#7cc4ff}
+.mr-toc-part{margin-top:20px;padding:6px 2px;font-weight:700;font-size:17px;color:var(--ds-text)}
+.mr-toc-part span{display:block;font-size:12px;font-weight:600;color:var(--ds-muted)}
+@media(max-width:700px){
+  .mr-hero{grid-template-columns:1fr;text-align:center;gap:24px}
+  .mr-cover{max-width:220px;margin:0 auto}
+  .mr-stats,.mr-actions{justify-content:center}
+  .mr-nav{grid-template-columns:1fr}
+  .mr-next{text-align:start}
+}
+.mr-page .top{display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px}
+.mr-page .top .brand{margin-inline-end:auto}

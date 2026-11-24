@@ -1,0 +1,7 @@
+{
+"ONE":{"before_chapter":1,"label":{"ar":"الجزء الأول","en":"Part One","fr":"Première partie"},"title":{"ar":"يقظة الذات المستحيلة","en":"The Awakening of the Impossible Self","fr":"L’éveil du soi impossible"}},
+"TWO":{"before_chapter":4,"label":{"ar":"الجزء الثاني","en":"Part Two","fr":"Deuxième partie"},"title":{"ar":"المسافر بلا جواز سفر","en":"The Traveler Without a Passport","fr":"Le voyageur sans passeport"}},
+"THREE":{"before_chapter":8,"label":{"ar":"الجزء الثالث","en":"Part Three","fr":"Troisième partie"},"title":{"ar":"محاورات المستحيل","en":"The Conversations of the Impossible","fr":"Les conversations de l’impossible"}},
+"FOUR":{"before_chapter":11,"label":{"ar":"الجزء الرابع","en":"Part Four","fr":"Quatrième partie"},"title":{"ar":"علم العوالم الخفية","en":"The Science of Invisible Worlds","fr":"La science des mondes invisibles"}},
+"FIVE":{"before_chapter":14,"label":{"ar":"الجزء الخامس","en":"Part Five","fr":"Cinquième partie"},"title":{"ar":"الجدلية الأبدية","en":"The Eternal Dialectic","fr":"La dialectique éternelle"}}
+}
