@@ -525,3 +525,11 @@ html[dir=rtl] .hx-feature h2{text-align:right}
 @media(min-width:900px){.page-home .literary-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}.page-home .book-card{flex-direction:column;align-items:flex-start!important;text-align:start}}
 /* Keep the ">_" mark readable in right-to-left pages */
 .logo-mark{direction:ltr;unicode-bidi:isolate}
+.reader-cta{display:flex;align-items:center;gap:14px;margin-top:16px;padding:14px 18px;border-radius:var(--ds-r-lg);border:1px solid rgba(216,167,90,.35);background:linear-gradient(120deg,rgba(216,167,90,.12),var(--ds-surface) 60%);text-decoration:none;color:var(--ds-text)!important;transition:border-color .2s,transform .2s}
+.reader-cta:hover{border-color:#d8a75a;transform:translateY(-2px)}
+.reader-cta img{flex:none;border-radius:12px}
+.reader-cta span{flex:1;display:flex;flex-direction:column;gap:2px}
+.reader-cta strong{font-size:16px}
+.reader-cta small{font-size:13px;color:var(--ds-muted)}
+.reader-cta b{color:#d8a75a;font-size:20px}
+html[dir=ltr] .reader-cta b{transform:scaleX(-1)}

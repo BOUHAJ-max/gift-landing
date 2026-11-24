@@ -218,7 +218,7 @@ def main():
 <h1>آخر المتمردين: ماروداي</h1>
 <p class="mr-by">رواية بقلم محمد بوهاج</p>
 <p class="mr-stats"><span>25 فصلاً</span><span>·</span><span>5 أجزاء</span><span>·</span><span>{npub} فصول مجانية للقراءة</span></p>
-<div class="mr-actions"><a class="ds-btn ds-btn-primary" href="/marudai/{first}/">اقرأ مجاناً</a><a class="ds-btn ds-btn-ghost" href="{AMAZON}" target="_blank" rel="noopener noreferrer">الرواية كاملة على Amazon</a></div>
+<div class="mr-actions"><a class="ds-btn ds-btn-primary" href="/marudai/{first}/">اقرأ مجاناً</a><a class="ds-btn ds-btn-ghost" href="/reader/#/b/marudai">اقرأ في تطبيق القراءة</a><a class="ds-btn ds-btn-ghost" href="{AMAZON}" target="_blank" rel="noopener noreferrer">الرواية كاملة على Amazon</a></div>
 <p class="mr-note">لغة النص الأصلية: الإنجليزية. الترجمة العربية والفرنسية من إعداد الموقع.</p>
 </div>
 </section>
@@ -228,7 +228,7 @@ def main():
 '''
     rows += [['25 فصلاً', '25 chapters', '25 chapitres'], ['5 أجزاء', '5 parts', '5 parties'],
              [f'{npub} فصول مجانية للقراءة', f'{npub} free chapters to read', f'{npub} chapitres gratuits à lire'], ['فصول الرواية', 'Chapters', 'Chapitres'], ['التنقل بين الفصول', 'Chapter navigation', 'Navigation entre les chapitres'],
-             ['اقرأ مجاناً', 'Read for free', 'Lire gratuitement'], ['الرواية كاملة على Amazon', 'The full novel on Amazon', 'Le roman complet sur Amazon'], ['مجاني', 'Free', 'Gratuit'], ['على Amazon', 'On Amazon', 'Sur Amazon'],
+             ['اقرأ مجاناً', 'Read for free', 'Lire gratuitement'], ['الرواية كاملة على Amazon', 'The full novel on Amazon', 'Le roman complet sur Amazon'], ['مجاني', 'Free', 'Gratuit'], ['اقرأ في تطبيق القراءة', 'Read in the reading app', 'Lire dans l’application'], ['على Amazon', 'On Amazon', 'Sur Amazon'],
              ['أكمل الرواية', 'Continue the novel', 'Poursuivre le roman'], ['اقرأ بقية الفصول على Amazon', 'Read the remaining chapters on Amazon', 'Lire les chapitres suivants sur Amazon']]
     desc = 'رواية «آخر المتمردين: ماروداي» لمحمد بوهاج كاملة بالعربية والإنجليزية والفرنسية: رحلة في الوعي والتمرد والعوالم الخفية.'
     rows.append([desc, 'The complete novel “The Last Rebel: Marudai” by Mohamed Bouhaj in Arabic, English and French: a journey through consciousness, rebellion and hidden worlds.', 'Le roman complet « Le Dernier Rebelle : Marudai » de Mohamed Bouhaj en arabe, anglais et français : un voyage à travers la conscience, la rébellion et les mondes cachés.'])
@@ -238,3 +238,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+    import subprocess, sys
+    subprocess.run([sys.executable, os.path.join(ROOT, 'tools', 'reader', 'build_library.py')], check=True)

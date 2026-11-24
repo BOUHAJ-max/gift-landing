@@ -1,0 +1,174 @@
+{
+ "version": 1,
+ "books": [
+  {
+   "id": "marudai",
+   "cover": "/assets/marudai-cover-v2.jpg",
+   "accent": "#b06cff",
+   "title": {
+    "ar": "آخر المتمردين: ماروداي",
+    "en": "The Last Rebel: Marudai",
+    "fr": "Le Dernier Rebelle : Marudai"
+   },
+   "desc": {
+    "ar": "رواية عن الوعي والتمرد والعوالم الخفية.",
+    "en": "A novel of consciousness, rebellion and hidden worlds.",
+    "fr": "Un roman sur la conscience, la rébellion et les mondes cachés."
+   },
+   "more": "https://www.amazon.com/author/bouhaj",
+   "chapters": [
+    {
+     "url": "/marudai/chapter-1/",
+     "title": {
+      "en": "The Moment He Knew He Was Different",
+      "ar": "اللحظة التي عرف فيها أنه مختلف",
+      "fr": "L’instant où il sut qu’il était différent"
+     },
+     "marudai": true
+    },
+    {
+     "url": "/marudai/chapter-2/",
+     "title": {
+      "en": "The Father, The Rooftop, and The Stars",
+      "ar": "الأب والسطح والنجوم",
+      "fr": "Le père, le toit et les étoiles"
+     },
+     "marudai": true
+    }
+   ]
+  },
+  {
+   "id": "rebellious",
+   "cover": "/assets/rebellious-novel-cover-v2.jpg",
+   "accent": "#58baff",
+   "title": {
+    "ar": "الرواية المتمردة",
+    "en": "The Rebellious Novel",
+    "fr": "Le Roman rebelle"
+   },
+   "desc": {
+    "ar": "تنين يفتح أبواب الخيال والتمرد وأسئلة الهوية.",
+    "en": "A dragon that opens the gates of imagination, rebellion and identity.",
+    "fr": "Un dragon qui ouvre les portes de l’imaginaire, de la rébellion et de l’identité."
+   },
+   "chapters": [
+    {
+     "url": "/rebellious-novel/identity-flexible-part-1/",
+     "title": {
+      "ar": "اكتساب الهوية الروحية المرنة – الجزء الأول",
+      "en": "Acquiring a Flexible Spiritual Identity – Part One",
+      "fr": "Acquérir une identité spirituelle souple – Première partie"
+     },
+     "i18n": "rebellious-novel--identity-flexible-part-1"
+    },
+    {
+     "url": "/rebellious-novel/identity-flexible-part-2/",
+     "title": {
+      "ar": "اكتساب الهوية الروحية المرنة – الجزء الثاني",
+      "en": "Acquiring a Flexible Spiritual Identity – Part Two",
+      "fr": "Acquérir une identité spirituelle souple – Deuxième partie"
+     },
+     "i18n": "rebellious-novel--identity-flexible-part-2"
+    },
+    {
+     "url": "/rebellious-novel/identity-flexible-part-3/",
+     "title": {
+      "ar": "اكتساب الهوية الروحية المرنة – الجزء الثالث",
+      "en": "Acquiring a Flexible Spiritual Identity – Part Three",
+      "fr": "Acquérir une identité spirituelle souple – Troisième partie"
+     },
+     "i18n": "rebellious-novel--identity-flexible-part-3"
+    },
+    {
+     "url": "/rebellious-novel/identity-flexible-part-4/",
+     "title": {
+      "ar": "اكتساب الهوية الروحية المرنة – الجزء الرابع: ظلمات النفس",
+      "en": "Acquiring a Flexible Spiritual Identity – Part Four: The Darkness of the Self",
+      "fr": "Acquérir une identité spirituelle souple – Quatrième partie : Les ténèbres de l’âme"
+     },
+     "i18n": "rebellious-novel--identity-flexible-part-4"
+    },
+    {
+     "url": "/rebellious-novel/maroudai-zumaria-manifesto/",
+     "title": {
+      "ar": "بيان التمرد الوجودي في رسالة ماروداي زوماريا",
+      "en": "The manifesto of existential rebellion in the letter of Maroudai Zumaria",
+      "fr": "Le manifeste de la rébellion existentielle dans la lettre de Maroudai Zumaria"
+     },
+     "i18n": "rebellious-novel--maroudai-zumaria-manifesto"
+    },
+    {
+     "url": "/rebellious-novel/mirror-sciences-tailor/",
+     "title": {
+      "ar": "علوم المرايا عند خياط متواضع",
+      "en": "The Science of Mirrors of a Humble Tailor",
+      "fr": "La science des miroirs d’un humble tailleur"
+     },
+     "i18n": "rebellious-novel--mirror-sciences-tailor"
+    },
+    {
+     "url": "/rebellious-novel/ghabira-memory/",
+     "title": {
+      "ar": "ذكرى غابرة بثها لي عقلي العميق مؤخرا، يا لمزاحه الثقيل",
+      "en": "A bygone memory my deep mind recently sent me — what a heavy joke",
+      "fr": "Un souvenir lointain que mon esprit profond m’a envoyé récemment — quelle lourde plaisanterie"
+     },
+     "i18n": "rebellious-novel--ghabira-memory"
+    }
+   ]
+  },
+  {
+   "id": "wadi",
+   "cover": "/assets/wadi-al-aql-cover.jpg",
+   "accent": "#e5bd79",
+   "title": {
+    "ar": "رواية وادي العقل",
+    "en": "Wadi Al-Aql",
+    "fr": "Wadi Al-Aql"
+   },
+   "desc": {
+    "ar": "أسد يحرس بوابة الصحراء؛ حيث تتواجه الحكمة والتناقض.",
+    "en": "A lion guards the desert gate, where wisdom meets contradiction.",
+    "fr": "Un lion garde la porte du désert, là où la sagesse affronte la contradiction."
+   },
+   "chapters": [
+    {
+     "url": "/wadi-al-aql/one-day/",
+     "title": {
+      "ar": "حدث ذات يوم...!",
+      "en": "It happened one day...!",
+      "fr": "C’est arrivé un jour...!"
+     },
+     "i18n": "wadi-al-aql--one-day"
+    },
+    {
+     "url": "/wadi-al-aql/al-qadar-al-mahtum/",
+     "title": {
+      "ar": "القدر المحتوم ...",
+      "en": "Inevitable Fate ...",
+      "fr": "Le destin inéluctable ..."
+     },
+     "i18n": "wadi-al-aql--al-qadar-al-mahtum"
+    },
+    {
+     "url": "/wadi-al-aql/ashbah-al-wafaa/",
+     "title": {
+      "ar": "أشباح الوفاء",
+      "en": "Ghosts of Loyalty",
+      "fr": "Les fantômes de la fidélité"
+     },
+     "i18n": "wadi-al-aql--ashbah-al-wafaa"
+    },
+    {
+     "url": "/wadi-al-aql/hadatha-dhata-laylah/",
+     "title": {
+      "ar": "حدث ذات ليلة",
+      "en": "It happened one night",
+      "fr": "C’est arrivé une nuit"
+     },
+     "i18n": "wadi-al-aql--hadatha-dhata-laylah"
+    }
+   ]
+  }
+ ]
+}
