@@ -1,6 +1,53 @@
 {
   "tools": [
     {
+      "id": "iridium",
+      "icon": "/assets/tools/iridium.png",
+      "category": "publishing",
+      "badge": {
+        "ar": "جديد",
+        "en": "New",
+        "fr": "Nouveau"
+      },
+      "title": {
+        "ar": "IRIDIUM — أداة كلمات KDP",
+        "en": "IRIDIUM — KDP Keyword Tool",
+        "fr": "IRIDIUM — Outil de mots-clés KDP"
+      },
+      "desc": {
+        "ar": "إضافة كروم لناشري Amazon KDP: تقييم كل كلمة مفتاحية من 100 مع قرار GO أو WATCH أو SKIP، وتقدير المبيعات من BSR، واستخراج مئات الكلمات، وملء خانات الكلمات السبع بضغطة. دفعة واحدة بلا اشتراك.",
+        "en": "Chrome extension for Amazon KDP publishers: a 0–100 score and a GO / WATCH / SKIP verdict for every keyword, BSR-to-sales estimates, a keyword miner, and your 7 backend slots filled in one click. One payment, no subscription.",
+        "fr": "Extension Chrome pour les auteurs Amazon KDP : un score de 0 à 100 et un verdict GO / WATCH / SKIP pour chaque mot-clé, estimation des ventes depuis le BSR, générateur de mots-clés et remplissage des 7 champs en un clic. Paiement unique, sans abonnement."
+      },
+      "keywords": [
+        "iridium",
+        "kdp",
+        "amazon kdp",
+        "keyword research",
+        "keywords",
+        "self publishing",
+        "bsr",
+        "chrome extension",
+        "low content",
+        "helium 10",
+        "publisher rocket",
+        "كلمات مفتاحية",
+        "أمازون",
+        "نشر ذاتي",
+        "كيندل",
+        "إضافة كروم"
+      ],
+      "url": "https://mohamedbouhaje.gumroad.com/l/iridium",
+      "buttonText": {
+        "ar": "احصل على IRIDIUM — $39",
+        "en": "Get IRIDIUM — $39",
+        "fr": "Obtenir IRIDIUM — 39 $"
+      },
+      "target": "_blank",
+      "dir": "auto",
+      "featured": true
+    },
+    {
       "id": "termux-academy",
       "icon": "⌘",
       "category": "learning",

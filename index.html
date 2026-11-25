@@ -92,6 +92,7 @@ h1 .g{color:var(--neon);text-shadow:0 0 22px rgba(57,255,136,.55)}
 .ico{flex:none;width:50px;height:50px;border-radius:14px;display:grid;place-items:center;font-size:26px;
   background:rgba(57,255,136,.08);border:1px solid var(--line)}
 .ico img{width:100%;height:100%;object-fit:contain;border-radius:inherit;background:#fff;padding:7px}
+.ico img[src^="/assets/tools/"]{background:none;padding:0}
 .c-title{font-weight:800;font-size:17px;line-height:1.35}
 .badge{display:inline-block;font:700 10px "JetBrains Mono",monospace;color:#02130a;background:var(--warn);
   padding:2px 7px;border-radius:6px;margin-inline-start:6px;vertical-align:middle}
@@ -510,7 +511,7 @@ body{padding-bottom:92px!important}
 
 
 
-  <section class="tools-section" hidden aria-labelledby="toolsHeading">
+  <section class="tools-section" id="tools" aria-labelledby="toolsHeading">
     <div class="tools-heading"><span>02 / DISCOVER</span><h2 id="toolsHeading">استكشف الأدوات الرقمية</h2><p id="toolsDescription">مجموعة مختارة من الأدوات والخدمات الرقمية، مع بحث سريع وتصنيفات تساعدك على الوصول لما تحتاجه.</p></div>
   <div class="search" id="toolsSearch" role="search" aria-label="البحث في الأدوات">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -564,17 +565,17 @@ const T={
    q:'ابحث عن أداة...',all:'الكل',get:'احصل على الأداة',soon:'قريباً',empty:'لا توجد أداة بهذا الاسم',chatTitle:'كود ChatGPT',copyPrompt:'⧉ نسخ البرومت',copyPromptDone:'✓ تم النسخ',copyPromptHint:'النص محفوظ بصيغته المشفرة الأصلية',copyPromptSuccess:'تم نسخ النص المشفر كاملا',copyPromptFallback:'تعذر النسخ التلقائي؛ تم تحديد النص. اضغط مطولا واختر نسخ.',
    steps:['افتح صفحة العرض','اقرأ الشروط ومتطلبات الأهلية','تابع فقط إذا كان العرض مناسبا لك'],
    go:'🔓 افتح الأداة الآن',note:'العروض مقدمة من شركاء خارجيين وتخضع لشروطهم',close:'إغلاق',
-   cats:{learning:'تعلم',ai:'ذكاء اصطناعي',linux:'لينكس',dev:'برمجة'},status:'النظام يعمل'},
+   cats:{publishing:'النشر الذاتي',learning:'تعلم',ai:'ذكاء اصطناعي',linux:'لينكس',dev:'برمجة'},status:'النظام يعمل'},
  en:{toolsHeading:'Explore digital tools',toolsDescription:'A curated collection of digital tools and services, with quick search and categories to help you find what you need.',searchLabel:'Search tools',footerCourses:'Courses',footerArticles:'Articles',footerContact:'Contact',footerPrivacy:'Privacy',footerAbout:'About',h1:'Your <span class="g">digital hub</span><br>tools, learning and ideas',sub:'Practical guides and Arabic learning resources for programming, Linux, networking and digital security.',
    q:'Search a tool...',all:'All',get:'Get the tool',soon:'Coming soon',empty:'No tool matches that',chatTitle:'ChatGPT Code',copyPrompt:'⧉ Copy prompt',copyPromptDone:'✓ Copied',copyPromptHint:'Text is preserved in its original encoded format',copyPromptSuccess:'The full encoded text has been copied',copyPromptFallback:'Automatic copy failed; text selected. Long-press and choose Copy.',
    steps:['Open the offer page','Review its terms and eligibility requirements','Continue only if the offer suits you'],
    go:'🔓 Unlock the tool',note:'External links are governed by their providers’ terms',close:'Close',
-   cats:{learning:'Learning',ai:'AI',linux:'Linux',dev:'Development'},status:'system online'},
+   cats:{publishing:'Self-publishing',learning:'Learning',ai:'AI',linux:'Linux',dev:'Development'},status:'system online'},
  fr:{toolsHeading:'Explorer les outils numériques',toolsDescription:'Une sélection d’outils et de services numériques, avec une recherche rapide et des catégories pour trouver ce dont vous avez besoin.',searchLabel:'Rechercher des outils',footerCourses:'Formations',footerArticles:'Articles',footerContact:'Contact',footerPrivacy:'Confidentialité',footerAbout:'À propos',h1:'Votre <span class="g">espace numérique</span><br>outils, savoir et idées',sub:'Des guides pratiques en programmation, Linux, réseaux et sécurité numérique.',
    q:'Rechercher un outil...',all:'Tout',get:'Obtenir l’outil',soon:'Bientôt disponible',empty:'Aucun outil ne correspond à votre recherche',chatTitle:'Code ChatGPT',copyPrompt:'⧉ Copier le prompt',copyPromptDone:'✓ Copié',copyPromptHint:'Texte conservé dans son format encodé original',copyPromptSuccess:'Le texte encodé complet a été copié',copyPromptFallback:'Copie automatique impossible ; texte sélectionné. Appuyez longuement puis choisissez Copier.',
    steps:['Ouvrez la page de l’offre','Consultez les conditions et les critères d’éligibilité','Continuez uniquement si l’offre vous convient'],
    go:'🔓 Déverrouiller l’outil',note:'Les liens externes sont soumis aux conditions de leurs fournisseurs',close:'Fermer',
-   cats:{learning:'Apprentissage',ai:'IA',linux:'Linux',dev:'Développement'},status:'système en ligne'}
+   cats:{publishing:'Auto-édition',learning:'Apprentissage',ai:'IA',linux:'Linux',dev:'Développement'},status:'système en ligne'}
 };
 const TYPE=['$ sudo unlock --tools','$ ai --generate hooks','$ ./bouhaj --free'];
 
