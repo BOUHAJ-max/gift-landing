@@ -1,4 +1,4 @@
-const CACHE_NAME="bouhaj-speed-v10";
+const CACHE_NAME="bouhaj-speed-v11";
 const CORE_ASSETS=[
  "/assets/icons/icon.svg",
  "/assets/icons/icon-192.png",

@@ -81,7 +81,8 @@
         "en": "Open the library",
         "fr": "Ouvrir la bibliothèque"
       },
-      "target": "_self"
+      "target": "_self",
+      "hidden": true
     },
     {
       "id": "professional-academy",
@@ -122,7 +123,8 @@
         "fr": "Découvrir les cours"
       },
       "target": "_self",
-      "featured": true
+      "featured": true,
+      "hidden": true
     }
   ]
 }
