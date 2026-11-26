@@ -15,9 +15,9 @@
         "fr": "IRIDIUM — Outil de mots-clés KDP"
       },
       "desc": {
-        "ar": "إضافة كروم لناشري Amazon KDP: تقييم كل كلمة مفتاحية من 100 مع قرار GO أو WATCH أو SKIP، وتقدير المبيعات من BSR، واستخراج مئات الكلمات، وملء خانات الكلمات السبع بضغطة. دفعة واحدة بلا اشتراك.",
-        "en": "Chrome extension for Amazon KDP publishers: a 0–100 score and a GO / WATCH / SKIP verdict for every keyword, BSR-to-sales estimates, a keyword miner, and your 7 backend slots filled in one click. One payment, no subscription.",
-        "fr": "Extension Chrome pour les auteurs Amazon KDP : un score de 0 à 100 et un verdict GO / WATCH / SKIP pour chaque mot-clé, estimation des ventes depuis le BSR, générateur de mots-clés et remplissage des 7 champs en un clic. Paiement unique, sans abonnement."
+        "ar": "إضافة كروم لناشري Amazon KDP تقرأ نتائج البحث الحقيقية وتعطي كل كلمة مفتاحية درجة من 100 مع قرار GO أو WATCH أو SKIP، وتقدّر المبيعات والأرباح لكل كتاب منافس، وتستخرج مئات الكلمات وتملأ خانات KDP السبع بضغطة. دفعة واحدة بلا اشتراك.",
+        "en": "A Chrome extension for Amazon KDP publishers. It reads real search results, scores every keyword from 0 to 100 with a GO / WATCH / SKIP verdict, estimates sales and royalties for each competing book, mines hundreds of keywords and fills your 7 backend slots in one click. One payment, no subscription.",
+        "fr": "Une extension Chrome pour les auteurs Amazon KDP. Elle lit les vrais résultats de recherche, note chaque mot-clé de 0 à 100 avec un verdict GO / WATCH / SKIP, estime ventes et redevances de chaque livre concurrent, extrait des centaines de mots-clés et remplit vos 7 champs backend en un clic. Paiement unique, sans abonnement."
       },
       "keywords": [
         "iridium",
@@ -37,15 +37,22 @@
         "كيندل",
         "إضافة كروم"
       ],
-      "url": "https://mohamedbouhaje.gumroad.com/l/iridium",
+      "url": "https://mohamedbouhaje.gumroad.com/l/iridium?utm_source=bouhaj&utm_medium=home_card",
       "buttonText": {
-        "ar": "احصل على IRIDIUM — $39",
-        "en": "Get IRIDIUM — $39",
-        "fr": "Obtenir IRIDIUM — 39 $"
+        "ar": "اشترِ — $39",
+        "en": "Buy — $39",
+        "fr": "Acheter — 39 $"
       },
       "target": "_blank",
       "dir": "auto",
-      "featured": true
+      "featured": true,
+      "page": "/iridium/",
+      "media": "/iridium/img/cover.webp",
+      "pageText": {
+        "ar": "اكتشف الأداة",
+        "en": "Discover",
+        "fr": "Découvrir"
+      }
     },
     {
       "id": "termux-academy",

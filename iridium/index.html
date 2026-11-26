@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en" dir="ltr"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IRIDIUM — KDP Keyword & Niche Research Chrome Extension | BOUHAJ TECH</title>
+<meta name="description" content="IRIDIUM reads real Amazon search results and gives every KDP keyword a 0–100 score with a GO / WATCH / SKIP verdict. BSR, daily sales, royalties, keyword miner and 7 backend slots. One payment, no subscription.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://go.bouhaj.com/iridium/">
+<meta name="theme-color" content="#0b1220">
+<meta property="og:type" content="product"><meta property="og:site_name" content="BOUHAJ TECH">
+<meta property="og:title" content="IRIDIUM — Stop guessing on KDP keywords">
+<meta property="og:description" content="A Chrome extension that turns any Amazon book search into a clear decision: GO, WATCH or SKIP.">
+<meta property="og:url" content="https://go.bouhaj.com/iridium/">
+<meta property="og:image" content="https://go.bouhaj.com/iridium/img/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://go.bouhaj.com/iridium/img/og.jpg">
+<link rel="icon" href="/iridium/img/icon.webp" type="image/webp">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"IRIDIUM","applicationCategory":"BusinessApplication","operatingSystem":"Google Chrome (Windows, macOS)","description":"Chrome extension for Amazon KDP keyword and niche research: 0–100 keyword score, GO / WATCH / SKIP verdict, BSR-to-sales estimates, keyword miner and backend keyword packing.","image":"https://go.bouhaj.com/iridium/img/cover.webp","url":"https://go.bouhaj.com/iridium/","inLanguage":["en","ar"],"author":{"@type":"Person","name":"Mohamed Bouhaj"},"offers":{"@type":"Offer","price":"39","priceCurrency":"USD","url":"https://mohamedbouhaje.gumroad.com/l/iridium","availability":"https://schema.org/InStock"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--bg2:#0d1526;--panel:#131f33;--panel2:#17263d;--line:#26384f;--ink:#eef3fb;--muted:#a3b3c7;--dim:#7d8ea5;--vi:#8b7cf6;--vi2:#c4b5fd;--cy:#22d3ee;--go:#22c55e;--watch:#f5a524;--skip:#ef4444;--r:18px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse 70% 45% at 15% -5%,rgba(139,124,246,.20),transparent 60%),radial-gradient(ellipse 60% 40% at 95% 10%,rgba(34,211,238,.12),transparent 60%),var(--bg);color:var(--ink);font:16px/1.75 Inter,"IBM Plex Sans Arabic",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+[dir=rtl] body,[dir=rtl] body *{font-family:"IBM Plex Sans Arabic",Inter,system-ui,sans-serif}
+a{color:var(--cy)}img{max-width:100%;height:auto;display:block}
+.wrap{width:min(1120px,calc(100% - 32px));margin:auto}
+/* top */
+.top{position:sticky;top:0;z-index:20;background:rgba(11,18,32,.82);backdrop-filter:blur(12px);border-bottom:1px solid rgba(38,56,79,.7)}
+.top .wrap{display:flex;align-items:center;gap:12px;min-height:62px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font-weight:800;letter-spacing:.5px}
+.brand img{width:30px;height:30px;border-radius:8px}
+.brand span{font:800 15px Inter,sans-serif;letter-spacing:3px;background:linear-gradient(90deg,var(--vi2),var(--cy));-webkit-background-clip:text;background-clip:text;color:transparent}
+.top nav{display:flex;gap:4px;margin-inline-start:auto;align-items:center}
+.top nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:6px 10px;border-radius:8px}
+.top nav a:hover{color:var(--ink);background:var(--panel)}
+.langs{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-inline-start:6px}
+.langs button{background:none;border:0;color:var(--muted);font:700 12px Inter,sans-serif;padding:7px 10px;cursor:pointer}
+.langs button.on{background:var(--panel2);color:var(--ink)}
+.home{color:var(--dim);font-size:13px;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+@media(max-width:760px){.top nav a.nl{display:none}.home{display:none}}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:0 24px;border-radius:13px;font-weight:700;font-size:16px;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .15s,filter .15s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.btn.pri{background:linear-gradient(110deg,var(--vi),#5b8cff 55%,var(--cy));color:#fff;box-shadow:0 10px 30px rgba(91,140,255,.28)}
+.btn.sec{background:var(--panel);border-color:var(--line);color:var(--ink)}
+.btn small{font-weight:600;opacity:.85}
+/* hero */
+.hero{padding:64px 0 40px;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.eyebrow{direction:ltr;unicode-bidi:isolate;display:inline-flex;gap:8px;align-items:center;font:700 12px "JetBrains Mono",monospace;letter-spacing:1.5px;color:var(--vi2);border:1px solid rgba(139,124,246,.35);background:rgba(139,124,246,.08);border-radius:999px;padding:5px 12px}
+.hero h1{font-size:clamp(34px,5.2vw,58px);line-height:1.12;margin:18px 0 16px;letter-spacing:-.5px}
+[dir=rtl] .hero h1{line-height:1.35;letter-spacing:0}
+.grad{background:linear-gradient(90deg,var(--vi2),var(--vi) 40%,var(--cy));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);font-size:18px;max-width:560px;margin:0 0 26px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.chip{font-size:13px;color:var(--muted);border:1px solid var(--line);background:rgba(19,31,51,.6);border-radius:999px;padding:5px 12px}
+.verd{display:flex;gap:8px;margin:0 0 6px}
+.v{font:700 13px Inter,sans-serif;padding:4px 12px;border-radius:999px;border:1px solid}
+.v.go{color:var(--go);border-color:rgba(34,197,94,.45);background:rgba(34,197,94,.08)}
+.v.watch{color:var(--watch);border-color:rgba(245,165,36,.45);background:rgba(245,165,36,.08)}
+.v.skip{color:var(--skip);border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.08)}
+.shot{position:relative;border-radius:20px;padding:10px;background:linear-gradient(160deg,rgba(139,124,246,.35),rgba(34,211,238,.15) 60%,rgba(38,56,79,.4));box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.shot img{border-radius:12px;width:100%}
+.hero .shot{width:100%;max-width:440px;justify-self:center}
+.float{position:absolute;inset-inline-start:-26px;bottom:34px;background:#0e1626;border:1px solid var(--line);border-radius:14px;padding:12px 14px;box-shadow:0 14px 40px rgba(0,0,0,.4);font-size:13px;max-width:250px}
+.float b{display:block;font-size:12px;color:var(--dim);font-weight:600;margin-bottom:6px}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:40px;gap:36px}.float{inset-inline-start:8px;bottom:-18px}}
+/* sections */
+section{padding:56px 0}
+.sh{max-width:720px;margin-bottom:30px}
+.sh .k{font:700 12px "JetBrains Mono",monospace;letter-spacing:1.5px;color:var(--cy);direction:ltr;unicode-bidi:isolate;display:inline-block}
+.sh h2{font-size:clamp(26px,3.6vw,38px);line-height:1.25;margin:8px 0 10px}
+.sh p{color:var(--muted);margin:0;font-size:17px}
+.card{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:var(--r);padding:22px}
+/* trust */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:8px 0 0}
+.trust div{display:flex;gap:12px;align-items:center;padding:16px;border:1px solid var(--line);border-radius:14px;background:rgba(19,31,51,.55);font-size:14px;color:var(--muted)}
+.trust i{font-style:normal;font-size:20px;width:38px;height:38px;flex:none;display:grid;place-items:center;border-radius:10px;background:var(--panel2)}
+.trust strong{display:block;color:var(--ink);font-size:15px}
+@media(max-width:860px){.trust{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.trust{grid-template-columns:1fr}}
+/* verdict */
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.gates{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.gates li{display:flex;gap:12px;align-items:flex-start;padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:rgba(14,22,38,.7)}
+.gates li span{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:rgba(34,197,94,.15);color:var(--go);font-size:13px;font-weight:800;margin-top:2px}
+.gates b{display:block}.gates small{color:var(--muted);font-size:14px}
+.score{display:flex;gap:18px;align-items:center;margin-bottom:18px}
+.ring{width:92px;height:92px;border-radius:50%;flex:none;display:grid;place-items:center;background:conic-gradient(var(--go) 0 82%,#22304a 82% 100%);position:relative}
+.ring::after{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--panel)}
+.ring b{position:relative;z-index:1;font:800 28px Inter,sans-serif}
+.comp{display:grid;gap:9px;margin-top:6px}
+.comp div{display:grid;grid-template-columns:130px 1fr 42px;gap:10px;align-items:center;font-size:14px;color:var(--muted)}
+.bar{height:8px;border-radius:9px;background:#22304a;overflow:hidden}.bar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--vi),var(--cy))}
+.comp em{font-style:normal;text-align:end;color:var(--ink);font-weight:600}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;direction:ltr}
+.bd{font:700 12px Inter,sans-serif;padding:3px 9px;border-radius:7px;background:#11151f;border:1px solid #2a3142;color:#e9edf5}
+.bd.ir{background:linear-gradient(90deg,var(--vi),var(--cy));border:0;color:#fff}.bd.g{color:#4ade80;border-color:rgba(74,222,128,.5)}
+.bookrow{border:1px dashed var(--line);border-radius:12px;padding:14px;margin-top:16px;background:rgba(255,255,255,.02)}
+.bookrow .t{font-weight:700}.bookrow .s{color:var(--dim);font-size:13px}
+@media(max-width:860px){.vgrid{grid-template-columns:1fr}.comp div{grid-template-columns:110px 1fr 40px}}
+/* features */
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.f{padding:20px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(160deg,rgba(23,38,61,.9),rgba(19,31,51,.9))}
+.f i{font-style:normal;font-size:22px;width:44px;height:44px;display:grid;place-items:center;border-radius:12px;background:rgba(139,124,246,.14);margin-bottom:12px}
+.f h3{margin:0 0 6px;font-size:17px}.f p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.7}
+@media(max-width:900px){.fgrid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.fgrid{grid-template-columns:1fr}}
+/* pipeline */
+.pipe{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:p}
+.pipe .card{position:relative;padding-top:52px}
+.pipe .card::before{counter-increment:p;content:counter(p);position:absolute;top:16px;inset-inline-start:22px;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font:800 14px Inter,sans-serif;background:linear-gradient(135deg,var(--vi),var(--cy));color:#fff}
+.pipe h3{margin:0 0 6px;font-size:17px}.pipe p{margin:0;color:var(--muted);font-size:14.5px}
+@media(max-width:900px){.pipe{grid-template-columns:1fr 1fr}}@media(max-width:520px){.pipe{grid-template-columns:1fr}}
+/* gallery */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:10px;padding:9px 14px;font:600 14px inherit;font-family:inherit;cursor:pointer}
+.tabs button.on{color:#fff;border-color:transparent;background:linear-gradient(110deg,var(--vi),#5b8cff)}
+.gview{display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start}
+.gview .shot{padding:8px;cursor:zoom-in}
+.gcap h3{margin:4px 0 8px;font-size:20px}.gcap p{color:var(--muted);margin:0 0 14px;font-size:15px}
+.gcap ul{margin:0;padding-inline-start:18px;color:var(--muted);font-size:14.5px}
+@media(max-width:900px){.gview{grid-template-columns:1fr}}
+/* guide */
+.guide{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;gap:12px}
+.steps li{position:relative;padding:14px 16px;padding-inline-start:56px;border:1px solid var(--line);border-radius:12px;background:rgba(14,22,38,.7)}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;inset-inline-start:14px;top:14px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:800 13px Inter,sans-serif;background:var(--panel2);border:1px solid var(--line);color:var(--vi2)}
+.steps>li>b{display:block;margin-bottom:2px}.steps span{color:var(--muted);font-size:14.5px}
+code{font:13px "JetBrains Mono",monospace;background:#0a1120;border:1px solid var(--line);border-radius:6px;padding:1px 7px;color:#bfe9ff;direction:ltr;unicode-bidi:isolate}
+.h3{font-size:20px;margin:0 0 14px;display:flex;gap:10px;align-items:center}
+.tip{margin-top:14px;padding:14px 16px;border-radius:12px;border:1px solid rgba(34,211,238,.3);background:rgba(34,211,238,.06);color:#cdeff7;font-size:14.5px}
+@media(max-width:900px){.guide{grid-template-columns:1fr}}
+/* read */
+.read{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.read .card h3{margin:8px 0 6px;font-size:17px}.read .card p{margin:0;color:var(--muted);font-size:14.5px}
+@media(max-width:860px){.read{grid-template-columns:1fr}}
+/* price */
+.pricebox{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:32px;border-radius:24px;border:1px solid rgba(139,124,246,.35);background:radial-gradient(ellipse at 100% 0%,rgba(34,211,238,.12),transparent 55%),linear-gradient(160deg,#1a2442,#121c30)}
+.amount{font:800 64px Inter,sans-serif;line-height:1}.amount small{font-size:18px;color:var(--muted);font-weight:600;margin-inline-start:8px}
+.incl{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:8px}.incl li{display:flex;gap:10px;color:var(--muted);font-size:15px}.incl li::before{content:"✓";color:var(--go);font-weight:800}
+.compare{font-size:14px;color:var(--muted);border:1px solid var(--line);border-radius:14px;padding:16px;background:rgba(11,18,32,.5)}
+.compare div{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid rgba(38,56,79,.6)}.compare div:last-child{border:0;color:var(--ink);font-weight:700}
+@media(max-width:860px){.pricebox{grid-template-columns:1fr;padding:22px}}
+/* honest + faq */
+.honest{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.honest div{padding:16px;border:1px solid var(--line);border-radius:14px;background:rgba(19,31,51,.55);color:var(--muted);font-size:14.5px}
+.honest b{color:var(--ink);display:block;margin-bottom:3px}
+@media(max-width:700px){.honest{grid-template-columns:1fr}}
+.faq{display:grid;gap:10px;max-width:860px}
+.faq details{border:1px solid var(--line);border-radius:14px;background:rgba(19,31,51,.6);padding:0 18px}
+.faq summary{cursor:pointer;list-style:none;padding:16px 0;font-weight:700;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}.faq summary::after{content:"+";color:var(--vi2);font-size:20px;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq p{margin:0 0 16px;color:var(--muted);font-size:15px}
+.final{text-align:center;padding:70px 0 80px}
+.final h2{font-size:clamp(28px,4vw,42px);margin:16px 0 10px}.final p{color:var(--muted);margin:0 auto 26px;max-width:560px}
+.final .ctas{justify-content:center}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--dim);font-size:13px}
+footer .wrap{display:flex;gap:14px;flex-wrap:wrap;justify-content:space-between}
+footer a{color:var(--muted);text-decoration:none}
+/* lightbox */
+dialog{border:0;padding:0;background:transparent;max-width:min(1400px,96vw);max-height:94vh}
+dialog::backdrop{background:rgba(3,6,12,.88);backdrop-filter:blur(4px)}
+dialog img{max-height:90vh;width:auto;height:auto;border-radius:12px}
+dialog button{position:fixed;top:14px;inset-inline-end:16px;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:22px;cursor:pointer}
+.mob-buy{display:none}
+@media(max-width:700px){.mob-buy{display:flex;position:fixed;bottom:12px;left:12px;right:12px;z-index:30}.mob-buy .btn{width:100%}footer{padding-bottom:96px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="#top"><img src="/iridium/img/icon.webp" alt="" width="30" height="30"><span>IRIDIUM</span></a>
+  <nav>
+    <a class="nl" href="#features" data-k="navF">Features</a>
+    <a class="nl" href="#guide" data-k="navG">Guide</a>
+    <a class="nl" href="#price" data-k="navP">Price</a>
+    <a class="nl" href="#faq">FAQ</a>
+    <a class="home" href="/" data-k="navH">← BOUHAJ TECH</a>
+    <div class="langs" role="group" aria-label="Language"><button data-l="en">EN</button><button data-l="ar">ع</button><button data-l="fr">FR</button></div>
+  </nav>
+</div></header>
+
+<main id="top">
+<div class="wrap">
+  <section class="hero">
+    <div>
+      <span class="eyebrow">CHROME EXTENSION · AMAZON KDP</span>
+      <h1 data-k="h1">Stop publishing on <span class="grad">guesswork.</span></h1>
+      <p class="lead" data-k="lead">IRIDIUM reads real Amazon search results and turns every keyword into a clear decision. You see the score, the reasons and the numbers behind them, right on the Amazon page.</p>
+      <div class="verd"><span class="v go">GO</span><span class="v watch">WATCH</span><span class="v skip">SKIP</span></div>
+      <div class="ctas" style="margin-top:22px">
+        <a class="btn pri" href="https://mohamedbouhaje.gumroad.com/l/iridium?utm_source=bouhaj&utm_medium=iridium_page" target="_blank" rel="noopener" data-k="buy">Get IRIDIUM <small>— $39</small></a>
+        <a class="btn sec" href="#how" data-k="see">See how it works</a>
+      </div>
+      <div class="chips"><span class="chip" data-k="c1">One payment, no subscription</span><span class="chip" data-k="c2">English &amp; Arabic</span><span class="chip" data-k="c3">7 Amazon marketplaces</span></div>
+    </div>
+    <div class="shot">
+      <img data-img="hero" src="/iridium/img/hero-en.webp" alt="IRIDIUM panel on an Amazon search page" width="870" height="1240" fetchpriority="high">
+      <div class="float"><b data-k="fl">On every competing book</b><div class="badges"><span class="bd ir">IR</span><span class="bd g">BSR 23,000</span><span class="bd">~6.4/day</span><span class="bd">14 mo</span><span class="bd">$1.17/copy</span></div></div>
+    </div>
+  </section>
+
+  <div class="trust">
+    <div><i>🔎</i><span><strong data-k="t1">Real Amazon data</strong><span data-k="t1s">Read from the pages you open</span></span></div>
+    <div><i>🔒</i><span><strong data-k="t2">Private by design</strong><span data-k="t2s">Your data stays on your computer</span></span></div>
+    <div><i>💻</i><span><strong data-k="t3">3 devices</strong><span data-k="t3s">One license, three computers</span></span></div>
+    <div><i>↩️</i><span><strong data-k="t4">14-day refund</strong><span data-k="t4s">If it doesn't work for you</span></span></div>
+  </div>
+
+  <section id="how">
+    <div class="sh"><span class="k">01 · THE VERDICT</span><h2 data-k="vH">One score. Five rules. A clear answer.</h2><p data-k="vP">Click Analyze on any Amazon book search. IRIDIUM reads the top results and their product pages, then scores the keyword from 0 to 100.</p></div>
+    <div class="vgrid">
+      <div class="card">
+        <div class="score"><div class="ring"><b>82</b></div><div><span class="v go">GO</span><div style="color:var(--muted);font-size:14px;margin-top:8px" data-k="sDemo">Example result · gates passed 5/5</div></div></div>
+        <div class="comp">
+          <div><span data-k="cD">Demand</span><span class="bar"><i style="width:92%"></i></span><em>92%</em></div>
+          <div><span data-k="cV">Search volume</span><span class="bar"><i style="width:78%"></i></span><em>78%</em></div>
+          <div><span data-k="cC">Competition</span><span class="bar"><i style="width:84%"></i></span><em>84%</em></div>
+          <div><span data-k="cN">Newcomers</span><span class="bar"><i style="width:70%"></i></span><em>70%</em></div>
+          <div><span data-k="cR">Review velocity</span><span class="bar"><i style="width:66%"></i></span><em>66%</em></div>
+          <div><span data-k="cP">Profit</span><span class="bar"><i style="width:88%"></i></span><em>88%</em></div>
+        </div>
+        <div class="bookrow"><div class="t" data-k="bkT">On the Amazon page, every book gets a badge strip</div><div class="s" data-k="bkS">BSR · estimated sales per day · book age · reviews and review speed · royalty per copy</div>
+          <div class="badges"><span class="bd ir">IR</span><span class="bd g">BSR 23,000</span><span class="bd">~6.4/day</span><span class="bd">14 mo</span><span class="bd">410 rev · 30/mo</span><span class="bd">$1.17/copy</span></div></div>
+      </div>
+      <div>
+        <ul class="gates">
+          <li><span>✓</span><div><b data-k="g1">Appears in Amazon autocomplete</b><small data-k="g1s">Real shoppers are typing it, so the demand is confirmed.</small></div></li>
+          <li><span>✓</span><div><b data-k="g2">Competition under your limit</b><small data-k="g2s">Result count is checked against your own rule, 1,000 by default.</small></div></li>
+          <li><span>✓</span><div><b data-k="g3">Books are actually selling</b><small data-k="g3s">Enough top books have a BSR under 100,000.</small></div></li>
+          <li><span>✓</span><div><b data-k="g4">Beatable competitors</b><small data-k="g4s">Selling books with fewer than 50 reviews, so a new book can rank.</small></div></li>
+          <li><span>✓</span><div><b data-k="g5">Titles aren't crowded</b><small data-k="g5s">Few top titles use the exact phrase, so there is room for yours.</small></div></li>
+        </ul>
+        <div class="tip" data-k="gTip">All five rules are editable in Settings. Pass them all and the keyword is a GO; pass most and it is a WATCH; fail and it is a SKIP, with the reasons written out.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pipeline">
+    <div class="sh"><span class="k">02 · AUTOMATIC PIPELINE</span><h2 data-k="pH">From one seed to your 7 backend slots</h2><p data-k="pP">Stop analyzing keywords one by one. Let IRIDIUM find them, check them and rank them while you work.</p></div>
+    <div class="pipe">
+      <div class="card"><h3 data-k="p1">Mine</h3><p data-k="p1s">Type one seed keyword. The Miner pulls hundreds of real Amazon autocomplete suggestions with modifiers and question forms.</p></div>
+      <div class="card"><h3 data-k="p2">Bank</h3><p data-k="p2s">Every keyword is saved automatically in your Keyword Bank, with its source, its seed and its status.</p></div>
+      <div class="card"><h3 data-k="p3">Queue</h3><p data-k="p3s">Select keywords and the Queue analyzes them in the background, at a human pace, and pauses if Amazon asks for a check.</p></div>
+      <div class="card"><h3 data-k="p4">Pack</h3><p data-k="p4s">One click packs the best GO keywords into your 7 KDP backend slots, without repeated words and within the length limit.</p></div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="sh"><span class="k">03 · INSIDE THE TOOL</span><h2 data-k="fH">Everything a KDP publisher checks, in one place</h2><p data-k="fP">The dashboard keeps every analysis you run, so your research builds up over time instead of disappearing in browser tabs.</p></div>
+    <div class="tabs" id="tabs">
+      <button class="on" data-g="overview" data-k="gt1">Overview</button>
+      <button data-g="bank" data-k="gt2">Keyword Bank</button>
+      <button data-g="radar" data-k="gt3">Opportunity Radar</button>
+      <button data-g="categories" data-k="gt4">Category Hunter</button>
+      <button data-g="price" data-k="gt5">Price &amp; Pages</button>
+      <button data-g="listing" data-k="gt6">Listing Auditor</button>
+    </div>
+    <div class="gview">
+      <div class="shot" id="gshot"><img id="gimg" src="/iridium/img/overview-en.webp" alt="" width="1440" height="900"></div>
+      <div class="gcap" id="gcap"></div>
+    </div>
+    <div class="fgrid" style="margin-top:26px">
+      <div class="f"><i>🎯</i><h3 data-k="f1">IRI Score & verdict</h3><p data-k="f1s">Demand, search volume, competition, newcomer window, review velocity and profit, weighted into one score.</p></div>
+      <div class="f"><i>📈</i><h3 data-k="f2">BSR to sales</h3><p data-k="f2s">Estimated daily and monthly sales and royalties for each book and for the whole niche, by format and marketplace.</p></div>
+      <div class="f"><i>⛏️</i><h3 data-k="f3">Keyword Miner</h3><p data-k="f3s">Hundreds of real autocomplete keywords from one seed, plus related keywords found in competitor titles.</p></div>
+      <div class="f"><i>🧭</i><h3 data-k="f4">Radar & Clusters</h3><p data-k="f4s">See your niches on a demand versus competition map, and group close keywords into one book idea.</p></div>
+      <div class="f"><i>🏷️</i><h3 data-k="f5">Category Hunter</h3><p data-k="f5s">Daily sales needed to reach #1 in each category your competitors use, so you pick the easiest ones.</p></div>
+      <div class="f"><i>🔁</i><h3 data-k="f6">Reverse ASIN</h3><p data-k="f6s">Open any book and see which of your analyzed keywords it ranks for, and who your real competitors are.</p></div>
+      <div class="f"><i>🛡️</i><h3 data-k="f7">Listing Auditor</h3><p data-k="f7s">Catches trademarks and words KDP rejects in your title, subtitle and keywords before you publish.</p></div>
+      <div class="f"><i>💲</i><h3 data-k="f8">Price & Pages</h3><p data-k="f8s">Royalty per copy at every price, with the $9.99 threshold where paperback royalty rises from 50% to 60%.</p></div>
+      <div class="f"><i>📊</i><h3 data-k="f9">Tracking</h3><p data-k="f9s">Track the BSR of any book over time, and the rank of your own books on your keywords.</p></div>
+      <div class="f"><i>📁</i><h3 data-k="f10">Projects</h3><p data-k="f10s">One folder per book: its keywords, competitors, price and listing in one place.</p></div>
+      <div class="f"><i>✦</i><h3 data-k="f11">Claude AI Analyst</h3><p data-k="f11s">Optional. Add your own Anthropic API key and ask Claude to explain a niche or suggest titles from your real data.</p></div>
+      <div class="f"><i>⤓</i><h3 data-k="f12">Export anything</h3><p data-k="f12s">XLSX, CSV, JSON, Markdown, an HTML report or PDF. Your data is yours.</p></div>
+    </div>
+  </section>
+
+  <section id="guide">
+    <div class="sh"><span class="k">04 · GUIDE</span><h2 data-k="iH">Install in two minutes, then use it like this</h2><p data-k="iP">IRIDIUM installs from the file you download, not from the Chrome Web Store. Here is every step.</p></div>
+    <div class="guide">
+      <div class="card">
+        <h3 class="h3">⚙️ <span data-k="inT">Install</span></h3>
+        <ol class="steps">
+          <li><b data-k="in1">Download and unzip</b><span data-k="in1s">After buying, download <code>IRIDIUM-v2.2.zip</code> from your Gumroad page and unzip it into a folder you will keep.</span></li>
+          <li><b data-k="in2">Open the extensions page</b><span data-k="in2s">In Chrome, open <code>chrome://extensions</code> and turn on <b>Developer mode</b> at the top right.</span></li>
+          <li><b data-k="in3">Load the folder</b><span data-k="in3s">Click <b>Load unpacked</b> and choose the unzipped IRIDIUM folder.</span></li>
+          <li><b data-k="in4">Pin it</b><span data-k="in4s">Click the puzzle icon in the toolbar and pin IRIDIUM so it is always one click away.</span></li>
+          <li><b data-k="in5">Activate</b><span data-k="in5s">Open IRIDIUM, paste the license key shown on your Gumroad page and click Activate. One key works on 3 computers.</span></li>
+        </ol>
+        <div class="tip" data-k="inTip">Don't delete or move the folder after installing: Chrome runs the extension from it. The full illustrated guide, in English and Arabic, comes with your download.</div>
+      </div>
+      <div class="card">
+        <h3 class="h3">🚀 <span data-k="usT">First research session</span></h3>
+        <ol class="steps">
+          <li><b data-k="u1">Search on Amazon</b><span data-k="u1s">Search your keyword in the <b>Books</b> or <b>Kindle Store</b> department. The IRIDIUM panel opens on the right.</span></li>
+          <li><b data-k="u2">Click Analyze</b><span data-k="u2s">IRIDIUM reads the top books one by one, with short pauses. Wait for the score and verdict.</span></li>
+          <li><b data-k="u3">Read the reasons</b><span data-k="u3s">Check which rules passed, the niche numbers and the top 10 books. Then Save the niche or Reject it.</span></li>
+          <li><b data-k="u4">Mine around it</b><span data-k="u4s">Open the dashboard, go to <b>Miner</b>, enter your best keyword as a seed, and send the results to the Bank.</span></li>
+          <li><b data-k="u5">Queue and decide</b><span data-k="u5s">Select keywords in the Bank and click Analyze. Come back to a ranked list of GO, WATCH and SKIP.</span></li>
+          <li><b data-k="u6">Publish</b><span data-k="u6s">Pick the title keyword, pack the rest into <b>7 Backend Slots</b>, set the price in <b>Price &amp; Pages</b> and run the <b>Listing Auditor</b>.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="read">
+    <div class="sh"><span class="k">05 · READING THE NUMBERS</span><h2 data-k="rH">What a good keyword looks like</h2><p data-k="rP">Use these as a starting point, then adjust the rules to your own niche and budget.</p></div>
+    <div class="read">
+      <div class="card"><span class="v go">GO</span><h3 data-k="r1">Publish on it</h3><p data-k="r1s">Found in autocomplete, under about 1,000 results, several books under BSR 100,000, and some of them with fewer than 50 reviews.</p></div>
+      <div class="card"><span class="v watch">WATCH</span><h3 data-k="r2">Use it carefully</h3><p data-k="r2s">Real demand but one weak point, often heavy competition. Use it as a subtitle or backend keyword, or look for a narrower version with the Miner.</p></div>
+      <div class="card"><span class="v skip">SKIP</span><h3 data-k="r3">Move on</h3><p data-k="r3s">No proven demand, or a niche held by books with thousands of reviews. Your time is better spent on the next keyword.</p></div>
+    </div>
+  </section>
+
+  <section id="price">
+    <div class="pricebox">
+      <div>
+        <span class="eyebrow" data-k="prE">ONE PAYMENT · LIFETIME v2 UPDATES</span>
+        <div style="margin:18px 0 6px" class="amount">$39<small data-k="prOnce">once</small></div>
+        <ul class="incl">
+          <li data-k="i1">The full IRIDIUM extension, every feature on this page</li>
+          <li data-k="i2">A license for 3 computers</li>
+          <li data-k="i3">Install guides in English and Arabic</li>
+          <li data-k="i4">Free updates for all v2.x versions</li>
+          <li data-k="i5">Full refund within 14 days if it doesn't work on your computer</li>
+        </ul>
+        <div class="ctas" style="margin-top:24px"><a class="btn pri" href="https://mohamedbouhaje.gumroad.com/l/iridium?utm_source=bouhaj&utm_medium=iridium_page" target="_blank" rel="noopener" data-k="buy2">Buy on Gumroad — $39</a></div>
+      </div>
+      <div class="compare">
+        <div><span data-k="cmp1">Popular KDP research tools</span><span data-k="cmp1v">$20–$90 / month</span></div>
+        <div><span data-k="cmp2">Over one year</span><span data-k="cmp2v">$240–$1,080</span></div>
+        <div><span>IRIDIUM</span><span data-k="cmp3v">$39 once</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="honest">
+    <div class="sh"><span class="k">06 · HONEST NOTES</span><h2 data-k="hH">Read this before you buy</h2></div>
+    <div class="honest">
+      <div><b data-k="h1t">Chrome on a computer</b><span data-k="h1s">Works on Google Chrome for Windows and Mac. Not on phones, Safari or Firefox.</span></div>
+      <div><b data-k="h2t">Estimates, not promises</b><span data-k="h2s">Sales and search volume are estimates, as with every tool on the market. You can calibrate them with your own sales.</span></div>
+      <div><b data-k="h3t">It improves decisions</b><span data-k="h3s">IRIDIUM helps you choose better keywords. It does not guarantee sales: your cover, content and price still matter.</span></div>
+      <div><b data-k="h4t">Independent tool</b><span data-k="h4s">IRIDIUM is not affiliated with or endorsed by Amazon. It reads the pages you open, like you would.</span></div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="sh"><span class="k">07 · FAQ</span><h2 data-k="qH">Questions</h2></div>
+    <div class="faq">
+      <details><summary data-k="q1">Which Amazon marketplaces does it support?</summary><p data-k="a1">Amazon.com, .co.uk, .de, .fr, .es, .it and .ca, for both paperback and Kindle searches.</p></details>
+      <details><summary data-k="q2">Is there a monthly fee?</summary><p data-k="a2">No. You pay $39 once. The optional Claude AI Analyst uses your own Anthropic API key, billed by Anthropic only if you choose to use it.</p></details>
+      <details><summary data-k="q3">Why isn't it on the Chrome Web Store?</summary><p data-k="a3">It is sold directly so you pay once with no store markup. Installing from the folder takes two minutes with the included guide, and works the same way.</p></details>
+      <details><summary data-k="q4">Will Amazon block my account?</summary><p data-k="a4">IRIDIUM only reads public search and product pages, the same ones you open yourself, with pauses between pages. It never touches your KDP account. If Amazon shows a check page, the queue pauses until you solve it.</p></details>
+      <details><summary data-k="q5">Where is my data stored?</summary><p data-k="a5">Only in your browser, on your computer. Nothing is sent to any server of ours. You can export or delete everything at any time.</p></details>
+      <details><summary data-k="q6">What if I change computers?</summary><p data-k="a6">One license works on 3 computers. You can deactivate one in Settings and activate another, and move your data with a JSON backup.</p></details>
+      <details><summary data-k="q7">Can I get a refund?</summary><p data-k="a7">Yes. If IRIDIUM doesn't work on your computer, you get a full refund within 14 days of purchase. Refunded keys stop working.</p></details>
+    </div>
+  </section>
+
+  <section class="final">
+    <img src="/iridium/img/icon.webp" alt="" width="88" height="88" style="margin:auto;border-radius:22px;box-shadow:0 18px 50px rgba(139,124,246,.4)">
+    <h2 data-k="fnH">Your next book deserves a better keyword.</h2>
+    <p data-k="fnP">Start with real data, not guesses. One payment, yours forever.</p>
+    <div class="ctas"><a class="btn pri" href="https://mohamedbouhaje.gumroad.com/l/iridium?utm_source=bouhaj&utm_medium=iridium_page" target="_blank" rel="noopener" data-k="buy3">Get IRIDIUM — $39</a><a class="btn sec" href="#guide" data-k="see2">Read the guide</a></div>
+  </section>
+</div>
+</main>
+
+<div class="mob-buy"><a class="btn pri" href="https://mohamedbouhaje.gumroad.com/l/iridium?utm_source=bouhaj&utm_medium=iridium_page" target="_blank" rel="noopener" data-k="buy4">Get IRIDIUM — $39</a></div>
+
+<footer><div class="wrap"><span data-k="ft">IRIDIUM by Mohamed Bouhaj · BOUHAJ TECH · Not affiliated with Amazon.</span><span><a href="/">go.bouhaj.com</a> · <a href="/contact.html" data-k="ftC">Contact</a> · <a href="/privacy.html" data-k="ftP">Privacy</a></span></div></footer>
+
+<dialog id="lb"><button type="button" aria-label="Close">×</button><img alt=""></dialog>
+
+<script>
+(()=>{'use strict';
+const G={
+ overview:{en:['Overview','Your whole research at a glance: keywords analyzed, GO opportunities, tracked books and the verdict split.',['Top opportunities ranked by score','Quick-start steps for new users','Live queue status at the top']],
+  ar:['نظرة عامة','بحثك كله في شاشة واحدة: الكلمات المحللة، وفرص GO، والكتب المتتبعة، وتوزيع القرارات.',['أفضل الفرص مرتبة حسب الدرجة','خطوات بداية سريعة للمستخدم الجديد','حالة الطابور مباشرة في الأعلى']],
+  fr:['Vue d’ensemble','Toute votre recherche d’un coup d’œil : mots-clés analysés, opportunités GO, livres suivis et répartition des verdicts.',['Meilleures opportunités classées par score','Étapes de démarrage rapide','État de la file en direct']]},
+ bank:{en:['Keyword Bank','Every keyword from the Miner, from related searches and from your own lists, with its verdict, score and search volume.',['Filter by verdict, status or seed','Analyze a selection in the background','Save, reject or send to a project']],
+  ar:['بنك الكلمات','كل كلمة من المستخرج ومن البحوث المرتبطة ومن قوائمك، مع قرارها ودرجتها وحجم بحثها.',['تصفية حسب القرار أو الحالة أو الكلمة الأصل','تحليل مجموعة مختارة في الخلفية','حفظ أو رفض أو إرسال إلى مشروع']],
+  fr:['Banque de mots-clés','Chaque mot-clé du Miner, des recherches associées et de vos listes, avec son verdict, son score et son volume.',['Filtrer par verdict, statut ou mot-source','Analyser une sélection en arrière-plan','Garder, rejeter ou envoyer vers un projet']]},
+ radar:{en:['Opportunity Radar','Your niches on one map: demand going up, competition going right. The best ones sit in the gold zone.',['Bubble size shows niche royalties','Spot easy wins at a glance','Click a niche to open its details']],
+  ar:['رادار الفرص','نيشاتك على خريطة واحدة: الطلب للأعلى، وضعف المنافسة لليمين. الأفضل في المنطقة الذهبية.',['حجم الفقاعة يمثل أرباح النيش','اكتشاف الفرص السهلة بنظرة','اضغط على نيش لفتح تفاصيله']],
+  fr:['Radar d’opportunités','Vos niches sur une carte : la demande monte, la concurrence faiblit vers la droite. Les meilleures sont dans la zone dorée.',['La taille de la bulle = revenus de la niche','Repérer les gains faciles','Cliquer pour ouvrir le détail']]},
+ categories:{en:['Category Hunter','Every category used by the top books, with the daily sales needed to become #1 in each.',['Sorted from easiest to hardest','Built from real competitor listings','Confidence shown for each estimate']],
+  ar:['صائد الفئات','كل فئة يستعملها الكتب المتصدرة، مع المبيعات اليومية اللازمة للوصول إلى المرتبة الأولى فيها.',['مرتبة من الأسهل إلى الأصعب','مبنية من صفحات المنافسين الحقيقية','درجة ثقة لكل تقدير']],
+  fr:['Chasseur de catégories','Chaque catégorie des meilleurs livres, avec les ventes quotidiennes nécessaires pour y être n°1.',['Triées de la plus facile à la plus difficile','Basées sur les vraies fiches concurrentes','Indice de confiance pour chaque estimation']]},
+ price:{en:['Price & Pages','Choose a price with the numbers in front of you: royalty per copy, printing cost and where you stand against competitors.',['Paperback 50% / 60% royalty threshold','Printing cost from your page count','Suggested price from the niche']],
+  ar:['السعر والصفحات','اختر السعر والأرقام أمامك: الربح لكل نسخة، وتكلفة الطباعة، وموقعك أمام المنافسين.',['عتبة ربح الورقي 50% / 60%','تكلفة الطباعة حسب عدد الصفحات','سعر مقترح من بيانات النيش']],
+  fr:['Prix & pages','Choisissez un prix avec les chiffres sous les yeux : redevance par exemplaire, coût d’impression et position face aux concurrents.',['Seuil de redevance broché 50 % / 60 %','Coût d’impression selon le nombre de pages','Prix suggéré d’après la niche']]},
+ listing:{en:['Listing Auditor','Paste your title, subtitle and keywords. IRIDIUM scores the listing and flags what could get it rejected.',['Trademark and banned-word checks','Keyword coverage from your saved niche','Clear list of what to fix']],
+  ar:['مدقق الصفحة','الصق العنوان والعنوان الفرعي والكلمات، فيقيّم IRIDIUM صفحتك وينبهك لما قد يسبب رفضها.',['فحص العلامات التجارية والكلمات الممنوعة','تغطية الكلمات من النيش المحفوظ','قائمة واضحة بما يجب إصلاحه']],
+  fr:['Audit de fiche','Collez titre, sous-titre et mots-clés. IRIDIUM note la fiche et signale ce qui pourrait la faire refuser.',['Marques déposées et mots interdits','Couverture des mots-clés de la niche','Liste claire des corrections']]}
+};
+const D={
+ar:{navF:'المزايا',navG:'الدليل',navP:'السعر',navH:'BOUHAJ TECH →',h1:'توقف عن النشر <span class="grad">بالتخمين.</span>',lead:'يقرأ IRIDIUM نتائج بحث أمازون الحقيقية، ويحوّل كل كلمة مفتاحية إلى قرار واضح. ترى الدرجة والأسباب والأرقام التي بُنيت عليها، مباشرة في صفحة أمازون.',buy:'احصل على IRIDIUM <small>— $39</small>',see:'شاهد كيف يعمل',c1:'دفعة واحدة بلا اشتراك',c2:'عربي وإنجليزي',c3:'7 أسواق أمازون',fl:'على كل كتاب منافس',
+t1:'بيانات أمازون حقيقية',t1s:'تُقرأ من الصفحات التي تفتحها',t2:'خصوصية كاملة',t2s:'بياناتك تبقى على حاسوبك',t3:'3 أجهزة',t3s:'ترخيص واحد لثلاثة حواسيب',t4:'استرداد خلال 14 يوماً',t4s:'إن لم تعمل الأداة عندك',
+vH:'درجة واحدة. خمسة شروط. جواب واضح.',vP:'اضغط "تحليل" في أي بحث كتب على أمازون. يقرأ IRIDIUM النتائج الأولى وصفحاتها، ثم يقيّم الكلمة من 0 إلى 100.',sDemo:'مثال للنتيجة · اجتياز الشروط 5/5',cD:'الطلب',cV:'حجم البحث',cC:'المنافسة',cN:'القادمون الجدد',cR:'سرعة المراجعات',cP:'الربح',bkT:'في صفحة أمازون، يحصل كل كتاب على شريط شارات',bkS:'ترتيب BSR · المبيعات اليومية التقديرية · عمر الكتاب · المراجعات وسرعتها · الربح لكل نسخة',
+g1:'تظهر في الإكمال التلقائي لأمازون',g1s:'المشترون يكتبونها فعلاً، فالطلب مؤكد.',g2:'المنافسة تحت حدّك',g2s:'عدد النتائج يُقارن بقاعدتك أنت، وهي 1,000 افتراضياً.',g3:'كتب تبيع فعلاً',g3s:'عدد كافٍ من الكتب المتصدرة ترتيبها BSR أقل من 100,000.',g4:'منافسون يمكن التغلب عليهم',g4s:'كتب تبيع ولديها أقل من 50 مراجعة، فيستطيع كتاب جديد أن يتصدر.',g5:'العناوين غير مزدحمة',g5s:'قليل من العناوين المتصدرة يستعمل العبارة نفسها، فهناك مكان لعنوانك.',gTip:'كل الشروط الخمسة قابلة للتعديل من الإعدادات. اجتزها كلها تكن الكلمة GO، واجتز أغلبها تكن WATCH، وإلا فهي SKIP، مع كتابة الأسباب.',
+pH:'من كلمة واحدة إلى خانات الكلمات السبع',pP:'لا تحلل الكلمات واحدة تلو الأخرى. دع IRIDIUM يجدها ويفحصها ويرتبها وأنت تعمل.',p1:'استخرج',p1s:'اكتب كلمة أصلية واحدة، فيجلب المستخرج مئات اقتراحات الإكمال التلقائي الحقيقية من أمازون، مع الإضافات وصيغ الأسئلة.',p2:'احفظ',p2s:'تُحفظ كل كلمة تلقائياً في بنك الكلمات، مع مصدرها وكلمتها الأصل وحالتها.',p3:'حلّل',p3s:'اختر الكلمات، فيحللها الطابور في الخلفية بوتيرة بشرية، ويتوقف إن طلب أمازون التحقق.',p4:'رتّب',p4s:'بضغطة واحدة تُرتب أفضل كلمات GO في خانات KDP السبع، بلا تكرار وضمن حد الطول.',
+fH:'كل ما يفحصه ناشر KDP، في مكان واحد',fP:'تحفظ لوحة التحكم كل تحليل تجريه، فيتراكم بحثك مع الوقت بدل أن يضيع في تبويبات المتصفح.',gt1:'نظرة عامة',gt2:'بنك الكلمات',gt3:'رادار الفرص',gt4:'صائد الفئات',gt5:'السعر والصفحات',gt6:'مدقق الصفحة',
+f1:'درجة IRI والقرار',f1s:'الطلب، وحجم البحث، والمنافسة، ونافذة القادمين الجدد، وسرعة المراجعات، والربح، مجمّعة في درجة واحدة.',f2:'من BSR إلى المبيعات',f2s:'مبيعات وأرباح يومية وشهرية تقديرية لكل كتاب وللنيش كله، حسب الصيغة والسوق.',f3:'مستخرج الكلمات',f3s:'مئات كلمات الإكمال التلقائي الحقيقية من كلمة واحدة، مع كلمات مرتبطة من عناوين المنافسين.',f4:'الرادار والعناقيد',f4s:'نيشاتك على خريطة الطلب مقابل المنافسة، وتجميع الكلمات المتقاربة في فكرة كتاب واحد.',f5:'صائد الفئات',f5s:'المبيعات اليومية اللازمة لتصدر كل فئة يستعملها منافسوك، لتختار الأسهل.',f6:'ASIN العكسي',f6s:'افتح أي كتاب لترى الكلمات التي يتصدر فيها من كلماتك المحللة، ومن هم منافسوك الحقيقيون.',f7:'مدقق الصفحة',f7s:'يكتشف العلامات التجارية والكلمات التي ترفضها KDP في العنوان والعنوان الفرعي والكلمات قبل النشر.',f8:'السعر والصفحات',f8s:'الربح لكل نسخة عند كل سعر، مع عتبة $9.99 التي يرتفع عندها ربح الورقي من 50% إلى 60%.',f9:'التتبع',f9s:'تتبع ترتيب BSR لأي كتاب مع الوقت، وترتيب كتبك على كلماتك.',f10:'المشاريع',f10s:'مجلد لكل كتاب: كلماته ومنافسوه وسعره وصفحته في مكان واحد.',f11:'محلل Claude الذكي',f11s:'اختياري. أضف مفتاح Anthropic API الخاص بك، واطلب من Claude شرح النيش أو اقتراح عناوين من بياناتك الحقيقية.',f12:'صدّر كل شيء',f12s:'XLSX وCSV وJSON وMarkdown وتقرير HTML وPDF. بياناتك ملكك.',
+iH:'ثبّته في دقيقتين، ثم استعمله هكذا',iP:'يُثبَّت IRIDIUM من الملف الذي تحمّله، لا من متجر كروم. هذه كل الخطوات.',inT:'التثبيت',in1:'حمّل وفك الضغط',in1s:'بعد الشراء، حمّل <code>IRIDIUM-v2.2.zip</code> من صفحتك في Gumroad، وفك ضغطه في مجلد ستحتفظ به.',in2:'افتح صفحة الإضافات',in2s:'في كروم، افتح <code>chrome://extensions</code> وفعّل <b>Developer mode</b> أعلى اليمين.',in3:'حمّل المجلد',in3s:'اضغط <b>Load unpacked</b> واختر مجلد IRIDIUM بعد فك الضغط.',in4:'ثبّته في الشريط',in4s:'اضغط أيقونة القطعة في شريط الأدوات وثبّت IRIDIUM ليبقى على بعد ضغطة.',in5:'فعّله',in5s:'افتح IRIDIUM، والصق مفتاح الترخيص الظاهر في صفحتك على Gumroad، واضغط تفعيل. المفتاح الواحد يعمل على 3 حواسيب.',inTip:'لا تحذف المجلد ولا تنقله بعد التثبيت، فكروم يشغّل الإضافة منه. الدليل المصوّر الكامل بالعربية والإنجليزية يأتي مع ملفاتك.',
+usT:'أول جلسة بحث',u1:'ابحث في أمازون',u1s:'ابحث عن كلمتك في قسم <b>Books</b> أو <b>Kindle Store</b>، فتُفتح لوحة IRIDIUM على اليمين.',u2:'اضغط تحليل',u2s:'يقرأ IRIDIUM الكتب الأولى واحداً تلو الآخر مع فواصل قصيرة. انتظر الدرجة والقرار.',u3:'اقرأ الأسباب',u3s:'راجع الشروط التي نجحت، وأرقام النيش، وأفضل 10 كتب. ثم احفظ النيش أو ارفضه.',u4:'استخرج حولها',u4s:'افتح لوحة التحكم، واذهب إلى <b>Miner</b>، وأدخل أفضل كلمة كأصل، وأرسل النتائج إلى البنك.',u5:'حلّل وقرّر',u5s:'اختر الكلمات في البنك واضغط تحليل، ثم عد لتجد قائمة مرتبة من GO وWATCH وSKIP.',u6:'انشر',u6s:'اختر كلمة العنوان، ورتّب الباقي في <b>7 Backend Slots</b>، وحدد السعر في <b>Price &amp; Pages</b>، وشغّل <b>Listing Auditor</b>.',
+rH:'كيف تبدو الكلمة الجيدة',rP:'استعمل هذه كنقطة بداية، ثم عدّل الشروط حسب نيشك وميزانيتك.',r1:'انشر عليها',r1s:'تظهر في الإكمال التلقائي، ونتائجها أقل من 1,000 تقريباً، وعدة كتب ترتيبها أقل من 100,000، وبعضها لديه أقل من 50 مراجعة.',r2:'استعملها بحذر',r2s:'طلب حقيقي مع نقطة ضعف واحدة، غالباً منافسة قوية. استعملها في العنوان الفرعي أو الخانات الخلفية، أو ابحث عن صيغة أضيق بالمستخرج.',r3:'انتقل لغيرها',r3s:'لا طلب مؤكد، أو نيش تسيطر عليه كتب بآلاف المراجعات. وقتك أثمن في الكلمة التالية.',
+prE:'دفعة واحدة · تحديثات v2 مجانية',prOnce:'مرة واحدة',i1:'إضافة IRIDIUM كاملة، بكل المزايا في هذه الصفحة',i2:'ترخيص لـ 3 حواسيب',i3:'دليل التثبيت بالعربية والإنجليزية',i4:'تحديثات مجانية لكل إصدارات v2.x',i5:'استرداد كامل خلال 14 يوماً إن لم تعمل على حاسوبك',buy2:'اشترِ من Gumroad — $39',cmp1:'أدوات بحث KDP المشهورة',cmp1v:'$20–$90 شهرياً',cmp2:'خلال سنة واحدة',cmp2v:'$240–$1,080',cmp3v:'$39 مرة واحدة',
+hH:'اقرأ هذا قبل أن تشتري',h1t:'كروم على الحاسوب',h1s:'يعمل على Google Chrome في Windows وMac. لا يعمل على الهاتف ولا Safari ولا Firefox.',h2t:'تقديرات لا وعود',h2s:'المبيعات وحجم البحث تقديرات، كما في كل أدوات السوق. ويمكنك معايرتها بمبيعاتك الحقيقية.',h3t:'يحسّن قراراتك',h3s:'يساعدك IRIDIUM على اختيار كلمات أفضل، لكنه لا يضمن المبيعات: الغلاف والمحتوى والسعر ما زالت مهمة.',h4t:'أداة مستقلة',h4s:'IRIDIUM غير تابع لأمازون ولا معتمد منها. يقرأ الصفحات التي تفتحها، كما تقرؤها أنت.',
+qH:'أسئلة شائعة',q1:'ما أسواق أمازون المدعومة؟',a1:'Amazon.com و.co.uk و.de و.fr و.es و.it و.ca، لبحوث الكتب الورقية وكيندل.',q2:'هل يوجد اشتراك شهري؟',a2:'لا. تدفع $39 مرة واحدة. محلل Claude الاختياري يستعمل مفتاح Anthropic الخاص بك، وتدفع لـ Anthropic فقط إن اخترت استعماله.',q3:'لماذا ليس في متجر كروم؟',a3:'يُباع مباشرة لتدفع مرة واحدة بلا عمولة متجر. التثبيت من المجلد يستغرق دقيقتين مع الدليل المرفق، ويعمل بالطريقة نفسها.',q4:'هل سيحظر أمازون حسابي؟',a4:'يقرأ IRIDIUM صفحات البحث والكتب العامة فقط، وهي التي تفتحها بنفسك، مع فواصل بين الصفحات. لا يلمس حسابك في KDP أبداً. وإن عرض أمازون صفحة تحقق، يتوقف الطابور حتى تحلها.',q5:'أين تُحفظ بياناتي؟',a5:'في متصفحك فقط، على حاسوبك. لا يُرسل شيء إلى أي خادم لنا. ويمكنك تصدير كل شيء أو حذفه في أي وقت.',q6:'ماذا لو غيّرت الحاسوب؟',a6:'الترخيص الواحد يعمل على 3 حواسيب. يمكنك إلغاء تفعيل جهاز من الإعدادات وتفعيل آخر، ونقل بياناتك بنسخة JSON.',q7:'هل يمكنني استرداد المبلغ؟',a7:'نعم. إن لم يعمل IRIDIUM على حاسوبك، تسترد المبلغ كاملاً خلال 14 يوماً من الشراء. المفاتيح المستردة تتوقف عن العمل.',
+fnH:'كتابك القادم يستحق كلمة أفضل.',fnP:'ابدأ ببيانات حقيقية لا بالتخمين. دفعة واحدة، وهو لك للأبد.',buy3:'احصل على IRIDIUM — $39',see2:'اقرأ الدليل',buy4:'احصل على IRIDIUM — $39',ft:'IRIDIUM من محمد بوهاج · BOUHAJ TECH · غير تابع لأمازون.',ftC:'تواصل',ftP:'الخصوصية'},
+fr:{navF:'Fonctions',navG:'Guide',navP:'Prix',navH:'← BOUHAJ TECH',h1:'Arrêtez de publier <span class="grad">au hasard.</span>',lead:'IRIDIUM lit les vrais résultats de recherche Amazon et transforme chaque mot-clé en décision claire. Vous voyez le score, les raisons et les chiffres, directement sur la page Amazon.',buy:'Obtenir IRIDIUM <small>— 39 $</small>',see:'Voir comment ça marche',c1:'Paiement unique, sans abonnement',c2:'Anglais et arabe',c3:'7 marketplaces Amazon',fl:'Sur chaque livre concurrent',
+t1:'Vraies données Amazon',t1s:'Lues sur les pages que vous ouvrez',t2:'Privé par conception',t2s:'Vos données restent sur votre ordinateur',t3:'3 appareils',t3s:'Une licence, trois ordinateurs',t4:'Remboursement 14 jours',t4s:'S’il ne fonctionne pas chez vous',
+vH:'Un score. Cinq règles. Une réponse claire.',vP:'Cliquez sur Analyser dans n’importe quelle recherche de livres Amazon. IRIDIUM lit les premiers résultats et leurs pages, puis note le mot-clé de 0 à 100.',sDemo:'Exemple de résultat · règles validées 5/5',cD:'Demande',cV:'Volume de recherche',cC:'Concurrence',cN:'Nouveaux venus',cR:'Vitesse des avis',cP:'Rentabilité',bkT:'Sur la page Amazon, chaque livre reçoit une barre de badges',bkS:'BSR · ventes estimées par jour · âge du livre · avis et rythme des avis · redevance par exemplaire',
+g1:'Présent dans l’autocomplétion Amazon',g1s:'De vrais acheteurs le tapent : la demande est confirmée.',g2:'Concurrence sous votre limite',g2s:'Le nombre de résultats est comparé à votre règle, 1 000 par défaut.',g3:'Des livres se vendent vraiment',g3s:'Assez de livres en tête ont un BSR inférieur à 100 000.',g4:'Concurrents battables',g4s:'Des livres qui se vendent avec moins de 50 avis : un nouveau livre peut se classer.',g5:'Titres peu saturés',g5s:'Peu de titres utilisent l’expression exacte : il reste de la place pour le vôtre.',gTip:'Les cinq règles sont modifiables dans les réglages. Toutes validées : GO. La plupart : WATCH. Sinon : SKIP, avec les raisons écrites.',
+pH:'D’un mot-source à vos 7 champs backend',pP:'N’analysez plus les mots-clés un par un. IRIDIUM les trouve, les vérifie et les classe pendant que vous travaillez.',p1:'Extraire',p1s:'Tapez un mot-source. Le Miner récupère des centaines de suggestions réelles d’autocomplétion Amazon, avec modificateurs et questions.',p2:'Stocker',p2s:'Chaque mot-clé est enregistré automatiquement dans la Banque, avec sa source, son mot-source et son statut.',p3:'Analyser',p3s:'Sélectionnez des mots-clés : la file les analyse en arrière-plan, à un rythme humain, et se met en pause si Amazon demande une vérification.',p4:'Remplir',p4s:'Un clic place les meilleurs mots GO dans vos 7 champs KDP, sans répétition et dans la limite de longueur.',
+fH:'Tout ce qu’un auteur KDP vérifie, au même endroit',fP:'Le tableau de bord garde chaque analyse : votre recherche s’accumule au lieu de disparaître dans des onglets.',gt1:'Vue d’ensemble',gt2:'Banque de mots-clés',gt3:'Radar',gt4:'Catégories',gt5:'Prix & pages',gt6:'Audit de fiche',
+f1:'Score IRI et verdict',f1s:'Demande, volume, concurrence, fenêtre pour nouveaux venus, vitesse des avis et rentabilité, réunis en un score.',f2:'Du BSR aux ventes',f2s:'Ventes et redevances estimées par jour et par mois, par livre et pour toute la niche, selon le format et le marché.',f3:'Extracteur de mots-clés',f3s:'Des centaines de mots-clés réels à partir d’un seul, plus des mots associés trouvés dans les titres concurrents.',f4:'Radar et groupes',f4s:'Vos niches sur une carte demande/concurrence, et les mots proches regroupés en une idée de livre.',f5:'Chasseur de catégories',f5s:'Ventes quotidiennes nécessaires pour être n°1 dans chaque catégorie de vos concurrents.',f6:'ASIN inversé',f6s:'Ouvrez un livre et voyez sur quels mots-clés analysés il se classe, et qui sont vos vrais concurrents.',f7:'Audit de fiche',f7s:'Repère les marques déposées et les mots refusés par KDP dans votre titre, sous-titre et mots-clés avant publication.',f8:'Prix & pages',f8s:'Redevance par exemplaire à chaque prix, avec le seuil de 9,99 $ où la redevance broché passe de 50 % à 60 %.',f9:'Suivi',f9s:'Suivez le BSR de n’importe quel livre dans le temps, et le rang de vos livres sur vos mots-clés.',f10:'Projets',f10s:'Un dossier par livre : mots-clés, concurrents, prix et fiche au même endroit.',f11:'Analyste Claude IA',f11s:'Optionnel. Ajoutez votre propre clé API Anthropic et demandez à Claude d’expliquer une niche ou de proposer des titres.',f12:'Tout exporter',f12s:'XLSX, CSV, JSON, Markdown, rapport HTML ou PDF. Vos données vous appartiennent.',
+iH:'Installation en deux minutes, puis utilisation',iP:'IRIDIUM s’installe depuis le fichier téléchargé, pas depuis le Chrome Web Store. Voici chaque étape.',inT:'Installation',in1:'Télécharger et décompresser',in1s:'Après l’achat, téléchargez <code>IRIDIUM-v2.2.zip</code> depuis Gumroad et décompressez-le dans un dossier que vous garderez.',in2:'Ouvrir les extensions',in2s:'Dans Chrome, ouvrez <code>chrome://extensions</code> et activez le <b>Mode développeur</b> en haut à droite.',in3:'Charger le dossier',in3s:'Cliquez sur <b>Charger l’extension non empaquetée</b> et choisissez le dossier IRIDIUM.',in4:'L’épingler',in4s:'Cliquez sur l’icône puzzle et épinglez IRIDIUM pour l’avoir toujours à portée de clic.',in5:'Activer',in5s:'Ouvrez IRIDIUM, collez la clé de licence affichée sur Gumroad et cliquez sur Activer. Une clé fonctionne sur 3 ordinateurs.',inTip:'Ne supprimez pas et ne déplacez pas le dossier : Chrome exécute l’extension depuis celui-ci. Le guide illustré complet (anglais et arabe) est inclus.',
+usT:'Première session de recherche',u1:'Chercher sur Amazon',u1s:'Cherchez votre mot-clé dans <b>Livres</b> ou <b>Boutique Kindle</b>. Le panneau IRIDIUM s’ouvre à droite.',u2:'Cliquer sur Analyser',u2s:'IRIDIUM lit les premiers livres un par un, avec de courtes pauses. Attendez le score et le verdict.',u3:'Lire les raisons',u3s:'Regardez les règles validées, les chiffres de la niche et le top 10. Puis gardez ou rejetez la niche.',u4:'Explorer autour',u4s:'Ouvrez le tableau de bord, allez dans <b>Miner</b>, entrez votre meilleur mot-clé et envoyez les résultats à la Banque.',u5:'Analyser et décider',u5s:'Sélectionnez des mots-clés dans la Banque et cliquez sur Analyser. Revenez à une liste classée GO, WATCH et SKIP.',u6:'Publier',u6s:'Choisissez le mot-clé du titre, placez le reste dans les <b>7 champs backend</b>, fixez le prix dans <b>Prix &amp; pages</b> et lancez l’<b>Audit de fiche</b>.',
+rH:'À quoi ressemble un bon mot-clé',rP:'Un point de départ, à ajuster selon votre niche et votre budget.',r1:'Publiez dessus',r1s:'Présent dans l’autocomplétion, moins d’environ 1 000 résultats, plusieurs livres sous un BSR de 100 000, dont certains avec moins de 50 avis.',r2:'À utiliser avec prudence',r2s:'Demande réelle mais un point faible, souvent la concurrence. Utilisez-le en sous-titre ou en backend, ou cherchez une version plus étroite avec le Miner.',r3:'Passez au suivant',r3s:'Pas de demande prouvée, ou une niche tenue par des livres à des milliers d’avis. Votre temps vaut mieux ailleurs.',
+prE:'PAIEMENT UNIQUE · MISES À JOUR v2 INCLUSES',prOnce:'une fois',i1:'L’extension IRIDIUM complète, toutes les fonctions de cette page',i2:'Une licence pour 3 ordinateurs',i3:'Guides d’installation en anglais et en arabe',i4:'Mises à jour gratuites pour toutes les versions v2.x',i5:'Remboursement complet sous 14 jours s’il ne fonctionne pas sur votre ordinateur',buy2:'Acheter sur Gumroad — 39 $',cmp1:'Outils de recherche KDP connus',cmp1v:'20–90 $ / mois',cmp2:'Sur un an',cmp2v:'240–1 080 $',cmp3v:'39 $ une fois',
+hH:'À lire avant d’acheter',h1t:'Chrome sur ordinateur',h1s:'Fonctionne sur Google Chrome pour Windows et Mac. Pas sur téléphone, Safari ou Firefox.',h2t:'Des estimations, pas des promesses',h2s:'Ventes et volumes sont des estimations, comme pour tous les outils. Vous pouvez les calibrer avec vos ventes.',h3t:'Il améliore vos décisions',h3s:'IRIDIUM aide à choisir de meilleurs mots-clés. Il ne garantit pas les ventes : couverture, contenu et prix comptent toujours.',h4t:'Outil indépendant',h4s:'IRIDIUM n’est ni affilié ni approuvé par Amazon. Il lit les pages que vous ouvrez, comme vous.',
+qH:'Questions fréquentes',q1:'Quels marchés Amazon sont pris en charge ?',a1:'Amazon.com, .co.uk, .de, .fr, .es, .it et .ca, pour les recherches brochées et Kindle.',q2:'Y a-t-il un abonnement ?',a2:'Non. Vous payez 39 $ une fois. L’analyste Claude optionnel utilise votre propre clé API Anthropic, facturée par Anthropic seulement si vous l’utilisez.',q3:'Pourquoi pas sur le Chrome Web Store ?',a3:'Il est vendu directement pour un paiement unique, sans commission de boutique. L’installation depuis le dossier prend deux minutes avec le guide.',q4:'Amazon va-t-il bloquer mon compte ?',a4:'IRIDIUM lit seulement les pages publiques de recherche et de produit, celles que vous ouvrez vous-même, avec des pauses. Il ne touche jamais votre compte KDP. Si Amazon affiche une vérification, la file s’arrête jusqu’à ce que vous la résolviez.',q5:'Où sont stockées mes données ?',a5:'Uniquement dans votre navigateur, sur votre ordinateur. Rien n’est envoyé à nos serveurs. Vous pouvez tout exporter ou supprimer à tout moment.',q6:'Et si je change d’ordinateur ?',a6:'Une licence fonctionne sur 3 ordinateurs. Désactivez-en un dans les réglages, activez-en un autre, et transférez vos données avec une sauvegarde JSON.',q7:'Puis-je être remboursé ?',a7:'Oui. S’il ne fonctionne pas sur votre ordinateur, vous êtes remboursé intégralement sous 14 jours. Les clés remboursées cessent de fonctionner.',
+fnH:'Votre prochain livre mérite un meilleur mot-clé.',fnP:'Commencez avec de vraies données, pas des suppositions. Un paiement, à vous pour toujours.',buy3:'Obtenir IRIDIUM — 39 $',see2:'Lire le guide',buy4:'Obtenir IRIDIUM — 39 $',ft:'IRIDIUM par Mohamed Bouhaj · BOUHAJ TECH · Non affilié à Amazon.',ftC:'Contact',ftP:'Confidentialité'}
+};
+const EN={};document.querySelectorAll('[data-k]').forEach(e=>{EN[e.dataset.k]=e.innerHTML});
+const L=['en','ar','fr'];
+let lang=(()=>{const q=new URLSearchParams(location.search).get('lang');if(L.includes(q))return q;try{const s=localStorage.getItem('iridiumLang');if(L.includes(s))return s}catch(e){}const n=(navigator.language||'en').slice(0,2);return n==='ar'?'ar':n==='fr'?'fr':'en'})();
+let cur='overview';
+const imgL=()=>lang==='ar'?'ar':'en';
+function gallery(){const g=G[cur][lang]||G[cur].en;const img=document.getElementById('gimg');img.src=`/iridium/img/${cur}-${imgL()}.webp`;img.alt=g[0];
+ document.getElementById('gcap').innerHTML=`<span class="eyebrow">${['overview','bank','radar','categories','price','listing'].indexOf(cur)+1} / 6</span><h3>${g[0]}</h3><p>${g[1]}</p><ul>${g[2].map(x=>`<li>${x}</li>`).join('')}</ul>`}
+function apply(){
+ const d=lang==='en'?EN:Object.assign({},EN,D[lang]);
+ document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+ document.querySelectorAll('[data-k]').forEach(e=>{const v=d[e.dataset.k];if(v!=null)e.innerHTML=v});
+ document.querySelectorAll('[data-img]').forEach(e=>{e.src=`/iridium/img/${e.dataset.img}-${imgL()}.webp`});
+ document.querySelectorAll('.langs button').forEach(b=>b.classList.toggle('on',b.dataset.l===lang));
+ gallery();
+}
+document.querySelectorAll('.langs button').forEach(b=>b.onclick=()=>{lang=b.dataset.l;try{localStorage.setItem('iridiumLang',lang)}catch(e){}apply()});
+document.getElementById('tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;cur=b.dataset.g;document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));gallery()};
+const lb=document.getElementById('lb');
+document.querySelectorAll('.shot').forEach(s=>s.addEventListener('click',()=>{const i=s.querySelector('img');lb.querySelector('img').src=i.src;lb.querySelector('img').alt=i.alt;if(lb.showModal)lb.showModal()}));
+lb.addEventListener('click',()=>lb.close());
+apply();
+})();
+</script>
+</body></html>

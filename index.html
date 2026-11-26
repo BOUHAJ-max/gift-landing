@@ -233,6 +233,16 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 
 /* Clear content hierarchy */
 .tools-section{margin-top:8px}
+.tools-section .card{cursor:default}
+.c-actions{display:flex;gap:10px;margin-top:4px}
+.c-actions .btn{flex:1}
+.page-home .tools-section .c-actions .btn{flex:1;justify-content:center}
+.page-home .tools-section .c-actions .btn.btn-ghost,.page-home .tools-section .c-actions .btn.btn-ghost:hover{background:rgba(141,183,255,.08)!important;color:#dbe8ff!important;border:1px solid #36516b!important;box-shadow:none!important}
+.page-home .tools-section .c-actions .btn.btn-ghost:hover{background:rgba(141,183,255,.16)!important}
+.c-media{display:block;margin:2px 0 14px;border-radius:12px;overflow:hidden;border:1px solid #2b435b}
+.c-media img{display:block;width:100%;height:auto;transition:transform .3s}
+.c-media:hover img{transform:scale(1.02)}
+@media(max-width:420px){.c-actions{flex-direction:column}}
 .page-home .tools-section .grid:has(> .card:only-child){grid-template-columns:1fr!important}
 .tools-section [hidden]{display:none!important}
 .tools-heading{padding:0 2px 16px}
@@ -550,34 +560,23 @@ body{padding-bottom:92px!important}
   </footer>
 </div>
 
-<div class="modal" id="modal">
-  <div class="sheet">
-    <div class="ico" id="mIco"></div>
-    <h3 id="mTitle"></h3>
-    <ol class="steps" id="mSteps"></ol>
-    <button class="btn" id="mGo"></button>
-    <p class="note" id="mNote"></p>
-    <button class="x" id="mClose"></button>
-  </div>
-</div>
-
 <script>
 /* ======= النصوص ======= */
 const T={
  ar:{toolsHeading:'استكشف الأدوات الرقمية',toolsDescription:'مجموعة مختارة من الأدوات والخدمات الرقمية، مع بحث سريع وتصنيفات تساعدك على الوصول لما تحتاجه.',searchLabel:'البحث في الأدوات',footerCourses:'الدورات التقنية',footerArticles:'مكتبة المقالات',footerContact:'التواصل',footerPrivacy:'الخصوصية',footerAbout:'من نحن',h1:'بوابتك <span class="g">الرقمية</span><br>أدوات ومعرفة بلا تعقيد',sub:'شروحات تقنية ومقالات تعليمية ودورات عربية في البرمجة وLinux والشبكات والأمن الرقمي.',
    q:'ابحث عن أداة...',all:'الكل',get:'احصل على الأداة',soon:'قريباً',empty:'لا توجد أداة بهذا الاسم',chatTitle:'كود ChatGPT',copyPrompt:'⧉ نسخ البرومت',copyPromptDone:'✓ تم النسخ',copyPromptHint:'النص محفوظ بصيغته المشفرة الأصلية',copyPromptSuccess:'تم نسخ النص المشفر كاملا',copyPromptFallback:'تعذر النسخ التلقائي؛ تم تحديد النص. اضغط مطولا واختر نسخ.',
    steps:['افتح صفحة العرض','اقرأ الشروط ومتطلبات الأهلية','تابع فقط إذا كان العرض مناسبا لك'],
-   go:'🔓 افتح الأداة الآن',note:'العروض مقدمة من شركاء خارجيين وتخضع لشروطهم',close:'إغلاق',
+   discover:'اكتشف',note:'العروض مقدمة من شركاء خارجيين وتخضع لشروطهم',close:'إغلاق',
    cats:{publishing:'النشر الذاتي',learning:'تعلم',ai:'ذكاء اصطناعي',linux:'لينكس',dev:'برمجة'},status:'النظام يعمل'},
  en:{toolsHeading:'Explore digital tools',toolsDescription:'A curated collection of digital tools and services, with quick search and categories to help you find what you need.',searchLabel:'Search tools',footerCourses:'Courses',footerArticles:'Articles',footerContact:'Contact',footerPrivacy:'Privacy',footerAbout:'About',h1:'Your <span class="g">digital hub</span><br>tools, learning and ideas',sub:'Practical guides and Arabic learning resources for programming, Linux, networking and digital security.',
    q:'Search a tool...',all:'All',get:'Get the tool',soon:'Coming soon',empty:'No tool matches that',chatTitle:'ChatGPT Code',copyPrompt:'⧉ Copy prompt',copyPromptDone:'✓ Copied',copyPromptHint:'Text is preserved in its original encoded format',copyPromptSuccess:'The full encoded text has been copied',copyPromptFallback:'Automatic copy failed; text selected. Long-press and choose Copy.',
    steps:['Open the offer page','Review its terms and eligibility requirements','Continue only if the offer suits you'],
-   go:'🔓 Unlock the tool',note:'External links are governed by their providers’ terms',close:'Close',
+   discover:'Discover',note:'External links are governed by their providers’ terms',close:'Close',
    cats:{publishing:'Self-publishing',learning:'Learning',ai:'AI',linux:'Linux',dev:'Development'},status:'system online'},
  fr:{toolsHeading:'Explorer les outils numériques',toolsDescription:'Une sélection d’outils et de services numériques, avec une recherche rapide et des catégories pour trouver ce dont vous avez besoin.',searchLabel:'Rechercher des outils',footerCourses:'Formations',footerArticles:'Articles',footerContact:'Contact',footerPrivacy:'Confidentialité',footerAbout:'À propos',h1:'Votre <span class="g">espace numérique</span><br>outils, savoir et idées',sub:'Des guides pratiques en programmation, Linux, réseaux et sécurité numérique.',
    q:'Rechercher un outil...',all:'Tout',get:'Obtenir l’outil',soon:'Bientôt disponible',empty:'Aucun outil ne correspond à votre recherche',chatTitle:'Code ChatGPT',copyPrompt:'⧉ Copier le prompt',copyPromptDone:'✓ Copié',copyPromptHint:'Texte conservé dans son format encodé original',copyPromptSuccess:'Le texte encodé complet a été copié',copyPromptFallback:'Copie automatique impossible ; texte sélectionné. Appuyez longuement puis choisissez Copier.',
    steps:['Ouvrez la page de l’offre','Consultez les conditions et les critères d’éligibilité','Continuez uniquement si l’offre vous convient'],
-   go:'🔓 Déverrouiller l’outil',note:'Les liens externes sont soumis aux conditions de leurs fournisseurs',close:'Fermer',
+   discover:'Découvrir',note:'Les liens externes sont soumis aux conditions de leurs fournisseurs',close:'Fermer',
    cats:{publishing:'Auto-édition',learning:'Apprentissage',ai:'IA',linux:'Linux',dev:'Développement'},status:'système en ligne'}
 };
 const TYPE=['$ sudo unlock --tools','$ ai --generate hooks','$ ./bouhaj --free'];
@@ -664,7 +663,7 @@ function applyLang(){
   document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
   $('langBtn').textContent=lang==='ar'?'EN':lang==='en'?'FR':'ع';
   $('h1').innerHTML=t.h1;$('sub').textContent=t.sub;$('q').placeholder=t.q;
-  $('empty').textContent=t.empty;$('status').textContent=t.status;$('mClose').textContent=t.close;
+  $('empty').textContent=t.empty;$('status').textContent=t.status;
   const navLabels={ar:['المكتبة الأدبية','المقالات','الدورات','التجارب','أداة ChatGPT','عنّي والسياسات'],en:['Literary Library','Articles','Courses','Experiences','ChatGPT Tool','About & Policies'],fr:['Bibliothèque littéraire','Articles','Formations','Expériences','Outil ChatGPT','À propos et politiques']};
   const nav=document.querySelector('.main-nav');
   if(nav){const links=nav.querySelectorAll(':scope > a');links.forEach((a,i)=>{if(navLabels[lang][i]){const icon=a.querySelector('[aria-hidden="true"]');a.textContent=navLabels[lang][i];if(icon)a.prepend(icon)}});const summary=nav.querySelector('.about-menu > summary');if(summary){const icon=summary.querySelector('[aria-hidden="true"]');summary.textContent=navLabels[lang][5];if(icon)summary.prepend(icon)}}
@@ -694,31 +693,22 @@ function render(){
       <div class="c-head"><div class="ico">${icon(x.icon)}</div>
       <div class="c-title" ${x.dir? `dir="${esc(x.dir)}"`:''}>${esc(tx(x.title))}${x.badge?`<span class="badge" ${x.badgeDir? `dir="${esc(x.badgeDir)}"`:''}>${esc(tx(x.badge))}</span>`:''}</div></div>
       <p class="c-desc" ${x.dir? `dir="${esc(x.dir)}"`:''}>${esc(tx(x.desc))}</p>
-      <a class="btn${ok?'':' soon'}" style="text-decoration:none" ${x.buttonDir? `dir="${esc(x.buttonDir)}"`:''} href="${ok?esc(safeHref):'#'}" ${ok&&target? `target="${target}" rel="${safeRel}"`:''}>${esc(tx(x.buttonText)|| (ok?'⚡ '+T[lang].get:T[lang].soon))}</a></article>`;
+      ${x.media?`<a class="c-media" href="${esc(x.page||safeHref||'#')}"><img src="${esc(x.media)}" alt="${esc(tx(x.title))}" loading="lazy" width="1280" height="720"></a>`:''}
+      <div class="c-actions">${x.page&&x.page.startsWith('/')?`<a class="btn btn-ghost" style="text-decoration:none" href="${esc(x.page)}">${esc(tx(x.pageText)||T[lang].discover)}</a>`:''}
+      <a class="btn${ok?'':' soon'}" style="text-decoration:none" ${x.buttonDir? `dir="${esc(x.buttonDir)}"`:''} href="${ok?esc(safeHref):'#'}" ${ok&&target? `target="${target}" rel="${safeRel}"`:''}>${esc(tx(x.buttonText)|| (ok?'⚡ '+T[lang].get:T[lang].soon))}</a></div></article>`;
   }).join('');
   $('empty').style.display=list.length?'none':'block';
   const few=tools.length<=1;$('toolsSearch').hidden=few;$('chips').hidden=few;
 }
 
-function openTool(id){
-  const x=tools.find(t=>t.id===id); if(!x||!safeUrl(x.url)) return;
-  current=x;const t=T[lang];
-  $('mIco').innerHTML=icon(x.icon);$('mTitle').textContent=tx(x.title);
-  $('mSteps').innerHTML=t.steps.map((s,i)=>`<li><b>${i+1}</b>${esc(s)}</li>`).join('');
-  $('mGo').textContent=t.go;$('mNote').textContent=t.note;
-  $('modal').classList.add('open');
-}
 
 /* ======= الأحداث ======= */
-$('grid').addEventListener('click',e=>{const c=e.target.closest('.card');if(!c)return;const link=e.target.closest('a.btn');if(link){e.stopPropagation();return;}openTool(c.dataset.id)});
+
 $('grid').addEventListener('pointermove',e=>{const c=e.target.closest('.card');if(c){const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px')}});
 $('chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(b){cat=b.dataset.c;renderChips();render()}});
 $('q').addEventListener('input',render);
 $('langBtn').onclick=()=>{lang=lang==='ar'?'en':lang==='en'?'fr':'ar';manualLang=true;try{localStorage.setItem('lang',lang)}catch(e){}applyLang()};
 addEventListener('languagechange',()=>{if(!manualLang&&!params.has('lang')){lang=detectDeviceLang();applyLang()}});
-$('mGo').onclick=()=>{if(current){const url=safeUrl(current.url);if(url)location.href=url}};
-$('mClose').onclick=()=>$('modal').classList.remove('open');
-$('modal').onclick=e=>{if(e.target.id==='modal')$('modal').classList.remove('open')};
 $('yr').textContent=new Date().getFullYear();
 
 
@@ -740,7 +730,7 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden && !matchM
 fetch('/tools.json').then(r=>r.json()).then(d=>{
   tools=(d.tools||[]).filter(x=>!x.hidden);applyLang();
   const t=params.get('t');
-  if(t){const el=document.querySelector(`[data-id="${CSS.escape(t)}"]`);if(el)el.scrollIntoView({behavior:'smooth',block:'center'});openTool(t)}
+  if(t){const el=document.querySelector(`[data-id="${CSS.escape(t)}"]`);if(el)el.scrollIntoView({behavior:'smooth',block:'center'})}
 }).catch(()=>{applyLang();$('empty').style.display='block'});
 </script>
 

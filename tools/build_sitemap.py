@@ -12,7 +12,7 @@ SKIP = {"offline.html", "maintenance.html", "404.html"}
 
 def rules(url):
     if url == "/": return "weekly", "1.0"
-    if url in ("/articles/", "/academy/"): return "weekly", "0.9"
+    if url in ("/articles/", "/academy/", "/iridium/"): return "weekly", "0.9"
     if url in ("/experiences/", "/wadi-al-aql/", "/rebellious-novel/"): return "weekly", "0.8"
     if url.startswith(("/articles/", "/academy/")): return "monthly", "0.8"
     if url.startswith(("/rebellious-novel/", "/wadi-al-aql/", "/experiences/")): return "yearly", "0.7"
