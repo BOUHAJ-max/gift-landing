@@ -52,7 +52,9 @@
         "ar": "اكتشف الأداة",
         "en": "Discover",
         "fr": "Découvrir"
-      }
+      },
+      "video": "bDAoaH5vo1k",
+      "videoPoster": "/iridium/img/video-poster.webp"
     },
     {
       "id": "termux-academy",

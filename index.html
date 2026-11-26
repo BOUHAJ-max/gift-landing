@@ -239,6 +239,12 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(50,105,153,.19),transpare
 .page-home .tools-section .c-actions .btn{flex:1;justify-content:center}
 .page-home .tools-section .c-actions .btn.btn-ghost,.page-home .tools-section .c-actions .btn.btn-ghost:hover{background:rgba(141,183,255,.08)!important;color:#dbe8ff!important;border:1px solid #36516b!important;box-shadow:none!important}
 .page-home .tools-section .c-actions .btn.btn-ghost:hover{background:rgba(141,183,255,.16)!important}
+.c-yt{position:relative;width:100%;padding:0;background:#05080f;cursor:pointer;aspect-ratio:16/9}
+.c-yt img{width:100%;height:100%;object-fit:cover}
+.c-yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.c-play{position:absolute;inset:0;margin:auto;width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,#8b7cf6,#22d3ee);box-shadow:0 10px 30px rgba(91,140,255,.5);display:grid;place-items:center;transition:transform .2s}
+.c-play::after{content:"";margin-left:5px;border-style:solid;border-width:13px 0 13px 21px;border-color:transparent transparent transparent #fff}
+.c-yt:hover .c-play{transform:scale(1.08)}
 .c-media{display:block;margin:2px 0 14px;border-radius:12px;overflow:hidden;border:1px solid #2b435b}
 .c-media img{display:block;width:100%;height:auto;transition:transform .3s}
 .c-media:hover img{transform:scale(1.02)}
@@ -693,7 +699,7 @@ function render(){
       <div class="c-head"><div class="ico">${icon(x.icon)}</div>
       <div class="c-title" ${x.dir? `dir="${esc(x.dir)}"`:''}>${esc(tx(x.title))}${x.badge?`<span class="badge" ${x.badgeDir? `dir="${esc(x.badgeDir)}"`:''}>${esc(tx(x.badge))}</span>`:''}</div></div>
       <p class="c-desc" ${x.dir? `dir="${esc(x.dir)}"`:''}>${esc(tx(x.desc))}</p>
-      ${x.media?`<a class="c-media" href="${esc(x.page||safeHref||'#')}"><img src="${esc(x.media)}" alt="${esc(tx(x.title))}" loading="lazy" width="1280" height="720"></a>`:''}
+      ${x.video&&/^[\w-]{11}$/.test(x.video)?`<button type="button" class="c-media c-yt" data-yt="${esc(x.video)}" aria-label="Play video"><img src="${esc(x.videoPoster||x.media)}" alt="${esc(tx(x.title))}" loading="lazy" width="1280" height="720"><span class="c-play"></span></button>`:x.media?`<a class="c-media" href="${esc(x.page||safeHref||'#')}"><img src="${esc(x.media)}" alt="${esc(tx(x.title))}" loading="lazy" width="1280" height="720"></a>`:''}
       <div class="c-actions">${x.page&&x.page.startsWith('/')?`<a class="btn btn-ghost" style="text-decoration:none" href="${esc(x.page)}">${esc(tx(x.pageText)||T[lang].discover)}</a>`:''}
       <a class="btn${ok?'':' soon'}" style="text-decoration:none" ${x.buttonDir? `dir="${esc(x.buttonDir)}"`:''} href="${ok?esc(safeHref):'#'}" ${ok&&target? `target="${target}" rel="${safeRel}"`:''}>${esc(tx(x.buttonText)|| (ok?'⚡ '+T[lang].get:T[lang].soon))}</a></div></article>`;
   }).join('');
@@ -705,6 +711,7 @@ function render(){
 /* ======= الأحداث ======= */
 
 $('grid').addEventListener('pointermove',e=>{const c=e.target.closest('.card');if(c){const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px')}});
+$('grid').addEventListener('click',e=>{const b=e.target.closest('.c-yt');if(!b||b.dataset.on)return;const id=b.dataset.yt;if(!/^[\w-]{11}$/.test(id))return;b.dataset.on='1';const f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1';f.title='IRIDIUM demo';f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;b.replaceChildren(f);b.style.cursor='default'});
 $('chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(b){cat=b.dataset.c;renderChips();render()}});
 $('q').addEventListener('input',render);
 $('langBtn').onclick=()=>{lang=lang==='ar'?'en':lang==='en'?'fr':'ar';manualLang=true;try{localStorage.setItem('lang',lang)}catch(e){}applyLang()};

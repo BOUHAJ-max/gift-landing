@@ -17,6 +17,7 @@
 <link rel="icon" href="/iridium/img/icon.webp" type="image/webp">
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"IRIDIUM","applicationCategory":"BusinessApplication","operatingSystem":"Google Chrome (Windows, macOS)","description":"Chrome extension for Amazon KDP keyword and niche research: 0–100 keyword score, GO / WATCH / SKIP verdict, BSR-to-sales estimates, keyword miner and backend keyword packing.","image":"https://go.bouhaj.com/iridium/img/cover.webp","url":"https://go.bouhaj.com/iridium/","inLanguage":["en","ar"],"author":{"@type":"Person","name":"Mohamed Bouhaj"},"offers":{"@type":"Offer","price":"39","priceCurrency":"USD","url":"https://mohamedbouhaje.gumroad.com/l/iridium","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"IRIDIUM — live KDP keyword analysis on a real Amazon search","description":"IRIDIUM scores a real Amazon keyword from 0 to 100 with a GO / WATCH / SKIP verdict, then tours the dashboard.","thumbnailUrl":"https://go.bouhaj.com/iridium/img/video-poster.webp","uploadDate":"2026-11-26","embedUrl":"https://www.youtube-nocookie.com/embed/bDAoaH5vo1k","contentUrl":"https://www.youtube.com/watch?v=bDAoaH5vo1k"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -74,6 +75,16 @@ section{padding:56px 0}
 .sh h2{font-size:clamp(26px,3.6vw,38px);line-height:1.25;margin:8px 0 10px}
 .sh p{color:var(--muted);margin:0;font-size:17px}
 .card{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:var(--r);padding:22px}
+/* lite youtube */
+.yt{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;border-radius:14px;overflow:hidden;cursor:pointer;background:#05080f}
+.yt img{width:100%;height:100%;object-fit:cover}
+.yt .play{position:absolute;inset:0;margin:auto;width:86px;height:86px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--vi),var(--cy));box-shadow:0 12px 40px rgba(91,140,255,.55);transition:transform .2s}
+.yt .play::after{content:"";margin-left:6px;border-style:solid;border-width:16px 0 16px 26px;border-color:transparent transparent transparent #fff}
+.yt:hover .play{transform:scale(1.08)}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vidwrap{max-width:960px;margin:6px auto 0}
+.vidmeta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:12px;color:var(--muted);font-size:14px}
+.vidmeta a{color:var(--muted)}
 /* trust */
 .trust{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:8px 0 0}
 .trust div{display:flex;gap:12px;align-items:center;padding:16px;border:1px solid var(--line);border-radius:14px;background:rgba(19,31,51,.55);font-size:14px;color:var(--muted)}
@@ -200,6 +211,15 @@ dialog button{position:fixed;top:14px;inset-inline-end:16px;width:42px;height:42
     <div class="shot">
       <img data-img="hero" src="/iridium/img/hero-en.webp" alt="IRIDIUM panel on an Amazon search page" width="870" height="1240" fetchpriority="high">
       <div class="float"><b data-k="fl">On every competing book</b><div class="badges"><span class="bd ir">IR</span><span class="bd g">BSR 23,000</span><span class="bd">~6.4/day</span><span class="bd">14 mo</span><span class="bd">$1.17/copy</span></div></div>
+    </div>
+  </section>
+
+
+  <section id="video" style="padding:34px 0 26px">
+    <div class="sh" style="margin:0 auto 22px;text-align:center"><span class="k">LIVE DEMO</span><h2 data-k="vdH">Watch IRIDIUM analyze a real Amazon search</h2></div>
+    <div class="vidwrap">
+      <div class="shot" style="padding:8px;cursor:default"><button class="yt" type="button" data-yt="bDAoaH5vo1k" aria-label="Play video"><img src="/iridium/img/video-poster.webp" alt="IRIDIUM demo video" width="1280" height="720" loading="lazy"><span class="play"></span></button></div>
+      <div class="vidmeta"><span data-k="vdS">Real search · no edits to the numbers</span><a href="https://www.youtube.com/watch?v=bDAoaH5vo1k" target="_blank" rel="noopener" data-k="vdY">Watch on YouTube ↗</a></div>
     </div>
   </section>
 
@@ -399,7 +419,7 @@ const G={
   fr:['Audit de fiche','Collez titre, sous-titre et mots-clés. IRIDIUM note la fiche et signale ce qui pourrait la faire refuser.',['Marques déposées et mots interdits','Couverture des mots-clés de la niche','Liste claire des corrections']]}
 };
 const D={
-ar:{navF:'المزايا',navG:'الدليل',navP:'السعر',navH:'BOUHAJ TECH →',h1:'توقف عن النشر <span class="grad">بالتخمين.</span>',lead:'يقرأ IRIDIUM نتائج بحث أمازون الحقيقية، ويحوّل كل كلمة مفتاحية إلى قرار واضح. ترى الدرجة والأسباب والأرقام التي بُنيت عليها، مباشرة في صفحة أمازون.',buy:'احصل على IRIDIUM <small>— $39</small>',see:'شاهد كيف يعمل',c1:'دفعة واحدة بلا اشتراك',c2:'عربي وإنجليزي',c3:'7 أسواق أمازون',fl:'على كل كتاب منافس',
+ar:{vdH:'شاهد IRIDIUM يحلل بحثاً حقيقياً في أمازون',vdS:'بحث حقيقي · بلا تعديل على الأرقام',vdY:'شاهد على يوتيوب ↗',navF:'المزايا',navG:'الدليل',navP:'السعر',navH:'BOUHAJ TECH →',h1:'توقف عن النشر <span class="grad">بالتخمين.</span>',lead:'يقرأ IRIDIUM نتائج بحث أمازون الحقيقية، ويحوّل كل كلمة مفتاحية إلى قرار واضح. ترى الدرجة والأسباب والأرقام التي بُنيت عليها، مباشرة في صفحة أمازون.',buy:'احصل على IRIDIUM <small>— $39</small>',see:'شاهد كيف يعمل',c1:'دفعة واحدة بلا اشتراك',c2:'عربي وإنجليزي',c3:'7 أسواق أمازون',fl:'على كل كتاب منافس',
 t1:'بيانات أمازون حقيقية',t1s:'تُقرأ من الصفحات التي تفتحها',t2:'خصوصية كاملة',t2s:'بياناتك تبقى على حاسوبك',t3:'3 أجهزة',t3s:'ترخيص واحد لثلاثة حواسيب',t4:'استرداد خلال 14 يوماً',t4s:'إن لم تعمل الأداة عندك',
 vH:'درجة واحدة. خمسة شروط. جواب واضح.',vP:'اضغط "تحليل" في أي بحث كتب على أمازون. يقرأ IRIDIUM النتائج الأولى وصفحاتها، ثم يقيّم الكلمة من 0 إلى 100.',sDemo:'مثال للنتيجة · اجتياز الشروط 5/5',cD:'الطلب',cV:'حجم البحث',cC:'المنافسة',cN:'القادمون الجدد',cR:'سرعة المراجعات',cP:'الربح',bkT:'في صفحة أمازون، يحصل كل كتاب على شريط شارات',bkS:'ترتيب BSR · المبيعات اليومية التقديرية · عمر الكتاب · المراجعات وسرعتها · الربح لكل نسخة',
 g1:'تظهر في الإكمال التلقائي لأمازون',g1s:'المشترون يكتبونها فعلاً، فالطلب مؤكد.',g2:'المنافسة تحت حدّك',g2s:'عدد النتائج يُقارن بقاعدتك أنت، وهي 1,000 افتراضياً.',g3:'كتب تبيع فعلاً',g3s:'عدد كافٍ من الكتب المتصدرة ترتيبها BSR أقل من 100,000.',g4:'منافسون يمكن التغلب عليهم',g4s:'كتب تبيع ولديها أقل من 50 مراجعة، فيستطيع كتاب جديد أن يتصدر.',g5:'العناوين غير مزدحمة',g5s:'قليل من العناوين المتصدرة يستعمل العبارة نفسها، فهناك مكان لعنوانك.',gTip:'كل الشروط الخمسة قابلة للتعديل من الإعدادات. اجتزها كلها تكن الكلمة GO، واجتز أغلبها تكن WATCH، وإلا فهي SKIP، مع كتابة الأسباب.',
@@ -413,7 +433,7 @@ prE:'دفعة واحدة · تحديثات v2 مجانية',prOnce:'مرة وا�
 hH:'اقرأ هذا قبل أن تشتري',h1t:'كروم على الحاسوب',h1s:'يعمل على Google Chrome في Windows وMac. لا يعمل على الهاتف ولا Safari ولا Firefox.',h2t:'تقديرات لا وعود',h2s:'المبيعات وحجم البحث تقديرات، كما في كل أدوات السوق. ويمكنك معايرتها بمبيعاتك الحقيقية.',h3t:'يحسّن قراراتك',h3s:'يساعدك IRIDIUM على اختيار كلمات أفضل، لكنه لا يضمن المبيعات: الغلاف والمحتوى والسعر ما زالت مهمة.',h4t:'أداة مستقلة',h4s:'IRIDIUM غير تابع لأمازون ولا معتمد منها. يقرأ الصفحات التي تفتحها، كما تقرؤها أنت.',
 qH:'أسئلة شائعة',q1:'ما أسواق أمازون المدعومة؟',a1:'Amazon.com و.co.uk و.de و.fr و.es و.it و.ca، لبحوث الكتب الورقية وكيندل.',q2:'هل يوجد اشتراك شهري؟',a2:'لا. تدفع $39 مرة واحدة. محلل Claude الاختياري يستعمل مفتاح Anthropic الخاص بك، وتدفع لـ Anthropic فقط إن اخترت استعماله.',q3:'لماذا ليس في متجر كروم؟',a3:'يُباع مباشرة لتدفع مرة واحدة بلا عمولة متجر. التثبيت من المجلد يستغرق دقيقتين مع الدليل المرفق، ويعمل بالطريقة نفسها.',q4:'هل سيحظر أمازون حسابي؟',a4:'يقرأ IRIDIUM صفحات البحث والكتب العامة فقط، وهي التي تفتحها بنفسك، مع فواصل بين الصفحات. لا يلمس حسابك في KDP أبداً. وإن عرض أمازون صفحة تحقق، يتوقف الطابور حتى تحلها.',q5:'أين تُحفظ بياناتي؟',a5:'في متصفحك فقط، على حاسوبك. لا يُرسل شيء إلى أي خادم لنا. ويمكنك تصدير كل شيء أو حذفه في أي وقت.',q6:'ماذا لو غيّرت الحاسوب؟',a6:'الترخيص الواحد يعمل على 3 حواسيب. يمكنك إلغاء تفعيل جهاز من الإعدادات وتفعيل آخر، ونقل بياناتك بنسخة JSON.',q7:'هل يمكنني استرداد المبلغ؟',a7:'نعم. إن لم يعمل IRIDIUM على حاسوبك، تسترد المبلغ كاملاً خلال 14 يوماً من الشراء. المفاتيح المستردة تتوقف عن العمل.',
 fnH:'كتابك القادم يستحق كلمة أفضل.',fnP:'ابدأ ببيانات حقيقية لا بالتخمين. دفعة واحدة، وهو لك للأبد.',buy3:'احصل على IRIDIUM — $39',see2:'اقرأ الدليل',buy4:'احصل على IRIDIUM — $39',ft:'IRIDIUM من محمد بوهاج · BOUHAJ TECH · غير تابع لأمازون.',ftC:'تواصل',ftP:'الخصوصية'},
-fr:{navF:'Fonctions',navG:'Guide',navP:'Prix',navH:'← BOUHAJ TECH',h1:'Arrêtez de publier <span class="grad">au hasard.</span>',lead:'IRIDIUM lit les vrais résultats de recherche Amazon et transforme chaque mot-clé en décision claire. Vous voyez le score, les raisons et les chiffres, directement sur la page Amazon.',buy:'Obtenir IRIDIUM <small>— 39 $</small>',see:'Voir comment ça marche',c1:'Paiement unique, sans abonnement',c2:'Anglais et arabe',c3:'7 marketplaces Amazon',fl:'Sur chaque livre concurrent',
+fr:{vdH:'Regardez IRIDIUM analyser une vraie recherche Amazon',vdS:'Vraie recherche · chiffres non retouchés',vdY:'Voir sur YouTube ↗',navF:'Fonctions',navG:'Guide',navP:'Prix',navH:'← BOUHAJ TECH',h1:'Arrêtez de publier <span class="grad">au hasard.</span>',lead:'IRIDIUM lit les vrais résultats de recherche Amazon et transforme chaque mot-clé en décision claire. Vous voyez le score, les raisons et les chiffres, directement sur la page Amazon.',buy:'Obtenir IRIDIUM <small>— 39 $</small>',see:'Voir comment ça marche',c1:'Paiement unique, sans abonnement',c2:'Anglais et arabe',c3:'7 marketplaces Amazon',fl:'Sur chaque livre concurrent',
 t1:'Vraies données Amazon',t1s:'Lues sur les pages que vous ouvrez',t2:'Privé par conception',t2s:'Vos données restent sur votre ordinateur',t3:'3 appareils',t3s:'Une licence, trois ordinateurs',t4:'Remboursement 14 jours',t4s:'S’il ne fonctionne pas chez vous',
 vH:'Un score. Cinq règles. Une réponse claire.',vP:'Cliquez sur Analyser dans n’importe quelle recherche de livres Amazon. IRIDIUM lit les premiers résultats et leurs pages, puis note le mot-clé de 0 à 100.',sDemo:'Exemple de résultat · règles validées 5/5',cD:'Demande',cV:'Volume de recherche',cC:'Concurrence',cN:'Nouveaux venus',cR:'Vitesse des avis',cP:'Rentabilité',bkT:'Sur la page Amazon, chaque livre reçoit une barre de badges',bkS:'BSR · ventes estimées par jour · âge du livre · avis et rythme des avis · redevance par exemplaire',
 g1:'Présent dans l’autocomplétion Amazon',g1s:'De vrais acheteurs le tapent : la demande est confirmée.',g2:'Concurrence sous votre limite',g2s:'Le nombre de résultats est comparé à votre règle, 1 000 par défaut.',g3:'Des livres se vendent vraiment',g3s:'Assez de livres en tête ont un BSR inférieur à 100 000.',g4:'Concurrents battables',g4s:'Des livres qui se vendent avec moins de 50 avis : un nouveau livre peut se classer.',g5:'Titres peu saturés',g5s:'Peu de titres utilisent l’expression exacte : il reste de la place pour le vôtre.',gTip:'Les cinq règles sont modifiables dans les réglages. Toutes validées : GO. La plupart : WATCH. Sinon : SKIP, avec les raisons écrites.',
@@ -445,8 +465,9 @@ function apply(){
 }
 document.querySelectorAll('.langs button').forEach(b=>b.onclick=()=>{lang=b.dataset.l;try{localStorage.setItem('iridiumLang',lang)}catch(e){}apply()});
 document.getElementById('tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;cur=b.dataset.g;document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));gallery()};
+document.querySelectorAll('.yt').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.yt;if(!/^[\w-]{11}$/.test(id))return;const f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1';f.title='IRIDIUM demo';f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;b.replaceChildren(f);b.style.cursor='default'},{once:true}));
 const lb=document.getElementById('lb');
-document.querySelectorAll('.shot').forEach(s=>s.addEventListener('click',()=>{const i=s.querySelector('img');lb.querySelector('img').src=i.src;lb.querySelector('img').alt=i.alt;if(lb.showModal)lb.showModal()}));
+document.querySelectorAll('.shot').forEach(s=>{if(s.querySelector('.yt'))return;s.addEventListener('click',()=>{const i=s.querySelector('img');lb.querySelector('img').src=i.src;lb.querySelector('img').alt=i.alt;if(lb.showModal)lb.showModal()})});
 lb.addEventListener('click',()=>lb.close());
 apply();
 })();
