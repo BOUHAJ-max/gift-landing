@@ -413,34 +413,14 @@ function openInChrome(){ toast(it('opening')); location.href='intent://go.bouhaj
 function openInSafari(){ location.href='x-safari-https://go.bouhaj.com/reader/?install=1' }
 // The only two buttons: «Install now» + «Later». No manual browser-menu steps, ever.
 function sheetHTML(){
-<<<<<<< HEAD
-  const chip=(ic,k)=>`<span class="ins-chip">${I(ic)}${t(k)}</span>`;
-  const chips=`<div class="ins-feats">${chip('candle','f1')}${chip('eye','f2')}${chip('voice','f5')}${chip('pages','f6')}</div>`;
+  const feats=[['candle','f1'],['eye','f2'],['voice','f5'],['pages','f6']];
   const hint=isIOS?`<p class="ins-hint">${it('iosTap')}</p>`:'';
-  return `<div class="ins-card"><img src="/reader/icons/icon-192.png" alt="" width="72" height="72"><h3>${it('t')}</h3><p class="ins-d">${it('d')}</p>${chips}${hint}<div class="ins-btns"><button class="btn big" id="insNow">${I('download')}${it('now')}</button><button class="btn ghost" id="insLater">${it('later')}</button></div></div>`;
+  return `<div class="ins-card"><div class="ins-logo"><img src="/reader/icons/icon.svg?v=2" alt="" width="88" height="88"></div><h3>${it('t')}</h3><p class="ins-d">${it('d')}</p><ul class="ins-feats">${feats.map(([i,k])=>`<li>${I(i)}<span>${t(k)}</span></li>`).join('')}</ul>${hint}<div class="ins-btns"><button class="btn big" id="insNow">${I('download')}${it('now')}</button><button class="btn ghost" id="insLater">${it('later')}</button></div></div>`;
 }
 function refreshSheet(){ const sh=$('#installSheet'); if(!sh||sh.hidden)return; sh.innerHTML=sheetHTML(); bindSheet() }
 function bindSheet(){
   $('#insNow')&&($('#insNow').onclick=tryInstall);
-  $('#insLater')&&($('#insLater').onclick=closeInstall);
-=======
-  const step=(n,txt,ic)=>`<li><b>${n}</b><span>${txt}</span>${ic?I(ic):''}</li>`;
-  let body='',btn='';
-  if(isAndroid&&(inApp||!isChrome)){ body=`<p>${it('inapp')}</p>`; btn=`<button class="btn" id="insGo">${I('ext')}${it('chrome')}</button>` }
-  else if(isIOS){ body=(inApp||!/Safari/i.test(UA)||/CriOS|FxiOS/i.test(UA)?`<p>${it('iosInapp')}</p>`:'')+`<ol class="steps">${step(1,it('ios1'),'share')}${step(2,it('ios2'),'plus')}${step(3,it('ios3'))}</ol>`; if(inApp||/CriOS|FxiOS/i.test(UA))btn=`<button class="btn" id="insSafari">${I('ext')}${it('iosSafari')}</button><button class="btn ghost" id="insCopy">${it('copy')}</button>` }
-  else if(deferred){ btn=`<button class="btn big" id="insNow">${I('download')}${it('now')}</button>` }
-  else { body=`<p>${it('menuHint')}</p><ol class="steps">${step(1,it('menu1'),'dots')}${step(2,it('menu2'),'download')}</ol>`; btn=`<button class="btn big" id="insNow" disabled>${it('wait')}</button>` }
-  const feats=[['candle','f1'],['eye','f2'],['voice','f5'],['pages','f6']];
-  return `<div class="ins-card"><div class="ins-logo"><img src="/reader/icons/icon.svg?v=2" alt="" width="88" height="88"></div><h3>${it('t')}</h3><p class="ins-d">${it('d')}</p><ul class="ins-feats">${feats.map(([i,k])=>`<li>${I(i)}<span>${t(k)}</span></li>`).join('')}</ul>${body}<div class="ins-btns">${btn}<button class="btn ghost" id="insLater">${it('later')}</button></div></div>`;
-}
-function refreshSheet(){ const sh=$('#installSheet'); if(!sh||sh.hidden)return; sh.innerHTML=sheetHTML(); bindSheet() }
-function bindSheet(){
-  $('#insNow')&&($('#insNow').onclick=async()=>{ if(!deferred)return; deferred.prompt(); const r=await deferred.userChoice; deferred=null; document.body.classList.remove('can-install'); if(r&&r.outcome==='accepted')closeInstall(); else refreshSheet() });
-  $('#insGo')&&($('#insGo').onclick=openInChrome);
-  $('#insSafari')&&($('#insSafari').onclick=openInSafari);
-  $('#insCopy')&&($('#insCopy').onclick=async()=>{try{await navigator.clipboard.writeText(INSTALL_URL);toast(it('copied'))}catch(e){prompt('',INSTALL_URL)}});
-  $('#insLater').onclick=()=>{try{localStorage.setItem('rd:insLater',String(Date.now()))}catch(e){}closeInstall()};
->>>>>>> 17a153778ef12fe91ed3d18f3225ae4ff6ff9a54
+  $('#insLater')&&($('#insLater').onclick=()=>{try{localStorage.setItem('rd:insLater',String(Date.now()))}catch(e){}closeInstall()});
 }
 // One action for «Install now»: native prompt if ready, else jump straight to Chrome.
 async function tryInstall(){
@@ -457,18 +437,13 @@ function closeInstall(){ const sh=$('#installSheet'); if(sh)sh.hidden=true }
 const doInstall=openInstall;
 document.addEventListener('click',e=>{ if(e.target.closest('[data-act=install]'))openInstall() });
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('/reader/sw.js',{scope:'/reader/'}).catch(()=>{}));
-<<<<<<< HEAD
-// Arriving from "open in Chrome": if the prompt doesn't fire within a moment, still show the two-button card.
-if(auto&&!installed())setTimeout(()=>{if(auto)showSheet();},1400);
-=======
-// Arriving from "open in Chrome": show the install card right away (browsers need one tap to install)
-if(new URLSearchParams(location.search).has('install')&&!installed())setTimeout(showSheet,400);
-// Open the install card by itself on the first visit in a browser (one tap then installs). Not shown again for 3 days after "Later".
-(function(){ if(installed()||new URLSearchParams(location.search).has('install'))return; let last=0; try{last=+localStorage.getItem('rd:insLater')||0}catch(e){} if(Date.now()-last<3*864e5)return;
-  const show=()=>{ if(!installed()&&($('#installSheet')||{}).hidden!==false)showSheet() };
+// Arriving from "open in Chrome": if the native prompt doesn't fire in time, still show the two-button card.
+if(auto&&!installed())setTimeout(()=>{if(auto&&!installed())showSheet();},1400);
+// First visit in a plain browser: offer the card once (one tap then installs). Hidden for 3 days after "Later".
+(function(){ if(installed()||auto)return; let last=0; try{last=+localStorage.getItem('rd:insLater')||0}catch(e){} if(Date.now()-last<3*864e5)return;
+  const show=()=>{ if(!installed()&&(($('#installSheet')||{}).hidden!==false))showSheet() };
   if(isAndroid||isIOS){ setTimeout(show,deferred?600:1800) } else { addEventListener('beforeinstallprompt',()=>setTimeout(show,600),{once:true}) }
 })();
->>>>>>> 17a153778ef12fe91ed3d18f3225ae4ff6ff9a54
 
 /* ================= Pro features: marks, notes, bookmarks, stats, quote card, search, SFX ================= */
 const marks=store.get('rd:marks',{});       // {book:{chap:[{id,type,text,para,note,color,ts}]}}
