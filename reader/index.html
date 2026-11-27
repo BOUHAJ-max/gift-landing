@@ -24,7 +24,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/reader/reader.css?v=3">
+<link rel="stylesheet" href="/reader/reader.css?v=4">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5006130101466731" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -81,6 +81,7 @@
     <button class="tog" id="justify"><span data-t="justify"></span><i></i></button>
     <button class="tog" id="wake"><span data-t="wake"></span><i></i></button>
     <button class="tog" id="flame"><span data-t="flame"></span><i></i></button>
+    <button class="tog" id="sfx"><span data-t="sfx"></span><i></i></button>
   </div>
   <button class="wide-btn" id="fsBtn" data-ic="full"><span data-t="fullscreen"></span></button>
 </section>
@@ -100,8 +101,50 @@
   </div>
 </section>
 
+<!-- selection toolbar -->
+<div class="selbar" id="selbar" hidden role="toolbar">
+  <button class="icon-btn" data-act="selHl" aria-label="hl" data-ic="hl"></button>
+  <button class="icon-btn" data-act="selNote" aria-label="note" data-ic="note"></button>
+  <button class="icon-btn" data-act="selShare" aria-label="share" data-ic="share2"></button>
+  <button class="icon-btn" data-act="selCopy" aria-label="copy" data-ic="copyIco"></button>
+</div>
+
+<div class="sheet-back" id="sheetBack" hidden></div>
+
+<!-- marks & notes drawer -->
+<aside class="drawer drawer-end" id="marks" hidden aria-label="marks">
+  <div class="drawer-h"><strong data-t="marks"></strong><button class="icon-btn" data-act="marksClose" aria-label="close" data-ic="close"></button></div>
+  <div id="marksBody" class="marks-body"></div>
+</aside>
+
+<!-- in-book search -->
+<aside class="drawer drawer-end" id="search" hidden aria-label="search">
+  <div class="drawer-h search-h"><span class="srch-wrap" data-ic="search"><input id="searchInput" type="search" autocomplete="off"></span><button class="icon-btn" data-act="searchClose" aria-label="close" data-ic="close"></button></div>
+  <p class="dr-hint" data-t="searchHint"></p>
+  <div id="searchBody" class="marks-body"></div>
+</aside>
+
+<!-- note editor -->
+<div class="modal" id="noteModal" hidden role="dialog">
+  <div class="modal-card">
+    <h3 data-t="note"></h3>
+    <textarea id="noteText" rows="4" data-t-ph="writeNote"></textarea>
+    <div class="modal-btns"><button class="btn" data-act="noteSave" data-t="noteAdd"></button><button class="btn ghost" data-act="noteClose" data-t="later"></button></div>
+  </div>
+</div>
+
+<!-- quote share -->
+<div class="modal" id="quoteModal" hidden role="dialog">
+  <div class="modal-card quote-card">
+    <h3 data-t="quoteShare"></h3>
+    <div class="quote-prev"><canvas id="quoteCanvas"></canvas></div>
+    <textarea id="quoteText" rows="2" data-t-ph="writeNote"></textarea>
+    <div class="modal-btns"><button class="btn" data-act="quoteShare" data-ic="share2"><span data-t="shareNow"></span></button><button class="btn ghost" data-act="quoteDl" data-ic="imageIco"><span data-t="download"></span></button><button class="btn ghost" data-act="quoteClose" data-t="later"></button></div>
+  </div>
+</div>
+
 <div class="toast" id="toast" role="status" hidden></div>
-<script src="/reader/reader.js?v=3" defer></script>
+<script src="/reader/reader.js?v=4" defer></script>
 <script src="/assets/greet.js" defer></script>
 </body>
 </html>
