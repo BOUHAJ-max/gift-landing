@@ -402,8 +402,9 @@ const isAndroid=/Android/i.test(UA), isIOS=/iPhone|iPad|iPod/i.test(UA)||(naviga
 const inApp=/Instagram|FBAN|FBAV|FB_IAB|Messenger|Line\/|TikTok|musical_ly|Snapchat|Twitter|; wv\)/i.test(UA);
 const isChrome=/Chrome\/\d/i.test(UA)&&!/EdgA?|OPR|SamsungBrowser|YaBrowser|UCBrowser|Firefox/i.test(UA);
 const installed=()=>matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches||navigator.standalone===true;
-// Chrome Android won't re-offer the prompt once the PWA is installed — detect that so we can say so.
-async function alreadyInstalled(){ try{ if(navigator.getInstalledRelatedApps){ const a=await navigator.getInstalledRelatedApps(); return !!(a&&a.length); } }catch(e){} return false; }
+// Detect whether THIS reader app (scope /reader/) is installed — ignoring the main-site app whose
+// scope "/" also covers this page, so we don't falsely report the reader as installed.
+async function alreadyInstalled(){ try{ if(navigator.getInstalledRelatedApps){ const a=await navigator.getInstalledRelatedApps(); return (a||[]).some(x=>/\/reader\//.test(x.url||x.id||'')); } }catch(e){} return false; }
 const INSTALL_URL='https://go.bouhaj.com/reader/?install=1';
 let deferred=null, auto=new URLSearchParams(location.search).has('install');
 addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;document.body.classList.add('can-install');
