@@ -262,6 +262,7 @@ html[data-paper=on][data-layout=pages][data-theme=cream] body,html[data-paper=on
 .steps span{flex:1}
 .steps .ic{color:var(--accent)}
 .ins-hint{color:var(--muted)!important;font-size:13px!important;margin:-4px 0 12px!important}
+.ins-menu{color:var(--muted)!important;font-size:12px!important;margin:12px 0 0!important;opacity:.82}
 .ins-btns{display:grid;gap:8px;margin-top:6px}
 .ins-btns .btn{width:100%}
 .btn.big{min-height:54px;font-size:17px}
