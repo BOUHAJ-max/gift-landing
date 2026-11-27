@@ -1,6 +1,6 @@
 /* روايات بوهاج — offline support: app shell + every chapter you open */
-const V="bouhaj-reader-v12";
-const SHELL=["/reader/","/reader/reader.css?v=12","/reader/reader.js?v=12","/reader/library.json?v=3","/reader/icons/icon.svg?v=2","/reader/icons/icon-192.png","/reader/paper.jpg"];
+const V="bouhaj-reader-v13";
+const SHELL=["/reader/","/reader/reader.css?v=13","/reader/reader.js?v=13","/reader/library.json?v=3","/reader/icons/icon.svg?v=2","/reader/icons/icon-192.png","/reader/paper.jpg"];
 self.addEventListener("install",e=>e.waitUntil(caches.open(V).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting())));
 self.addEventListener("activate",e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x.startsWith("bouhaj-reader-")&&x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
 self.addEventListener("fetch",e=>{
