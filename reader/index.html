@@ -17,14 +17,14 @@
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website"><meta property="og:title" content="Bouhaj Reader | قارئ روايات محمد بوهاج"><meta property="og:description" content="اقرأ روايات محمد بوهاج في تطبيق مصمم للقراءة: ضوء الشمعة، الكتاب الكريمي، القراءة الصوتية."><meta property="og:url" content="https://go.bouhaj.com/reader/"><meta property="og:image" content="https://go.bouhaj.com/reader/icons/og.jpg"><meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="/reader/manifest.webmanifest">
-<link rel="icon" href="/reader/icons/icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/reader/icons/apple-touch-icon.png">
+<link rel="icon" href="/reader/icons/icon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/reader/icons/apple-touch-icon.png?v=2">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Bouhaj Reader">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/reader/reader.css?v=5">
+<link rel="stylesheet" href="/reader/reader.css?v=6">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5006130101466731" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -140,12 +140,25 @@
     <h3 data-t="quoteShare"></h3>
     <div class="quote-prev"><canvas id="quoteCanvas"></canvas></div>
     <textarea id="quoteText" rows="2" data-t-ph="writeNote"></textarea>
-    <div class="modal-btns"><button class="btn" data-act="quoteShare" data-ic="share2"><span data-t="shareNow"></span></button><button class="btn ghost" data-act="quoteDl" data-ic="imageIco"><span data-t="download"></span></button><button class="btn ghost" data-act="quoteClose" data-t="later"></button></div>
+    <div class="modal-btns"><button class="btn" data-act="quoteShare" data-ic="share2"><span data-t="shareNow"></span></button><button class="btn ghost" data-act="quoteSocial" data-ic="share"><span data-t="share"></span> Facebook · WhatsApp · X</button><button class="btn ghost" data-act="quoteDl" data-ic="imageIco"><span data-t="download"></span></button><button class="btn ghost" data-act="quoteClose" data-t="later"></button></div>
+  </div>
+</div>
+
+
+<!-- social share -->
+<div class="modal" id="shareModal" hidden role="dialog" aria-labelledby="shareTitle">
+  <div class="modal-card share-card">
+    <h3 id="shareTitle"></h3>
+    <p class="share-lead" id="shareLead"></p>
+    <textarea id="shareNote" rows="3"></textarea>
+    <div class="share-prev" id="sharePrev"></div>
+    <div class="share-btns" id="shareBtns"></div>
+    <div class="modal-btns"><button class="btn ghost" data-act="shareClose" data-t="later"></button></div>
   </div>
 </div>
 
 <div class="toast" id="toast" role="status" hidden></div>
-<script src="/reader/reader.js?v=5" defer></script>
+<script src="/reader/reader.js?v=6" defer></script>
 <script src="/assets/greet.js" defer></script>
 </body>
 </html>
