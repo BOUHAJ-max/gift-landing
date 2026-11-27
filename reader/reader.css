@@ -91,6 +91,9 @@ html[data-theme=day] .btn,html[data-theme=night] .btn{color:#1a1006}
 .rd{padding:calc(74px + var(--safe-t)) 22px calc(120px + var(--safe-b))}
 .page{max-width:680px;margin:0 auto}
 html[data-theme=cream] .page{background:var(--paper);padding:clamp(26px,6vw,56px);border-radius:6px;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 30px 60px -30px rgba(70,45,15,.55),0 0 0 1px rgba(90,60,25,.08);background-image:radial-gradient(120% 80% at 50% 0%,rgba(255,255,255,.55),transparent 60%),radial-gradient(90% 60% at 100% 100%,rgba(160,110,50,.08),transparent 70%)}
+/* real paper texture — light modes only */
+html[data-paper=on][data-theme=cream] .page,html[data-paper=on][data-theme=day] .page,html[data-paper=on][data-theme=comfort] .page{background:var(--paper);padding:clamp(26px,6vw,56px);border-radius:6px;box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 30px 60px -30px rgba(70,45,15,.5),0 0 0 1px rgba(90,60,25,.1);background-image:linear-gradient(rgba(247,238,216,.62),rgba(247,238,216,.62)),url(/reader/paper.jpg);background-size:cover;background-position:center;background-repeat:no-repeat}
+html[data-paper=on][data-theme=day] .page{background-image:linear-gradient(rgba(251,246,234,.6),rgba(251,246,234,.6)),url(/reader/paper.jpg)}
 .rd-kick{text-align:center;font-size:13px;color:var(--muted);margin-bottom:6px}
 .rd-title{font-family:var(--font-read);font-size:calc(var(--size) * 1.55);line-height:1.35;text-align:center;margin:0 0 28px;color:var(--ink)}
 .txt{font-family:var(--font-read);font-size:var(--size);line-height:var(--lh);color:var(--ink2)}
@@ -235,6 +238,7 @@ html[data-layout=pages] .tap{display:block;position:fixed;z-index:400;top:calc(6
 html[data-layout=pages] .tap-a{left:0} html[data-layout=pages] .tap-b{right:0}
 html[data-layout=pages] .chrome-hidden .bar,html[data-layout=pages] .chrome-hidden .rd-foot{transform:none}
 html[data-layout=pages][data-theme=cream] body{background:var(--paper)}
+html[data-paper=on][data-layout=pages][data-theme=cream] body,html[data-paper=on][data-layout=pages][data-theme=day] body,html[data-paper=on][data-layout=pages][data-theme=comfort] body{background-image:linear-gradient(rgba(247,238,216,.6),rgba(247,238,216,.6)),url(/reader/paper.jpg);background-size:cover;background-position:center;background-attachment:fixed}
 @media(max-width:520px){.hide-sm{display:none}}
 
 /* ===================== install ===================== */
