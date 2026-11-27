@@ -1,0 +1,101 @@
+<!doctype html>
+<!--
+  👋 أهلاً يا من تقرأ المصدر. أنا محمد بوهاج.
+  إن وجدت ثغرة، كن بطلاً وأبلغني: wa.me/212618439834 · /.well-known/security.txt
+-->
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>تريلر الروايات | Bouhaj Reader</title>
+<meta name="description" content="تريلر سينمائي لروايات محمد بوهاج: وادي العقل، آخر المتمردين ماروداي، الرواية المتمردة — بمؤثرات صوتية مولّدة بالكود.">
+<link rel="canonical" href="https://go.bouhaj.com/trailer/">
+<meta name="theme-color" content="#05060a">
+<meta property="og:type" content="website"><meta property="og:title" content="تريلر روايات محمد بوهاج"><meta property="og:description" content="تريلر سينمائي بمؤثرات صوتية مولّدة بالكود."><meta property="og:url" content="https://go.bouhaj.com/trailer/"><meta property="og:image" content="https://go.bouhaj.com/assets/wadi-al-aql-cover.jpg"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/reader/icons/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--acc:#e5bd79}
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;background:#05060a;color:#f3ecdd;font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;overflow:hidden}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(130% 90% at 50% 18%,#120f1a,#05060a 62%);overflow:hidden}
+/* soft accent light + drifting embers */
+#glow{position:absolute;inset:0;background:radial-gradient(60% 42% at 50% 30%,color-mix(in srgb,var(--acc) 40%,transparent),transparent 70%);opacity:0;filter:blur(8px);mix-blend-mode:screen}
+#vign{position:absolute;inset:0;background:radial-gradient(120% 100% at 50% 50%,transparent 52%,rgba(0,0,0,.78));pointer-events:none}
+#grain{position:absolute;inset:-40%;opacity:.05;pointer-events:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");animation:gshift 1.2s steps(3) infinite}
+@keyframes gshift{to{transform:translate(6%,4%)}}
+.ember{position:absolute;width:4px;height:4px;border-radius:50%;background:var(--acc);opacity:0;filter:blur(1px) drop-shadow(0 0 6px var(--acc))}
+#wrap{position:relative;width:100%;height:100%;max-width:min(100vw,calc(100vh*9/16));margin:0 auto}
+.layer{position:absolute;inset-inline:0;text-align:center;will-change:transform,opacity}
+#present{top:14%;font-family:Cinzel,serif;letter-spacing:.42em;font-size:clamp(11px,2.9vw,16px);color:color-mix(in srgb,var(--acc) 85%,#fff);opacity:0}
+#present small{display:block;letter-spacing:.14em;font-family:"IBM Plex Sans Arabic";font-size:.78em;color:#bdb3a2;margin-top:10px}
+#coverBox{top:50%;transform:translateY(-50%);display:grid;place-items:center;opacity:0}
+#cover{width:min(58%,300px);aspect-ratio:640/1024;object-fit:cover;border-radius:6px;box-shadow:0 30px 70px -18px rgba(0,0,0,.85),0 0 0 1px color-mix(in srgb,var(--acc) 40%,transparent),0 0 60px -10px color-mix(in srgb,var(--acc) 55%,transparent)}
+#titleBox{bottom:23%;opacity:0}
+#title{font-family:Amiri,serif;font-weight:700;font-size:clamp(26px,8.2vw,52px);line-height:1.2;color:#fbf3e2;text-shadow:0 2px 24px rgba(0,0,0,.8)}
+#title.en,#title.fr{font-family:Cinzel,serif;letter-spacing:.04em;font-size:clamp(22px,6.6vw,44px)}
+#uline{height:2px;width:0;margin:16px auto 0;background:linear-gradient(90deg,transparent,var(--acc),transparent)}
+#kick{margin-top:12px;font-family:Cinzel,serif;letter-spacing:.3em;font-size:clamp(9px,2.5vw,13px);color:color-mix(in srgb,var(--acc) 80%,#fff);opacity:0}
+#tagline{bottom:15%;font-size:clamp(13px,3.7vw,20px);color:#e7ddcb;padding:0 9%;opacity:0;font-weight:400}
+#quoteBox{top:50%;transform:translateY(-50%);padding:0 10%;opacity:0}
+#quote{font-family:Amiri,serif;font-size:clamp(19px,5.6vw,34px);line-height:1.6;color:#fbf3e2}
+#quote.en,#quote.fr{font-family:Lora,serif;font-style:italic}
+#qmark{font-family:Cinzel;font-size:2.4em;color:var(--acc);opacity:.5;line-height:0}
+#ctaBox{bottom:19%;opacity:0}
+#ctaT{font-family:Amiri,serif;font-size:clamp(20px,5.4vw,32px);color:#fff;margin-bottom:22px}
+#ctaBtn{display:inline-flex;gap:10px;align-items:center;padding:14px 30px;border-radius:999px;background:var(--acc);color:#1a1206;font-weight:700;text-decoration:none;font-size:clamp(14px,3.6vw,18px);box-shadow:0 14px 36px -10px color-mix(in srgb,var(--acc) 80%,transparent)}
+#brand{position:absolute;bottom:5.5%;inset-inline:0;text-align:center;font-family:Cinzel;letter-spacing:.3em;font-size:clamp(9px,2.4vw,12px);color:#8d8372;opacity:0}
+/* start + replay overlay */
+#gate{position:absolute;inset:0;display:grid;place-items:center;z-index:30;background:radial-gradient(60% 50% at 50% 42%,rgba(18,15,26,.6),rgba(5,6,10,.92));backdrop-filter:blur(2px);text-align:center;padding:24px}
+#gate.hide{display:none}
+#gate h1{font-family:Amiri,serif;font-size:clamp(22px,6vw,38px);margin-bottom:10px;color:#fbf3e2}
+#gate p{color:#b9af9e;font-size:clamp(12px,3.3vw,15px);margin-bottom:26px;max-width:28ch;margin-inline:auto}
+.play{width:88px;height:88px;border-radius:50%;border:none;cursor:pointer;background:var(--acc);display:grid;place-items:center;box-shadow:0 0 0 0 color-mix(in srgb,var(--acc) 55%,transparent);animation:pulse 2.2s infinite}
+.play svg{width:34px;height:34px;margin-inline-start:4px;fill:#1a1206}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--acc) 55%,transparent)}70%{box-shadow:0 0 0 26px transparent}100%{box-shadow:0 0 0 0 transparent}}
+#picker{position:absolute;top:calc(14px + env(safe-area-inset-top));inset-inline-start:0;inset-inline-end:0;z-index:40;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:0 12px}
+#picker button{font-family:inherit;font-size:12px;padding:7px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(10,8,14,.55);color:#d9cfbe;cursor:pointer;backdrop-filter:blur(6px)}
+#picker button.on{background:var(--acc);color:#1a1206;border-color:var(--acc);font-weight:700}
+#langSel{position:absolute;top:calc(14px + env(safe-area-inset-top));inset-inline-end:12px;z-index:40;display:flex;gap:6px}
+#langSel button{font-family:inherit;font-size:11px;width:34px;height:30px;border-radius:9px;border:1px solid rgba(255,255,255,.16);background:rgba(10,8,14,.55);color:#d9cfbe;cursor:pointer}
+#langSel button.on{background:var(--acc);color:#1a1206;font-weight:700}
+#replay{position:absolute;bottom:calc(14px + env(safe-area-inset-bottom));inset-inline:0;z-index:40;display:none;gap:10px;justify-content:center}
+#replay.show{display:flex}
+#replay a,#replay button{font-family:inherit;font-size:13px;padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:rgba(10,8,14,.6);color:#e7ddcb;cursor:pointer;text-decoration:none;backdrop-filter:blur(6px)}
+#replay a.main{background:var(--acc);color:#1a1206;border-color:var(--acc);font-weight:700}
+.cap #picker,.cap #langSel,.cap #replay,.cap #gate{display:none!important}
+@media(prefers-reduced-motion:reduce){.play{animation:none}}
+</style>
+</head>
+<body>
+<div id="stage"><div id="wrap">
+  <div id="glow"></div>
+  <div id="present" class="layer"><span id="presentMain"></span><small id="presentSub">BOUHAJ TECH</small></div>
+  <div id="coverBox" class="layer"><img id="cover" alt=""></div>
+  <div id="titleBox" class="layer"><div id="title"></div><div id="uline"></div><div id="kick"></div></div>
+  <div id="tagline" class="layer"></div>
+  <div id="quoteBox" class="layer"><div id="quote"><span id="qmark">“</span><span id="quoteT"></span></div></div>
+  <div id="ctaBox" class="layer"><div id="ctaT"></div><a id="ctaBtn" href="/reader/"><span id="ctaLbl"></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  <div id="brand">BOUHAJ READER</div>
+  <div id="vign"></div><div id="grain"></div>
+</div></div>
+
+<div id="picker"></div>
+<div id="langSel"><button data-l="ar" class="on">ع</button><button data-l="en">EN</button><button data-l="fr">FR</button></div>
+
+<div id="gate">
+  <h1 id="gateT"></h1>
+  <p id="gateP"></p>
+  <button class="play" id="playBtn" aria-label="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+</div>
+<div id="replay">
+  <button id="replayBtn"></button>
+  <a class="main" id="readBtn" href="/reader/"></a>
+</div>
+
+<script src="/trailer/trailer.js" defer></script>
+</body>
+</html>

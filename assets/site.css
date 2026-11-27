@@ -546,3 +546,12 @@ html[dir=ltr] .reader-cta b{transform:scaleX(-1)}
 .rb-ghost{border:1px solid var(--ds-border-strong);color:var(--ds-text)!important}
 .rb-ghost:hover{border-color:var(--ds-text-2)}
 @media(max-width:640px){.rb-actions{width:100%}.rb-btn{flex:1}}
+.trailer-strip{display:flex;align-items:center;gap:14px;margin:0 0 20px;padding:14px 18px;border-radius:var(--ds-r-lg);border:1px solid rgba(216,167,90,.32);background:linear-gradient(100deg,rgba(176,108,255,.14),rgba(88,186,255,.10) 55%,rgba(216,167,90,.14));color:var(--ds-text)!important;text-decoration:none!important;transition:border-color .2s,transform .2s}
+.trailer-strip:hover{border-color:rgba(216,167,90,.7);transform:translateY(-1px)}
+.ts-play{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#d8a75a;box-shadow:0 8px 22px -8px rgba(216,167,90,.8)}
+.ts-play svg{width:20px;height:20px;margin-inline-start:3px;fill:#1a1006}
+.ts-copy{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}
+.ts-copy b{font-size:15px}
+.ts-copy span{font-size:12.5px;color:var(--ds-muted)}
+.ts-copy .ts-tag{align-self:flex-start;font-size:10px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:999px;background:rgba(216,167,90,.2);color:#e6b970;margin-bottom:2px}
+.ts-arrow{flex:none;color:var(--ds-muted);font-size:18px}
