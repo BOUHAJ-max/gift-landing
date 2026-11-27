@@ -381,3 +381,8 @@ html[data-layout=pages] .bookbar{bottom:calc(52px + var(--safe-b))}
 .ins-feats .ic{width:18px;height:18px;color:var(--accent);flex:none}
 .btn.big{min-height:52px;font-size:16.5px;font-weight:800}
 .brand img{border-radius:9px}
+
+/* selection bar docked on phones, away from the system menu */
+.selbar.docked{padding:7px;border-radius:18px;gap:4px;box-shadow:0 16px 40px rgba(0,0,0,.55)}
+.selbar.docked::after{display:none}
+.selbar.docked .icon-btn{width:48px;height:48px}

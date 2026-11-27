@@ -508,12 +508,19 @@ let selData=null;
 function showSelBar(){
   const info=selInfo(); const bar=$('#selbar'); if(!info){bar.hidden=true;selData=null;return}
   selData=info; bar.hidden=false;
+  const touch=matchMedia('(pointer:coarse)').matches;
+  bar.classList.toggle('docked',touch);
+  if(touch){ // phones: keep clear of the system copy/share menu, which sits next to the selection
+    const nearBottom=info.rect.bottom>innerHeight-170; bar.style.left='50%';
+    if(nearBottom){bar.style.top='calc(env(safe-area-inset-top,0px) + 74px)';bar.style.bottom='auto'}else{bar.style.top='auto';bar.style.bottom='calc(env(safe-area-inset-bottom,0px) + 64px)'}
+    return }
+  bar.style.bottom='auto';
   const bw=bar.offsetWidth||300, x=Math.min(Math.max(info.rect.left+info.rect.width/2,bw/2+8),innerWidth-bw/2-8);
-  let y=info.rect.top-bar.offsetHeight-10; if(y<70)y=info.rect.bottom+10;
+  let y=info.rect.top-bar.offsetHeight-14; if(y<70)y=info.rect.bottom+14;
   bar.style.left=x+'px'; bar.style.top=y+'px';
 }
 document.addEventListener('selectionchange',()=>{ if(!document.body.classList.contains('reading'))return; clearTimeout(window.__st); window.__st=setTimeout(showSelBar,180) });
-document.addEventListener('scroll',()=>{ if($('#selbar')&&!$('#selbar').hidden)$('#selbar').hidden=true },true);
+document.addEventListener('scroll',()=>{ const b=$('#selbar'); if(b&&!b.hidden&&!b.classList.contains('docked'))b.hidden=true },true);
 
 function addHighlight(type){
   if(!selData)return; const list=chapMarks(); const color=HLCOLORS[list.length%HLCOLORS.length];
