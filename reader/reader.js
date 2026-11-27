@@ -393,9 +393,9 @@ let tid; function toast(m){ const el=$('#toast'); el.textContent=m; el.hidden=fa
 
 /* ---------------- install ---------------- */
 const IT={
- ar:{t:'ثبّت Bouhaj Reader',d:'أضفه إلى الشاشة الرئيسية ليفتح كتطبيق بملء الشاشة، ويعمل دون إنترنت.',now:'تثبيت الآن',wait:'جارٍ تجهيز التثبيت…',chrome:'افتح في Chrome للتثبيت',inapp:'أنت داخل متصفح تطبيق آخر (مثل إنستغرام) لا يسمح بالتثبيت. سنفتح الصفحة في Chrome، ثم اضغط «تثبيت الآن».',ios1:'اضغط زر المشاركة',ios2:'اختر «إضافة إلى الشاشة الرئيسية»',ios3:'اضغط «إضافة»',iosSafari:'افتح في Safari',iosInapp:'التثبيت على آيفون يتم من Safari فقط. افتح الرابط في Safari ثم اتبع الخطوات:',menu1:'افتح قائمة المتصفح',menu2:'اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية»',menuHint:'إن لم يظهر زر التثبيت تلقائياً، استخدم قائمة المتصفح:',iosTap:'على آيفون: اضغط زر المشاركة ⬆ ثم «إضافة إلى الشاشة الرئيسية».',opening:'جارٍ فتح Chrome…',done:'التطبيق مثبّت على جهازك',later:'لاحقاً',copy:'نسخ الرابط',copied:'تم نسخ الرابط'},
- en:{t:'Install Bouhaj Reader',d:'Add it to your home screen to open it like an app, full screen, even offline.',now:'Install now',wait:'Preparing install…',chrome:'Open in Chrome to install',inapp:'You’re in another app’s browser (like Instagram), which can’t install apps. We’ll open the page in Chrome; then tap “Install now”.',ios1:'Tap the Share button',ios2:'Choose “Add to Home Screen”',ios3:'Tap “Add”',iosSafari:'Open in Safari',iosInapp:'On iPhone, apps are installed from Safari only. Open the link in Safari, then follow these steps:',menu1:'Open the browser menu',menu2:'Choose “Install app” or “Add to Home screen”',menuHint:'If the install button doesn’t appear automatically, use the browser menu:',iosTap:'On iPhone: tap Share ⬆ then “Add to Home Screen”.',opening:'Opening Chrome…',done:'The app is installed on your device',later:'Later',copy:'Copy link',copied:'Link copied'},
- fr:{t:'Installer Bouhaj Reader',d:'Ajoutez-le à l’écran d’accueil pour l’ouvrir comme une application, en plein écran, même hors ligne.',now:'Installer maintenant',wait:'Préparation de l’installation…',chrome:'Ouvrir dans Chrome pour installer',inapp:'Vous êtes dans le navigateur d’une autre application (comme Instagram), qui ne permet pas l’installation. Nous allons ouvrir la page dans Chrome ; touchez ensuite « Installer maintenant ».',ios1:'Touchez le bouton Partager',ios2:'Choisissez « Sur l’écran d’accueil »',ios3:'Touchez « Ajouter »',iosSafari:'Ouvrir dans Safari',iosInapp:'Sur iPhone, l’installation se fait uniquement depuis Safari. Ouvrez le lien dans Safari, puis suivez ces étapes :',menu1:'Ouvrez le menu du navigateur',menu2:'Choisissez « Installer l’application » ou « Ajouter à l’écran d’accueil »',menuHint:'Si le bouton d’installation n’apparaît pas automatiquement, utilisez le menu du navigateur :',iosTap:'Sur iPhone : touchez Partager ⬆ puis « Sur l’écran d’accueil ».',opening:'Ouverture de Chrome…',done:'L’application est installée sur votre appareil',later:'Plus tard',copy:'Copier le lien',copied:'Lien copié'}};
+ ar:{t:'ثبّت Bouhaj Reader',d:'أضفه إلى الشاشة الرئيسية ليفتح كتطبيق بملء الشاشة، ويعمل دون إنترنت.',now:'تثبيت الآن',wait:'جارٍ تجهيز التثبيت…',chrome:'افتح في Chrome للتثبيت',inapp:'أنت داخل متصفح تطبيق آخر (مثل إنستغرام) لا يسمح بالتثبيت. سنفتح الصفحة في Chrome، ثم اضغط «تثبيت الآن».',ios1:'اضغط زر المشاركة',ios2:'اختر «إضافة إلى الشاشة الرئيسية»',ios3:'اضغط «إضافة»',iosSafari:'افتح في Safari',iosInapp:'التثبيت على آيفون يتم من Safari فقط. افتح الرابط في Safari ثم اتبع الخطوات:',menu1:'افتح قائمة المتصفح',menu2:'اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية»',menuHint:'إن لم يظهر زر التثبيت تلقائياً، استخدم قائمة المتصفح:',menuOne:'لإتمام التثبيت: افتح قائمة المتصفح ⋮ ثم اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».',noChrome:'هذا المتصفح لا يدعم التثبيت المباشر. افتح الرابط في Chrome لإتمامه.',iosTap:'على آيفون: اضغط زر المشاركة ⬆ ثم «إضافة إلى الشاشة الرئيسية».',opening:'جارٍ فتح Chrome…',done:'التطبيق مثبّت على جهازك',later:'لاحقاً',copy:'نسخ الرابط',copied:'تم نسخ الرابط'},
+ en:{t:'Install Bouhaj Reader',d:'Add it to your home screen to open it like an app, full screen, even offline.',now:'Install now',wait:'Preparing install…',chrome:'Open in Chrome to install',inapp:'You’re in another app’s browser (like Instagram), which can’t install apps. We’ll open the page in Chrome; then tap “Install now”.',ios1:'Tap the Share button',ios2:'Choose “Add to Home Screen”',ios3:'Tap “Add”',iosSafari:'Open in Safari',iosInapp:'On iPhone, apps are installed from Safari only. Open the link in Safari, then follow these steps:',menu1:'Open the browser menu',menu2:'Choose “Install app” or “Add to Home screen”',menuHint:'If the install button doesn’t appear automatically, use the browser menu:',menuOne:'To finish: open the browser menu ⋮ and choose “Install app” or “Add to Home screen”.',noChrome:'This browser can’t install directly. Open the link in Chrome to finish.',iosTap:'On iPhone: tap Share ⬆ then “Add to Home Screen”.',opening:'Opening Chrome…',done:'The app is installed on your device',later:'Later',copy:'Copy link',copied:'Link copied'},
+ fr:{t:'Installer Bouhaj Reader',d:'Ajoutez-le à l’écran d’accueil pour l’ouvrir comme une application, en plein écran, même hors ligne.',now:'Installer maintenant',wait:'Préparation de l’installation…',chrome:'Ouvrir dans Chrome pour installer',inapp:'Vous êtes dans le navigateur d’une autre application (comme Instagram), qui ne permet pas l’installation. Nous allons ouvrir la page dans Chrome ; touchez ensuite « Installer maintenant ».',ios1:'Touchez le bouton Partager',ios2:'Choisissez « Sur l’écran d’accueil »',ios3:'Touchez « Ajouter »',iosSafari:'Ouvrir dans Safari',iosInapp:'Sur iPhone, l’installation se fait uniquement depuis Safari. Ouvrez le lien dans Safari, puis suivez ces étapes :',menu1:'Ouvrez le menu du navigateur',menu2:'Choisissez « Installer l’application » ou « Ajouter à l’écran d’accueil »',menuHint:'Si le bouton d’installation n’apparaît pas automatiquement, utilisez le menu du navigateur :',menuOne:'Pour terminer : ouvrez le menu ⋮ et choisissez « Installer l’application » ou « Sur l’écran d’accueil ».',noChrome:'Ce navigateur n’installe pas directement. Ouvrez le lien dans Chrome pour terminer.',iosTap:'Sur iPhone : touchez Partager ⬆ puis « Sur l’écran d’accueil ».',opening:'Ouverture de Chrome…',done:'L’application est installée sur votre appareil',later:'Plus tard',copy:'Copier le lien',copied:'Lien copié'}};
 const it=k=>(IT[L]||IT.ar)[k];
 const UA=navigator.userAgent||'';
 const isAndroid=/Android/i.test(UA), isIOS=/iPhone|iPad|iPod/i.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
@@ -409,8 +409,18 @@ addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;documen
   if(auto&&!installed()){auto=false;tryInstall();}});
 addEventListener('appinstalled',()=>{deferred=null;closeInstall();toast(it('done'))});
 // Open this same page in Chrome (from Instagram/other in-app browsers or non-Chrome browsers).
-function openInChrome(){ toast(it('opening')); location.href='intent://go.bouhaj.com/reader/?install=1#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='+encodeURIComponent(INSTALL_URL)+';end' }
+// If Chrome doesn't take over the screen within ~1.4s, fall back to a one-line menu hint.
+function openInChrome(){
+  toast(it('opening')); const start=Date.now();
+  const fb=setTimeout(()=>{ if(!document.hidden&&Date.now()-start<3000)menuFallback(); },1400);
+  const vh=()=>{ if(document.hidden){clearTimeout(fb);removeEventListener('visibilitychange',vh);} };
+  addEventListener('visibilitychange',vh);
+  try{ location.href='intent://go.bouhaj.com/reader/?install=1#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='+encodeURIComponent(INSTALL_URL)+';end'; }
+  catch(e){ clearTimeout(fb); menuFallback(); }
+}
 function openInSafari(){ location.href='x-safari-https://go.bouhaj.com/reader/?install=1' }
+// Last resort when no native prompt and Chrome can't take over: one clear line pointing at the browser menu.
+function menuFallback(){ showSheet(); const card=$('.ins-card'); if(card&&!card.querySelector('.ins-hint')){ const p=document.createElement('p'); p.className='ins-hint'; p.innerHTML=I('dots')+' '+it('menuOne'); const f=card.querySelector('.ins-feats'); (f||card.querySelector('.ins-d')).after(p); } toast(it('menuOne')); }
 // The only two buttons: «Install now» + «Later». No manual browser-menu steps, ever.
 function sheetHTML(){
   const feats=[['candle','f1'],['eye','f2'],['voice','f5'],['pages','f6']];
@@ -425,11 +435,15 @@ function bindSheet(){
 // One action for «Install now»: native prompt if ready, else jump straight to Chrome.
 async function tryInstall(){
   if(installed()){ toast(it('done')); return closeInstall(); }
+  // Best path: the browser's own install prompt (Chrome/Edge/Samsung/Brave on Android, desktop Chrome/Edge).
   if(deferred){ const d=deferred; deferred=null; document.body.classList.remove('can-install');
-    try{ d.prompt(); const r=await d.userChoice; if(r&&r.outcome==='accepted')closeInstall(); }catch(e){} return; }
+    try{ d.prompt(); const r=await d.userChoice; if(r&&r.outcome==='accepted')closeInstall(); }catch(e){ menuFallback(); } return; }
   if(isIOS){ if(inApp||/CriOS|FxiOS/i.test(UA))return openInSafari(); return toast(it('iosTap')); }
-  // Android / anything else without a ready prompt → open in Chrome, where it installs.
-  return openInChrome();
+  // In-app browser (Instagram/FB…) or a non-Chrome Android browser → hand off to Chrome, where it can install.
+  if(inApp||(isAndroid&&!isChrome)) return openInChrome();
+  // We're already in a capable browser but no prompt is offered (already dismissed, not yet eligible, or installed)
+  // — there is no web API to force it; point to the browser menu in one line.
+  return menuFallback();
 }
 function openInstall(){ if(installed())return toast(it('done')); showSheet(); }
 function showSheet(){ let sh=$('#installSheet'); if(!sh){sh=document.createElement('div');sh.id='installSheet';sh.className='ins';document.body.appendChild(sh)} sh.hidden=false; sh.innerHTML=sheetHTML(); bindSheet() }
